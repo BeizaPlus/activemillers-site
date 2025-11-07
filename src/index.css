@@ -1,0 +1,123 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Noto+Sans:wght@400;700&family=Roboto:wght@100;300;400;500;700;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 100%;
+}
+
+body {
+  font-family: 'Noto Sans', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.49;
+  color: #222222;
+  overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  color: #222222;
+}
+
+::selection {
+  background-color: #e60021;
+  color: #ffffff;
+}
+
+/* Ken Burns effect for background images */
+.ken-burns {
+  animation: ken-burns 5s ease-in-out infinite;
+}
+
+@keyframes ken-burns {
+
+  0%,
+  100% {
+    transform: scale(1) translate(0, 0);
+  }
+
+  50% {
+    transform: scale(1.1) translate(-2%, -2%);
+  }
+}
+
+/* Custom button styles */
+.btn-primary {
+  background: #e60000;
+  color: #fff;
+  padding: 14px 28px;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 16px;
+  text-decoration: none;
+  transition: background 0.3s ease, transform 0.2s ease;
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-primary:hover {
+  background: #b30000;
+  transform: translateY(-2px);
+}
+
+.btn-primary::before {
+  content: "⬇️";
+  margin-right: 8px;
+}
+
+/* Form styles */
+.form-input {
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid #e5e5e5;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: border-color 0.3s ease;
+  text-align: center;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #e60021;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #222222;
+  text-align: center;
+}
+
+/* Mobile-specific improvements */
+@media (max-width: 1024px) {
+  .ken-burns {
+    animation: none;
+    /* Disable Ken Burns on mobile for better performance */
+  }
+}
+
+/* Better text shadows for mobile readability */
+@media (max-width: 768px) {
+  .drop-shadow-lg {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+  }
+}

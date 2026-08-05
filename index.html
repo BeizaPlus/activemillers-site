@@ -119,18 +119,24 @@ section { overflow: hidden; }
   min-height: 100vh;
 }
 .exp-inner { max-width: 900px; width: 100%; margin: 0 auto; }
-.exp-row { display: flex; justify-content: space-between; align-items: flex-start; padding: 32px 0; border-bottom: 1px solid rgba(255,255,255,0.1); cursor: pointer; user-select: none; }
+.exp-row {
+  display: flex; flex-wrap: wrap; align-items: baseline;
+  padding: 32px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  cursor: pointer; user-select: none;
+}
 .exp-row:first-child { border-top: 1px solid rgba(255,255,255,0.1); }
-.exp-left { display: flex; align-items: flex-start; gap: 16px; flex: 1; }
-.exp-chevron { flex-shrink: 0; width: 18px; height: 18px; margin-top: 6px; transition: transform 0.35s ease; opacity: 0.4; }
+.exp-left { display: flex; align-items: flex-start; gap: 16px; flex: 1 1 auto; min-width: 0; }
+.exp-left > div { min-width: 0; }
+.exp-chevron { flex-shrink: 0; width: 18px; height: 18px; margin-top: 5px; transition: transform 0.35s ease; opacity: 0.4; }
 .exp-row.open .exp-chevron { transform: rotate(180deg); opacity: 0.8; }
-.exp-role { font-size: 24px; font-weight: 600; letter-spacing: -0.02em; }
-.exp-company { font-size: 18px; opacity: 0.5; margin-top: 2px; }
-.exp-date { font-size: 14px; opacity: 0.35; white-space: nowrap; padding-top: 4px; }
+.exp-role { font-size: clamp(18px, 2vw, 22px); font-weight: 600; letter-spacing: -0.02em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.exp-company { font-size: 16px; opacity: 0.5; margin-top: 2px; }
+.exp-date { font-size: 14px; opacity: 0.35; white-space: nowrap; flex-shrink: 0; margin-left: 24px; margin-top: 4px; }
 .exp-detail {
-  max-height: 0; overflow: hidden;
+  flex-basis: 100%; max-height: 0; overflow: hidden;
   transition: max-height 0.5s ease, margin 0.5s ease;
-  margin-top: 0; padding-left: 34px; /* align with text after chevron */
+  margin-top: 0; padding-left: 34px;
 }
 .exp-row.open .exp-detail {
   max-height: 300px; margin-top: 16px;
@@ -203,7 +209,8 @@ footer { display: flex; justify-content: space-between; align-items: center; pad
   .work-grid, .two-col-inner { flex-direction: column; gap: 24px; }
   .work-col { gap: 24px; }
   .exp-row { flex-direction: column; gap: 6px; }
-  .exp-row .exp-date { padding-top: 0; }
+  .exp-row .exp-date { padding-top: 0; margin-left: 0; }
+  .exp-row .exp-role { white-space: normal; }
   .exp-detail { padding-left: 0; margin-top: 12px; }
   .about h2 { font-size: 36px; }
   .about-inner { grid-template-columns: 1fr; gap: 32px; }
@@ -358,7 +365,7 @@ footer { display: flex; justify-content: space-between; align-items: center; pad
         </div>
       </div>
       <div class="exp-date">2016–present</div>
-      <div class="exp-detail" style="clear:both;width:100%;">
+      <div class="exp-detail">>
         <p>Translating complex medical concepts into clear, compelling visuals for surgical education, patient communication, and academic publication. Working across traditional and digital media, constantly expanding the toolset. Led illustration projects for Ruma Fertility Healthcare (10,000 printed handbooks) and Talking Images LLC (educational medical web app for children).</p>
       </div>
     </div>
@@ -371,7 +378,7 @@ footer { display: flex; justify-content: space-between; align-items: center; pad
         </div>
       </div>
       <div class="exp-date">2012–2018</div>
-      <div class="exp-detail" style="clear:both;width:100%;">
+      <div class="exp-detail">>
         <p>Bachelor of Medicine &amp; Surgery (MBChB), School of Medical Sciences, Kumasi, Ghana. Completed clinical pathology rotations at Komfo Anokye Teaching Hospital (2015–2016), earning Best Pathology Clinical Rotation Presentation and the Leonardo da Vinci Artistry in Medicine Award, First Place.</p>
       </div>
     </div>
@@ -384,7 +391,7 @@ footer { display: flex; justify-content: space-between; align-items: center; pad
         </div>
       </div>
       <div class="exp-date">2018–2020</div>
-      <div class="exp-detail" style="clear:both;width:100%;">
+      <div class="exp-detail">>
         <p>Served as house officer in the pathology department post-graduation. Gained hands-on experience in gross pathology, histology, and laboratory workflow. Diagnosed follicular thyroid carcinoma via fine needle aspiration. Performed frozen section analysis and blood smear examinations for malaria. Left Ghana in 2021 to relocate and start a family in the United States.</p>
       </div>
     </div>
@@ -397,7 +404,7 @@ footer { display: flex; justify-content: space-between; align-items: center; pad
         </div>
       </div>
       <div class="exp-date">2010–2025</div>
-      <div class="exp-detail" style="clear:both;width:100%;">
+      <div class="exp-detail">>
         <p>Co-founded and grew the startup over 15 years from scratch to profitability. Led international teams across 4 countries delivering visual projects for global markets. Automated label printing processes, achieving a 400% increase in efficiency. Trained interns in digital art techniques and created college workbooks on human anatomy.</p>
       </div>
     </div>
@@ -410,7 +417,7 @@ footer { display: flex; justify-content: space-between; align-items: center; pad
         </div>
       </div>
       <div class="exp-date"></div>
-      <div class="exp-detail" style="clear:both;width:100%;">
+      <div class="exp-detail">>
         <p>College of American Pathologists · Association of American Medical Illustrators · Ghana Association of Physicians and Surgeons of North America (GAPS-NA) · National Association of Emergency Medical Technicians · Ghana Medical Association · Junior Doctors' Association · Ghana Physician &amp; Surgeons Foundation — North America</p>
       </div>
     </div>

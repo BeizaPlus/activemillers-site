@@ -139,10 +139,25 @@ section { overflow: hidden; }
   margin-top: 0; padding-left: 34px;
 }
 .exp-row.open .exp-detail {
-  max-height: 400px; margin-top: 16px;
+  max-height: 600px; margin-top: 16px;
 }
 .exp-detail p, .exp-detail li { font-size: 16px; line-height: 1.6; opacity: 0.6; }
 .exp-detail ul { list-style: disc; padding-left: 20px; margin: 0; }
+
+/* Nested sub-entry inside Doctor of Medicine */
+.exp-sub {
+  margin-top: 24px; padding-top: 20px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  padding-left: 20px;
+}
+.exp-sub-role { font-size: 18px; font-weight: 600; letter-spacing: -0.02em; }
+.exp-sub-company { font-size: 14px; opacity: 0.45; margin-top: 2px; }
+.exp-sub-date { font-size: 13px; opacity: 0.3; margin-top: 2px; margin-bottom: 12px; }
+.exp-sub p { font-size: 15px; line-height: 1.6; opacity: 0.55; }
+
+/* Forward-looking next chapter */
+.exp-next .exp-role { opacity: 0.6; }
+.exp-next .exp-company { font-style: italic; opacity: 0.4; }
 
 /* ===== SERVICES & CLIENTS ===== */
 .two-col-section { padding: 128px 80px; }
@@ -358,13 +373,13 @@ footer { display: flex; justify-content: space-between; align-items: center; pad
       <div class="exp-left">
         <svg class="exp-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
         <div>
-          <div class="exp-role">Medical Illustrator</div>
-          <div class="exp-company">Freelance &amp; Contract</div>
+          <div class="exp-role">Artist Training</div>
+          <div class="exp-company">Foundational studies</div>
         </div>
       </div>
-      <div class="exp-date">2016–present</div>
-      <div class="exp-detail">>
-        <p>Translating complex medical concepts into clear, compelling visuals for surgical education, patient communication, and academic publication. Working across traditional and digital media, constantly expanding the toolset. Led illustration projects for Ruma Fertility Healthcare (10,000 printed handbooks) and Talking Images LLC (educational medical web app for children).</p>
+      <div class="exp-date">2008–2012</div>
+      <div class="exp-detail">
+        <p>Junior creative artist and creative assistant role. Developed foundational skills in digital art, visual design, and creative production. This period of hands-on training built the artistic toolkit that would later shape a career in medical illustration.</p>
       </div>
     </div>
     <div class="exp-row fade-in" onclick="this.classList.toggle('open')">
@@ -376,34 +391,27 @@ footer { display: flex; justify-content: space-between; align-items: center; pad
         </div>
       </div>
       <div class="exp-date">2012–2018</div>
-      <div class="exp-detail">>
+      <div class="exp-detail">
         <p>Bachelor of Medicine &amp; Surgery (MBChB), School of Medical Sciences, Kumasi, Ghana. Completed clinical pathology rotations at Komfo Anokye Teaching Hospital (2015–2016), earning Best Pathology Clinical Rotation Presentation and the Leonardo da Vinci Artistry in Medicine Award, First Place.</p>
+        <div class="exp-sub">
+          <div class="exp-sub-role">Pathology House Officer</div>
+          <div class="exp-sub-company">Teaching Hospital, Ghana</div>
+          <div class="exp-sub-date">2018–2020</div>
+          <p>Served as house officer in the pathology department post-graduation. Gained hands-on experience in gross pathology, histology, and laboratory workflow. Diagnosed follicular thyroid carcinoma via fine needle aspiration. Performed frozen section analysis and blood smear examinations for malaria. Left Ghana in 2021 to relocate and start a family in the United States.</p>
+        </div>
       </div>
     </div>
-    <div class="exp-row fade-in" onclick="this.classList.toggle('open')">
+    <div class="exp-row fade-in exp-next" onclick="this.classList.toggle('open')">
       <div class="exp-left">
         <svg class="exp-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
         <div>
-          <div class="exp-role">Pathology House Officer</div>
-          <div class="exp-company">Teaching Hospital, Ghana</div>
+          <div class="exp-role">Pathology Residency</div>
+          <div class="exp-company">Next chapter — pursuing residency in Pathology</div>
         </div>
       </div>
-      <div class="exp-date">2018–2020</div>
-      <div class="exp-detail">>
-        <p>Served as house officer in the pathology department post-graduation. Gained hands-on experience in gross pathology, histology, and laboratory workflow. Diagnosed follicular thyroid carcinoma via fine needle aspiration. Performed frozen section analysis and blood smear examinations for malaria. Left Ghana in 2021 to relocate and start a family in the United States.</p>
-      </div>
-    </div>
-    <div class="exp-row fade-in" onclick="this.classList.toggle('open')">
-      <div class="exp-left">
-        <svg class="exp-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
-        <div>
-          <div class="exp-role">ActiveWorks</div>
-          <div class="exp-company">Co-Founder &amp; Creative Director</div>
-        </div>
-      </div>
-      <div class="exp-date">2010–2025</div>
-      <div class="exp-detail">>
-        <p>Co-founded and grew the startup over 15 years from scratch to profitability. Led international teams across 4 countries delivering visual projects for global markets. Automated label printing processes, achieving a 400% increase in efficiency. Trained interns in digital art techniques and created college workbooks on human anatomy.</p>
+      <div class="exp-date"></div>
+      <div class="exp-detail">
+        <p>Currently preparing for the next step: a residency position in Pathology. Building on years of clinical training, pathology rotations, and a deep commitment to understanding disease at the tissue level, this is the natural continuation of a career grounded in medical science and visual communication.</p>
       </div>
     </div>
     <div class="exp-row fade-in" onclick="this.classList.toggle('open')">

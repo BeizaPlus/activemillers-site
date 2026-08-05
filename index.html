@@ -126,9 +126,9 @@ section { overflow: hidden; }
   cursor: pointer; user-select: none;
 }
 .exp-row:first-child { border-top: 1px solid rgba(255,255,255,0.1); }
-.exp-left { display: flex; align-items: flex-start; gap: 16px; flex: 1 1 auto; min-width: 0; }
-.exp-left > div { min-width: 0; }
-.exp-chevron { flex-shrink: 0; width: 18px; height: 18px; margin-top: 5px; transition: transform 0.35s ease; opacity: 0.4; }
+.exp-left { display: flex; align-items: flex-start; flex: 1 1 auto; min-width: 0; position: relative; }
+.exp-left > div { min-width: 0; padding-left: 34px; }
+.exp-chevron { position: absolute; left: 0; top: 5px; flex-shrink: 0; width: 18px; height: 18px; transition: transform 0.35s ease; opacity: 0.4; }
 .exp-row.open .exp-chevron { transform: rotate(180deg); opacity: 0.8; }
 .exp-role { font-size: clamp(18px, 2vw, 22px); font-weight: 600; letter-spacing: -0.02em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .exp-company { font-size: 16px; opacity: 0.5; margin-top: 2px; }
@@ -365,6 +365,9 @@ footer { display: flex; justify-content: space-between; align-items: center; pad
 </section>
 
 <!-- ===== FULL IMAGE (Section / Image) ===== -->
+<section class="full-image fade-in">
+  <img src="images/the-dream.jpg" alt="The Dream" loading="lazy">
+</section>
 
 <!-- ===== EXPERIENCE (Section / Experience) ===== -->
 <section class="experience" id="pathology-anchor">

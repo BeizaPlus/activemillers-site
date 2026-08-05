@@ -103,6 +103,7 @@ section { overflow: hidden; }
   align-items: start;
 }
 .about h2 { font-size: 56px; font-weight: 600; line-height: 1.1; letter-spacing: -0.03em; }
+.experience h2 { font-size: 56px; font-weight: 600; line-height: 1.1; letter-spacing: -0.03em; margin-bottom: 48px; }
 .about-text p { font-size: 20px; line-height: 1.6; opacity: 0.75; margin-bottom: 24px; }
 .about-text p:last-child { margin-bottom: 0; }
 
@@ -218,7 +219,7 @@ footer { display: flex; justify-content: space-between; align-items: center; pad
   .hero h1 { font-size: clamp(28px, 5vw, 52px); max-width: clamp(260px, 60vw, 700px); }
   .hero-reveal { object-position: center 25%; }
   .full-image { height: 60vh; }
-  .about h2 { font-size: 42px; }
+  .about h2, .experience h2 { font-size: 42px; }
 }
 
 /* ===== RESPONSIVE: MOBILE (768px-809px) ===== */
@@ -237,7 +238,7 @@ footer { display: flex; justify-content: space-between; align-items: center; pad
   .exp-row .exp-date { padding-top: 0; margin-left: 0; }
   .exp-row .exp-role { white-space: normal; }
   .exp-detail { padding-left: 0; margin-top: 12px; }
-  .about h2 { font-size: 36px; }
+  .about h2, .experience h2 { font-size: 36px; }
   .about-inner { grid-template-columns: 1fr; gap: 32px; }
   .video-section { padding: 80px 40px; }
   .two-col-inner { flex-direction: column; gap: 60px; }
@@ -362,7 +363,7 @@ footer { display: flex; justify-content: space-between; align-items: center; pad
 <!-- ===== EXPERIENCE (Section / Experience) ===== -->
 <section class="experience" id="pathology-anchor">
   <div class="exp-inner">
-    <h2 class="section-label" style="opacity:1;margin-bottom:24px;font-size:13px;font-weight:500;">Experience</h2>
+    <h2>Experience</h2>
     <div class="exp-row fade-in" onclick="this.classList.toggle('open')">
       <div class="exp-left">
         <svg class="exp-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>

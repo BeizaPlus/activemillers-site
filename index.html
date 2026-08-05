@@ -496,7 +496,7 @@ footer { display: flex; justify-content: space-between; align-items: center; pad
 
 <!-- Lightbox for video surprise -->
 <div class="lightbox" id="videoLightbox" onclick="closeVideo(event)">
-  <button class="lightbox-close" onclick="document.getElementById('videoLightbox').classList.remove('open')">&times;</button>
+  <button class="lightbox-close" onclick="var v=document.getElementById('lightboxVideo');v.pause();document.getElementById('videoLightbox').classList.remove('open')">&times;</button>
   <video id="lightboxVideo" controls playsinline preload="none" onclick="event.stopPropagation()">
     <source src="videos/moon.mp4" type="video/mp4">
   </video>

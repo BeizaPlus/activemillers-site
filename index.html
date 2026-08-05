@@ -173,7 +173,86 @@ console.log('Edit button ready. Ctrl+Shift+E to toggle.')
   });
   obs.observe(document.documentElement, { childList: true, subtree: true });
 })();
+
+// Static work grid - replaces Framer CMS with local images
+(function() {
+  var workItems = [
+    {
+      image: 'images/cross-section-anatomy.jpg',
+      title: 'Cross-Section Anatomy Study',
+      category: 'Medical Illustration',
+      link: '#work'
+    }
+    // Add more items here as images arrive
+  ];
+
+  function buildWorkCard(item) {
+    return '<div class="steve-static-card" style="break-inside:avoid;margin-bottom:24px;border-radius:12px;overflow:hidden;background:rgb(247,247,247);transition:transform 0.3s ease,box-shadow 0.3s ease;cursor:pointer;" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 12px 40px rgba(0,0,0,0.12)'" onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='none'">' +
+      '<a href="' + (item.link || '#work') + '" style="display:block;text-decoration:none;color:inherit;">' +
+        '<div style="position:relative;width:100%;padding-bottom:100%;overflow:hidden;background:rgb(235,235,235);">' +
+          '<img src="' + item.image + '" alt="' + item.title + '" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;transition:transform 0.5s ease;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'">' +
+        '</div>' +
+        '<div style="padding:20px 24px 24px 24px;">' +
+          '<p style="font-family:Inter,sans-serif;font-size:13px;font-weight:400;color:rgb(117,117,117);margin:0;letter-spacing:0.01em;">' + item.category + '</p>' +
+          '<h3 style="font-family:Inter,sans-serif;font-size:20px;font-weight:600;color:rgb(0,0,0);margin:6px 0 0 0;letter-spacing:-0.02em;line-height:1.3;">' + item.title + '</h3>' +
+        '</div>' +
+      '</a>' +
+    '</div>';
+  }
+
+  function replaceWorkGrid() {
+    var workSection = document.querySelector('.framer-n5g235');
+    if (!workSection) return;
+    if (document.getElementById('steve-static-grid')) return; // already done
+
+    // Find the CMS-powered grid
+    var cmsGrid = workSection.querySelector('.framer-l2gtcv');
+    if (!cmsGrid) return;
+
+    // Find the work section title (to insert our grid after it)
+    var sectionTitle = workSection.querySelector('.framer-1vv84ee');
+    if (!sectionTitle) return;
+
+    // Replace the entire work grid with our static version
+    var container = document.createElement('div');
+    container.id = 'steve-static-grid';
+    container.style.cssText = 'max-width:1280px;margin:0 auto;padding:0 80px;';
+    // Column layout matching the template
+    container.innerHTML = '<div style="display:grid;grid-template-columns:repeat(2, 1fr);gap:24px;" class="steve-work-columns">' +
+      workItems.map(function(item) { return buildWorkCard(item); }).join('') +
+    '</div>';
+
+    // Insert after the section title
+    var sectionTitle = workSection.querySelector('.framer-1vv84ee');
+    if (sectionTitle) {
+      sectionTitle.parentElement.appendChild(container);
+      // Hide the original CMS grid
+      cmsGrid.style.display = 'none';
+      console.log('[Steve] CMS replaced with static work grid (' + workItems.length + ' items)');
+    } else {
+      // Just replace the grid
+      cmsGrid.parentElement.insertBefore(container, cmsGrid);
+      cmsGrid.style.display = 'none';
+    }
+
+    // Responsive: single column on mobile
+    var style = document.createElement('style');
+    style.textContent = '@media (max-width:809px) { .steve-work-columns { grid-template-columns: 1fr !important; } #steve-static-grid { padding: 0 40px !important; } } @media (min-width:810px) and (max-width:1199px) { #steve-static-grid { padding: 0 64px !important; } }';
+    document.head.appendChild(style);
+  }
+
+  // Try repeatedly - CMS data takes 1-5 seconds
+  var attempts = 0;
+  var maxAttempts = 30;
+  var interval = setInterval(function() {
+    attempts++;
+    replaceWorkGrid();
+    if (document.getElementById('steve-static-grid') || attempts >= maxAttempts) {
+      clearInterval(interval);
+    }
+  }, 400);
 })();
+
 </script></head>
 <body>
 	<script async src="script" data-fid="a38b37bfb0b86ce8553c2c6ae1309ad12c1540d56220c2372ed22fda610299b4" data-no-nt></script>

@@ -164,16 +164,6 @@ section { overflow: hidden; }
 .about-full.open { max-height: 2000px !important; }
 .about-full p { font-size: 20px; line-height: 1.6; opacity: 0.75; margin-bottom: 24px; }
 .about-full p:last-child { margin-bottom: 0; }
-.about-readmore {
-  display: inline-flex; align-items: center; gap: 8px;
-  background: none; border: 1px solid rgba(255,255,255,0.15); border-radius: 20px;
-  color: rgba(255,255,255,0.6); font-size: 14px; font-family: inherit;
-  padding: 8px 18px; cursor: pointer; margin-top: 8px;
-  transition: color 0.3s ease, border-color 0.3s ease;
-}
-.about-readmore:hover { color: #fff; border-color: rgba(255,255,255,0.35); }
-.about-chevron { font-size: 14px; transition: transform 0.35s ease; display: inline-block; }
-.about-readmore.open .about-chevron { transform: rotate(180deg); }
 
 /* ===== IMAGE (Section / Image) ===== */
 .full-image { padding: 0; width: 100%; height: 75vh; overflow: hidden; background: #0a0a09; }
@@ -377,7 +367,6 @@ footer { display: flex; justify-content: space-between; align-items: center; pad
       <h2>2018–2025<span class="year-range"></span></h2>
     </div>
     <div class="work-grid">
-      <!-- Left Column: Rectangle, Rectangle, Square -->
       <div class="work-col">
         <a href="case-study-pulmonary-embolism.html" class="work-card rect fade-in" style="transition-delay: 0s;">
           <div class="work-card-img-wrap">
@@ -395,36 +384,6 @@ footer { display: flex; justify-content: space-between; align-items: center; pad
           <div class="work-card-info">
             <h3 class="work-card-title">Actinic Keratosis</h3>
             <p class="work-card-cat">Medical Illustration</p>
-          </div>
-        </div>
-        <div class="work-card square fade-in" style="transition-delay: 0.2s;">
-          <div class="work-card-img-wrap" style="background: linear-gradient(135deg, #1e1e1e, #161616); display: flex; align-items: center; justify-content: center;">
-            <span style="font-size: 14px; color: #555; font-weight: 500;">Add work</span>
-          </div>
-          <div class="work-card-info">
-            <h3 class="work-card-title">Coming soon</h3>
-            <p class="work-card-cat">New work</p>
-          </div>
-        </div>
-      </div>
-      <!-- Right Column: Square, Rectangle, Rectangle -->
-      <div class="work-col">
-        <div class="work-card square fade-in" style="transition-delay: 0.05s;">
-          <div class="work-card-img-wrap" style="background: linear-gradient(135deg, #1e1e1e, #161616); display: flex; align-items: center; justify-content: center;">
-            <span style="font-size: 14px; color: #555; font-weight: 500;">Add work</span>
-          </div>
-          <div class="work-card-info">
-            <h3 class="work-card-title">Coming soon</h3>
-            <p class="work-card-cat">New work</p>
-          </div>
-        </div>
-        <div class="work-card rect fade-in" style="transition-delay: 0.15s;">
-          <div class="work-card-img-wrap" style="background: linear-gradient(135deg, #1e1e1e, #161616); display: flex; align-items: center; justify-content: center;">
-            <span style="font-size: 14px; color: #555; font-weight: 500;">Add work</span>
-          </div>
-          <div class="work-card-info">
-            <h3 class="work-card-title">Coming soon</h3>
-            <p class="work-card-cat">New work</p>
           </div>
         </div>
       </div>
@@ -448,7 +407,7 @@ footer { display: flex; justify-content: space-between; align-items: center; pad
         <div class="tl-node">
           <div class="tl-label">Doctor</div>
           <div class="tl-dot"></div>
-          <div class="tl-year">2012&ndash;18</div>
+          <div class="tl-year">2012&ndash;20</div>
         </div>
         <i class="ti ti-chevron-right tl-arrow"></i>
         <div class="tl-node">
@@ -464,7 +423,7 @@ footer { display: flex; justify-content: space-between; align-items: center; pad
         </div>
       </div>
       <!-- Summary (always visible) -->
-      <p class="about-summary">I am a <strong>curious six-year-old at heart</strong> who explored <strong>artistic anatomy</strong> and <strong>human biology</strong>, trained as a physician in Ghana, and became a medical illustrator. I have spent years translating <strong>complex medical concepts into clear visuals</strong>. Now I am pursuing residency in pathology, the field that always fit. My approach is grounded in <strong>anatomical accuracy and clinical understanding</strong>, and I believe the greatest skill in life <strong>is the ability to teach</strong>.</p>
+      <p class="about-summary">I am a physician, a medical illustrator, and a <strong>pathology-track candidate</strong>. I trained at KNUST in Ghana, diagnosed follicular thyroid carcinoma via FNA as a house officer, and passed USMLE Step 1 and Step 2 CK. I have illustrated surgical pathology for academic publishers while working as an EMT in New Jersey emergency departments. This site is the short version. <a href="#" onclick="toggleAbout(); return false;" style="text-decoration: underline; text-underline-offset: 3px; white-space: nowrap;">Read more</a></p>
       <!-- Expanded full narrative -->
       <div class="about-full" id="aboutFull" style="max-height: 0; overflow: hidden; transition: max-height 0.6s ease;">
         <p>I am just a <strong>curious six-year-old at heart</strong> who believed in my dreams and pursued them passionately. I have explored the worlds of <strong>artistic anatomy, human biology</strong>, and medicine, and I happen to love both, by the way. What you see here now is the result of <a href="videos/moon.mp4" class="video-reveal" onclick="return openVideo(event)">decades of practice</a>.</p>
@@ -472,10 +431,7 @@ footer { display: flex; justify-content: space-between; align-items: center; pad
         <p>My approach to illustration is, and will always be, grounded in <strong>anatomical accuracy and clinical understanding</strong>. I believe medical visuals should speak for themselves. A layperson should be able to look at an illustration and understand what is happening at their level.</p>
         <p>Outside of work, I am constantly improving my toolkit, constantly observing, and always trying to put myself in situations that force me to learn. I remain <strong>very active in emergency departments</strong> because I get to see a lot of cases and observe what's happening. When I sit down to study, I have real context to draw from. And I believe the greatest skill in life <strong>is the ability to teach</strong>, which also reflects how well you understand the concept yourself.</p>
       </div>
-      <button class="about-readmore" id="aboutReadMore" onclick="toggleAbout()">
-        Read more
-        <i class="ti ti-chevron-down about-chevron"></i>
-      </button>
+      <p class="about-readless" style="display:none;"><a href="#" onclick="toggleAbout(); return false;" style="text-decoration: underline; text-underline-offset: 3px; opacity: 0.6; font-size: 14px;">Read less</a></p>
     </div>
   </div>
 </section>
@@ -493,23 +449,6 @@ footer { display: flex; justify-content: space-between; align-items: center; pad
       <div class="exp-left">
         <svg class="exp-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
         <div>
-          <div class="exp-role">ActiveWorks Studio</div>
-          <div class="exp-company">Junior Creative Artist &rarr; Co-Founder &amp; Creative Director</div>
-        </div>
-      </div>
-      <div class="exp-date">2008–2025</div>
-      <div class="exp-detail">
-        <ul>
-          <li>Started as a junior creative artist. Built a foundation in visual precision and technique that would later shape a career in medical illustration.</li>
-          <li>Created college workbooks on human anatomy</li>
-          <li>Grew into Co-Founder and Creative Director, leading the studio's visual direction</li>
-        </ul>
-      </div>
-    </div>
-    <div class="exp-row fade-in" onclick="this.classList.toggle('open')">
-      <div class="exp-left">
-        <svg class="exp-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
-        <div>
           <div class="exp-role">Doctor of Medicine</div>
           <div class="exp-company">Kwame Nkrumah University of Science &amp; Technology</div>
         </div>
@@ -517,10 +456,10 @@ footer { display: flex; justify-content: space-between; align-items: center; pad
       <div class="exp-date">2012–2018</div>
       <div class="exp-detail">
         <ul>
-          <li>Bachelor of Medicine &amp; Surgery (MBChB), School of Medical Sciences, Kumasi, Ghana</li>
-          <li>Completed clinical pathology rotations at Komfo Anokye Teaching Hospital (2015–2016)</li>
           <li>Earned Best Pathology Clinical Rotation Presentation (May 2016)</li>
           <li>Awarded Leonardo da Vinci Artistry in Medicine Award, First Place (Nov 2016)</li>
+          <li>Bachelor of Medicine &amp; Surgery (MBChB), School of Medical Sciences, Kumasi, Ghana</li>
+          <li>Completed clinical pathology rotations at Komfo Anokye Teaching Hospital (2015–2016)</li>
           <li>Passed USMLE Step 1 and Step 2 CK; sitting for Step 3</li>
           <li>Completed US clinical rotations at Clara Maass Medical Center, Mountainside Medical Center, and Newark Beth Israel Medical Center emergency departments; also treated cases at East Orange and Vauxhall primary care offices as a physician</li>
           <li>Works as an emergency medical technician (EMT), remaining actively involved in direct patient care since arriving in the United States</li>
@@ -530,10 +469,10 @@ footer { display: flex; justify-content: space-between; align-items: center; pad
           <div class="exp-sub-company">Teaching Hospital, Ghana</div>
           <div class="exp-sub-date">2018–2020</div>
           <ul>
-            <li>Served as house officer in the pathology department post-graduation</li>
-            <li>Gained hands-on experience in gross pathology, histology, and laboratory workflow</li>
             <li>Diagnosed follicular thyroid carcinoma via fine needle aspiration</li>
             <li>Performed frozen section analysis and blood smear examinations for malaria</li>
+            <li>Gained hands-on experience in gross pathology, histology, and laboratory workflow</li>
+            <li>Served as house officer in the pathology department post-graduation</li>
           </ul>
         </div>
       </div>
@@ -552,6 +491,23 @@ footer { display: flex; justify-content: space-between; align-items: center; pad
           <li>Translated complex medical concepts into clear, compelling visuals for surgical education, patient communication, and academic publication</li>
           <li>Illustrated the pathology of appendicitis for the Department of Surgery at the School of Medical Sciences, Kumasi, Ghana</li>
           <li>Illustrated the progression of labor for a partograph, commissioned by Ruma Fertility Healthcare</li>
+        </ul>
+      </div>
+    </div>
+    <div class="exp-row fade-in" onclick="this.classList.toggle('open')">
+      <div class="exp-left">
+        <svg class="exp-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+        <div>
+          <div class="exp-role">ActiveWorks Studio</div>
+          <div class="exp-company">Junior Creative Artist &rarr; Co-Founder &amp; Creative Director</div>
+        </div>
+      </div>
+      <div class="exp-date">2008–2025</div>
+      <div class="exp-detail">
+        <ul>
+          <li>Started as a junior creative artist. Built a foundation in visual precision and technique that would later shape a career in medical illustration.</li>
+          <li>Created college workbooks on human anatomy</li>
+          <li>Grew into Co-Founder and Creative Director, leading the studio's visual direction</li>
         </ul>
       </div>
     </div>
@@ -678,19 +634,17 @@ function closeVideo(e) {
 
 function toggleAbout() {
   var full = document.getElementById('aboutFull');
-  var btn = document.getElementById('aboutReadMore');
   var summary = document.querySelector('.about-summary');
+  var readless = document.querySelector('.about-readless');
   var isOpen = full.style.maxHeight !== '0px' && full.style.maxHeight !== '';
   if (isOpen) {
     full.style.maxHeight = '0';
     summary.style.display = 'block';
-    btn.classList.remove('open');
-    btn.childNodes[0].textContent = 'Read more';
+    readless.style.display = 'none';
   } else {
     full.style.maxHeight = full.scrollHeight + 'px';
     summary.style.display = 'none';
-    btn.classList.add('open');
-    btn.childNodes[0].textContent = 'Read less';
+    readless.style.display = 'block';
   }
 }
 </script>

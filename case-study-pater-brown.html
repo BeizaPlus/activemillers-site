@@ -21,6 +21,8 @@ body {
   overflow-x: hidden;
 }
 a { color: inherit; text-decoration: none; }
+
+/* ===== NAV ===== */
 nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 100;
   padding: 24px 80px;
@@ -37,7 +39,10 @@ nav {
   background: #fff; transition: width 0.3s ease;
 }
 .nav-links a:hover::after { width: 100%; }
+
 .page-top { padding-top: 140px; }
+
+/* ===== CASE HEADER ===== */
 .case-header {
   padding: 0 clamp(32px, 7vw, 80px) 80px;
   max-width: 1280px; margin: 0 auto;
@@ -61,12 +66,55 @@ nav {
 }
 .case-meta-label { opacity: 0.45; font-weight: 500; }
 .case-meta-value { font-weight: 500; }
-.stacked-images { padding: 0; width: 100%; }
-.stacked-images img {
-  width: 100%; height: auto; display: block;
-  background: #141414;
+
+/* ===== PLATE SECTION ===== */
+.plate-section {
+  padding: 80px clamp(32px, 7vw, 80px);
+  max-width: 1280px; margin: 0 auto;
 }
-.stacked-images img + img { margin-top: 4px; }
+.plate-section + .plate-section { padding-top: 40px; }
+.plate-section h2 {
+  font-size: 28px; font-weight: 600; letter-spacing: -0.03em;
+  margin-bottom: 8px;
+}
+.plate-section .plate-intro {
+  font-size: 17px; line-height: 1.6; opacity: 0.6;
+  margin-bottom: 40px; max-width: 640px;
+}
+
+/* ===== PLATE FIGURE ===== */
+.plate-figure { margin-bottom: 48px; background: #141414; }
+.plate-figure img {
+  width: 100%; height: auto; display: block;
+}
+.plate-caption {
+  padding: 16px 24px 20px;
+  border-top: 1px solid rgba(255,255,255,0.05);
+}
+.plate-caption .fig-num {
+  font-size: 12px; font-weight: 600; letter-spacing: 0.06em;
+  text-transform: uppercase; color: rgba(255,255,255,0.35);
+  margin-bottom: 4px;
+}
+.plate-caption .fig-title {
+  font-size: 16px; font-weight: 600; letter-spacing: -0.02em;
+  color: rgba(255,255,255,0.75);
+}
+.plate-figure:last-child { margin-bottom: 0; }
+
+/* ===== SIDE-BY-SIDE COMPARISON ===== */
+.comparison-row {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+  margin-bottom: 48px;
+}
+.comparison-row .plate-figure { margin-bottom: 0; }
+.comparison-caption {
+  padding: 12px 24px 20px;
+  font-size: 15px; line-height: 1.6; opacity: 0.55;
+  margin-top: -4px; background: #141414; margin-bottom: 48px;
+}
+
+/* ===== CONTEXT ===== */
 .context {
   padding: 128px clamp(32px, 7vw, 80px);
   max-width: 1280px; margin: 0 auto;
@@ -77,10 +125,11 @@ nav {
   font-size: 48px; font-weight: 600; letter-spacing: -0.03em; line-height: 1.1;
   position: sticky; top: 120px;
 }
-.context-text { display: flex; flex-direction: column; gap: 32px; }
 .context-text p {
   font-size: 18px; line-height: 1.7; opacity: 0.7;
 }
+
+/* ===== OTHER WORK ===== */
 .other-work {
   padding: 128px clamp(32px, 7vw, 80px);
   max-width: 1280px; margin: 0 auto;
@@ -103,6 +152,8 @@ nav {
 .ow-card-info { padding: 20px 24px 24px; }
 .ow-card-title { font-size: 20px; font-weight: 600; letter-spacing: -0.02em; }
 .ow-card-cat { font-size: 16px; color: #757575; margin-top: 4px; }
+
+/* ===== CTA ===== */
 .contact { padding: 200px 80px; text-align: center; }
 .contact h2 { font-size: clamp(36px, 5vw, 64px); font-weight: 600; letter-spacing: -0.03em; line-height: 1.12; margin-bottom: 40px; }
 .contact-icon {
@@ -119,14 +170,18 @@ footer { display: flex; justify-content: space-between; align-items: center; pad
 .footer-links a { color: rgba(255,255,255,0.45); font-size: 14px; transition: color 0.3s ease; }
 .footer-links a:hover { color: #fff; }
 .footer-copy { font-size: 14px; color: rgba(255,255,255,0.3); }
+
+/* ===== ANIMATION ===== */
 .fade-in {
   opacity: 0; transform: translateY(30px);
   transition: opacity 0.7s ease, transform 0.7s ease;
 }
 .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+/* ===== RESPONSIVE ===== */
 @media (max-width: 1199px) {
   nav { padding-left: 64px; padding-right: 64px; }
-  .case-header, .context, .other-work { padding-left: 64px; padding-right: 64px; }
+  .case-header, .plate-section, .context, .other-work { padding-left: 64px; padding-right: 64px; }
   .contact { padding-left: 64px; padding-right: 64px; }
 }
 @media (max-width: 809px) {
@@ -134,6 +189,9 @@ footer { display: flex; justify-content: space-between; align-items: center; pad
   .nav-links { display: none; }
   .case-header { grid-template-columns: 1fr; gap: 40px; }
   .case-header h1 { font-size: clamp(30px, 8vw, 48px); }
+  .plate-section { padding: 48px 32px; }
+  .plate-section h2 { font-size: 24px; }
+  .comparison-row { grid-template-columns: 1fr; }
   .context { grid-template-columns: 1fr; gap: 32px; padding: 80px 32px; }
   .context h2 { position: static; font-size: 36px; }
   .other-work { padding: 80px 32px; }
@@ -143,7 +201,7 @@ footer { display: flex; justify-content: space-between; align-items: center; pad
 }
 @media (max-width: 374px) {
   .case-header h1 { font-size: 28px; }
-  .context h2 { font-size: 28px; }
+  .plate-section h2 { font-size: 20px; }
 }
 </style>
 </head>
@@ -160,10 +218,11 @@ footer { display: flex; justify-content: space-between; align-items: center; pad
 
 <div class="page-top"></div>
 
+<!-- ===== HERO + METADATA ===== -->
 <header class="case-header fade-in">
   <h1>OB-GYN Textbook Plates</h1>
   <div class="case-intro">
-    <p>A set of obstetric and gynecologic anatomical illustrations commissioned for a medical textbook. The plates cover the full clinical arc: fetal lie and presentation, pelvic brim anatomy and conjugate assessment, vulvar and perineal anatomy, and neonatal trauma classification.</p>
+    <p>A set of obstetric and gynecologic anatomical illustrations commissioned for a medical textbook. The plates follow the clinical arc from fetal anatomy through labor assessment, lie and presentation, pelvic brim anatomy, and perineal injury classification.</p>
     <p>Each plate was drawn to serve two audiences simultaneously: the student learning anatomy for the first time, and the clinician who needs to reference specific landmarks under pressure. The illustrations prioritize clarity of spatial relationships over decorative detail, because in obstetrics, millimeters at the pelvic brim determine management decisions.</p>
     <div class="case-meta">
       <div class="case-meta-row">
@@ -182,48 +241,137 @@ footer { display: flex; justify-content: space-between; align-items: center; pad
   </div>
 </header>
 
-<section class="stacked-images">
-  <div class="img-wrap fade-in">
-    <img src="images/pater-brown/Screenshot%202026-08-06%20150818.png" alt="Fetal molding and anatomical sculptures" loading="lazy">
+<!-- ===== 1. FETAL ANATOMY & SKULL MOULDING ===== -->
+<section class="plate-section">
+  <h2 class="fade-in">Fetal Anatomy &amp; Skull Moulding</h2>
+  <p class="plate-intro fade-in">The fetal skull is not a rigid structure. The bones of the calvarium are separated by sutures and fontanelles, allowing the head to mould and adapt as it passes through the birth canal. These plates show the process of moulding and the clinical consequences when compression exceeds the scalp's tolerance.</p>
+
+  <div class="plate-figure fade-in">
+    <img src="images/pater-brown/Screenshot%202026-08-06%20150818.png" alt="Fetal moulding of the skull" loading="lazy">
+    <div class="plate-caption">
+      <div class="fig-num">Figure 7</div>
+      <div class="fig-title">Fetal Moulding — adaptive compression of the fetal skull during descent through the maternal pelvis</div>
+    </div>
   </div>
-  <div class="img-wrap fade-in">
-    <img src="images/pater-brown/Screenshot%202026-08-06%20150835.png" alt="Neonatal scalp injury and skin anatomy" loading="lazy">
-  </div>
-  <div class="img-wrap fade-in">
-    <img src="images/pater-brown/Screenshot%202026-08-06%20150854.png" alt="Descents in relation to the pelvic brim" loading="lazy">
-  </div>
-  <div class="img-wrap fade-in">
-    <img src="images/pater-brown/Screenshot%202026-08-06%20150919.png" alt="Fetal lie: longitudinal, transverse, and oblique positions" loading="lazy">
-  </div>
-  <div class="img-wrap fade-in">
-    <img src="images/pater-brown/Screenshot%202026-08-06%20150928.png" alt="Fetal presentation: breech, face, shoulder, and vertex" loading="lazy">
-  </div>
-  <div class="img-wrap fade-in">
-    <img src="images/pater-brown/Screenshot%202026-08-06%20150945.png" alt="Pelvic brim: conjugate diameters and diagonal conjugate assessment" loading="lazy">
-  </div>
-  <div class="img-wrap fade-in">
-    <img src="images/pater-brown/Screenshot%202026-08-06%20151007.png" alt="Pelvic injuries classification by degree" loading="lazy">
-  </div>
-  <div class="img-wrap fade-in">
-    <img src="images/pater-brown/Screenshot%202026-08-06%20151017.png" alt="Vulvar anatomy: labia majora, labia minora, perineum" loading="lazy">
-  </div>
-  <div class="img-wrap fade-in">
-    <img src="images/pater-brown/Screenshot%202026-08-06%20151030.png" alt="OB-GYN illustration plate" loading="lazy">
-  </div>
-  <div class="img-wrap fade-in">
-    <img src="images/pater-brown/Screenshot%202026-08-06%20151040.png" alt="OB-GYN illustration: procedure plates" loading="lazy">
+
+  <div class="plate-figure fade-in">
+    <img src="images/pater-brown/Screenshot%202026-08-06%20150835.png" alt="Caput succedaneum and neonatal scalp injury" loading="lazy">
+    <div class="plate-caption">
+      <div class="fig-num">Figure 9</div>
+      <div class="fig-title">Caput Succedaneum — serosanguinous swelling of the neonatal scalp resulting from sustained pressure against the cervix</div>
+    </div>
   </div>
 </section>
 
+<!-- ===== 2. LABOR ASSESSMENT: DESCENT & PELVIC BRIM ===== -->
+<section class="plate-section">
+  <h2 class="fade-in">Labor Assessment: Descent &amp; Pelvic Brim</h2>
+  <p class="plate-intro fade-in">The first determination in every labor assessment is whether the fetal head can navigate the pelvic inlet. These plates map descent in relation to the pelvic brim, and illustrate the conjugate diameters used to assess pelvic adequacy, landmarks that cannot be visualized directly in a living patient but must be understood three-dimensionally to interpret clinical findings.</p>
+
+  <div class="plate-figure fade-in">
+    <img src="images/pater-brown/Screenshot%202026-08-06%20150854.png" alt="Descents in relation to the pelvic brim" loading="lazy">
+    <div class="plate-caption">
+      <div class="fig-num">Figure 23</div>
+      <div class="fig-title">Descent in Relation to the Pelvic Brim — tracking the progressive engagement of the presenting part through the inlet, mid-cavity, and outlet</div>
+    </div>
+  </div>
+
+  <div class="plate-figure fade-in">
+    <img src="images/pater-brown/Screenshot%202026-08-06%20150945.png" alt="Pelvic brim conjugate diameters" loading="lazy">
+    <div class="plate-caption">
+      <div class="fig-num">Figure 39</div>
+      <div class="fig-title">Diagonal Conjugate Assessment — the true conjugate, diagonal conjugate, and sacral promontory as landmarks for evaluating pelvic adequacy</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 3. FETAL LIE & PRESENTATION ===== -->
+<section class="plate-section">
+  <h2 class="fade-in">Fetal Lie &amp; Presentation</h2>
+  <p class="plate-intro fade-in">The relationship between the long axis of the fetus and the longitudinal axis of the uterus defines the lie: longitudinal, transverse, or oblique. The presenting part determines management. These plates map both dimensions, providing the visual reference a clinician returns to when palpating a term abdomen.</p>
+
+  <div class="plate-figure fade-in">
+    <img src="images/pater-brown/Screenshot%202026-08-06%20150919.png" alt="Fetal lie: longitudinal, transverse, oblique" loading="lazy">
+    <div class="plate-caption">
+      <div class="fig-num">Figure 29</div>
+      <div class="fig-title">Fetal Lie — longitudinal, transverse, and oblique positions defined by the relationship of the fetal axis to the maternal uterine axis</div>
+    </div>
+  </div>
+
+  <div class="plate-figure fade-in">
+    <img src="images/pater-brown/Screenshot%202026-08-06%20150928.png" alt="Fetal presentation: breech, face, shoulder, vertex" loading="lazy">
+    <div class="plate-caption">
+      <div class="fig-num">Figure 30</div>
+      <div class="fig-title">Fetal Presentation — breech, face, shoulder, and vertex presentations, showing the landmark used to identify each variant</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 4. PELVIC INJURY CLASSIFICATION ===== -->
+<section class="plate-section">
+  <h2 class="fade-in">Pelvic Injury Classification</h2>
+  <p class="plate-intro fade-in">Pelvic injuries are graded from first through ninth degree, a classification that compresses a clinical decision tree into a single visual reference. The plate combines anatomical cross-section with the injury grading scale, so the reader can map severity directly onto pelvic landmarks.</p>
+
+  <div class="plate-figure fade-in">
+    <img src="images/pater-brown/Screenshot%202026-08-06%20151007.png" alt="Pelvic injury classification by degree" loading="lazy">
+    <div class="plate-caption">
+      <div class="fig-num">Table</div>
+      <div class="fig-title">Pelvic Injuries — classification by degree (1st through 9th), mapped onto a cross-sectional view of the female pelvis</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 5. PERINEAL INJURY: INTACT VS. DEGREES OF INJURY ===== -->
+<section class="plate-section">
+  <h2 class="fade-in">Perineal Injury: Intact vs. Degrees of Injury</h2>
+  <p class="plate-intro fade-in">These two plates form a deliberate teaching pair. The intact perineum on the left establishes the baseline anatomy: labia majora, labia minora, vaginal introitus, perineal body, and terminus ani. The injury plate on the right shows the same anatomical view with first- and second-degree perineal injuries, using the same landmarks to illustrate the grading system. Presented together, they function as a before-and-after reference that a student can toggle between to learn injury classification.</p>
+
+  <div class="comparison-row">
+    <div class="plate-figure">
+      <img src="images/pater-brown/Screenshot%202026-08-06%20151017.png" alt="Intact perineum anatomy" loading="lazy">
+      <div class="plate-caption">
+        <div class="fig-num">Figure 36 — Intact</div>
+        <div class="fig-title">Intact Perineum: labia majora, labia minora, vaginal introitus, and perineal body</div>
+      </div>
+    </div>
+    <div class="plate-figure">
+      <img src="images/pater-brown/Screenshot%202026-08-06%20151030.png" alt="1st and 2nd degree perineal injury" loading="lazy">
+      <div class="plate-caption">
+        <div class="fig-num">Figure — 1st &amp; 2nd Degree</div>
+        <div class="fig-title">First- and second-degree perineal injury, graded using the same anatomical landmarks shown on the intact plate</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="comparison-caption fade-in">
+    <strong>Comparison:</strong> Intact anatomy (left) versus first- and second-degree perineal injury (right). The two plates use identical anatomical framing and landmark labeling so the reader can map injury severity directly onto a known reference. Third- and fourth-degree injuries extend deeper into the anal sphincter complex and are addressed in subsequent plates.
+  </div>
+</section>
+
+<!-- ===== 6. SURGICAL PROCEDURE PLATES ===== -->
+<section class="plate-section">
+  <h2 class="fade-in">Surgical Reference Plates</h2>
+  <p class="plate-intro fade-in">The remaining plates document procedural anatomy for operative delivery and surgical repair, completing the arc from diagnostic imaging through intervention. These were drawn to accompany the surgical technique chapters of the textbook.</p>
+
+  <div class="plate-figure fade-in">
+    <img src="images/pater-brown/Screenshot%202026-08-06%20151040.png" alt="Surgical procedure plates" loading="lazy">
+    <div class="plate-caption">
+      <div class="fig-num">Figures</div>
+      <div class="fig-title">Surgical procedure plates — operative anatomy for delivery and repair, indexed to the surgical technique chapters</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CONTEXT ===== -->
 <section class="context">
   <h2 class="fade-in">Context</h2>
   <div class="context-text">
     <p class="fade-in">These plates were commissioned as part of a comprehensive obstetrics textbook. The brief was straightforward: produce clear, anatomically precise illustrations that a medical student or midwife could study from and a practicing obstetrician could reference during clinical decision-making.</p>
-    <p class="fade-in">The fetal lie series (longitudinal, transverse, oblique) required particular attention to the spatial relationship between the fetal axis and the maternal pelvis, because this is the first determination made in every labor assessment. The pelvic brim plates demanded accurate rendering of the true conjugate, diagonal conjugate, and sacral promontory, landmarks that cannot be visualized directly in a living patient but must be understood three-dimensionally to interpret clinical findings.</p>
-    <p class="fade-in">The vulvar and perineal anatomy plate was a study in restraint: every structure labeled, but the illustration itself kept clean enough that a first-year student could trace each landmark without confusion. The neonatal trauma classification plate organized injury severity across nine degrees, compressing a clinical decision tree into a single visual reference.</p>
+    <p class="fade-in">The project was a study in restraint. Obstetrics illustration can easily drift into decorative territory, but the clinical use case demanded the opposite: every line had to earn its place. The vulvar and perineal anatomy plate, for example, labels every structure but keeps the illustration clean enough that a first-year student can trace each landmark without confusion. The neonatal trauma classification compresses an entire clinical decision tree into one visual reference. That compression, distilling a complex judgment into a single plate a clinician can consult at a glance, was the hardest and most rewarding part of the commission.</p>
   </div>
 </section>
 
+<!-- ===== OTHER WORK ===== -->
 <section class="other-work">
   <h2 class="fade-in">Other work</h2>
   <div class="other-work-grid">
@@ -248,6 +396,7 @@ footer { display: flex; justify-content: space-between; align-items: center; pad
   </div>
 </section>
 
+<!-- ===== CTA ===== -->
 <section class="contact fade-in">
   <h2>Want to learn about the human body<br>from the inside?</h2>
   <a href="mailto:steven.oppong@gmail.com" class="contact-icon" aria-label="Send email">

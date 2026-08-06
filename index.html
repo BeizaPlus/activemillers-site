@@ -679,13 +679,16 @@ function closeVideo(e) {
 function toggleAbout() {
   var full = document.getElementById('aboutFull');
   var btn = document.getElementById('aboutReadMore');
+  var summary = document.querySelector('.about-summary');
   var isOpen = full.style.maxHeight !== '0px' && full.style.maxHeight !== '';
   if (isOpen) {
     full.style.maxHeight = '0';
+    summary.style.display = 'block';
     btn.classList.remove('open');
     btn.childNodes[0].textContent = 'Read more';
   } else {
     full.style.maxHeight = full.scrollHeight + 'px';
+    summary.style.display = 'none';
     btn.classList.add('open');
     btn.childNodes[0].textContent = 'Read less';
   }

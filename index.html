@@ -11,6 +11,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;1,14..32,400;1,14..32,500;1,14..32,600;1,14..32,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.31.0/tabler-icons.min.css">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
@@ -111,23 +112,46 @@ section { overflow: hidden; }
 
 /* ===== About Timeline ===== */
 .about-timeline {
-  display: flex; align-items: flex-start; gap: 0; flex-wrap: wrap;
-  padding: 0 0 32px 0; margin-bottom: 24px;
+  display: flex; align-items: center; justify-content: center;
+  padding: 32px 0 48px; margin-bottom: 24px;
+  position: relative;
+}
+.about-timeline::before {
+  content: ''; position: absolute; top: 44px; left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 80px); max-width: 520px; height: 1px;
+  background: rgba(230,0,33,0.25);
+  pointer-events: none;
 }
 .tl-node {
-  display: flex; flex-direction: column; align-items: center; gap: 6px;
+  display: flex; flex-direction: column; align-items: center; gap: 0;
+  position: relative; z-index: 1; flex: 0 0 auto;
+  padding: 0 18px;
 }
 .tl-dot {
-  width: 12px; height: 12px; border-radius: 50%;
+  width: 9px; height: 9px; border-radius: 50%;
   background: #e60021; flex-shrink: 0;
+  box-shadow: 0 0 0 4px rgba(230,0,33,0.12);
+  margin-bottom: 28px;
 }
-.tl-next .tl-dot { background: rgba(230,0,33,0.35); }
-.tl-label { font-size: 15px; font-weight: 600; letter-spacing: -0.01em; white-space: nowrap; }
-.tl-next .tl-label { opacity: 0.5; }
-.tl-year { font-size: 12px; opacity: 0.35; white-space: nowrap; }
+.tl-next .tl-dot {
+  background: rgba(230,0,33,0.30);
+  box-shadow: 0 0 0 4px rgba(230,0,33,0.06);
+}
+.tl-label {
+  font-size: 15px; font-weight: 600; letter-spacing: -0.02em;
+  white-space: nowrap; line-height: 1.2;
+  position: absolute; top: -28px;
+}
+.tl-next .tl-label { opacity: 0.45; }
+.tl-year {
+  font-size: 12px; opacity: 0.30; white-space: nowrap;
+  margin-top: 4px; letter-spacing: 0.02em;
+}
 .tl-arrow {
-  font-size: 20px; color: rgba(255,255,255,0.15); padding: 0 10px;
-  margin-top: -3px; user-select: none;
+  color: rgba(255,255,255,0.10); font-size: 12px;
+  flex-shrink: 0; padding: 0; margin-top: -5px;
+  position: relative; z-index: 1;
 }
 
 /* ===== About Summary ===== */
@@ -148,7 +172,7 @@ section { overflow: hidden; }
   transition: color 0.3s ease, border-color 0.3s ease;
 }
 .about-readmore:hover { color: #fff; border-color: rgba(255,255,255,0.35); }
-.about-chevron { width: 14px; height: 14px; transition: transform 0.35s ease; }
+.about-chevron { font-size: 14px; transition: transform 0.35s ease; display: inline-block; }
 .about-readmore.open .about-chevron { transform: rotate(180deg); }
 
 /* ===== IMAGE (Section / Image) ===== */
@@ -264,9 +288,11 @@ footer { display: flex; justify-content: space-between; align-items: center; pad
   .hero-reveal { object-position: center 25%; }
   .full-image { height: 60vh; }
   .about h2, .experience h2 { font-size: 42px; }
-  .tl-label { font-size: 13px; }
-  .tl-year { font-size: 11px; }
-  .tl-arrow { font-size: 16px; padding: 0 6px; }
+  .tl-label { font-size: 12px; top: -24px; }
+  .tl-year { font-size: 10px; }
+  .tl-node { padding: 0 12px; }
+  .about-timeline::before { width: calc(100% - 40px); }
+  .tl-dot { margin-bottom: 24px; }
 }
 
 /* ===== RESPONSIVE: MOBILE (768px-809px) ===== */
@@ -289,10 +315,13 @@ footer { display: flex; justify-content: space-between; align-items: center; pad
   .exp-detail { padding-left: 0; margin-top: 12px; }
   .about h2, .experience h2 { font-size: 36px; }
   .about-inner { grid-template-columns: 1fr; gap: 32px; }
-  .about-timeline { gap: 4px; justify-content: center; }
-  .tl-label { font-size: 12px; }
-  .tl-year { font-size: 10px; }
-  .tl-arrow { font-size: 14px; padding: 0 4px; }
+  .about-timeline { justify-content: center; padding: 24px 0 36px; }
+  .about-timeline::before { width: calc(100% - 30px); max-width: none; top: 32px; }
+  .tl-node { padding: 0 8px; }
+  .tl-label { font-size: 11px; top: -20px; }
+  .tl-year { font-size: 9px; }
+  .tl-dot { width: 7px; height: 7px; margin-bottom: 20px; box-shadow: 0 0 0 3px rgba(230,0,33,0.10); }
+  .tl-arrow { font-size: 10px; margin-top: -3px; }
   .video-section { padding: 80px 40px; }
   .two-col-inner { flex-direction: column; gap: 60px; }
   .two-col-inner h2 { font-size: 28px; }
@@ -309,8 +338,12 @@ footer { display: flex; justify-content: space-between; align-items: center; pad
   .full-image { height: 40vh; }
   nav, .about, .experience, .two-col-section, .contact { padding-left: 20px; padding-right: 20px; }
   .work { padding: 48px 16px; }
-  .tl-label { font-size: 11px; }
-  .tl-arrow { font-size: 12px; padding: 0 3px; }
+  .tl-node { padding: 0 5px; }
+  .tl-label { font-size: 10px; top: -18px; }
+  .tl-arrow { font-size: 9px; margin-top: -2px; }
+  .tl-year { font-size: 8px; }
+  .about-timeline::before { width: calc(100% - 16px); top: 28px; }
+  .tl-dot { margin-bottom: 16px; }
 }
 </style>
 </head>
@@ -407,26 +440,26 @@ footer { display: flex; justify-content: space-between; align-items: center; pad
       <!-- Timeline arrow graphic -->
       <div class="about-timeline">
         <div class="tl-node">
-          <div class="tl-dot"></div>
           <div class="tl-label">Artist</div>
-          <div class="tl-year">2008–2012</div>
-        </div>
-        <div class="tl-arrow">&rarr;</div>
-        <div class="tl-node">
           <div class="tl-dot"></div>
+          <div class="tl-year">2008&ndash;12</div>
+        </div>
+        <i class="ti ti-chevron-right tl-arrow"></i>
+        <div class="tl-node">
           <div class="tl-label">Doctor</div>
-          <div class="tl-year">2012–2018</div>
+          <div class="tl-dot"></div>
+          <div class="tl-year">2012&ndash;18</div>
         </div>
-        <div class="tl-arrow">&rarr;</div>
+        <i class="ti ti-chevron-right tl-arrow"></i>
         <div class="tl-node">
-          <div class="tl-dot"></div>
           <div class="tl-label">Illustrator</div>
-          <div class="tl-year">2016–present</div>
-        </div>
-        <div class="tl-arrow">&rarr;</div>
-        <div class="tl-node tl-next">
           <div class="tl-dot"></div>
+          <div class="tl-year">2016&ndash;now</div>
+        </div>
+        <i class="ti ti-chevron-right tl-arrow"></i>
+        <div class="tl-node tl-next">
           <div class="tl-label">Pathology</div>
+          <div class="tl-dot"></div>
           <div class="tl-year">next</div>
         </div>
       </div>
@@ -441,7 +474,7 @@ footer { display: flex; justify-content: space-between; align-items: center; pad
       </div>
       <button class="about-readmore" id="aboutReadMore" onclick="toggleAbout()">
         Read more
-        <svg class="about-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+        <i class="ti ti-chevron-down about-chevron"></i>
       </button>
     </div>
   </div>

@@ -109,6 +109,48 @@ section { overflow: hidden; }
 .about-text p { font-size: 20px; line-height: 1.6; opacity: 0.75; margin-bottom: 24px; }
 .about-text p:last-child { margin-bottom: 0; }
 
+/* ===== About Timeline ===== */
+.about-timeline {
+  display: flex; align-items: flex-start; gap: 0; flex-wrap: wrap;
+  padding: 0 0 32px 0; margin-bottom: 24px;
+}
+.tl-node {
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+}
+.tl-dot {
+  width: 12px; height: 12px; border-radius: 50%;
+  background: #e60021; flex-shrink: 0;
+}
+.tl-next .tl-dot { background: rgba(230,0,33,0.35); }
+.tl-label { font-size: 15px; font-weight: 600; letter-spacing: -0.01em; white-space: nowrap; }
+.tl-next .tl-label { opacity: 0.5; }
+.tl-year { font-size: 12px; opacity: 0.35; white-space: nowrap; }
+.tl-arrow {
+  font-size: 20px; color: rgba(255,255,255,0.15); padding: 0 10px;
+  margin-top: -3px; user-select: none;
+}
+
+/* ===== About Summary ===== */
+.about-summary {
+  font-size: 18px; line-height: 1.65; opacity: 0.85; margin-bottom: 16px;
+}
+
+/* ===== About Full + Read More ===== */
+.about-full { margin-top: 16px; }
+.about-full.open { max-height: 2000px !important; }
+.about-full p { font-size: 20px; line-height: 1.6; opacity: 0.75; margin-bottom: 24px; }
+.about-full p:last-child { margin-bottom: 0; }
+.about-readmore {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: none; border: 1px solid rgba(255,255,255,0.15); border-radius: 20px;
+  color: rgba(255,255,255,0.6); font-size: 14px; font-family: inherit;
+  padding: 8px 18px; cursor: pointer; margin-top: 8px;
+  transition: color 0.3s ease, border-color 0.3s ease;
+}
+.about-readmore:hover { color: #fff; border-color: rgba(255,255,255,0.35); }
+.about-chevron { width: 14px; height: 14px; transition: transform 0.35s ease; }
+.about-readmore.open .about-chevron { transform: rotate(180deg); }
+
 /* ===== IMAGE (Section / Image) ===== */
 .full-image { padding: 0; width: 100%; height: 75vh; overflow: hidden; background: #0a0a09; }
 .full-image img {
@@ -222,6 +264,9 @@ footer { display: flex; justify-content: space-between; align-items: center; pad
   .hero-reveal { object-position: center 25%; }
   .full-image { height: 60vh; }
   .about h2, .experience h2 { font-size: 42px; }
+  .tl-label { font-size: 13px; }
+  .tl-year { font-size: 11px; }
+  .tl-arrow { font-size: 16px; padding: 0 6px; }
 }
 
 /* ===== RESPONSIVE: MOBILE (768px-809px) ===== */
@@ -244,6 +289,10 @@ footer { display: flex; justify-content: space-between; align-items: center; pad
   .exp-detail { padding-left: 0; margin-top: 12px; }
   .about h2, .experience h2 { font-size: 36px; }
   .about-inner { grid-template-columns: 1fr; gap: 32px; }
+  .about-timeline { gap: 4px; justify-content: center; }
+  .tl-label { font-size: 12px; }
+  .tl-year { font-size: 10px; }
+  .tl-arrow { font-size: 14px; padding: 0 4px; }
   .video-section { padding: 80px 40px; }
   .two-col-inner { flex-direction: column; gap: 60px; }
   .two-col-inner h2 { font-size: 28px; }
@@ -260,6 +309,8 @@ footer { display: flex; justify-content: space-between; align-items: center; pad
   .full-image { height: 40vh; }
   nav, .about, .experience, .two-col-section, .contact { padding-left: 20px; padding-right: 20px; }
   .work { padding: 48px 16px; }
+  .tl-label { font-size: 11px; }
+  .tl-arrow { font-size: 12px; padding: 0 3px; }
 }
 </style>
 </head>
@@ -353,10 +404,45 @@ footer { display: flex; justify-content: space-between; align-items: center; pad
   <div class="about-inner fade-in">
     <h2>About me</h2>
     <div class="about-text">
-      <p>I am just a <strong>curious six-year-old at heart</strong> who believed in my dreams and pursued them passionately. I have explored the worlds of <strong>artistic anatomy, human biology</strong>, and medicine, and I happen to love both, by the way. What you see here now is the result of <a href="videos/moon.mp4" class="video-reveal" onclick="return openVideo(event)">decades of practice</a>.</p>
-      <p>Along the way, I've had the privilege of translating <strong>complex medical concepts into clear visuals</strong>, using every available skill in my tool set. My tool set keeps expanding, especially with the advent of new technology. I would say I am forward-thinking, or even pro-technology, because it helps me communicate faster and more effectively. In the past several years, I've collaborated with institutions and physicians on projects spanning <strong>surgical education, patient communication, and academic publications</strong>.</p>
-      <p>My approach to illustration is, and will always be, grounded in <strong>anatomical accuracy and clinical understanding</strong>. I believe medical visuals should speak for themselves. A layperson should be able to look at an illustration and understand what is happening at their level.</p>
-      <p>Outside of work, I am constantly improving my toolkit, constantly observing, and always trying to put myself in situations that force me to learn. I remain <strong>very active in emergency departments</strong> because I get to see a lot of cases and observe what's happening. When I sit down to study, I have real context to draw from. And I believe the greatest skill in life <strong>is the ability to teach</strong>, which also reflects how well you understand the concept yourself.</p>
+      <!-- Timeline arrow graphic -->
+      <div class="about-timeline">
+        <div class="tl-node">
+          <div class="tl-dot"></div>
+          <div class="tl-label">Artist</div>
+          <div class="tl-year">2008–2012</div>
+        </div>
+        <div class="tl-arrow">&rarr;</div>
+        <div class="tl-node">
+          <div class="tl-dot"></div>
+          <div class="tl-label">Doctor</div>
+          <div class="tl-year">2012–2018</div>
+        </div>
+        <div class="tl-arrow">&rarr;</div>
+        <div class="tl-node">
+          <div class="tl-dot"></div>
+          <div class="tl-label">Illustrator</div>
+          <div class="tl-year">2016–present</div>
+        </div>
+        <div class="tl-arrow">&rarr;</div>
+        <div class="tl-node tl-next">
+          <div class="tl-dot"></div>
+          <div class="tl-label">Pathology</div>
+          <div class="tl-year">next</div>
+        </div>
+      </div>
+      <!-- Summary (always visible) -->
+      <p class="about-summary">I am a <strong>curious six-year-old at heart</strong> who explored <strong>artistic anatomy</strong> and <strong>human biology</strong>, trained as a physician in Ghana, and became a medical illustrator. I have spent years translating <strong>complex medical concepts into clear visuals</strong>. Now I am pursuing residency in pathology — the field that always fit. My approach is grounded in <strong>anatomical accuracy and clinical understanding</strong>, and I believe the greatest skill in life <strong>is the ability to teach</strong>.</p>
+      <!-- Expanded full narrative -->
+      <div class="about-full" id="aboutFull" style="max-height: 0; overflow: hidden; transition: max-height 0.6s ease;">
+        <p>I am just a <strong>curious six-year-old at heart</strong> who believed in my dreams and pursued them passionately. I have explored the worlds of <strong>artistic anatomy, human biology</strong>, and medicine, and I happen to love both, by the way. What you see here now is the result of <a href="videos/moon.mp4" class="video-reveal" onclick="return openVideo(event)">decades of practice</a>.</p>
+        <p>Along the way, I've had the privilege of translating <strong>complex medical concepts into clear visuals</strong>, using every available skill in my tool set. My tool set keeps expanding, especially with the advent of new technology. I would say I am forward-thinking, or even pro-technology, because it helps me communicate faster and more effectively. In the past several years, I've collaborated with institutions and physicians on projects spanning <strong>surgical education, patient communication, and academic publications</strong>.</p>
+        <p>My approach to illustration is, and will always be, grounded in <strong>anatomical accuracy and clinical understanding</strong>. I believe medical visuals should speak for themselves. A layperson should be able to look at an illustration and understand what is happening at their level.</p>
+        <p>Outside of work, I am constantly improving my toolkit, constantly observing, and always trying to put myself in situations that force me to learn. I remain <strong>very active in emergency departments</strong> because I get to see a lot of cases and observe what's happening. When I sit down to study, I have real context to draw from. And I believe the greatest skill in life <strong>is the ability to teach</strong>, which also reflects how well you understand the concept yourself.</p>
+      </div>
+      <button class="about-readmore" id="aboutReadMore" onclick="toggleAbout()">
+        Read more
+        <svg class="about-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
     </div>
   </div>
 </section>
@@ -554,6 +640,21 @@ function closeVideo(e) {
     var vid = document.getElementById('lightboxVideo');
     vid.pause();
     lb.classList.remove('open');
+  }
+}
+
+function toggleAbout() {
+  var full = document.getElementById('aboutFull');
+  var btn = document.getElementById('aboutReadMore');
+  var isOpen = full.style.maxHeight !== '0px' && full.style.maxHeight !== '';
+  if (isOpen) {
+    full.style.maxHeight = '0';
+    btn.classList.remove('open');
+    btn.childNodes[0].textContent = 'Read more';
+  } else {
+    full.style.maxHeight = full.scrollHeight + 'px';
+    btn.classList.add('open');
+    btn.childNodes[0].textContent = 'Read less';
   }
 }
 </script>

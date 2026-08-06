@@ -110,49 +110,55 @@ section { overflow: hidden; }
 .about-text p { font-size: 20px; line-height: 1.6; opacity: 0.75; margin-bottom: 24px; }
 .about-text p:last-child { margin-bottom: 0; }
 
-/* ===== About Timeline ===== */
+/* ===== About Timeline (Vertical) ===== */
 .about-timeline {
-  display: flex; align-items: center; justify-content: center;
-  padding: 32px 0 48px; margin-bottom: 24px;
-  position: relative;
+  display: flex; flex-direction: column;
+  padding: 8px 0 0 0; margin-bottom: 32px;
+  max-width: 480px;
 }
-.about-timeline::before {
-  content: ''; position: absolute; top: 44px; left: 50%;
+.vtl-row {
+  display: flex; position: relative;
+}
+.vtl-rail {
+  position: relative; width: 24px; flex-shrink: 0;
+  min-height: 68px;
+}
+.vtl-line {
+  position: absolute; left: 50%; top: 0; bottom: 0;
+  width: 1px; background: #e60021;
   transform: translateX(-50%);
-  width: calc(100% - 80px); max-width: 520px; height: 1px;
-  background: rgba(230,0,33,0.25);
-  pointer-events: none;
 }
-.tl-node {
-  display: flex; flex-direction: column; align-items: center; gap: 0;
-  position: relative; z-index: 1; flex: 0 0 auto;
-  padding: 0 18px;
-}
-.tl-dot {
+.vtl-row:first-child .vtl-line { top: 50%; }
+.vtl-dot {
+  position: absolute; left: 50%; top: 50%;
   width: 9px; height: 9px; border-radius: 50%;
-  background: #e60021; flex-shrink: 0;
+  background: #e60021; z-index: 1;
+  transform: translate(-50%, -50%);
   box-shadow: 0 0 0 4px rgba(230,0,33,0.12);
-  margin-bottom: 28px;
 }
-.tl-next .tl-dot {
+.vtl-content {
+  display: flex; flex-direction: column; justify-content: center;
+  padding-left: 16px;
+}
+.vtl-label {
+  font-size: 16px; font-weight: 600; letter-spacing: -0.02em;
+  line-height: 1.3;
+}
+.vtl-year {
+  font-size: 12px; opacity: 0.35; letter-spacing: 0.02em;
+  margin-top: 2px;
+}
+/* Next-chapter milestone */
+.vtl-row.next-segment .vtl-line {
+  background: rgba(255,255,255,0.08);
+}
+.vtl-row.next-segment .vtl-dot {
+  width: 13px; height: 13px;
   background: rgba(230,0,33,0.30);
-  box-shadow: 0 0 0 4px rgba(230,0,33,0.06);
+  box-shadow: 0 0 0 6px rgba(230,0,33,0.06);
 }
-.tl-label {
-  font-size: 15px; font-weight: 600; letter-spacing: -0.02em;
-  white-space: nowrap; line-height: 1.2;
-  position: absolute; top: -28px;
-}
-.tl-next .tl-label { opacity: 0.45; }
-.tl-year {
-  font-size: 12px; opacity: 0.30; white-space: nowrap;
-  margin-top: 4px; letter-spacing: 0.02em;
-}
-.tl-arrow {
-  color: rgba(255,255,255,0.10); font-size: 12px;
-  flex-shrink: 0; padding: 0; margin-top: -5px;
-  position: relative; z-index: 1;
-}
+.vtl-row.next-segment .vtl-label { opacity: 0.40; }
+.vtl-row.next-segment .vtl-year { opacity: 0.20; }
 
 /* ===== About Summary ===== */
 .about-summary {
@@ -278,11 +284,9 @@ footer { display: flex; justify-content: space-between; align-items: center; pad
   .hero-reveal { object-position: center 25%; }
   .full-image { height: 60vh; }
   .about h2, .experience h2 { font-size: 42px; }
-  .tl-label { font-size: 12px; top: -24px; }
-  .tl-year { font-size: 10px; }
-  .tl-node { padding: 0 12px; }
-  .about-timeline::before { width: calc(100% - 40px); }
-  .tl-dot { margin-bottom: 24px; }
+  .vtl-rail { min-height: 60px; }
+  .vtl-label { font-size: 14px; }
+  .vtl-year { font-size: 11px; }
 }
 
 /* ===== RESPONSIVE: MOBILE (768px-809px) ===== */
@@ -305,13 +309,10 @@ footer { display: flex; justify-content: space-between; align-items: center; pad
   .exp-detail { padding-left: 0; margin-top: 12px; }
   .about h2, .experience h2 { font-size: 36px; }
   .about-inner { grid-template-columns: 1fr; gap: 32px; }
-  .about-timeline { justify-content: center; padding: 24px 0 36px; }
-  .about-timeline::before { width: calc(100% - 30px); max-width: none; top: 32px; }
-  .tl-node { padding: 0 8px; }
-  .tl-label { font-size: 11px; top: -20px; }
-  .tl-year { font-size: 9px; }
-  .tl-dot { width: 7px; height: 7px; margin-bottom: 20px; box-shadow: 0 0 0 3px rgba(230,0,33,0.10); }
-  .tl-arrow { font-size: 10px; margin-top: -3px; }
+  .about-timeline { max-width: 100%; }
+  .vtl-rail { min-height: 56px; }
+  .vtl-label { font-size: 13px; }
+  .vtl-year { font-size: 10px; }
   .video-section { padding: 80px 40px; }
   .two-col-inner { flex-direction: column; gap: 60px; }
   .two-col-inner h2 { font-size: 28px; }
@@ -328,12 +329,9 @@ footer { display: flex; justify-content: space-between; align-items: center; pad
   .full-image { height: 40vh; }
   nav, .about, .experience, .two-col-section, .contact { padding-left: 20px; padding-right: 20px; }
   .work { padding: 48px 16px; }
-  .tl-node { padding: 0 5px; }
-  .tl-label { font-size: 10px; top: -18px; }
-  .tl-arrow { font-size: 9px; margin-top: -2px; }
-  .tl-year { font-size: 8px; }
-  .about-timeline::before { width: calc(100% - 16px); top: 28px; }
-  .tl-dot { margin-bottom: 16px; }
+  .vtl-rail { min-height: 48px; }
+  .vtl-label { font-size: 12px; }
+  .vtl-year { font-size: 9px; }
 }
 </style>
 </head>
@@ -396,30 +394,27 @@ footer { display: flex; justify-content: space-between; align-items: center; pad
   <div class="about-inner fade-in">
     <h2>About me</h2>
     <div class="about-text">
-      <!-- Timeline arrow graphic -->
+      <!-- Vertical career timeline -->
       <div class="about-timeline">
-        <div class="tl-node">
-          <div class="tl-label">Artist</div>
-          <div class="tl-dot"></div>
-          <div class="tl-year">2008&ndash;12</div>
+        <div class="vtl-row">
+          <div class="vtl-rail"><div class="vtl-line"></div><div class="vtl-dot"></div></div>
+          <div class="vtl-content"><div class="vtl-label">Artist</div><div class="vtl-year">2008&ndash;2025</div></div>
         </div>
-        <i class="ti ti-chevron-right tl-arrow"></i>
-        <div class="tl-node">
-          <div class="tl-label">Doctor</div>
-          <div class="tl-dot"></div>
-          <div class="tl-year">2012&ndash;20</div>
+        <div class="vtl-row">
+          <div class="vtl-rail"><div class="vtl-line"></div><div class="vtl-dot"></div></div>
+          <div class="vtl-content"><div class="vtl-label">Doctor</div><div class="vtl-year">2012&ndash;2018</div></div>
         </div>
-        <i class="ti ti-chevron-right tl-arrow"></i>
-        <div class="tl-node">
-          <div class="tl-label">Illustrator</div>
-          <div class="tl-dot"></div>
-          <div class="tl-year">2016&ndash;now</div>
+        <div class="vtl-row">
+          <div class="vtl-rail"><div class="vtl-line"></div><div class="vtl-dot"></div></div>
+          <div class="vtl-content"><div class="vtl-label">Pathology House Officer</div><div class="vtl-year">2018&ndash;2020</div></div>
         </div>
-        <i class="ti ti-chevron-right tl-arrow"></i>
-        <div class="tl-node tl-next">
-          <div class="tl-label">Pathology</div>
-          <div class="tl-dot"></div>
-          <div class="tl-year">next</div>
+        <div class="vtl-row">
+          <div class="vtl-rail"><div class="vtl-line"></div><div class="vtl-dot"></div></div>
+          <div class="vtl-content"><div class="vtl-label">Illustrator</div><div class="vtl-year">2016&ndash;present</div></div>
+        </div>
+        <div class="vtl-row next-segment">
+          <div class="vtl-rail"><div class="vtl-line"></div><div class="vtl-dot"></div></div>
+          <div class="vtl-content"><div class="vtl-label">Pathology Residency</div><div class="vtl-year">next</div></div>
         </div>
       </div>
       <!-- Summary (always visible) -->

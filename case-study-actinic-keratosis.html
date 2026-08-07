@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Skin Remembers Every Summer — Actinic Keratosis — Steven Oppong, MD</title>
+<meta name="description" content="Illustrated Pathology — A Visual Atlas of Disease Mechanism. Actinic Keratosis plates by Steven Oppong, MD, Medical Illustrator. Tracing UV-induced keratinocyte dysplasia from the stratum corneum down to the basal layer.">
+<link rel="icon" type="image/png" href="images/HFtZcNIneFBJJZ7SfUHQJ1vsANc.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;1,14..32,400;1,14..32,500;1,14..32,600;1,14..32,700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: #0a0a09;
+  color: #e0ddd8;
+  line-height: 1.5;
+  overflow-x: hidden;
+}
+
+/* ===== NAVIGATION ===== */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  padding: 24px 80px;
+  display: flex; justify-content: space-between; align-items: center;
+  mix-blend-mode: difference;
+}
+.nav-logo { display: flex; align-items: center; }
+.nav-logo svg { height: 36px; width: auto; }
+.nav-links { display: flex; gap: 40px; list-style: none; margin: 0; padding: 0; }
+.nav-links li { list-style: none; }
+.nav-links a { font-size: 16px; font-weight: 500; position: relative; padding-bottom: 4px; color: #fff; text-decoration: none; }
+.nav-links a::after {
+  content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 1.5px;
+  background: #fff; transition: width 0.3s ease;
+}
+.nav-links a:hover::after { width: 100%; }
+
+/* ===== HERO ===== */
+.hero {
+  padding: 200px clamp(32px, 7vw, 80px) 128px;
+  max-width: 960px; margin: 0 auto;
+  text-align: center;
+}
+.hero-overline {
+  font-size: 15px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase;
+  color: rgba(224,221,216,0.45); margin-bottom: 28px;
+}
+.hero h1 {
+  font-size: clamp(36px, 5vw, 72px); font-weight: 600; line-height: 1.06;
+  letter-spacing: -0.03em; color: #fff; margin-bottom: 16px;
+}
+.hero-subtitle {
+  font-size: 17px; line-height: 1.6; opacity: 0.55; max-width: 640px; margin: 0 auto 48px;
+}
+.hero-author {
+  font-size: 16px; font-weight: 500; opacity: 0.6;
+}
+
+/* ===== PLATE SECTIONS ===== */
+.plate-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  min-height: 60vh;
+  background: #0a0a09;
+}
+.plate-section.reverse .plate-text-order { order: 2; }
+.plate-section.reverse .plate-image-order { order: 1; }
+.plate-text {
+  display: flex; align-items: center;
+  padding: 80px clamp(32px, 6vw, 64px);
+}
+.plate-text-wrap { max-width: 480px; }
+.plate-chapter {
+  font-size: 13px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase;
+  color: rgba(224,221,216,0.35); margin-bottom: 20px;
+}
+.plate-title {
+  font-size: 28px; font-weight: 600; letter-spacing: -0.02em; color: #fff;
+  line-height: 1.2; margin-bottom: 24px;
+}
+.plate-body {
+  font-size: 17px; line-height: 1.75; opacity: 0.7;
+}
+.plate-body p + p { margin-top: 18px; }
+.plate-image {
+  display: flex; align-items: center; justify-content: center;
+  background: #111;
+  padding: 60px clamp(16px, 4vw, 48px);
+  overflow: hidden;
+}
+.plate-image img {
+  max-width: 100%; max-height: 70vh; height: auto; display: block;
+}
+.plate-divider {
+  height: 1px; background: rgba(255,255,255,0.06);
+  margin: 0 clamp(32px, 7vw, 80px);
+}
+
+/* ===== CLOSING NOTE ===== */
+.closing {
+  padding: 128px clamp(32px, 7vw, 80px);
+  max-width: 800px; margin: 0 auto;
+  text-align: center;
+}
+.closing-overline {
+  font-size: 14px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
+  color: rgba(224,221,216,0.35); margin-bottom: 32px;
+}
+.closing p {
+  font-size: 16px; line-height: 1.8; opacity: 0.55;
+}
+
+/* ===== OTHER WORK ===== */
+.other-work {
+  padding: 128px clamp(32px, 7vw, 80px) 64px;
+  max-width: 1200px; margin: 0 auto;
+}
+.other-work h2 {
+  font-size: 24px; font-weight: 600; letter-spacing: -0.02em; color: #fff;
+  margin-bottom: 40px; text-align: center;
+}
+.other-work-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
+}
+.ow-card {
+  display: block; background: #141414; border-radius: 12px; overflow: hidden;
+  transition: transform 0.3s ease; text-decoration: none;
+}
+.ow-card:hover { transform: translateY(-4px); }
+.ow-card-img-wrap { aspect-ratio: 5/3; overflow: hidden; }
+.ow-card-img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.ow-card-info { padding: 20px 24px 24px; }
+.ow-card-title { font-size: 18px; font-weight: 600; color: #fff; letter-spacing: -0.02em; }
+.ow-card-cat { font-size: 14px; color: #757575; margin-top: 4px; }
+
+/* ===== CONTACT ===== */
+.contact { padding: 200px 80px 128px; text-align: center; }
+.contact h2 {
+  font-size: clamp(32px, 5vw, 56px); font-weight: 600; letter-spacing: -0.03em;
+  line-height: 1.14; color: #fff; margin-bottom: 48px;
+}
+.contact-icon {
+  display: inline-flex; align-items: center; justify-content: center; gap: 14px;
+  padding: 12px 24px; border-radius: 40px;
+  background: rgba(255,255,255,0.08);
+  transition: background 0.3s ease, transform 0.3s ease;
+  font-size: 18px; color: #e0ddd8; text-decoration: none;
+}
+.contact-icon:hover { background: rgba(255,255,255,0.15); transform: scale(1.03); }
+.contact-icon svg { width: 22px; height: 22px; flex-shrink: 0; }
+
+/* ===== FOOTER ===== */
+footer {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 40px 80px 60px; border-top: 1px solid rgba(255,255,255,0.08);
+}
+.footer-links { display: flex; gap: 32px; }
+.footer-links a { color: rgba(255,255,255,0.4); font-size: 14px; text-decoration: none; transition: color 0.3s ease; }
+.footer-links a:hover { color: #e0ddd8; }
+.footer-copy { font-size: 14px; color: rgba(255,255,255,0.3); }
+
+/* ===== ANIMATION ===== */
+.fade-in {
+  opacity: 0; transform: translateY(24px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.fade-in.visible { opacity: 1; transform: translateY(0); }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 899px) {
+  nav { padding-left: 32px; padding-right: 32px; }
+  .nav-links { display: none; }
+  .hero { padding: 160px 32px 96px; }
+  .hero h1 { font-size: clamp(28px, 8vw, 44px); }
+  .plate-section { grid-template-columns: 1fr; min-height: auto; }
+  .plate-section.reverse .plate-text-order { order: 1; }
+  .plate-section.reverse .plate-image-order { order: 1; }
+  .plate-text { padding: 48px 32px 24px; }
+  .plate-image { padding: 0 0 40px; }
+  .plate-image img { max-height: 50vh; }
+  .plate-title { font-size: 24px; }
+  .plate-divider { margin: 0 32px; }
+  .closing { padding: 96px 32px; }
+  .other-work { padding: 96px 32px 48px; }
+  .other-work-grid { grid-template-columns: 1fr; }
+  .contact { padding: 120px 32px 96px; }
+  footer { flex-direction: column; gap: 24px; align-items: center; text-align: center; padding: 40px 32px 48px; }
+}
+@media (max-width: 374px) {
+  .hero h1 { font-size: 26px; }
+  .plate-title { font-size: 22px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ===== NAVIGATION ===== -->
+<nav>
+  <a href="index.html" class="nav-logo">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 251.12 84.94" style="height:36px;width:auto;"><defs><style>.cls-1{fill:#e60021}.cls-2{fill:#fff}</style></defs><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><path class="cls-1" d="M47.84 0S20.1 7.4 19.11 7.79c-.63.26-2 1-2.15 1.63-.1.37.13.71.95 1s1 2.42.8 5.12c-.06 1.13-.18 2.34-.33 3.57s-.27 2.16-.4 3.2c-.27 1.9-.54 3.63-.67 4.81a8.66 8.66 0 0 0-.09 1.4c.19 1.64 1 1.64 7.32 0 2.94-.73 7.53-1.87 11.6-2.86 2-.48 3.89-1 5.4-1.3L45 23.56s1.7-5.43 3-10.81c.62-2.46 1.16-4.92 1.43-6.84C50.24-.19 47.84 0 47.84 0M37.59 20.19l-5 .9c-3.31.61-6.53 1.23-7.8 1.57-3 .8-.18-4.47-1.14-7.33-.49-1.44 4.53-4 9.74-6.26a.87.87 0 0 0 .25-.1c2.24-.94 4.49-1.82 6.31-2.49 2.32-.87 4-1.42 4.12-1.42.59 0-2.43 14.42-2.43 14.42l-4 .71"/><path class="cls-1" d="M38.3 11.74c-1.39-1.23-4.38.8-2.21 3.45 1 1.18 1.8 1.28 2.45 1A3 3 0 0 0 39.86 15a6.24 6.24 0 0 0-.63-2 4 4 0 0 0-.93-1.25"/><path class="cls-1" d="M37.09 28 37 28a14 14 0 0 1-2.12 1.12 12.17 12.17 0 0 1-2.17.65 10.32 10.32 0 0 1-2.21.24A5.07 5.07 0 0 0 30 30a.34.34 0 0 0-.17 0 1.67 1.67 0 0 0-.39.05 5.22 5.22 0 0 0-.81.28 4.43 4.43 0 0 0-.5.24l-.15.09-.13.1a1.33 1.33 0 0 0-.27 1.89 3.19 3.19 0 0 0 1.4 1 3.9 3.9 0 0 0 1.61.27 10.54 10.54 0 0 0 3.24-.55 9 9 0 0 0 1.48-.68 9.32 9.32 0 0 0 1.35-.9 7.67 7.67 0 0 0 2-2.48 1 1 0 0 0 0-1.06A1.1 1.1 0 0 0 37.09 28"/><path class="cls-1" d="M27.33 15.54a2.49 2.49 0 0 0 .25 2c.88 1.72 1.83 1.5 2.49 1a3.5 3.5 0 0 0 .86-1c-.7-3.61-3.07-3.56-3.6-2.06"/><polygon class="cls-1" points="12.64 26.86 10.11 11.15 9.52 7.46 4.19 8.18 0 16.79 2.99 15.87 7.75 25.84 11.8 34.34 14.88 40.79 13.77 33.91 12.64 26.86"/><path class="cls-2" d="M249.72 27.38l1.4 8.4H248.3l-.52-3.61-.16-1.4-.27 1.3-1 3.71h-2.51l-1-3.81-.25-1.2-.05 1.07L242 35.78h-2.57l1.37-8.4H244l1 3.69.24 1.23.19-1.18 1.05-3.74ZM198.56 73.46c-.33 6.09 50.45-3.17 45.55-4.54-6.07-1.69-45.28-1.51-45.55 4.54m36-37.68h2.72v-6.1h1.93v-2.3h-6.64v2.3h2Zm-8.93 7.76c-3-1.61-18.2-.35-18.49 2.73-.36 3.59 22.91-.32 18.49-2.73M208 59.85c2.52 3 22-2.3 16.27-5-3.33-1.57-18.43 2.4-16.27 5m-10.8-13.58c-6.32-1.29-.39 20.55-10.42 24-16.9 5.82-8.64-21.93-16.68-20.41-6.62 1.27 4.27 21.69 7.72 23.39 16.26 8.09 31.36-24.49 19.38-27m-52.88 1.54c-13.19 2.59 3.42-31.94-5.8-32.38-7.74-.41-3.39 20.51-3.45 23.82-.16 11.9-11.87 9.24-11.43 14.24 9.82 2.09 10.66-1.65 10.72 10.67 0 2.11-3.31 18.26 1.89 17.47 15.58-2.37-9.06-33.79 15.36-29 5.86 7.66 3.07 14.23 1.78 22.21-.77 4.87 5.94 7.41 5.72 2.19-.63-11.51 5-33-14.79-29.2m5.24-12.71c2.49.51 4.65-3.56 2.71-5.45-2.82-2.73-6.54 4.69-2.71 5.45M98.78 54c-7.66.36-5.2 14.16-.39 18 5.9 4.63 33.56 1.46 29.29-7.51C122.16 52.84 95.36 83.88 98.78 54M81.19 63c1.58 3.15 3.17 29.1-5.41 20-5.72-6.12-1.48-16.67-4.52-24.53-7.48 2-14.85 4.19-22.11 6.84a16.91 16.91 0 0 1-4.53 8.62c-5.65-2.5 18.44-62 25.72-61.21S76.68 42 77.55 49c11.16-2.66 20.92-8.81 31.61-12.66 4.63 9.78-12.49 10-20.31 13.58-7.24 3.31-11.7 5.18-7.66 13.16M69 43.3C68.89 42.12 69.46 29 64.48 29c-3.94 9.35-9 18.13-11.27 28.11C66.1 57.49 69.6 54.92 69 43.3"/></g></g></svg>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html#pathology-anchor">Pathology</a></li>
+    <li><a href="index.html#experiments-anchor">Experiments</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- ===== HERO ===== -->
+<section class="hero fade-in">
+  <div class="hero-overline">Illustrated Pathology</div>
+  <h1>The Skin Remembers Every Summer</h1>
+  <p class="hero-subtitle">A Visual Atlas of Disease Mechanism</p>
+  <p class="hero-author">Plates by Steven Oppong, MD, Medical Illustrator</p>
+</section>
+
+<!-- ===== PLATE 1 — THE SKIN ===== -->
+<hr class="plate-divider" aria-hidden="true">
+<section class="plate-section">
+  <div class="plate-text plate-text-order">
+    <div class="plate-text-wrap fade-in">
+      <div class="plate-chapter">Plate 1</div>
+      <h2 class="plate-title">The Skin</h2>
+      <div class="plate-body">
+        <p>She noticed the patch on her forearm the way most people do. Not right away. It had been there for months before it earned a second look, rough under her thumb when she reached for a coffee cup, the kind of thing you rub instead of report.</p>
+        <p>The skin had been trying to say something for twenty years before she felt it. Every unprotected afternoon, every summer she didn't think twice about, had been logged somewhere she couldn't see. The patch was the ledger finally coming due.</p>
+      </div>
+    </div>
+  </div>
+  <div class="plate-image plate-image-order fade-in">
+    <img src="images/actinic-keratosis/08-summit-sequence-grid.png" alt="Actinic keratosis summit grid — Immersa medical case-visuals sequence, full descent through epidermal layers" loading="lazy">
+  </div>
+</section>
+
+<!-- ===== PLATE 2 — WHAT THE HAND FOUND ===== -->
+<hr class="plate-divider" aria-hidden="true">
+<section class="plate-section reverse">
+  <div class="plate-text plate-text-order">
+    <div class="plate-text-wrap fade-in">
+      <div class="plate-chapter">Plate 2</div>
+      <h2 class="plate-title">What the Hand Found</h2>
+      <div class="plate-body">
+        <p>Dr. Oppong took her arm and turned it toward the window light, the same gesture he used on every patient, the one that made people stop talking and start watching his face instead. He ran his thumb once across the patch. Rough. Not raised enough to worry her. Rough enough to worry him.</p>
+        <p>He didn't say cancer. He said "let's look closer," and reached for the loupe on the counter, the one with the scratched lens he'd never replaced because he liked knowing exactly where every mark on it came from.</p>
+      </div>
+    </div>
+  </div>
+  <div class="plate-image plate-image-order fade-in">
+    <img src="images/actinic-keratosis/04-keratinocyte-dysplasia.png" alt="Keratinocyte dysplasia — crowded atypical keratinocytes with hyperchromatic nuclei, UV-induced architectural breakdown" loading="lazy">
+  </div>
+</section>
+
+<!-- ===== PLATE 3 — THE SURFACE LIES ===== -->
+<hr class="plate-divider" aria-hidden="true">
+<section class="plate-section">
+  <div class="plate-text plate-text-order">
+    <div class="plate-text-wrap fade-in">
+      <div class="plate-chapter">Plate 3</div>
+      <h2 class="plate-title">The Surface Lies</h2>
+      <div class="plate-body">
+        <p>Under magnification, the top layer of her skin told two stories at once. On one side, the cells lay in the tidy, stacked rows they were supposed to keep, flat and translucent, each one letting go of its nucleus on schedule like it was following a script written before she was born.</p>
+        <p>On the other side, the rows had broken formation. Cells piled unevenly, some holding onto pieces of themselves they should have shed, patchy and thickened where the light hit them wrong. Doctors call this parakeratosis. It means the skin forgot how to finish what it started.</p>
+      </div>
+    </div>
+  </div>
+  <div class="plate-image plate-image-order fade-in">
+    <img src="images/actinic-keratosis/06-basal-layer-uv-damage.png" alt="Basal layer — parakeratosis, cells holding nuclei they should have shed, keratinocytes with disordered maturation" loading="lazy">
+  </div>
+</section>
+
+<!-- ===== PLATE 4 — ONE LAYER DOWN ===== -->
+<hr class="plate-divider" aria-hidden="true">
+<section class="plate-section reverse">
+  <div class="plate-text plate-text-order">
+    <div class="plate-text-wrap fade-in">
+      <div class="plate-chapter">Plate 4</div>
+      <h2 class="plate-title">One Layer Down</h2>
+      <div class="plate-body">
+        <p>Beneath the surface confusion, a second layer was already thinning out. This layer is supposed to be where the skin manufactures its final waterproofing, dense with dark granules that thicken as cells rise toward the surface, like a factory floor stacked with product ready to ship.</p>
+        <p>Under the healthy skin nearby, that factory was running fine. Under the rough patch, it had gone quiet in places, gaps opening where there should have been continuous coverage. Whatever was happening had started long before it reached her fingertips.</p>
+      </div>
+    </div>
+  </div>
+  <div class="plate-image plate-image-order fade-in">
+    <img src="images/actinic-keratosis/03-blood-interior-inflammation.png" alt="Granular layer thinning — stratum granulosum, disrupted waterproofing production, solar elastosis beneath" loading="lazy">
+  </div>
+</section>
+
+<!-- ===== PLATE 5 — THE ORDERLY ROWS, BROKEN ===== -->
+<hr class="plate-divider" aria-hidden="true">
+<section class="plate-section">
+  <div class="plate-text plate-text-order">
+    <div class="plate-text-wrap fade-in">
+      <div class="plate-chapter">Plate 5</div>
+      <h2 class="plate-title">The Orderly Rows, Broken</h2>
+      <div class="plate-body">
+        <p>One layer deeper still, and the story stopped being about surface texture and started being about architecture. Healthy skin builds itself in a strict maturation line, cells born at the bottom and rising in order, each one bigger and flatter than the one below it, obedient the whole way up.</p>
+        <p>In the affected zone, that order had collapsed near the base. Cells crowded together instead of queuing up, their nuclei darker and larger than they should be, small clusters pushing upward out of turn. It looked less like growth and more like a room where everyone had started talking at once.</p>
+      </div>
+    </div>
+  </div>
+  <div class="plate-image plate-image-order fade-in">
+    <img src="images/actinic-keratosis/07-mechanism-progression-grid.png" alt="Mechanism progression — 3x3 grid tracing architectural crowding and dysplasia through the stratum spinosum" loading="lazy">
+  </div>
+</section>
+
+<!-- ===== PLATE 6 — WHERE IT STARTED ===== -->
+<hr class="plate-divider" aria-hidden="true">
+<section class="plate-section reverse">
+  <div class="plate-text plate-text-order">
+    <div class="plate-text-wrap fade-in">
+      <div class="plate-chapter">Plate 6</div>
+      <h2 class="plate-title">Where It Started</h2>
+      <div class="plate-body">
+        <p>At the very bottom, past the layers she could feel with her thumb, sat the answer. The basal layer is where new skin cells are born, a single disciplined row sitting on the membrane that separates skin from the tissue beneath it. In healthy skin, those cells divide quietly and stay in line.</p>
+        <p>Here, they didn't. And just beneath them, in the dermis, the collagen had lost its clean woven structure, replaced by something thickened and disorganized. That damage had a name too. Doctors call it solar elastosis, the skin's version of a paper trail, proof that decades of sun had reached all the way down to the foundation.</p>
+      </div>
+    </div>
+  </div>
+  <div class="plate-image plate-image-order fade-in">
+    <img src="images/actinic-keratosis/02-dermal-epidermal-junction.png" alt="Dermal-epidermal junction — basal layer dysplasia, solar elastosis in collagen, sun damage at the tissue foundation" loading="lazy">
+  </div>
+</section>
+
+<!-- ===== PLATE 7 — THE ONES CLIMBING ===== -->
+<hr class="plate-divider" aria-hidden="true">
+<section class="plate-section">
+  <div class="plate-text plate-text-order">
+    <div class="plate-text-wrap fade-in">
+      <div class="plate-chapter">Plate 7</div>
+      <h2 class="plate-title">The Ones Climbing</h2>
+      <div class="plate-body">
+        <p>A handful of cells in that basal row weren't staying where they belonged. They had grown larger, their nuclei swollen and irregular, and instead of dividing flat along the membrane the way they were built to, some were angling upward, pushing into the layer above them like they were trying to leave.</p>
+        <p>This is the part of the story that decides everything. As long as that upward push stays partial, stops short of climbing through every layer above it, the disease has a name that can still be watched and treated. If it ever climbs the whole way, the name changes to something far more serious. The distance those cells travel is the entire difference.</p>
+      </div>
+    </div>
+  </div>
+  <div class="plate-image plate-image-order fade-in">
+    <img src="images/actinic-keratosis/05-corneocyte-texture.png" alt="Corneocyte surface — dysplastic keratinocytes pushing upward with swollen irregular nuclei, the threshold between AK and carcinoma" loading="lazy">
+  </div>
+</section>
+
+<!-- ===== PLATE 8 — THE CUT THAT TOLD THE TRUTH ===== -->
+<hr class="plate-divider" aria-hidden="true">
+<section class="plate-section reverse">
+  <div class="plate-text plate-text-order">
+    <div class="plate-text-wrap fade-in">
+      <div class="plate-chapter">Plate 8</div>
+      <h2 class="plate-title">The Cut That Told the Truth</h2>
+      <div class="plate-body">
+        <p>Dr. Oppong didn't need the full biopsy to know what he was looking at, but he took it anyway, lifting a small section of her forearm skin back like a page, the wound opening toward her wrist the way real tissue does, following the direction blood and nerve would actually travel.</p>
+        <p>Underneath, the cross-section confirmed what the surface had been hinting at for months. Normal skin on one edge, disordered skin on the other, the transition visible in one continuous cut. He closed the site, told her the word actinic keratosis, and told her what came next: freezing, watching, and no more unprotected afternoons.</p>
+        <p>She had felt the rough patch for months. It took eight layers of tissue, cut in cross-section under a light she'd never see with her own eyes, to show her what her skin had actually been trying to say.</p>
+      </div>
+    </div>
+  </div>
+  <div class="plate-image plate-image-order fade-in">
+    <img src="images/actinic-keratosis/01-establishing-skin-landscape.png" alt="Establishing skin landscape — the biopsied forearm, skin cross-section revealing the full vertical mechanism from surface to dermis" loading="lazy">
+  </div>
+</section>
+
+<!-- ===== CLOSING NOTE ===== -->
+<section class="closing fade-in">
+  <div class="closing-overline">Pathophysiology Reference</div>
+  <p>Plates generated from the Immersa medical case-visuals sequence. Full pathophysiology reference: parakeratosis (stratum corneum), granular layer thinning (stratum granulosum), architectural crowding and dysplasia (stratum spinosum), basal layer dysplasia with upward vector (stratum basale), and solar elastosis (dermis). The complete vertical mechanism of actinic keratosis, surface symptom to cellular root.</p>
+</section>
+
+<!-- ===== OTHER WORK ===== -->
+<hr class="plate-divider" aria-hidden="true">
+<section class="other-work">
+  <h2 class="fade-in">Other Work</h2>
+  <div class="other-work-grid">
+    <a href="case-study-pulmonary-embolism.html" class="ow-card fade-in">
+      <div class="ow-card-img-wrap">
+        <img class="ow-card-img" src="images/cross-section-anatomy.jpg" alt="Pulmonary Embolism" loading="lazy">
+      </div>
+      <div class="ow-card-info">
+        <h3 class="ow-card-title">Pulmonary Embolism</h3>
+        <p class="ow-card-cat">Clinical Illustration</p>
+      </div>
+    </a>
+    <a href="case-study-pater-brown.html" class="ow-card fade-in">
+      <div class="ow-card-img-wrap">
+        <img class="ow-card-img" src="images/pater-brown/fetus-save-me.png" alt="OB-GYN Illustrations" loading="lazy">
+      </div>
+      <div class="ow-card-info">
+        <h3 class="ow-card-title">OB-GYN Illustrations</h3>
+        <p class="ow-card-cat">Partograph</p>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- ===== CONTACT ===== -->
+<section class="contact fade-in">
+  <h2>Want to learn about the human body<br>from the inside?</h2>
+  <a href="mailto:steven.oppong@gmail.com" class="contact-icon">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+    steven.oppong@gmail.com
+  </a>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="footer-links">
+    <a href="https://www.linkedin.com/in/kwabena-oppong-904a3440/" target="_blank" rel="noopener">LinkedIn</a>
+  </div>
+  <div class="footer-copy">Steven Oppong, MD &copy; 2026</div>
+</footer>
+
+<script>
+(function() {
+  var els = document.querySelectorAll('.fade-in');
+  function check() {
+    els.forEach(function(el) {
+      var top = el.getBoundingClientRect().top;
+      if (top < window.innerHeight * 0.88) el.classList.add('visible');
+    });
+  }
+  window.addEventListener('scroll', check, { passive: true });
+  check();
+})();
+</script>
+</body>
+</html>

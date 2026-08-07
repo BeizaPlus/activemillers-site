@@ -12,39 +12,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;1,14..32,400;1,14..32,500;1,14..32,600;1,14..32,700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.31.0/tabler-icons.min.css">
+<link rel="stylesheet" href="global.css">
 <style>
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
-body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  background: #0a0a09;
-  color: #fff;
-  line-height: 1.5;
-  overflow-x: hidden;
-}
-a { color: inherit; text-decoration: none; }
-
-/* ===== NAVIGATION ===== */
-nav {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-  padding: 24px 80px;
-  display: flex; justify-content: space-between; align-items: center;
-  mix-blend-mode: difference;
-}
-.nav-logo {
-  display: flex; align-items: center;
-}
-.nav-logo svg {
-  height: 36px; width: auto;
-}
-.nav-links { display: flex; gap: 40px; list-style: none; margin: 0; padding: 0; }
-.nav-links li { list-style: none; }
-.nav-links a { font-size: 16px; font-weight: 500; position: relative; padding-bottom: 4px; }
-.nav-links a::after {
-  content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 1.5px;
-  background: #fff; transition: width 0.3s ease;
-}
-.nav-links a:hover::after { width: 100%; }
 
 /* ===== SECTION COMMON ===== */
 section { overflow: hidden; }
@@ -63,6 +32,7 @@ section { overflow: hidden; }
   position: absolute; top: 0; left: 0; width: 100%; height: 100%;
   object-fit: cover; object-position: center 30%;
   opacity: 0.5; mix-blend-mode: lighten;
+  z-index: -1;
   pointer-events: none;
 }
 .hero h1 {
@@ -94,7 +64,7 @@ section { overflow: hidden; }
 .work-col:last-child { padding-top: 60px; }
 
 .work-card {
-  display: block; background: #141414; border-radius: 12px; overflow: hidden;
+  display: block; background: #141414; border-radius: 16px; overflow: hidden;
   transition: transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1),
               opacity 0.6s cubic-bezier(0.25, 0.1, 0.25, 1);
   width: 100%;
@@ -107,9 +77,9 @@ section { overflow: hidden; }
 .work-card.rect  .work-card-img-wrap { aspect-ratio: 5/3; }
 .work-card.tall  .work-card-img-wrap { aspect-ratio: 3/4; }
 .work-card-img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; }
-.work-card-info { padding: 20px 24px 24px; }
-.work-card-title { font-size: 20px; font-weight: 600; line-height: 1.3; letter-spacing: -0.02em; color: #fff; }
-.work-card-cat { font-size: 20px; font-weight: 600; line-height: 1.3; letter-spacing: -0.02em; color: #757575; margin-top: 2px; }
+.work-card-info { padding: 16px 20px 20px; }
+.work-card-title { font-size: 18px; font-weight: 600; line-height: 1.3; letter-spacing: -0.02em; color: #fff; }
+.work-card-cat { font-size: 14px; font-weight: 500; line-height: 1.3; color: #757575; margin-top: 2px; }
 
 /* ===== ABOUT (Section / About) ===== */
 .about { padding: 128px 80px; }
@@ -252,19 +222,6 @@ section { overflow: hidden; }
 .video-inner video { width: 100%; border-radius: 12px; display: block; }
 .video-inner p { color: #757575; font-size: 16px; margin-top: 16px; text-align: center; }
 
-/* ===== CONTACT CTA ===== */
-.contact { padding: 200px 80px; text-align: center; }
-.contact h2 { font-size: clamp(36px, 5vw, 64px); font-weight: 600; letter-spacing: -0.03em; line-height: 1.12; margin-bottom: 40px; }
-.contact-icon {
-  display: inline-flex; align-items: center; justify-content: center; gap: 14px;
-  padding: 12px 24px; border-radius: 40px;
-  background: rgba(255,255,255,0.08);
-  transition: background 0.3s ease, transform 0.3s ease;
-  margin-top: 40px; font-size: 18px; color: #fff;
-}
-.contact-icon:hover { background: rgba(255,255,255,0.15); transform: scale(1.03); }
-.contact-icon svg { width: 22px; height: 22px; flex-shrink: 0; }
-
 /* ===== VIDEO LIGHTBOX ===== */
 .video-reveal { color: #fff; text-decoration: underline; text-underline-offset: 3px; transition: opacity 0.2s; }
 .video-reveal:hover { opacity: 0.7; }
@@ -274,23 +231,9 @@ section { overflow: hidden; }
 .lightbox-close { position: absolute; top: 24px; right: 32px; background: none; border: none; color: #fff; font-size: 36px; cursor: pointer; opacity: 0.6; transition: opacity 0.3s; line-height: 1; }
 .lightbox-close:hover { opacity: 1; }
 
-/* ===== FOOTER ===== */
-footer { display: flex; justify-content: space-between; align-items: center; padding: 40px 80px 60px; border-top: 1px solid rgba(255,255,255,0.08); }
-.footer-links { display: flex; gap: 32px; }
-.footer-links a { color: rgba(255,255,255,0.45); font-size: 14px; transition: color 0.3s ease; }
-.footer-links a:hover { color: #fff; }
-.footer-copy { font-size: 14px; color: rgba(255,255,255,0.3); }
-
-/* ===== ANIMATION ===== */
-.fade-in {
-  opacity: 0; transform: translateY(30px);
-  transition: opacity 0.7s ease, transform 0.7s ease;
-}
-.fade-in.visible { opacity: 1; transform: translateY(0); }
-
 /* ===== RESPONSIVE: TABLET (810px-1199px) ===== */
 @media (max-width: 1199px) {
-  nav, .about, .experience, .two-col-section, .contact { padding-left: 64px; padding-right: 64px; }
+  .about, .experience, .two-col-section { padding-left: 64px; padding-right: 64px; }
   .work { padding: 120px 64px; }
   .hero { padding: 0 64px; min-height: 90vh; }
   .hero h1 { font-size: clamp(28px, 5vw, 52px); max-width: clamp(260px, 60vw, 700px); }
@@ -304,19 +247,19 @@ footer { display: flex; justify-content: space-between; align-items: center; pad
 
 /* ===== RESPONSIVE: MOBILE (768px-809px) ===== */
 @media (max-width: 809px) {
-  nav, .about, .experience, .two-col-section, .contact { padding-left: 32px; padding-right: 32px; }
-  .experience { min-height: auto; padding: 80px 32px; }
-  .work { padding: 60px 20px; }
-  .hero { padding: 0 32px; min-height: 85vh; }
+  .about, .experience, .two-col-section { padding-left: 24px; padding-right: 24px; }
+  .experience { min-height: auto; padding: 80px 24px; }
+  .work { padding: 60px 16px; }
+  .hero { padding: 0 24px; min-height: 85vh; }
   .hero h1 { font-size: clamp(24px, 7vw, 36px); max-width: 100%; }
   .hero-reveal { object-position: center 25%; }
   .full-image { height: 50vh; }
-  .nav-links { display: none; }
-  .nav-links.mobile-open { display: flex; flex-direction: column; position: absolute; top: 80px; left: 20px; right: 20px; background: #141414; border-radius: 12px; padding: 20px; gap: 16px; z-index: 101; }
-  .mobile-nav-toggle { display: flex !important; }
-  .work-grid { grid-template-columns: 1fr; gap: 20px; }
-  .work-col { gap: 20px; }
+  .work-grid { grid-template-columns: 1fr; gap: 16px; }
+  .work-col { gap: 16px; }
   .work-col:last-child { padding-top: 0; }
+  .work-card-title { font-size: 16px; }
+  .work-card-cat { font-size: 13px; }
+  .work-card-info { padding: 14px 16px 16px; }
   .exp-row { flex-direction: column; gap: 6px; }
   .exp-row .exp-date { padding-top: 0; margin-left: 0; }
   .exp-row .exp-role { white-space: normal; }
@@ -330,8 +273,6 @@ footer { display: flex; justify-content: space-between; align-items: center; pad
   .video-section { padding: 80px 40px; }
   .two-col-inner { flex-direction: column; gap: 60px; }
   .two-col-inner h2 { font-size: 28px; }
-  .contact { padding: 120px 32px; }
-  footer { flex-direction: column; gap: 24px; align-items: center; text-align: center; }
 }
 
 /* ===== RESPONSIVE: SMALL PHONE (max 374px, e.g. iPhone SE) ===== */
@@ -341,7 +282,7 @@ footer { display: flex; justify-content: space-between; align-items: center; pad
   .hero h1 span { opacity: 1; }
   .hero-reveal { object-position: center 20%; }
   .full-image { height: 40vh; }
-  nav, .about, .experience, .two-col-section, .contact { padding-left: 20px; padding-right: 20px; }
+  .about, .experience, .two-col-section { padding-left: 20px; padding-right: 20px; }
   .work { padding: 48px 16px; }
   .vtl-rail { min-height: 48px; }
   .vtl-label { font-size: 12px; }
@@ -390,7 +331,37 @@ footer { display: flex; justify-content: space-between; align-items: center; pad
             <p class="work-card-cat">Medical Illustration</p>
           </div>
         </a>
-        <a href="case-study-pater-brown.html" class="work-card square fade-in" style="transition-delay: 0.15s;">
+        <a href="case-study-erythema-nodosum.html" class="work-card square fade-in" style="transition-delay: 0.15s;">
+          <div class="work-card-img-wrap">
+            <img class="work-card-img" src="images/erythema-nodosum-septal-panniculitis.png" alt="Erythema Nodosum — septal panniculitis, clean fat lobules divided by thickened inflamed septa with dense immune infiltrate, UE5 cinematic macro" loading="lazy">
+          </div>
+          <div class="work-card-info">
+            <h3 class="work-card-title">Erythema Nodosum</h3>
+            <p class="work-card-cat">Dermatopathology</p>
+          </div>
+        </a>
+        <div class="work-card square fade-in" style="transition-delay: 0.3s;">
+          <div class="work-card-img-wrap">
+            <img class="work-card-img" src="images/kidney-sodium-calcium-stones.png" alt="Calcium oxalate stone formation in kidney — sodium forcing calcium precipitation, crystalline structures within renal tubule, UE5 cinematic macro with dramatic key light" loading="lazy">
+          </div>
+          <div class="work-card-info">
+            <h3 class="work-card-title">Calcium Stone Formation</h3>
+            <p class="work-card-cat">Renal Pathophysiology</p>
+          </div>
+        </div>
+      </div>
+      <!-- Right Column (offset stagger) -->
+      <div class="work-col">
+        <a href="case-study-actinic-keratosis.html" class="work-card tall fade-in" style="transition-delay: 0.08s;">
+          <div class="work-card-img-wrap">
+            <img class="work-card-img" src="images/actinic-keratosis/09-clinical-thumbnail.png" alt="Actinic Keratosis — rough scaly UV-damaged patches on skin surface, medically accurate dark-skin clinical presentation" loading="lazy">
+          </div>
+          <div class="work-card-info">
+            <h3 class="work-card-title">Actinic Keratosis</h3>
+            <p class="work-card-cat">Dermatopathology</p>
+          </div>
+        </a>
+        <a href="case-study-pater-brown.html" class="work-card square fade-in" style="transition-delay: 0.22s;">
           <div class="work-card-img-wrap">
             <img class="work-card-img" src="images/pater-brown/fetus-save-me.png" alt="Fetus crying save me" loading="lazy">
           </div>
@@ -399,97 +370,13 @@ footer { display: flex; justify-content: space-between; align-items: center; pad
             <p class="work-card-cat">Partograph</p>
           </div>
         </a>
-        <div class="work-card rect fade-in" style="transition-delay: 0.64s;">
+        <div class="work-card square fade-in" style="transition-delay: 0.36s;">
           <div class="work-card-img-wrap">
-            <img class="work-card-img" src="images/prostacyclin-platelet-progression.jpg" alt="Prostacyclin/Thromboxane — GPIIb/IIIa platelet receptor cascade" loading="lazy">
-          </div>
-          <div class="work-card-info">
-            <h3 class="work-card-title">Platelet Cascade</h3>
-            <p class="work-card-cat">Molecular Pharmacology</p>
-          </div>
-        </div>
-        <div class="work-card rect fade-in" style="transition-delay: 0.72s;">
-          <div class="work-card-img-wrap">
-            <img class="work-card-img" src="images/ischemic-colitis-watershed.jpg" alt="Ischemic Colitis — splenic flexure watershed zones" loading="lazy">
-          </div>
-          <div class="work-card-info">
-            <h3 class="work-card-title">Ischemic Colitis</h3>
-            <p class="work-card-cat">Gastrointestinal Pathology</p>
-          </div>
-        </div>
-        <div class="work-card square fade-in" style="transition-delay: 0.8s;">
-          <div class="work-card-img-wrap">
-            <img class="work-card-img" src="images/omega3-arachidonic-acid.jpg" alt="Omega-3 / Arachidonic Acid — molecular metabolic cascade" loading="lazy">
-          </div>
-          <div class="work-card-info">
-            <h3 class="work-card-title">Omega-3 Pathway</h3>
-            <p class="work-card-cat">Molecular Pharmacology</p>
-          </div>
-        </div>
-      </div>
-      <!-- Right Column (offset stagger) -->
-      <div class="work-col">
-        <a href="case-study-actinic-keratosis.html" class="work-card tall fade-in" style="transition-delay: 0.08s;">
-          <div class="work-card-img-wrap">
-            <img class="work-card-img" src="images/actinic-keratosis/08-summit-sequence-grid.png" alt="Actinic Keratosis — Immersa summit sequence grid, full epidermal descent from surface to basal layer" loading="lazy">
-          </div>
-          <div class="work-card-info">
-            <h3 class="work-card-title">Actinic Keratosis</h3>
-            <p class="work-card-cat">Dermatopathology</p>
-          </div>
-        </a>
-        <div class="work-card square fade-in" style="transition-delay: 0.2s;">
-          <div class="work-card-img-wrap">
-            <img class="work-card-img" src="images/histiocyte-monocyte-extravasation.png" alt="Histiocyte — monocyte extravasating through endothelial junction into resting histiocyte, UE5 cinematic macro" loading="lazy">
-          </div>
-          <div class="work-card-info">
-            <h3 class="work-card-title">Histiocyte Extravasation</h3>
-            <p class="work-card-cat">Cellular Pathology</p>
-          </div>
-        </div>
-        <div class="work-card square fade-in" style="transition-delay: 0.3s;">
-          <div class="work-card-img-wrap">
-            <img class="work-card-img" src="images/erythema-nodosum-septal-panniculitis.png" alt="Erythema Nodosum — septal panniculitis, clean fat lobules divided by thickened inflamed septa with dense immune infiltrate, UE5 cinematic macro with raking light across tissue plane" loading="lazy">
-          </div>
-          <div class="work-card-info">
-            <h3 class="work-card-title">Erythema Nodosum</h3>
-            <p class="work-card-cat">Dermatopathology</p>
-          </div>
-        </div>
-        <div class="work-card square fade-in" style="transition-delay: 0.4s;">
-          <div class="work-card-img-wrap">
-            <img class="work-card-img" src="images/crohn-crypt-abscess.jpg" alt="Crohn's crypt abscess — neutrophils streaming through a breached intestinal crypt wall, transmural inflammation, UE5 cinematic macro" loading="lazy">
-          </div>
-          <div class="work-card-info">
-            <h3 class="work-card-title">Crohn's Crypt Abscess</h3>
-            <p class="work-card-cat">Gastrointestinal Pathology</p>
-          </div>
-        </div>
-        <a href="illustrated-pathology.html" class="work-card square fade-in" style="transition-delay: 0.48s;">
-          <div class="work-card-img-wrap">
-            <img class="work-card-img" src="images/illustrated_pathology_book_cover.png" alt="Illustrated Pathology — book cover visual atlas" loading="lazy">
-          </div>
-          <div class="work-card-info">
-            <h3 class="work-card-title">Illustrated Pathology</h3>
-            <p class="work-card-cat">Book Project</p>
-          </div>
-        </a>
-        <div class="work-card rect fade-in" style="transition-delay: 0.56s;">
-          <div class="work-card-img-wrap">
-            <img class="work-card-img" src="images/crohn-disease-3x3-grid.jpg" alt="Crohn's Disease — story/anatomy/pathophys 3x3 grid" loading="lazy">
+            <img class="work-card-img" src="images/crohn-crypt-abscess.jpg" alt="Crohn's Disease — crypt abscess, neutrophil attack within intestinal crypt, transmural inflammation, UE5 cinematic macro" loading="lazy">
           </div>
           <div class="work-card-info">
             <h3 class="work-card-title">Crohn's Disease</h3>
             <p class="work-card-cat">Gastrointestinal Pathology</p>
-          </div>
-        </div>
-        <div class="work-card square fade-in" style="transition-delay: 0.64s;">
-          <div class="work-card-img-wrap">
-            <img class="work-card-img" src="images/kidney-sodium-calcium-stones.png" alt="Calcium oxalate stone formation in kidney — sodium forcing calcium precipitation, crystalline structures within renal tubule, UE5 cinematic macro with dramatic key light" loading="lazy">
-          </div>
-          <div class="work-card-info">
-            <h3 class="work-card-title">Calcium Stone Formation</h3>
-            <p class="work-card-cat">Renal Pathophysiology</p>
           </div>
         </div>
       </div>

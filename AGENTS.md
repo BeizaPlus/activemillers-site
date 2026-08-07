@@ -1,96 +1,120 @@
-# AGENTS.md — activemillers-site handoff
+# AGENTS.md — activemillers-site handoff (updated 2026-08-07)
 
 ## Deployment
 
 ```
 cd C:\Users\steve\Personal Assistant\Beiza\activemillers-site
-git add index.html
+git add -A
 git commit -m "message"
-git push
 npx vercel --prod --yes
 ```
 
 - **Branch:** `ceobranch`
 - **GitHub:** `BeizaPlus/activemillers-site`
 - **Vercel:** aliased to `https://www.activemillers.com`
-- **Site:** single static `index.html` with embedded CSS + vanilla JS. No framework, no build step.
+- **Site:** static HTML files with embedded CSS + vanilla JS. No framework, no build step.
 - `vercel.json` sets `framework: null`, static deploy.
 
-## File structure
+## File structure (current)
 
 ```
 Beiza/activemillers-site/
-  index.html          # THE site (only file you edit)
-  clean.html          # old v2 static build, ignore
-  vercel.json         # static deploy config
-  CNAME               # activemillers.com
-  images/             # all assets
-    cross-section-anatomy.jpg  # hero bg
-    the-dream.jpg              # full-bleed image between About+Experience
-    actinic-keratosis.jpg      # work grid card
-    HFtZcNIneFBJJZ7SfUHQJ1vsANc.png  # favicon
-    activemillers-logo.svg     # unused (logo embedded inline in nav)
+  global.css                                # SINGLE SOURCE: nav, footer, contact, cards, img border-radius, fade-in, responsive
+  index.html                                # Homepage
+  case-study-pulmonary-embolism.html        # PE case study
+  case-study-pater-brown.html               # OB-GYN case study
+  case-study-actinic-keratosis.html         # AK case study (2026-08-07)
+  case-study-erythema-nodosum.html          # EN case study (2026-08-07)
+  illustrated-pathology.html                # Book project page
+  clean.html                                # old v2 static build, ignore
+  vercel.json                               # static deploy config
+  CNAME                                     # activemillers.com
+  DEPLOY_HANDOFF.md                         # image map + deploy notes
+  images/
+    cross-section-anatomy.jpg               # hero bg + PE thumbnail
+    the-dream.jpg                           # full-bleed between About+Experience
+    HFtZcNIneFBJJZ7SfUHQJ1vsANc.png         # favicon
+    crohn-crypt-abscess.jpg                 # Crohn's — crypt abscess neutrophil attack
+    crohn-disease-3x3-grid.jpg              # Crohn's — 3x3 progression grid (not on page currently)
+    erythema-nodosum-septal-panniculitis.png  # EN — wide tissue establishing shot
+    erythema-nodosum-septal-infiltrate.png    # EN — tight septal infiltrate detail
+    histiocyte-monocyte-extravasation.png     # not on page currently
+    illustrated_pathology_book_cover.png      # not on page currently
+    ischemic-colitis-watershed.jpg            # not on page currently
+    kidney-sodium-calcium-stones.png          # Calcium stone formation card
+    omega3-arachidonic-acid.jpg               # not on page currently
+    prostacyclin-platelet-progression.jpg     # not on page currently
+    actinic-keratosis/                        # 8 Immersa plates for AK case study
+      01-establishing-skin-landscape.png      # Plate 8 (biopsy payoff) + homepage thumbnail
+      02-dermal-epidermal-junction.png        # Plate 6 (solar elastosis)
+      03-blood-interior-inflammation.png      # Plate 4 (granular layer thinning)
+      04-keratinocyte-dysplasia.png           # Plate 2 (what the hand found)
+      05-corneocyte-texture.png               # Plate 7 (the ones climbing)
+      06-basal-layer-uv-damage.png            # Plate 3 (surface lies)
+      07-mechanism-progression-grid.png       # Plate 5 (orderly rows broken)
+      08-summit-sequence-grid.png             # Plate 1 (the skin — summit overview)
+    case-studies/                             # illustrated-pathology chapter images
+      chapter-aortic-dissection.png
+      chapter-endocarditis.png
+      chapter-sah.png
+    pater-brown/                              # OB-GYN case images
+      fetus-save-me.png
   videos/
-    moon.mp4           # 7.3 MB, MoonSparse_v5, linked via lightbox from About text
+    moon.mp4                                  # 7.3 MB, MoonSparse_v5
 ```
+
+## Homepage card grid (current 2026-08-07)
+
+2-column staggered (3 per column), matching Jonas Framer template rhythm:
+
+| Left Column | Right Column (offset 60px) |
+|---|---|
+| Pulmonary Embolism (rect 5:3) | Actinic Keratosis (tall 3:4) |
+| Erythema Nodosum (square 1:1) | OB-GYN Illustrations (square 1:1) |
+| Calcium Stone Formation (square 1:1) | Crohn's Disease (square 1:1) |
+
+**Card cards:** `border-radius: 16px`, card-title: 18px/600, card-cat: 14px/500. Gap: 40px, mobile: 16px single-column.
+
+**Removed cards (2026-08-07):** Histiocyte Extravasation, Platelet Cascade, Ischemic Colitis, Omega-3 Pathway, Illustrated Pathology, duplicate Crohn's 3x3 grid.
 
 ## Site sections (top to bottom)
 
-1. **Nav** — fixed, mix-blend-mode: difference. Logo SVG inline. Links: "Pathology" (#pathology-anchor), "Experiments" (#experiments-anchor)
+1. **Nav** — fixed, mix-blend-mode: difference. Logo SVG inline. Links: "Pathology" (#pathology-anchor), "Experiments" (#experiments-anchor), "Contact"
 2. **Hero** — full-viewport with `cross-section-anatomy.jpg` background at 85% opacity. H1: "I'm Steven, a medical illustrator that cares a great deal about first principles"
-3. **Featured Work** grid (#experiments-anchor) — 2-column masonry. Currently: Cross-Section Anatomy Study, Actinic Keratosis, plus Coming Soon placeholders. Dark cards on black bg.
-4. **About** — 4 paragraphs with bolded key phrases. "decades of practice" is a clickable link → opens moon video in lightbox overlay.
-5. **Full-bleed image** — `the-dream.jpg`, 75vh, no padding. Between About and Experience.
-6. **Experience** (#pathology-anchor) — 5 expandable accordion entries (see below).
+3. **Featured Work** grid (#experiments-anchor) — 2-column staggered grid. 6 cards (3 left, 3 right).
+4. **About** — 4 paragraphs with bolded key phrases. Timeline: Artist, Doctor, Medical Illustrator, Pathology Residency (upcoming).
+5. **Full-bleed image** — `the-dream.jpg`, 75vh.
+6. **Experience** (#pathology-anchor) — 5 expandable accordion entries.
 7. **Published Illustrations** — single column list (5 items).
-8. **Contact CTA** — pill-shaped email button → steven.oppong@gmail.com
-9. **Footer** — LinkedIn link only (kwabena-oppong-904a3440), copyright 2026
+8. **Contact CTA** — pill-shaped email button.
+9. **Footer** — LinkedIn link, copyright 2026.
 
-## Experience entries (current state)
+## Case study pages (standard structure)
 
-All use bullet lists, identical styling. Chevron icon is absolutely positioned to the left so title text aligns with section headings. `exp-next` class on Pathology Residency dims it (opacity 0.6, italic subtitle).
+Each case study follows the Jonas Framer template skeleton:
+- Nav (same as homepage)
+- Hero: title, subtitle, author credit
+- Plates: alternating text/image pairs with thin dividers
+- Closing: pathophysiology reference or outcome
+- Other work: 2-card link grid
+- Contact CTA + Footer
 
-1. **Atelier ActiveWorks** (2008–2025)
-   Subtitle: Junior Creative Artist → Co-Founder & Creative Director
-   Bullets: 2 (visual precision foundation, anatomy workbooks)
-
-2. **Doctor of Medicine** (2012–2018)
-   Subtitle: Kwame Nkrumah University of Science & Technology
-   Bullets: 4 (MBChB, pathology rotations, 2 awards)
-   Nested sub-entry: Pathology House Officer (2018–2020, Teaching Hospital Ghana) — 4 bullets
-
-3. **Medical Illustrator** (2016–present)
-   Subtitle: Freelance & Contract
-   Bullets: 3 (translated concepts, appendicitis for Dept of Surgery KNUST, labor partograph for Ruma Fertility)
-
-4. **Pathology Residency** (upcoming, no date)
-   Subtitle: Next chapter: pursuing residency in Pathology (italic, dimmed)
-   Bullets: 4 (forward-looking aspirational framing)
-
-5. **Professional Associations** (no date)
-   Subtitle: Memberships & Affiliations
-   Bullets: 7 organizations
-
-## Writing rules (locked)
-
-- **NO EM DASHES** anywhere. Use commas, periods, or colons instead. Only exception: "Ghana Physician & Surgeons Foundation — North America" (proper name).
-- **Past tense** for all completed-role bullets.
-- **Pathology-relevant** filtering: every bullet should answer "why does this matter to a pathology program director."
-- **No fabrication** of institution names, program names, or dates.
-
-## Lightbox video
-
-- "decades of practice" in About section links to `videos/moon.mp4`
-- Opens in fullscreen dark overlay (`#videoLightbox`)
-- X button OR clicking background closes lightbox AND pauses video
-- JS functions: `openVideo(e)`, `closeVideo(e)`
+**AK page specific:** 8 plates, narrative patient-story format. 10-vertical-cross-section.png as full-width master plate after header.
 
 ## Design system
 
-- Dark theme: `#0a0a09` background, white text
+- **`global.css`** is the single source of truth for shared rules: nav (with blur gradient ::before), footer, contact CTA, `.ow-card`, `.fade-in`, `.img-wrap`, all responsive breakpoints, and **all image `border-radius: 16px`** via `img { border-radius: 16px; }`. Edit global.css once and the entire site updates.
+- Dark theme: `#0a0a09` background, white text (`#e0ddd8` for case study body)
 - Font: Inter (Google Fonts), system fallbacks
+- Nav: fixed, transparent background. `::before` pseudo-element with `backdrop-filter: blur(16px)` gradient behind logo only (420px wide, fades right with mask-image)
 - Section headings: 13px uppercase, opacity 0.5
-- Bullet lists: `list-style: disc`, `padding-left: 20px`, `opacity: 0.6`, `line-height: 1.8`
 - Responsive breakpoints: 1199px (tablet), 809px (mobile), 374px (small phone)
-- Scroll fade-in: JS checks `window.innerHeight * 0.85`, adds `.visible` class
-- Max content width: 900px (exp-inner), 1000px (two-col-inner)
+- Scroll fade-in: JS checks `window.innerHeight * 0.88`, adds `.visible` class
+- Card hover: translateY(-4px)
+
+## Writing rules (locked)
+
+- **NO EM DASHES** anywhere. Use commas, periods, or colons.
+- **Past tense** for completed-role bullets.
+- **Pathology-relevant** filtering.
+- **No fabrication** of names, programs, dates.

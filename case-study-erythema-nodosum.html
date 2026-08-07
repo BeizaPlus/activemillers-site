@@ -3,12 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pulmonary Embolism — Steven Oppong, MD, Medical Illustrator</title>
-<meta name="description" content="Case study: Pulmonary Embolism clinical illustration by Steven Oppong, MD. Pathophysiology-focused medical illustration exploring Virchow's triad and right-heart strain.">
+<title>Erythema Nodosum — Steven Oppong, MD, Medical Illustrator</title>
+<meta name="description" content="Case study: Erythema Nodosum septal panniculitis clinical illustration by Steven Oppong, MD. Tracing how TB and sarcoidosis prime the immune system to attack subcutaneous fat.">
 <link rel="icon" type="image/png" href="images/HFtZcNIneFBJJZ7SfUHQJ1vsANc.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;1,14..32,400;1,14..32,500;1,14..32,600;1,14..32,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.31.0/tabler-icons.min.css">
 <link rel="stylesheet" href="global.css">
 <style>
 /* ===== PAGE HEADER SPACING ===== */
@@ -51,6 +52,10 @@
   background: #141414;
 }
 
+/* ===== FULL-WIDTH SINGLE IMAGE ===== */
+.full-image { padding: 0; width: 100%; }
+.full-image img { width: 100%; height: auto; display: block; background: #141414; }
+
 /* ===== PROCESS SECTION (two-column) ===== */
 .process {
   padding: 128px clamp(32px, 7vw, 80px);
@@ -69,14 +74,6 @@
 .process-step p {
   font-size: 17px; line-height: 1.7; opacity: 0.7;
 }
-
-/* ===== THREE STACKED IMAGES ===== */
-.stacked-images { padding: 0; width: 100%; }
-.stacked-images img {
-  width: 100%; height: auto; display: block;
-  background: #141414;
-}
-.stacked-images img + img { margin-top: 4px; }
 
 /* ===== OUTCOME SECTION (two-column) ===== */
 .outcome {
@@ -104,21 +101,10 @@
   display: grid; grid-template-columns: 1fr 1fr; gap: 32px;
 }
 
-/* ===== PLACEHOLDER BADGE ===== */
-.placeholder-badge {
-  position: absolute; top: 16px; left: 16px;
-  background: rgba(0,0,0,0.7); color: #888;
-  font-size: 11px; font-weight: 500; padding: 4px 10px; border-radius: 4px;
-  letter-spacing: 0.03em; text-transform: uppercase;
-  z-index: -1;
-  pointer-events: none;
-}
-
-/* ===== RESPONSIVE: TABLET ===== */
+/* ===== RESPONSIVE ===== */
 @media (max-width: 1199px) {
   .case-header, .process, .outcome, .other-work { padding-left: 64px; padding-right: 64px; }
 }
-/* ===== RESPONSIVE: MOBILE ===== */
 @media (max-width: 809px) {
   .case-header { grid-template-columns: 1fr; gap: 40px; }
   .case-header h1 { font-size: clamp(30px, 8vw, 48px); }
@@ -155,18 +141,18 @@
 
 <!-- ===== 1. TITLE + INTRO ===== -->
 <header class="case-header fade-in">
-  <h1>Pulmonary Embolism</h1>
+  <h1>Erythema Nodosum</h1>
   <div class="case-intro">
-    <p>A pulmonary embolism begins quietly, often in the deep veins of the leg, where blood stagnates and a clot takes shape. By the time it reaches the lungs, it has traveled through the right side of the heart and lodged in a pulmonary artery, setting off a cascade of hemodynamic strain that can turn fatal within hours.</p>
-    <p>This case study traces the pathophysiology of venous thromboembolism from Virchow's triad through right ventricular failure. Each panel was built to make the invisible sequence visible: stasis, hypercoagulability, endothelial injury, clot propagation, and the final mechanical standoff between a struggling right ventricle and an obstructed pulmonary circuit.</p>
+    <p>Erythema nodosum is a septal panniculitis. The inflammation lives in the fibrous septa that divide subcutaneous fat lobules, not in the fat cells themselves. It presents as tender, red nodules on the shins and is one of the body's most honest signals that something deeper is wrong, usually in the chest.</p>
+    <p>Two diseases converge on the same pulmonary node: tuberculosis and sarcoidosis. In both, macrophages in the lung sample an antigen and present it to T-cells. Those T-cells organize into granulomas, caseating in TB and non-caseating in sarcoidosis. That distinction matters for the chest, but it does not matter for the skin. The skin sees the same inflammatory consequence either way, because some of those primed T-cells also recognize the interlobular septa of subcutaneous fat as a secondary target.</p>
     <div class="case-meta">
       <div class="case-meta-row">
         <span class="case-meta-label">Case Type</span>
-        <span class="case-meta-value">Clinical Illustration</span>
+        <span class="case-meta-value">Dermatopathology Illustration</span>
       </div>
       <div class="case-meta-row">
         <span class="case-meta-label">Focus</span>
-        <span class="case-meta-value">Pathophysiology</span>
+        <span class="case-meta-value">Septal Panniculitis & Type IV Hypersensitivity</span>
       </div>
       <div class="case-meta-row">
         <span class="case-meta-label">Year</span>
@@ -176,80 +162,85 @@
   </div>
 </header>
 
-<!-- ===== 2. TWO-IMAGE ROW ===== -->
+<!-- ===== 2. CLINICAL PRESENTATION: FULL-WIDTH ===== -->
+<section class="full-image fade-in">
+  <div class="img-wrap">
+    <img src="images/erythema-nodosum-clinical.png" alt="Erythema Nodosum clinical presentation: Dutch-tilt view down both shins of a Black patient, multiple tender dusky reddish-purple nodules scattered bilaterally along the anterior lower legs, medically accurate dark-skin tone" loading="lazy">
+  </div>
+</section>
+
+<!-- ===== 3. TWO-IMAGE ROW: ESTABLISHING + INFILTRATE DETAIL ===== -->
 <section class="image-row fade-in">
   <div class="img-wrap">
-    <img src="images/case-studies/pe-panel-2.png" alt="Pulmonary embolism: dissected heart showing clot in right-side chambers, before dilation" loading="lazy">
+    <img src="images/erythema-nodosum-septal-panniculitis.png" alt="Erythema Nodosum: wide establishing shot of subcutaneous fat lobules divided by thickened inflamed septa, clean adipocytes untouched within each lobule" loading="lazy">
   </div>
   <div class="img-wrap">
-    <img src="images/case-studies/pe-rv-strain.png" alt="Right ventricular strain: heart dilated under pulmonary circuit obstruction" loading="lazy">
+    <img src="images/erythema-nodosum-septal-infiltrate.png" alt="Erythema Nodosum: tight detail of neutrophilic infiltrate densely packed within the thickened septal wall, clustered around small feeding vessels" loading="lazy">
   </div>
 </section>
 
-<!-- ===== 3. PROCESS SECTION ===== -->
+<!-- ===== 4. PROCESS SECTION ===== -->
 <section class="process">
-  <h2 class="fade-in">Process</h2>
+  <h2 class="fade-in">Mechanism</h2>
   <div class="process-steps">
     <div class="process-step fade-in">
-      <h3>Virchow's Triad</h3>
-      <p>The story of every thrombus begins with three converging forces. Stasis slows blood flow in the deep veins, allowing clotting factors to accumulate. Hypercoagulability tilts the balance toward fibrin formation. Endothelial injury exposes the subendothelial matrix, triggering platelet adhesion and the coagulation cascade. Together, these three conditions create the environment a clot needs to nucleate and grow, often silently, in the deep veins of the lower limb.</p>
+      <h3>The Shared Pulmonary Trigger</h3>
+      <p>In tuberculosis, alveolar macrophages engulf Mycobacterium tuberculosis. In sarcoidosis, an unknown antigen triggers the same cascade. Either way, the macrophage processes the antigen and presents it to naive T-cells in the lung-draining lymph nodes. Those T-cells activate, proliferate, and organize into granulomas. TB granulomas develop central caseous necrosis. Sarcoidosis granulomas remain non-caseating. Both achieve the same immunological outcome: a pool of primed T-cells now circulating through the body, looking for their target.</p>
     </div>
     <div class="process-step fade-in">
-      <h3>The Silent Strain</h3>
-      <p>Once a fragment of thrombus breaks free, it travels as an embolus through the venous system, into the right atrium, through the right ventricle, and out into the pulmonary circulation. There it may lodge anywhere in the pulmonary circuit. The obstruction is mechanical: blood cannot reach the alveolar capillary beds for gas exchange. But the deeper problem is hemodynamic: the right ventricle, a thin-walled chamber built for low-pressure flow, now pumps against a suddenly elevated pulmonary vascular resistance. It strains, dilates, and begins to fail.</p>
+      <h3>Molecular Mimicry and the Septal Target</h3>
+      <p>T-cell priming is not perfectly specific. The antigen that looks like mycobacterial protein or the unknown sarcoidosis trigger also resembles, just enough, an epitope expressed in the interlobular septa of subcutaneous fat. This is molecular mimicry. The T-cells leave the chest, circulate through the dermal and subcutaneous vasculature, and when they encounter the septal tissue that cross-reacts with their receptor, they mount a type IV hypersensitivity response. The septa become the collateral target of an immune fight that began in the lungs.</p>
     </div>
     <div class="process-step fade-in">
-      <h3>Reading the Signal</h3>
-      <p>Right-heart strain is not just a complication; it is the message the body sends when the pulmonary circuit is under siege. On ECG, the strain pattern appears. On echocardiography, the right ventricle bulges into the left, reducing cardiac output. Treatment with thrombolytics like alteplase dissolves the fibrin meshwork, restoring flow. The strain recedes. The right ventricle, if it held on long enough, recovers. What looked like mechanical obstruction was, at every step, a signal waiting to be read.</p>
+      <h3>The Neutrophilic Wave: Acute Septal Panniculitis</h3>
+      <p>Within hours to days, neutrophils infiltrate the interlobular septa. The septal walls thicken visibly. Small vessels within them dilate and leak. On histology, the fat lobules themselves remain pristine and untouched, their adipocytes clean and translucent. This is the defining feature of septal panniculitis, and it distinguishes erythema nodosum from lobular panniculitis, where the fat cells themselves are inflamed. The contrast between the clean fat lobules and the heavily inflamed septa surrounding them is the central diagnostic finding.</p>
+    </div>
+    <div class="process-step fade-in">
+      <h3>The Lymphocytic Wave: Subacute Transition</h3>
+      <p>Approximately two weeks later, the cellular composition of the infiltrate shifts. T-cells and histiocytes replace the early neutrophils. The septa now show a mixed chronic inflammatory infiltrate dominated by lymphocytes. Granulomatous inflammation can develop within the septa. Miescher's radial granulomas, small nodular aggregates of histiocytes arranged around a central cleft, are characteristic of erythema nodosum on biopsy. The neutrophils did the visible damage in the first wave. The lymphocytes arrived later and stayed, sustaining a low-grade inflammatory environment that can persist for weeks.</p>
     </div>
   </div>
 </section>
 
-<!-- ===== 4. THREE STACKED IMAGES ===== -->
-<section class="stacked-images">
-  <div class="img-wrap fade-in">
-    <img src="images/case-studies/pe-progression-1.png" alt="Blood phase: clot formation in the pulmonary circuit" loading="lazy">
-  </div>
-  <div class="img-wrap fade-in">
-    <img src="images/case-studies/pe-progression-2.png" alt="Massive right ventricular strain: heart exposed showing internal structure under load" loading="lazy">
-  </div>
-  <div class="img-wrap fade-in">
-    <img src="images/case-studies/pe-progression-3.png" alt="Full cardiac cycle phase: exploded view with clot lodged in right side of heart" loading="lazy">
+<!-- ===== 5. SINGLE IMAGE: INFLAMED SEPTUM FULL ===== -->
+<section class="full-image fade-in">
+  <div class="img-wrap">
+    <img src="images/erythema-nodosum-septal-panniculitis.png" alt="Erythema Nodosum establishing shot: contrast between clean adipocyte lobules and inflamed septa, the defining histological feature of septal panniculitis" loading="lazy">
   </div>
 </section>
 
-<!-- ===== 5. OUTCOME SECTION ===== -->
+<!-- ===== 6. OUTCOME SECTION ===== -->
 <section class="outcome">
   <h2 class="fade-in">Outcome</h2>
-  <p class="fade-in">The patient received alteplase within the window. The clot dissolved. Pulmonary artery pressure fell, and oxygen saturation climbed back toward normal. The right ventricle, relieved of its burden, returned to its natural geometry over the following days. This is the earned ending: a system pushed to the edge of failure, pulled back by timely intervention. The illustrations in this series were built to capture that arc — from silent clot formation to the final relief of restored flow — because understanding the mechanism is what makes the ending legible.</p>
+  <p class="fade-in">Erythema nodosum is not a primary skin disease. It is a delayed-type hypersensitivity reaction where the immune system, primed against a pulmonary pathogen or an unknown granulomatous trigger, has tagged the inter-lobular septa of subcutaneous fat as a secondary target. The macrophages started the conversation in the chest. The T-cells finished it in the skin. Treat the underlying driver, TB antibiotics or sarcoidosis management, and the nodules resolve. The fat was never the real enemy. It was collateral damage in a fight that began in the lungs. Understanding the two-wave infiltrate, neutrophils first, lymphocytes second, makes the timeline of clinical resolution legible. The red nodule on the shin is a chest x-ray waiting to be read.</p>
 </section>
 
-<!-- ===== 6. OTHER WORK ===== -->
+<!-- ===== 7. OTHER WORK ===== -->
 <section class="other-work">
   <h2 class="fade-in">Other work</h2>
   <div class="other-work-grid">
-    <a href="index.html#experiments-anchor" class="ow-card fade-in">
+    <a href="case-study-pulmonary-embolism.html" class="ow-card fade-in">
       <div class="ow-card-img-wrap">
-        <img class="ow-card-img" src="images/cross-section-anatomy.jpg" alt="Cross-Section Anatomy Study" loading="lazy">
+        <img class="ow-card-img" src="images/cross-section-anatomy.jpg" alt="Pulmonary Embolism" loading="lazy">
       </div>
       <div class="ow-card-info">
-        <h3 class="ow-card-title">Cross-Section Anatomy Study</h3>
-        <p class="ow-card-cat">Medical Illustration</p>
+        <h3 class="ow-card-title">Pulmonary Embolism</h3>
+        <p class="ow-card-cat">Clinical Illustration</p>
       </div>
     </a>
-    <a href="index.html#experiments-anchor" class="ow-card fade-in">
+    <a href="case-study-actinic-keratosis.html" class="ow-card fade-in">
       <div class="ow-card-img-wrap">
-        <img class="ow-card-img" src="images/actinic-keratosis.jpg" alt="Actinic Keratosis" loading="lazy">
+        <img class="ow-card-img" src="images/actinic-keratosis/01-establishing-skin-landscape.png" alt="Actinic Keratosis" loading="lazy">
       </div>
       <div class="ow-card-info">
         <h3 class="ow-card-title">Actinic Keratosis</h3>
-        <p class="ow-card-cat">Medical Illustration</p>
+        <p class="ow-card-cat">Dermatopathology</p>
       </div>
     </a>
   </div>
 </section>
 
-<!-- ===== 7. CLOSING CTA ===== -->
+<!-- ===== 8. CLOSING CTA ===== -->
 <section class="contact fade-in">
   <h2>Want to learn about the human body<br>from the inside?</h2>
   <a href="mailto:steven.oppong@gmail.com" class="contact-icon" aria-label="Send email">
@@ -258,7 +249,7 @@
   </a>
 </section>
 
-<!-- ===== 8. FOOTER ===== -->
+<!-- ===== 9. FOOTER ===== -->
 <footer>
   <div class="footer-links">
     <a href="https://www.linkedin.com/in/kwabena-oppong-904a3440/" target="_blank" rel="noopener">LinkedIn</a>
@@ -269,14 +260,12 @@
 <script>
 (function() {
   var els = document.querySelectorAll('.fade-in');
-
   function check() {
     els.forEach(function(el) {
       var top = el.getBoundingClientRect().top;
       if (top < window.innerHeight * 0.85) el.classList.add('visible');
     });
   }
-
   window.addEventListener('scroll', check, { passive: true });
   check();
 

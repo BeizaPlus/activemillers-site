@@ -9,40 +9,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;1,14..32,400;1,14..32,500;1,14..32,600;1,14..32,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="global.css">
 <style>
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
-body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  background: #0a0a09;
-  color: #fff;
-  line-height: 1.5;
-  overflow-x: hidden;
-}
-a { color: inherit; text-decoration: none; }
-
-/* ===== NAVIGATION ===== */
-nav {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-  padding: 24px 80px;
-  display: flex; justify-content: space-between; align-items: center;
-  mix-blend-mode: difference;
-}
-.nav-logo {
-  display: flex; align-items: center;
-}
-.nav-logo svg {
-  height: 36px; width: auto;
-}
-.nav-links { display: flex; gap: 40px; list-style: none; margin: 0; padding: 0; }
-.nav-links li { list-style: none; }
-.nav-links a { font-size: 16px; font-weight: 500; position: relative; padding-bottom: 4px; }
-.nav-links a::after {
-  content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 1.5px;
-  background: #fff; transition: width 0.3s ease;
-}
-.nav-links a:hover::after { width: 100%; }
-
 /* ===== PAGE HEADER SPACING ===== */
 .page-top { padding-top: 140px; }
 
@@ -91,7 +59,7 @@ nav {
   align-items: start;
 }
 .process h2 {
-  font-size: 48px; font-weight: 600; letter-spacing: -0.03em; line-height: 1.1;
+  font-size: clamp(28px, 5vw, 48px); font-weight: 600; letter-spacing: -0.03em; line-height: 1.1;
   position: sticky; top: 120px;
 }
 .process-steps { display: flex; flex-direction: column; gap: 48px; }
@@ -110,6 +78,92 @@ nav {
 }
 .stacked-images img + img { margin-top: 4px; }
 
+/* ===== COMPARISON SLIDER (sketch vs final) ===== */
+.compare-container {
+  position: relative;
+  aspect-ratio: 16/9;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 16px;
+  background: #141414;
+  touch-action: none;
+  user-select: none;
+  cursor: ew-resize;
+  margin: 0;
+}
+.compare-label {
+  position: absolute;
+  top: 16px;
+  z-index: 25;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  padding: 4px 12px;
+  border-radius: 6px;
+  background: rgba(0,0,0,0.55);
+  color: rgba(255,255,255,0.7);
+  pointer-events: none;
+}
+.compare-label-before { left: 16px; }
+.compare-label-after  { right: 16px; }
+.compare-layer {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #141414;
+}
+.compare-layer img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  pointer-events: none;
+}
+.compare-top {
+  overflow: hidden;
+}
+.compare-divider {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 20;
+  width: 2px;
+  background: rgba(255,255,255,0.9);
+  box-shadow: 0 0 8px rgba(0,0,0,0.35);
+  pointer-events: none;
+}
+.compare-handle {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 30;
+  width: 48px;
+  cursor: ew-resize;
+}
+.compare-handle-circle {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.8);
+  background: rgba(255,255,255,0.95);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+.compare-handle-arrows {
+  width: 20px;
+  height: 20px;
+  color: #555;
+}
+
 /* ===== OUTCOME SECTION (two-column) ===== */
 .outcome {
   padding: 128px clamp(32px, 7vw, 80px);
@@ -118,7 +172,7 @@ nav {
   align-items: start;
 }
 .outcome h2 {
-  font-size: 48px; font-weight: 600; letter-spacing: -0.03em; line-height: 1.1;
+  font-size: clamp(28px, 5vw, 48px); font-weight: 600; letter-spacing: -0.03em; line-height: 1.1;
 }
 .outcome p {
   font-size: 18px; line-height: 1.7; opacity: 0.7;
@@ -135,45 +189,6 @@ nav {
 .other-work-grid {
   display: grid; grid-template-columns: 1fr 1fr; gap: 32px;
 }
-.ow-card {
-  display: block; background: #141414; border-radius: 12px; overflow: hidden;
-  transition: transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
-}
-.ow-card:hover { transform: translateY(-4px); }
-.ow-card-img-wrap { aspect-ratio: 5/3; overflow: hidden; }
-.ow-card-img {
-  width: 100%; height: 100%; object-fit: cover; display: block;
-}
-.ow-card-info { padding: 20px 24px 24px; }
-.ow-card-title { font-size: 20px; font-weight: 600; letter-spacing: -0.02em; }
-.ow-card-cat { font-size: 16px; color: #757575; margin-top: 4px; }
-
-/* ===== CONTACT CTA ===== */
-.contact { padding: 200px 80px; text-align: center; }
-.contact h2 { font-size: clamp(36px, 5vw, 64px); font-weight: 600; letter-spacing: -0.03em; line-height: 1.12; margin-bottom: 40px; }
-.contact-icon {
-  display: inline-flex; align-items: center; justify-content: center; gap: 14px;
-  padding: 12px 24px; border-radius: 40px;
-  background: rgba(255,255,255,0.08);
-  transition: background 0.3s ease, transform 0.3s ease;
-  margin-top: 40px; font-size: 18px; color: #fff;
-}
-.contact-icon:hover { background: rgba(255,255,255,0.15); transform: scale(1.03); }
-.contact-icon svg { width: 22px; height: 22px; flex-shrink: 0; }
-
-/* ===== FOOTER ===== */
-footer { display: flex; justify-content: space-between; align-items: center; padding: 40px 80px 60px; border-top: 1px solid rgba(255,255,255,0.08); }
-.footer-links { display: flex; gap: 32px; }
-.footer-links a { color: rgba(255,255,255,0.45); font-size: 14px; transition: color 0.3s ease; }
-.footer-links a:hover { color: #fff; }
-.footer-copy { font-size: 14px; color: rgba(255,255,255,0.3); }
-
-/* ===== ANIMATION ===== */
-.fade-in {
-  opacity: 0; transform: translateY(30px);
-  transition: opacity 0.7s ease, transform 0.7s ease;
-}
-.fade-in.visible { opacity: 1; transform: translateY(0); }
 
 /* ===== PLACEHOLDER BADGE ===== */
 .placeholder-badge {
@@ -181,35 +196,26 @@ footer { display: flex; justify-content: space-between; align-items: center; pad
   background: rgba(0,0,0,0.7); color: #888;
   font-size: 11px; font-weight: 500; padding: 4px 10px; border-radius: 4px;
   letter-spacing: 0.03em; text-transform: uppercase;
+  z-index: -1;
   pointer-events: none;
 }
-.img-wrap { position: relative; background: #141414; }
 
 /* ===== RESPONSIVE: TABLET ===== */
 @media (max-width: 1199px) {
-  nav { padding-left: 64px; padding-right: 64px; }
   .case-header, .process, .outcome, .other-work { padding-left: 64px; padding-right: 64px; }
-  .contact { padding-left: 64px; padding-right: 64px; }
 }
 /* ===== RESPONSIVE: MOBILE ===== */
 @media (max-width: 809px) {
-  nav { padding-left: 32px; padding-right: 32px; }
-  .nav-links { display: none; }
   .case-header { grid-template-columns: 1fr; gap: 40px; }
-  .case-header h1 { font-size: clamp(30px, 8vw, 48px); }
   .process { grid-template-columns: 1fr; gap: 32px; padding: 80px 32px; }
-  .process h2 { position: static; font-size: 36px; }
+  .process h2 { position: static; }
   .outcome { grid-template-columns: 1fr; gap: 24px; padding: 80px 32px; }
-  .outcome h2 { font-size: 36px; }
   .other-work { padding: 80px 32px; }
   .other-work-grid { grid-template-columns: 1fr; gap: 24px; }
   .image-row { grid-template-columns: 1fr; }
-  .contact { padding: 120px 32px; }
-  footer { flex-direction: column; gap: 24px; align-items: center; text-align: center; }
 }
 @media (max-width: 374px) {
-  .case-header h1 { font-size: 28px; }
-  .process h2, .outcome h2 { font-size: 28px; }
+  .case-header, .process, .outcome, .other-work { padding-left: 20px; padding-right: 20px; }
 }
 </style>
 </head>
@@ -223,6 +229,7 @@ footer { display: flex; justify-content: space-between; align-items: center; pad
     <li><a href="index.html#experiments-anchor">Experiments</a></li>
     <li><a href="index.html#contact">Contact</a></li>
   </ul>
+  <button class="mobile-nav-toggle" id="mobileToggle" aria-label="Menu"><span></span><span></span><span></span></button>
 </nav>
 
 <!-- ===== PAGE TOP SPACER ===== -->
@@ -289,7 +296,28 @@ footer { display: flex; justify-content: space-between; align-items: center; pad
     <img src="images/case-studies/pe-progression-2.png" alt="Massive right ventricular strain: heart exposed showing internal structure under load" loading="lazy">
   </div>
   <div class="img-wrap fade-in">
-    <img src="images/case-studies/pe-progression-3.png" alt="Full cardiac cycle phase: exploded view with clot lodged in right side of heart" loading="lazy">
+    <div class="compare-container" id="peCompare" role="group" aria-label="Sketch versus final render comparison slider">
+      <span class="compare-label compare-label-before" aria-hidden="true">Sketch</span>
+      <span class="compare-label compare-label-after"  aria-hidden="true">Final</span>
+      <!-- Bottom layer: sketch (visible on the right when handle is dragged left) -->
+      <div class="compare-layer">
+        <img src="images/case-studies/pe-sketch-before.png" alt="Original sketch / blueprint of cardiac tamponade" draggable="false">
+      </div>
+      <!-- Top layer: final render (clipped from left by inset) -->
+      <div class="compare-layer compare-top" id="peCompareTop">
+        <div class="compare-layer">
+          <img src="images/case-studies/pe-progression-3.png" alt="Final render: exploded view with clot lodged in right side of heart" draggable="false">
+        </div>
+      </div>
+      <!-- Divider line -->
+      <div class="compare-divider" id="peCompareDivider" aria-hidden="true"></div>
+      <!-- Drag handle -->
+      <div class="compare-handle" id="peCompareHandle" role="slider" aria-label="Drag to compare sketch with final render" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" tabindex="0">
+        <span class="compare-handle-circle">
+          <svg class="compare-handle-arrows" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M10 8l-4 4 4 4V8zm4 8l4-4-4-4v8z"/></svg>
+        </span>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -303,21 +331,21 @@ footer { display: flex; justify-content: space-between; align-items: center; pad
 <section class="other-work">
   <h2 class="fade-in">Other work</h2>
   <div class="other-work-grid">
-    <a href="index.html#experiments-anchor" class="ow-card fade-in">
+    <a href="case-study-erythema-nodosum.html" class="ow-card fade-in">
       <div class="ow-card-img-wrap">
-        <img class="ow-card-img" src="images/cross-section-anatomy.jpg" alt="Cross-Section Anatomy Study" loading="lazy">
+        <img class="ow-card-img" src="images/erythema-nodosum-septal-panniculitis.png" alt="Erythema Nodosum" loading="lazy">
       </div>
       <div class="ow-card-info">
-        <h3 class="ow-card-title">Cross-Section Anatomy Study</h3>
+        <h3 class="ow-card-title">Erythema Nodosum</h3>
         <p class="ow-card-cat">Medical Illustration</p>
       </div>
     </a>
-    <a href="index.html#experiments-anchor" class="ow-card fade-in">
+    <a href="case-study-pater-brown.html" class="ow-card fade-in">
       <div class="ow-card-img-wrap">
-        <img class="ow-card-img" src="images/actinic-keratosis.jpg" alt="Actinic Keratosis" loading="lazy">
+        <img class="ow-card-img" src="images/pater-brown/fetus-save-me.png" alt="Pater Brown OB-GYN Case Study" loading="lazy">
       </div>
       <div class="ow-card-info">
-        <h3 class="ow-card-title">Actinic Keratosis</h3>
+        <h3 class="ow-card-title">Pater Brown — OB-GYN</h3>
         <p class="ow-card-cat">Medical Illustration</p>
       </div>
     </a>
@@ -354,7 +382,84 @@ footer { display: flex; justify-content: space-between; align-items: center; pad
 
   window.addEventListener('scroll', check, { passive: true });
   check();
+
+  var toggle = document.getElementById('mobileToggle');
+  var nav = document.getElementById('navLinks');
+  if (toggle) toggle.addEventListener('click', function() { nav.classList.toggle('mobile-open'); });
+  nav.querySelectorAll('a').forEach(function(a) {
+    a.addEventListener('click', function() { nav.classList.remove('mobile-open'); });
+  });
+
+  // === COMPARISON SLIDER ===
+  (function() {
+    var container = document.getElementById('peCompare');
+    var topLayer  = document.getElementById('peCompareTop');
+    var divider   = document.getElementById('peCompareDivider');
+    var handle    = document.getElementById('peCompareHandle');
+    if (!container || !topLayer || !divider || !handle) return;
+
+    var dragging = false;
+
+    function setPosition(percent) {
+      percent = Math.max(2, Math.min(98, percent));
+      var leftPct = percent.toFixed(1) + '%';
+      // Reveal the final render (top layer) on the LEFT side of the handle,
+      // sketch (bottom layer) on the RIGHT side.
+      // clip-path: inset(0px RIGHT 0px 0px) — clips the RIGHT side off the top layer
+      var rightClip = (100 - percent).toFixed(1) + '%';
+      topLayer.style.clipPath = 'inset(0px ' + rightClip + ' 0px 0px)';
+      divider.style.left = leftPct;
+      divider.style.transform = 'translateX(-50%)';
+      handle.style.left = leftPct;
+      handle.style.transform = 'translateX(-50%)';
+      handle.setAttribute('aria-valuenow', Math.round(percent));
+    }
+
+    function getEventX(e) {
+      return e.touches ? e.touches[0].clientX : e.clientX;
+    }
+
+    function onStart(e) {
+      e.preventDefault();
+      dragging = true;
+      document.body.style.cursor = 'ew-resize';
+    }
+
+    function onMove(e) {
+      if (!dragging) return;
+      var rect = container.getBoundingClientRect();
+      var x = getEventX(e);
+      var percent = ((x - rect.left) / rect.width) * 100;
+      setPosition(percent);
+    }
+
+    function onEnd() {
+      dragging = false;
+      document.body.style.cursor = '';
+    }
+
+    // Mouse
+    handle.addEventListener('mousedown', onStart);
+    document.addEventListener('mousemove', onMove);
+    document.addEventListener('mouseup', onEnd);
+
+    // Touch
+    handle.addEventListener('touchstart', onStart, { passive: false });
+    document.addEventListener('touchmove', onMove, { passive: false });
+    document.addEventListener('touchend', onEnd);
+
+    // Keyboard
+    handle.addEventListener('keydown', function(e) {
+      var current = parseInt(handle.getAttribute('aria-valuenow')) || 50;
+      if (e.key === 'ArrowLeft'  || e.key === 'Left')  { e.preventDefault(); setPosition(current - 5); }
+      if (e.key === 'ArrowRight' || e.key === 'Right') { e.preventDefault(); setPosition(current + 5); }
+    });
+
+    // Initial: 50/50
+    setPosition(50);
+  })();
 })();
 </script>
+<script>if (/[\?&]edit\b/.test(location.search)) { var s=document.createElement('script'); s.src='admin.js'; document.body.appendChild(s); }</script>
 </body>
 </html>

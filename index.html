@@ -6,42 +6,14 @@
 <title>Steven Oppong, MD, Medical Illustrator</title>
 <meta name="description" content="Steven Oppong, MD, Medical Illustrator that cares a great deal about first principles">
 <link rel="icon" type="image/png" href="images/HFtZcNIneFBJJZ7SfUHQJ1vsANc.png">
+<link rel="icon" type="image/svg+xml" href="images/favicon-eye.svg">
+<link rel="apple-touch-icon" href="images/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;1,14..32,400;1,14..32,500;1,14..32,600;1,14..32,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.31.0/tabler-icons.min.css">
+<link rel="stylesheet" href="global.css">
 <style>
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
-body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  background: #0a0a09;
-  color: #fff;
-  line-height: 1.5;
-  overflow-x: hidden;
-}
-a { color: inherit; text-decoration: none; }
-
-/* ===== NAVIGATION ===== */
-nav {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-  padding: 24px 80px;
-  display: flex; justify-content: space-between; align-items: center;
-  mix-blend-mode: difference;
-}
-.nav-logo {
-  display: flex; align-items: center;
-}
-.nav-logo svg {
-  height: 36px; width: auto;
-}
-.nav-links { display: flex; gap: 40px; list-style: none; margin: 0; padding: 0; }
-.nav-links li { list-style: none; }
-.nav-links a { font-size: 16px; font-weight: 500; position: relative; padding-bottom: 4px; }
-.nav-links a::after {
-  content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 1.5px;
-  background: #fff; transition: width 0.3s ease;
-}
-.nav-links a:hover::after { width: 100%; }
 
 /* ===== SECTION COMMON ===== */
 section { overflow: hidden; }
@@ -60,6 +32,7 @@ section { overflow: hidden; }
   position: absolute; top: 0; left: 0; width: 100%; height: 100%;
   object-fit: cover; object-position: center 30%;
   opacity: 0.5; mix-blend-mode: lighten;
+  z-index: -1;
   pointer-events: none;
 }
 .hero h1 {
@@ -75,11 +48,24 @@ section { overflow: hidden; }
 .work-label { font-size: 13px; font-weight: 500; letter-spacing: 0.04em; color: rgba(255,255,255,0.5); text-transform: uppercase; margin-bottom: 4px; }
 .work-title-row h2 { font-size: 32px; font-weight: 600; letter-spacing: -0.03em; display: flex; gap: 8px; align-items: baseline; }
 .work-title-row h2 .year-range { color: rgba(255,255,255,0.4); }
-.work-grid { display: flex; gap: 40px; align-items: flex-start; }
-.work-col { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 40px; }
+
+/* Masonry grid: two columns, offset stagger */
+.work-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: start;
+}
+.work-col {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+.work-col:last-child { padding-top: 60px; }
 
 .work-card {
-  display: block; background: #141414; border-radius: 12px; overflow: hidden;
+  display: block; background: #141414; overflow: hidden;
+  border-radius: 0 0 16px 16px;
   transition: transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1),
               opacity 0.6s cubic-bezier(0.25, 0.1, 0.25, 1);
   width: 100%;
@@ -87,13 +73,14 @@ section { overflow: hidden; }
 .work-card:hover { transform: translateY(-4px); }
 .work-card.fade-in { opacity: 0; transform: translateY(20px); }
 .work-card.fade-in.visible { opacity: 1; transform: translateY(0); }
-.work-card-img-wrap { position: relative; overflow: hidden; }
+.work-card-img-wrap { position: relative; overflow: hidden; background: #1a1a1a; }
 .work-card.square .work-card-img-wrap { aspect-ratio: 1; }
 .work-card.rect  .work-card-img-wrap { aspect-ratio: 5/3; }
-.work-card-img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; }
-.work-card-info { padding: 20px 24px 24px; }
-.work-card-title { font-size: 20px; font-weight: 600; line-height: 1.3; letter-spacing: -0.02em; color: #fff; }
-.work-card-cat { font-size: 20px; font-weight: 600; line-height: 1.3; letter-spacing: -0.02em; color: #757575; margin-top: 2px; }
+.work-card.tall  .work-card-img-wrap { aspect-ratio: 3/4; }
+.work-card-img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; border-radius: 16px 16px 0 0; }
+.work-card-info { padding: 16px 20px 20px; }
+.work-card-title { font-size: 18px; font-weight: 600; line-height: 1.3; letter-spacing: -0.02em; color: #fff; }
+.work-card-cat { font-size: 14px; font-weight: 500; line-height: 1.3; color: #757575; margin-top: 2px; }
 
 /* ===== ABOUT (Section / About) ===== */
 .about { padding: 128px 80px; }
@@ -102,10 +89,71 @@ section { overflow: hidden; }
   display: grid; grid-template-columns: 35% 1fr; gap: 60px;
   align-items: start;
 }
-.about h2 { font-size: 56px; font-weight: 600; line-height: 1.1; letter-spacing: -0.03em; }
-.experience h2 { font-size: 56px; font-weight: 600; line-height: 1.1; letter-spacing: -0.03em; margin-bottom: 48px; }
+.about h2 { font-size: clamp(36px, 5vw, 56px); font-weight: 600; line-height: 1.1; letter-spacing: -0.03em; }
+.experience h2 { font-size: clamp(36px, 5vw, 56px); font-weight: 600; line-height: 1.1; letter-spacing: -0.03em; margin-bottom: 48px; }
 .about-text p { font-size: 20px; line-height: 1.6; opacity: 0.75; margin-bottom: 24px; }
 .about-text p:last-child { margin-bottom: 0; }
+
+/* ===== About Timeline (Vertical) ===== */
+.about-timeline {
+  display: flex; flex-direction: column;
+  padding: 8px 0 0 0; margin-bottom: 32px;
+  max-width: 480px;
+}
+.vtl-row {
+  display: flex; position: relative;
+}
+.vtl-rail {
+  position: relative; width: 24px; flex-shrink: 0;
+  min-height: 68px;
+}
+.vtl-line {
+  position: absolute; left: 50%; top: 0; bottom: 0;
+  width: 1px; background: #e60021;
+  transform: translateX(-50%);
+}
+.vtl-row:first-child .vtl-line { top: 50%; }
+.vtl-dot {
+  position: absolute; left: 50%; top: 50%;
+  width: 9px; height: 9px; border-radius: 50%;
+  background: #e60021; z-index: 1;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 0 4px rgba(230,0,33,0.12);
+}
+.vtl-content {
+  display: flex; flex-direction: column; justify-content: center;
+  padding-left: 16px;
+}
+.vtl-label {
+  font-size: 16px; font-weight: 600; letter-spacing: -0.02em;
+  line-height: 1.3;
+}
+.vtl-year {
+  font-size: 12px; opacity: 0.35; letter-spacing: 0.02em;
+  margin-top: 2px;
+}
+/* Next-chapter milestone */
+.vtl-row.next-segment .vtl-line {
+  background: rgba(255,255,255,0.08);
+}
+.vtl-row.next-segment .vtl-dot {
+  width: 13px; height: 13px;
+  background: rgba(230,0,33,0.30);
+  box-shadow: 0 0 0 6px rgba(230,0,33,0.06);
+}
+.vtl-row.next-segment .vtl-label { opacity: 0.40; }
+.vtl-row.next-segment .vtl-year { opacity: 0.20; }
+
+/* ===== About Summary ===== */
+.about-summary {
+  font-size: 18px; line-height: 1.65; opacity: 0.85; margin-bottom: 16px;
+}
+
+/* ===== About Full + Read More ===== */
+.about-full { margin-top: 16px; }
+.about-full.open { max-height: 2000px !important; }
+.about-full p { font-size: 20px; line-height: 1.6; opacity: 0.75; margin-bottom: 24px; }
+.about-full p:last-child { margin-bottom: 0; }
 
 /* ===== IMAGE (Section / Image) ===== */
 .full-image { padding: 0; width: 100%; height: 75vh; overflow: hidden; background: #0a0a09; }
@@ -175,19 +223,6 @@ section { overflow: hidden; }
 .video-inner video { width: 100%; border-radius: 12px; display: block; }
 .video-inner p { color: #757575; font-size: 16px; margin-top: 16px; text-align: center; }
 
-/* ===== CONTACT CTA ===== */
-.contact { padding: 200px 80px; text-align: center; }
-.contact h2 { font-size: clamp(36px, 5vw, 64px); font-weight: 600; letter-spacing: -0.03em; line-height: 1.12; margin-bottom: 40px; }
-.contact-icon {
-  display: inline-flex; align-items: center; justify-content: center; gap: 14px;
-  padding: 12px 24px; border-radius: 40px;
-  background: rgba(255,255,255,0.08);
-  transition: background 0.3s ease, transform 0.3s ease;
-  margin-top: 40px; font-size: 18px; color: #fff;
-}
-.contact-icon:hover { background: rgba(255,255,255,0.15); transform: scale(1.03); }
-.contact-icon svg { width: 22px; height: 22px; flex-shrink: 0; }
-
 /* ===== VIDEO LIGHTBOX ===== */
 .video-reveal { color: #fff; text-decoration: underline; text-underline-offset: 3px; transition: opacity 0.2s; }
 .video-reveal:hover { opacity: 0.7; }
@@ -197,56 +232,46 @@ section { overflow: hidden; }
 .lightbox-close { position: absolute; top: 24px; right: 32px; background: none; border: none; color: #fff; font-size: 36px; cursor: pointer; opacity: 0.6; transition: opacity 0.3s; line-height: 1; }
 .lightbox-close:hover { opacity: 1; }
 
-/* ===== FOOTER ===== */
-footer { display: flex; justify-content: space-between; align-items: center; padding: 40px 80px 60px; border-top: 1px solid rgba(255,255,255,0.08); }
-.footer-links { display: flex; gap: 32px; }
-.footer-links a { color: rgba(255,255,255,0.45); font-size: 14px; transition: color 0.3s ease; }
-.footer-links a:hover { color: #fff; }
-.footer-copy { font-size: 14px; color: rgba(255,255,255,0.3); }
-
-/* ===== ANIMATION ===== */
-.fade-in {
-  opacity: 0; transform: translateY(30px);
-  transition: opacity 0.7s ease, transform 0.7s ease;
-}
-.fade-in.visible { opacity: 1; transform: translateY(0); }
-
 /* ===== RESPONSIVE: TABLET (810px-1199px) ===== */
 @media (max-width: 1199px) {
-  nav, .about, .experience, .two-col-section, .contact { padding-left: 64px; padding-right: 64px; }
+  .about, .experience, .two-col-section { padding-left: 64px; padding-right: 64px; }
   .work { padding: 120px 64px; }
   .hero { padding: 0 64px; min-height: 90vh; }
   .hero h1 { font-size: clamp(28px, 5vw, 52px); max-width: clamp(260px, 60vw, 700px); }
   .hero-reveal { object-position: center 25%; }
   .full-image { height: 60vh; }
-  .about h2, .experience h2 { font-size: 42px; }
+  .vtl-rail { min-height: 60px; }
+  .vtl-label { font-size: 14px; }
+  .vtl-year { font-size: 11px; }
 }
 
 /* ===== RESPONSIVE: MOBILE (768px-809px) ===== */
 @media (max-width: 809px) {
-  nav, .about, .experience, .two-col-section, .contact { padding-left: 32px; padding-right: 32px; }
-  .experience { min-height: auto; padding: 80px 32px; }
-  .work { padding: 60px 20px; }
-  .hero { padding: 0 32px; min-height: 85vh; }
+  .about, .experience, .two-col-section { padding-left: 24px; padding-right: 24px; }
+  .experience { min-height: auto; padding: 80px 24px; }
+  .work { padding: 60px 16px; }
+  .hero { padding: 0 24px; min-height: 85vh; }
   .hero h1 { font-size: clamp(24px, 7vw, 36px); max-width: 100%; }
   .hero-reveal { object-position: center 25%; }
   .full-image { height: 50vh; }
-  .nav-links { display: none; }
-  .nav-links.mobile-open { display: flex; flex-direction: column; position: absolute; top: 80px; left: 20px; right: 20px; background: #141414; border-radius: 12px; padding: 20px; gap: 16px; z-index: 101; }
-  .mobile-nav-toggle { display: flex !important; }
-  .work-grid { flex-direction: column; gap: 20px; }
-  .work-col { gap: 20px; }
+  .work-grid { grid-template-columns: 1fr; gap: 16px; }
+  .work-col { gap: 16px; }
+  .work-col:last-child { padding-top: 0; }
+  .work-card-title { font-size: 16px; }
+  .work-card-cat { font-size: 13px; }
+  .work-card-info { padding: 14px 16px 16px; }
   .exp-row { flex-direction: column; gap: 6px; }
   .exp-row .exp-date { padding-top: 0; margin-left: 0; }
   .exp-row .exp-role { white-space: normal; }
   .exp-detail { padding-left: 0; margin-top: 12px; }
-  .about h2, .experience h2 { font-size: 36px; }
   .about-inner { grid-template-columns: 1fr; gap: 32px; }
+  .about-timeline { max-width: 100%; }
+  .vtl-rail { min-height: 56px; }
+  .vtl-label { font-size: 13px; }
+  .vtl-year { font-size: 10px; }
   .video-section { padding: 80px 40px; }
   .two-col-inner { flex-direction: column; gap: 60px; }
   .two-col-inner h2 { font-size: 28px; }
-  .contact { padding: 120px 32px; }
-  footer { flex-direction: column; gap: 24px; align-items: center; text-align: center; }
 }
 
 /* ===== RESPONSIVE: SMALL PHONE (max 374px, e.g. iPhone SE) ===== */
@@ -256,8 +281,11 @@ footer { display: flex; justify-content: space-between; align-items: center; pad
   .hero h1 span { opacity: 1; }
   .hero-reveal { object-position: center 20%; }
   .full-image { height: 40vh; }
-  nav, .about, .experience, .two-col-section, .contact { padding-left: 20px; padding-right: 20px; }
+  .about, .experience, .two-col-section { padding-left: 20px; padding-right: 20px; }
   .work { padding: 48px 16px; }
+  .vtl-rail { min-height: 48px; }
+  .vtl-label { font-size: 12px; }
+  .vtl-year { font-size: 9px; }
 }
 </style>
 </head>
@@ -291,7 +319,7 @@ footer { display: flex; justify-content: space-between; align-items: center; pad
       <h2>2018–2025<span class="year-range"></span></h2>
     </div>
     <div class="work-grid">
-      <!-- Left Column: Rectangle, Rectangle, Square -->
+      <!-- Left Column -->
       <div class="work-col">
         <a href="case-study-pulmonary-embolism.html" class="work-card rect fade-in" style="transition-delay: 0s;">
           <div class="work-card-img-wrap">
@@ -302,45 +330,117 @@ footer { display: flex; justify-content: space-between; align-items: center; pad
             <p class="work-card-cat">Medical Illustration</p>
           </div>
         </a>
-        <div class="work-card rect fade-in" style="transition-delay: 0.1s;">
+        <a href="case-study-erythema-nodosum.html" class="work-card square fade-in" style="transition-delay: 0.15s;">
           <div class="work-card-img-wrap">
-            <img class="work-card-img" src="images/actinic-keratosis.jpg" alt="Actinic Keratosis" loading="lazy">
+            <img class="work-card-img" src="images/erythema-nodosum-septal-panniculitis.png" alt="Erythema Nodosum — septal panniculitis, clean fat lobules divided by thickened inflamed septa with dense immune infiltrate, UE5 cinematic macro" loading="lazy">
+          </div>
+          <div class="work-card-info">
+            <h3 class="work-card-title">Erythema Nodosum</h3>
+            <p class="work-card-cat">Dermatopathology</p>
+          </div>
+        </a>
+        <div class="work-card square fade-in" style="transition-delay: 0.3s;">
+          <div class="work-card-img-wrap">
+            <img class="work-card-img" src="images/kidney-sodium-calcium-stones.png" alt="Calcium oxalate stone formation in kidney — sodium forcing calcium precipitation, crystalline structures within renal tubule, UE5 cinematic macro with dramatic key light" loading="lazy">
+          </div>
+          <div class="work-card-info">
+            <h3 class="work-card-title">Calcium Stone Formation</h3>
+            <p class="work-card-cat">Renal Pathophysiology</p>
+          </div>
+        </div>
+        <a href="case-study-portal-hypertension.html" class="work-card rect fade-in" style="transition-delay: 0.45s;">
+          <div class="work-card-img-wrap">
+            <img class="work-card-img" src="images/case-studies/portal-hypertension-hero.jpg" alt="Portal Hypertension — distended portal venous system, coagulative necrosis teaching plate" loading="lazy">
+          </div>
+          <div class="work-card-info">
+            <h3 class="work-card-title">Why is the fat backing up?</h3>
+            <p class="work-card-cat">Portal Hypertension, Pathophysiology</p>
+          </div>
+        </a>
+        <a href="case-study-tb-scrofula.html" class="work-card rect fade-in" style="transition-delay: 0.60s;">
+          <div class="work-card-img-wrap">
+            <img class="work-card-img" src="images/case-studies/tb-scrofula-01-neck-swelling.jpg" alt="TB Scrofula — cervical tuberculous lymphadenitis, cold abscess, granulomatous caseous necrosis" loading="lazy">
+          </div>
+          <div class="work-card-info">
+            <h3 class="work-card-title">TB Scrofula</h3>
+            <p class="work-card-cat">Infectious Disease</p>
+          </div>
+        </a>
+        <a href="case-study-nutmeg-liver.html" class="work-card rect fade-in" style="transition-delay: 0.75s;">
+          <div class="work-card-img-wrap">
+            <img class="work-card-img" src="images/case-studies/nutmeg-liver-01-lobule-master.jpg" alt="Nutmeg Liver — chronic passive congestion, centrilobular necrosis, congestive hepatopathy" loading="lazy">
+          </div>
+          <div class="work-card-info">
+            <h3 class="work-card-title">Nutmeg Liver</h3>
+            <p class="work-card-cat">Hepatic Pathology</p>
+          </div>
+        </a>
+        <a href="case-study-coagulative-necrosis.html" class="work-card rect fade-in" style="transition-delay: 0.90s;">
+          <div class="work-card-img-wrap">
+            <img class="work-card-img" src="images/case-studies/coag-necrosis-01-gross-infarct.png" alt="Coagulative Necrosis — pale myocardial infarct, tombstone myocytes, ischemic cell death" loading="lazy">
+          </div>
+          <div class="work-card-info">
+            <h3 class="work-card-title">Coagulative Necrosis</h3>
+            <p class="work-card-cat">Cardiac Pathology</p>
+          </div>
+        </a>
+      </div>
+      <!-- Right Column (offset stagger) -->
+      <div class="work-col">
+        <a href="case-study-actinic-keratosis.html" class="work-card tall fade-in" style="transition-delay: 0.08s;">
+          <div class="work-card-img-wrap">
+            <img class="work-card-img" src="images/actinic-keratosis/09-clinical-thumbnail.jpg" alt="Actinic Keratosis — rough scaly UV-damaged patches on skin surface, medically accurate dark-skin clinical presentation" loading="lazy">
           </div>
           <div class="work-card-info">
             <h3 class="work-card-title">Actinic Keratosis</h3>
-            <p class="work-card-cat">Medical Illustration</p>
+            <p class="work-card-cat">Dermatopathology</p>
           </div>
-        </div>
-        <div class="work-card square fade-in" style="transition-delay: 0.2s;">
-          <div class="work-card-img-wrap" style="background: linear-gradient(135deg, #1e1e1e, #161616); display: flex; align-items: center; justify-content: center;">
-            <span style="font-size: 14px; color: #555; font-weight: 500;">Add work</span>
-          </div>
-          <div class="work-card-info">
-            <h3 class="work-card-title">Coming soon</h3>
-            <p class="work-card-cat">New work</p>
-          </div>
-        </div>
-      </div>
-      <!-- Right Column: Square, Rectangle, Rectangle -->
-      <div class="work-col">
-        <div class="work-card square fade-in" style="transition-delay: 0.05s;">
-          <div class="work-card-img-wrap" style="background: linear-gradient(135deg, #1e1e1e, #161616); display: flex; align-items: center; justify-content: center;">
-            <span style="font-size: 14px; color: #555; font-weight: 500;">Add work</span>
+        </a>
+        <a href="case-study-pater-brown.html" class="work-card square fade-in" style="transition-delay: 0.22s;">
+          <div class="work-card-img-wrap">
+            <img class="work-card-img" src="images/pater-brown/fetus-save-me.png" alt="Fetus crying save me" loading="lazy">
           </div>
           <div class="work-card-info">
-            <h3 class="work-card-title">Coming soon</h3>
-            <p class="work-card-cat">New work</p>
+            <h3 class="work-card-title">OB-GYN Illustrations</h3>
+            <p class="work-card-cat">Partograph</p>
           </div>
-        </div>
-        <div class="work-card rect fade-in" style="transition-delay: 0.15s;">
-          <div class="work-card-img-wrap" style="background: linear-gradient(135deg, #1e1e1e, #161616); display: flex; align-items: center; justify-content: center;">
-            <span style="font-size: 14px; color: #555; font-weight: 500;">Add work</span>
+        </a>
+        <div class="work-card square fade-in" style="transition-delay: 0.36s;">
+          <div class="work-card-img-wrap">
+            <img class="work-card-img" src="images/crohn-crypt-abscess.jpg" alt="Crohn's Disease — crypt abscess, neutrophil attack within intestinal crypt, transmural inflammation, UE5 cinematic macro" loading="lazy">
           </div>
           <div class="work-card-info">
-            <h3 class="work-card-title">Coming soon</h3>
-            <p class="work-card-cat">New work</p>
+            <h3 class="work-card-title">Crohn's Disease</h3>
+            <p class="work-card-cat">Gastrointestinal Pathology</p>
           </div>
         </div>
+        <a href="case-study-osteomalacia.html" class="work-card square fade-in" style="transition-delay: 0.50s;">
+          <div class="work-card-img-wrap">
+            <img class="work-card-img" src="images/case-studies/osteomalacia-cutaway.jpg" alt="Osteomalacia — thick unmineralized osteoid seam, stalled mineralization front, soft bone pathophysiology" loading="lazy">
+          </div>
+          <div class="work-card-info">
+            <h3 class="work-card-title">Osteomalacia</h3>
+            <p class="work-card-cat">Bone Pathology</p>
+          </div>
+        </a>
+        <a href="case-study-osteopetrosis.html" class="work-card rect fade-in" style="transition-delay: 0.64s;">
+          <div class="work-card-img-wrap">
+            <img class="work-card-img" src="images/case-studies/bone-01-endochondral.jpg" alt="Osteopetrosis — marble bone disease, osteoclast failure, failed bone resorption and remodeling" loading="lazy">
+          </div>
+          <div class="work-card-info">
+            <h3 class="work-card-title">Osteopetrosis</h3>
+            <p class="work-card-cat">Bone Pathology</p>
+          </div>
+        </a>
+        <a href="case-study-arthus-reaction.html" class="work-card square fade-in" style="transition-delay: 0.78s;">
+          <div class="work-card-img-wrap">
+            <img class="work-card-img" src="images/case-studies/arthus-01-vessel-neutrophils.jpg" alt="Arthus Reaction — Type III hypersensitivity, immune complex vasculitis, fibrinoid necrosis" loading="lazy">
+          </div>
+          <div class="work-card-info">
+            <h3 class="work-card-title">Arthus Reaction</h3>
+            <p class="work-card-cat">Immunopathology</p>
+          </div>
+        </a>
       </div>
     </div>
   </div>
@@ -351,10 +451,39 @@ footer { display: flex; justify-content: space-between; align-items: center; pad
   <div class="about-inner fade-in">
     <h2>About me</h2>
     <div class="about-text">
-      <p>I am just a <strong>curious six-year-old at heart</strong> who believed in my dreams and pursued them passionately, exploring the worlds of <strong>artistic anatomy and human biology</strong>, and loving both along the way. What you see now is the result of <a href="videos/moon.mp4" class="video-reveal" onclick="return openVideo(event)"><strong>decades of practice</strong></a>.</p>
-      <p>Along the way, I've had the privilege to <strong>translate complex medical concepts into clear, compelling visuals</strong>, using every available skill and tool while constantly expanding my toolset. I have been fortunate to illustrate medical imagery for the past several years, working on projects spanning <strong>surgical education, patient communication, and academic publication</strong>.</p>
-      <p>My approach to illustration is grounded in <strong>anatomical accuracy and clinical understanding</strong>. I believe the best medical visuals do more than show structure; they <strong>communicate function, pathology, and mechanism</strong> in ways that change how clinicians and patients understand disease.</p>
-      <p>Outside of work, I am continuously studying, observing, and refining my craft. The human body is the most complex system we know. <strong>Understanding it well enough to teach others is a lifelong pursuit.</strong></p>
+      <!-- Vertical career timeline -->
+      <div class="about-timeline">
+        <div class="vtl-row">
+          <div class="vtl-rail"><div class="vtl-line"></div><div class="vtl-dot"></div></div>
+          <div class="vtl-content"><div class="vtl-label">Artist</div><div class="vtl-year">2008&ndash;2025</div></div>
+        </div>
+        <div class="vtl-row">
+          <div class="vtl-rail"><div class="vtl-line"></div><div class="vtl-dot"></div></div>
+          <div class="vtl-content"><div class="vtl-label">Doctor</div><div class="vtl-year">2012&ndash;2018</div></div>
+        </div>
+        <div class="vtl-row">
+          <div class="vtl-rail"><div class="vtl-line"></div><div class="vtl-dot"></div></div>
+          <div class="vtl-content"><div class="vtl-label">Pathology House Officer</div><div class="vtl-year">2018&ndash;2020</div></div>
+        </div>
+        <div class="vtl-row">
+          <div class="vtl-rail"><div class="vtl-line"></div><div class="vtl-dot"></div></div>
+          <div class="vtl-content"><div class="vtl-label">Illustrator</div><div class="vtl-year">2016&ndash;present</div></div>
+        </div>
+        <div class="vtl-row next-segment">
+          <div class="vtl-rail"><div class="vtl-line"></div><div class="vtl-dot"></div></div>
+          <div class="vtl-content"><div class="vtl-label">Pathologist</div><div class="vtl-year">next</div></div>
+        </div>
+      </div>
+      <!-- Summary (always visible) -->
+      <p class="about-summary">I am a physician, a medical illustrator, and a <strong>pathologist-track candidate</strong>. I trained at KNUST in Ghana, diagnosed follicular thyroid carcinoma via FNA as a house officer, and passed USMLE Step 1 and Step 2 CK. I have illustrated surgical pathology for academic publishers while working as an EMT in New Jersey emergency department. <a href="#" onclick="toggleAbout(); return false;" style="text-decoration: underline; text-underline-offset: 3px; white-space: nowrap; font-style: italic;">Read more</a></p>
+      <!-- Expanded full narrative -->
+      <div class="about-full" id="aboutFull" style="max-height: 0; overflow: hidden; transition: max-height 0.6s ease;">
+        <p>I am just a <strong>curious six-year-old at heart</strong> who believed in my dreams and pursued them passionately. I have explored the worlds of <strong>artistic anatomy, human biology</strong>, and medicine, and I happen to love both, by the way. What you see here now is the result of <a href="videos/moon.mp4" class="video-reveal" onclick="return openVideo(event)">decades of practice</a>.</p>
+        <p>Along the way, I've had the privilege of translating <strong>complex medical concepts into clear visuals</strong>, using every available skill in my tool set. My tool set keeps expanding, especially with the advent of new technology. I would say I am forward-thinking, or even pro-technology, because it helps me communicate faster and more effectively. In the past several years, I've collaborated with institutions and physicians on projects spanning <strong>surgical education, patient communication, and academic publications</strong>.</p>
+        <p>My approach to illustration is, and will always be, grounded in <strong>anatomical accuracy and clinical understanding</strong>. I believe medical visuals should speak for themselves. A layperson should be able to look at an illustration and understand what is happening at their level.</p>
+        <p>Outside of work, I am constantly improving my toolkit, constantly observing, and always trying to put myself in situations that force me to learn. I remain <strong>very active in emergency departments</strong> because I get to see a lot of cases and observe what's happening. When I sit down to study, I have real context to draw from. And I believe the greatest skill in life <strong>is the ability to teach</strong>, which also reflects how well you understand the concept yourself.</p>
+      </div>
+      <p class="about-readless" style="display:none;"><a href="#" onclick="toggleAbout(); return false;" style="text-decoration: underline; text-underline-offset: 3px; opacity: 0.6; font-size: 14px;">Read less</a></p>
     </div>
   </div>
 </section>
@@ -372,23 +501,6 @@ footer { display: flex; justify-content: space-between; align-items: center; pad
       <div class="exp-left">
         <svg class="exp-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
         <div>
-          <div class="exp-role">ActiveWorks Studio</div>
-          <div class="exp-company">Junior Creative Artist &rarr; Co-Founder &amp; Creative Director</div>
-        </div>
-      </div>
-      <div class="exp-date">2008–2025</div>
-      <div class="exp-detail">
-        <ul>
-          <li>Started as a junior creative artist. Built a foundation in visual precision and technique that would later shape a career in medical illustration.</li>
-          <li>Created college workbooks on human anatomy</li>
-          <li>Grew into Co-Founder and Creative Director, leading the studio's visual direction</li>
-        </ul>
-      </div>
-    </div>
-    <div class="exp-row fade-in" onclick="this.classList.toggle('open')">
-      <div class="exp-left">
-        <svg class="exp-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
-        <div>
           <div class="exp-role">Doctor of Medicine</div>
           <div class="exp-company">Kwame Nkrumah University of Science &amp; Technology</div>
         </div>
@@ -396,20 +508,23 @@ footer { display: flex; justify-content: space-between; align-items: center; pad
       <div class="exp-date">2012–2018</div>
       <div class="exp-detail">
         <ul>
-          <li>Bachelor of Medicine &amp; Surgery (MBChB), School of Medical Sciences, Kumasi, Ghana</li>
-          <li>Completed clinical pathology rotations at Komfo Anokye Teaching Hospital (2015–2016)</li>
           <li>Earned Best Pathology Clinical Rotation Presentation (May 2016)</li>
           <li>Awarded Leonardo da Vinci Artistry in Medicine Award, First Place (Nov 2016)</li>
+          <li>Bachelor of Medicine &amp; Surgery (MBChB), School of Medical Sciences (SMS), Kumasi, Ghana</li>
+          <li>Completed clinical pathology rotations at Komfo Anokye Teaching Hospital (2015–2016)</li>
+          <li>Passed USMLE Step 1 and Step 2 CK; sitting for Step 3</li>
+          <li>Completed US clinical rotations at Clara Maass Medical Center, Mountainside Medical Center, and Newark Beth Israel Medical Center emergency departments; also treated cases at East Orange and Vauxhall primary care offices as a physician</li>
+          <li>Works as an emergency medical technician (EMT), remaining actively involved in direct patient care since arriving in the United States</li>
         </ul>
         <div class="exp-sub">
           <div class="exp-sub-role">Pathology House Officer</div>
           <div class="exp-sub-company">Teaching Hospital, Ghana</div>
           <div class="exp-sub-date">2018–2020</div>
           <ul>
-            <li>Served as house officer in the pathology department post-graduation</li>
-            <li>Gained hands-on experience in gross pathology, histology, and laboratory workflow</li>
             <li>Diagnosed follicular thyroid carcinoma via fine needle aspiration</li>
             <li>Performed frozen section analysis and blood smear examinations for malaria</li>
+            <li>Gained hands-on experience in gross pathology, histology, and laboratory workflow</li>
+            <li>Served as house officer in the pathology department post-graduation</li>
           </ul>
         </div>
       </div>
@@ -426,8 +541,25 @@ footer { display: flex; justify-content: space-between; align-items: center; pad
       <div class="exp-detail">
         <ul>
           <li>Translated complex medical concepts into clear, compelling visuals for surgical education, patient communication, and academic publication</li>
-          <li>Illustrated the pathology of appendicitis for the Department of Surgery at the School of Medical Sciences, Kumasi, Ghana</li>
+          <li>Illustrated the pathology of appendicitis for the Department of Surgery at the School of Medical Sciences (SMS), Kumasi, Ghana</li>
           <li>Illustrated the progression of labor for a partograph, commissioned by Ruma Fertility Healthcare</li>
+        </ul>
+      </div>
+    </div>
+    <div class="exp-row fade-in" onclick="this.classList.toggle('open')">
+      <div class="exp-left">
+        <svg class="exp-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+        <div>
+          <div class="exp-role">ActiveWorks Studio</div>
+          <div class="exp-company">Junior Creative Artist &rarr; Co-Founder &amp; Creative Director</div>
+        </div>
+      </div>
+      <div class="exp-date">2008–2025</div>
+      <div class="exp-detail">
+        <ul>
+          <li>Started as a junior creative artist. Built a foundation in visual precision and technique that would later shape a career in medical illustration.</li>
+          <li>Created college workbooks on human anatomy</li>
+          <li>Grew into Co-Founder and Creative Director, leading the studio's visual direction</li>
         </ul>
       </div>
     </div>
@@ -435,7 +567,7 @@ footer { display: flex; justify-content: space-between; align-items: center; pad
       <div class="exp-left">
         <svg class="exp-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
         <div>
-          <div class="exp-role">Pathology Residency</div>
+          <div class="exp-role">Pathologist</div>
           <div class="exp-company">Next chapter: pursuing residency in Pathology</div>
         </div>
       </div>
@@ -549,6 +681,22 @@ function closeVideo(e) {
     var vid = document.getElementById('lightboxVideo');
     vid.pause();
     lb.classList.remove('open');
+  }
+}
+
+function toggleAbout() {
+  var full = document.getElementById('aboutFull');
+  var summary = document.querySelector('.about-summary');
+  var readless = document.querySelector('.about-readless');
+  var isOpen = full.style.maxHeight !== '0px' && full.style.maxHeight !== '';
+  if (isOpen) {
+    full.style.maxHeight = '0';
+    summary.style.display = 'block';
+    readless.style.display = 'none';
+  } else {
+    full.style.maxHeight = full.scrollHeight + 'px';
+    summary.style.display = 'none';
+    readless.style.display = 'block';
   }
 }
 </script>

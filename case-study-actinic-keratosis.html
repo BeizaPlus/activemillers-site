@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Actinic Keratosis — Steven Oppong, MD, Medical Illustrator</title>
+<meta name="description" content="Case study: Actinic Keratosis clinical illustration by Steven Oppong, MD. Tracing UV-induced keratinocyte dysplasia from the stratum corneum down to the basal layer.">
+<link rel="icon" type="image/png" href="images/HFtZcNIneFBJJZ7SfUHQJ1vsANc.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;1,14..32,400;1,14..32,500;1,14..32,600;1,14..32,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.31.0/tabler-icons.min.css">
+<link rel="stylesheet" href="global.css">
+<style>
+/* ===== PAGE HEADER SPACING ===== */
+.page-top { padding-top: 140px; }
+
+/* ===== TITLE + INTRO (two-column) ===== */
+.case-header {
+  padding: 0 clamp(32px, 7vw, 80px) 80px;
+  max-width: 1280px; margin: 0 auto;
+  display: grid; grid-template-columns: 45% 1fr; gap: 80px;
+  align-items: start;
+}
+.case-header h1 {
+  font-size: clamp(36px, 5vw, 72px); font-weight: 600; line-height: 1.05;
+  letter-spacing: -0.03em;
+}
+.case-intro p {
+  font-size: 18px; line-height: 1.65; opacity: 0.75; margin-bottom: 20px;
+}
+.case-intro p:last-of-type { margin-bottom: 36px; }
+
+/* Meta table */
+.case-meta { border-top: 1px solid rgba(255,255,255,0.12); }
+.case-meta-row {
+  display: flex; justify-content: space-between; align-items: baseline;
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  font-size: 15px;
+}
+.case-meta-label { opacity: 0.45; font-weight: 500; }
+.case-meta-value { font-weight: 500; }
+
+/* ===== TWO-IMAGE ROW ===== */
+.image-row {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 4px;
+  padding: 0; width: 100%;
+}
+.image-row img {
+  width: 100%; height: auto; display: block;
+  background: #141414;
+}
+
+/* ===== PROCESS SECTION (two-column) ===== */
+.process {
+  padding: 128px clamp(32px, 7vw, 80px);
+  max-width: 1280px; margin: 0 auto;
+  display: grid; grid-template-columns: 35% 1fr; gap: 80px;
+  align-items: start;
+}
+.process h2 {
+  font-size: clamp(28px, 5vw, 48px); font-weight: 600; letter-spacing: -0.03em; line-height: 1.1;
+  position: sticky; top: 120px;
+}
+.process-steps { display: flex; flex-direction: column; gap: 48px; }
+.process-step h3 {
+  font-size: 20px; font-weight: 600; margin-bottom: 12px; letter-spacing: -0.02em;
+}
+.process-step p {
+  font-size: 17px; line-height: 1.7; opacity: 0.7;
+}
+
+/* ===== STACKED IMAGES ===== */
+.stacked-images { padding: 0; width: 100%; }
+.stacked-images img {
+  width: 100%; height: auto; display: block;
+  background: #141414;
+}
+.stacked-images img + img { margin-top: 4px; }
+
+/* ===== FULL-WIDTH SINGLE IMAGE ===== */
+.full-image { padding: 0; width: 100%; }
+.full-image img { width: 100%; height: auto; display: block; background: #141414; }
+
+/* ===== OUTCOME SECTION (two-column) ===== */
+.outcome {
+  padding: 128px clamp(32px, 7vw, 80px);
+  max-width: 1280px; margin: 0 auto;
+  display: grid; grid-template-columns: 35% 1fr; gap: 80px;
+  align-items: start;
+}
+.outcome h2 {
+  font-size: clamp(28px, 5vw, 48px); font-weight: 600; letter-spacing: -0.03em; line-height: 1.1;
+}
+.outcome p {
+  font-size: 18px; line-height: 1.7; opacity: 0.7;
+}
+
+/* ===== OTHER WORK ===== */
+.other-work {
+  padding: 128px clamp(32px, 7vw, 80px);
+  max-width: 1280px; margin: 0 auto;
+}
+.other-work h2 {
+  font-size: 32px; font-weight: 600; letter-spacing: -0.03em; margin-bottom: 48px;
+}
+.other-work-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 32px;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1199px) {
+  .case-header, .process, .outcome, .other-work { padding-left: 64px; padding-right: 64px; }
+}
+@media (max-width: 809px) {
+  .case-header { grid-template-columns: 1fr; gap: 40px; }
+  .process { grid-template-columns: 1fr; gap: 32px; padding: 80px 32px; }
+  .process h2 { position: static; }
+  .outcome { grid-template-columns: 1fr; gap: 24px; padding: 80px 32px; }
+  .other-work { padding: 80px 32px; }
+  .other-work-grid { grid-template-columns: 1fr; gap: 24px; }
+  .image-row { grid-template-columns: 1fr; }
+}
+@media (max-width: 374px) {
+  .case-header, .process, .outcome, .other-work { padding-left: 20px; padding-right: 20px; }
+}
+
+/* ===== ANNOTATED HOTSPOT PINS ===== */
+.ak-pin {
+  position: absolute; width: 18px; height: 18px;
+  border-radius: 50%;
+  background: rgba(230,0,33,0.7);
+  border: 2px solid rgba(255,255,255,0.5);
+  cursor: pointer; z-index: 2;
+  transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+  animation: ak-pulse 2s ease-in-out infinite;
+}
+.ak-pin:hover {
+  transform: scale(1.4);
+  background: rgba(230,0,33,0.9);
+  border-color: #fff;
+}
+@keyframes ak-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(230,0,33,0.4); }
+  50% { box-shadow: 0 0 0 10px rgba(230,0,33,0); }
+}
+.ak-hotspot-btn {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  color: rgba(255,255,255,0.6);
+  padding: 8px 16px; border-radius: 20px;
+  font-size: 13px; font-weight: 500; cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+.ak-hotspot-btn:hover {
+  background: rgba(230,0,33,0.15);
+  color: #fff;
+  border-color: rgba(230,0,33,0.4);
+}
+</style>
+</head>
+<body>
+
+<!-- ===== NAVIGATION ===== -->
+<nav>
+  <a href="index.html" class="nav-logo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 251.12 84.94" style="height:36px;width:auto;"><defs><style>.cls-1{fill:#e60021}.cls-2{fill:#fff}</style></defs><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><path class="cls-1" d="M47.84 0S20.1 7.4 19.11 7.79c-.63.26-2 1-2.15 1.63-.1.37.13.71.95 1s1 2.42.8 5.12c-.06 1.13-.18 2.34-.33 3.57s-.27 2.16-.4 3.2c-.27 1.9-.54 3.63-.67 4.81a8.66 8.66 0 0 0-.09 1.4c.19 1.64 1 1.64 7.32 0 2.94-.73 7.53-1.87 11.6-2.86 2-.48 3.89-1 5.4-1.3L45 23.56s1.7-5.43 3-10.81c.62-2.46 1.16-4.92 1.43-6.84C50.24-.19 47.84 0 47.84 0M37.59 20.19l-5 .9c-3.31.61-6.53 1.23-7.8 1.57-3 .8-.18-4.47-1.14-7.33-.49-1.44 4.53-4 9.74-6.26a.87.87 0 0 0 .25-.1c2.24-.94 4.49-1.82 6.31-2.49 2.32-.87 4-1.42 4.12-1.42.59 0-2.43 14.42-2.43 14.42l-4 .71"/><path class="cls-1" d="M38.3 11.74c-1.39-1.23-4.38.8-2.21 3.45 1 1.18 1.8 1.28 2.45 1A3 3 0 0 0 39.86 15a6.24 6.24 0 0 0-.63-2 4 4 0 0 0-.93-1.25"/><path class="cls-1" d="M37.09 28 37 28a14 14 0 0 1-2.12 1.12 12.17 12.17 0 0 1-2.17.65 10.32 10.32 0 0 1-2.21.24A5.07 5.07 0 0 0 30 30a.34.34 0 0 0-.17 0 1.67 1.67 0 0 0-.39.05 5.22 5.22 0 0 0-.81.28 4.43 4.43 0 0 0-.5.24l-.15.09-.13.1a1.33 1.33 0 0 0-.27 1.89 3.19 3.19 0 0 0 1.4 1 3.9 3.9 0 0 0 1.61.27 10.54 10.54 0 0 0 3.24-.55 9 9 0 0 0 1.48-.68 9.32 9.32 0 0 0 1.35-.9 7.67 7.67 0 0 0 2-2.48 1 1 0 0 0 0-1.06A1.1 1.1 0 0 0 37.09 28"/><path class="cls-1" d="M27.33 15.54a2.49 2.49 0 0 0 .25 2c.88 1.72 1.83 1.5 2.49 1a3.5 3.5 0 0 0 .86-1c-.7-3.61-3.07-3.56-3.6-2.06"/><polygon class="cls-1" points="12.64 26.86 10.11 11.15 9.52 7.46 4.19 8.18 0 16.79 2.99 15.87 7.75 25.84 11.8 34.34 14.88 40.79 13.77 33.91 12.64 26.86"/><path class="cls-2" d="M249.72 27.38l1.4 8.4H248.3l-.52-3.61-.16-1.4-.27 1.3-1 3.71h-2.51l-1-3.81-.25-1.2-.05 1.07L242 35.78h-2.57l1.37-8.4H244l1 3.69.24 1.23.19-1.18 1.05-3.74ZM198.56 73.46c-.33 6.09 50.45-3.17 45.55-4.54-6.07-1.69-45.28-1.51-45.55 4.54m36-37.68h2.72v-6.1h1.93v-2.3h-6.64v2.3h2Zm-8.93 7.76c-3-1.61-18.2-.35-18.49 2.73-.36 3.59 22.91-.32 18.49-2.73M208 59.85c2.52 3 22-2.3 16.27-5-3.33-1.57-18.43 2.4-16.27 5m-10.8-13.58c-6.32-1.29-.39 20.55-10.42 24-16.9 5.82-8.64-21.93-16.68-20.41-6.62 1.27 4.27 21.69 7.72 23.39 16.26 8.09 31.36-24.49 19.38-27m-52.88 1.54c-13.19 2.59 3.42-31.94-5.8-32.38-7.74-.41-3.39 20.51-3.45 23.82-.16 11.9-11.87 9.24-11.43 14.24 9.82 2.09 10.66-1.65 10.72 10.67 0 2.11-3.31 18.26 1.89 17.47 15.58-2.37-9.06-33.79 15.36-29 5.86 7.66 3.07 14.23 1.78 22.21-.77 4.87 5.94 7.41 5.72 2.19-.63-11.51 5-33-14.79-29.2m5.24-12.71c2.49.51 4.65-3.56 2.71-5.45-2.82-2.73-6.54 4.69-2.71 5.45M98.78 54c-7.66.36-5.2 14.16-.39 18 5.9 4.63 33.56 1.46 29.29-7.51C122.16 52.84 95.36 83.88 98.78 54M81.19 63c1.58 3.15 3.17 29.1-5.41 20-5.72-6.12-1.48-16.67-4.52-24.53-7.48 2-14.85 4.19-22.11 6.84a16.91 16.91 0 0 1-4.53 8.62c-5.65-2.5 18.44-62 25.72-61.21S76.68 42 77.55 49c11.16-2.66 20.92-8.81 31.61-12.66 4.63 9.78-12.49 10-20.31 13.58-7.24 3.31-11.7 5.18-7.66 13.16M69 43.3C68.89 42.12 69.46 29 64.48 29c-3.94 9.35-9 18.13-11.27 28.11C66.1 57.49 69.6 54.92 69 43.3"/></g></g></svg></a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="index.html#pathology-anchor">Pathology</a></li>
+    <li><a href="index.html#experiments-anchor">Experiments</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+  <button class="mobile-nav-toggle" id="mobileToggle" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+
+<!-- ===== PAGE TOP SPACER ===== -->
+<div class="page-top"></div>
+
+<!-- ===== 1. TITLE + INTRO ===== -->
+<header class="case-header fade-in">
+  <h1>Actinic Keratosis</h1>
+  <div class="case-intro">
+    <p>Actinic keratosis begins in the stratum corneum, where decades of UV radiation have disrupted the orderly maturation of keratinocytes. The surface roughens. Cells that should have shed remain, heaped in thickened, scaling patches. Beneath them, the basal layer churns with atypical nuclei and lost polarity.</p>
+    <p>This case study traces the descent from the skin surface down through each epidermal layer: the corneocyte shield, the dysplastic spinosum, the inflamed dermal vasculature, and the UV-damaged basal keratinocytes where the first errors took hold. Every panel was built to make the tissue architecture visible at the level where the damage lives.</p>
+    <div class="case-meta">
+      <div class="case-meta-row">
+        <span class="case-meta-label">Case Type</span>
+        <span class="case-meta-value">Dermatopathology Illustration</span>
+      </div>
+      <div class="case-meta-row">
+        <span class="case-meta-label">Focus</span>
+        <span class="case-meta-value">Epidermal Dysplasia & UV Damage</span>
+      </div>
+      <div class="case-meta-row">
+        <span class="case-meta-label">Year</span>
+        <span class="case-meta-value">2026</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ===== 2. TWO-IMAGE ROW: ESTABLISHING + DERMAL-EPIDERMAL ===== -->
+<section class="image-row fade-in">
+  <div class="img-wrap">
+    <img src="images/actinic-keratosis/01-establishing-skin-landscape.jpg" alt="Actinic keratosis: establishing wide shot of the skin surface landscape, roughened and thickened stratum corneum" loading="lazy">
+  </div>
+  <div class="img-wrap">
+    <img src="images/actinic-keratosis/02-dermal-epidermal-junction.png" alt="Dermal-epidermal junction: cross-section showing the interface between epidermis above and inflamed dermis below" loading="lazy">
+  </div>
+</section>
+
+<!-- ===== 3. PROCESS SECTION ===== -->
+<section class="process">
+  <h2 class="fade-in">Progression</h2>
+  <div class="process-steps">
+    <div class="process-step fade-in">
+      <h3>The Corneocyte Shield</h3>
+      <p>The outermost barrier of the skin is the stratum corneum, a layer of flattened, anucleate corneocytes held together by lipid matrix. Under normal turnover, these cells shed imperceptibly. In actinic keratosis, UV damage disrupts the desquamation cycle. Cornified cells accumulate in thickened, adherent scales. The surface becomes rough to the touch: a physical marker of a molecular error. What looks like dry skin is disorganized keratinization, and beneath it, the deeper layers are already changing.</p>
+    </div>
+    <div class="process-step fade-in">
+      <h3>Keratinocyte Dysplasia</h3>
+      <p>Descending through the stratum spinosum, the keratinocytes lose their orderly maturation. Normal cells flatten and elongate as they rise toward the surface. Here, they are crowded, hyperchromatic, and haphazardly arranged. Atypical nuclei appear at levels that should contain only maturing cells. Polarity is lost. The tissue is not yet carcinoma, but the architecture of controlled differentiation has been replaced by a field of dysplastic proliferation. This is the histological signature of actinic damage.</p>
+    </div>
+    <div class="process-step fade-in">
+      <h3>The Inflamed Dermis</h3>
+      <p>Below the epidermis, the dermal vasculature tells its own story. Small blood vessels are dilated and surrounded by a chronic inflammatory infiltrate: lymphocytes, histiocytes, and plasma cells congregating around the capillary loops. This is solar elastosis at the tissue level. Collagen fibers show basophilic degeneration. The dermis is not just inflamed. It is sun-damaged, structurally altered, and the inflammatory milieu it sustains feeds back into the epidermal dysplasia above, creating a cycle of injury that persists long after the UV exposure has ended.</p>
+    </div>
+    <div class="process-step fade-in">
+      <h3>Basal Layer: Where the Error Took Hold</h3>
+      <p>The deepest epidermal layer is the stratum basale, where keratinocyte stem cells divide and begin their upward journey. UV-B radiation damages DNA directly, inducing pyrimidine dimers. TP53 mutations accumulate. Melanocytes, scattered among the basal keratinocytes, transfer melanin in a protective response, but the damage outpaces the shield. The atypical keratinocytes here, with their enlarged nuclei and crowded architecture, are the origin of the entire lesion. Everything visible at the surface began as a single cell in this layer that forgot how to stop dividing.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 4. TWO-IMAGE ROW: KERATINOCYTE + BASAL LAYER ===== -->
+<section class="image-row fade-in">
+  <div class="img-wrap">
+    <img src="images/actinic-keratosis/04-keratinocyte-dysplasia.png" alt="Keratinocyte dysplasia: crowded, atypical keratinocytes with hyperchromatic nuclei in the stratum spinosum" loading="lazy">
+  </div>
+  <div class="img-wrap">
+    <img src="images/actinic-keratosis/06-basal-layer-uv-damage.png" alt="Basal layer: UV-damaged keratinocytes with TP53 mutations, melanocytes scattered at the basement membrane" loading="lazy">
+  </div>
+</section>
+
+<!-- ===== 5. TWO-IMAGE ROW: CORNEOCYTE + BLOOD INTERIOR ===== -->
+<section class="image-row fade-in">
+  <div class="img-wrap">
+    <img src="images/actinic-keratosis/05-corneocyte-texture.png" alt="Corneocyte texture: extreme close-up of the stratum corneum, disorganized keratin scales with retained nuclei" loading="lazy">
+  </div>
+  <div class="img-wrap">
+    <img src="images/actinic-keratosis/03-blood-interior-inflammation.png" alt="Blood interior: dilated dermal capillaries surrounded by chronic inflammatory infiltrate, solar elastosis" loading="lazy">
+  </div>
+</section>
+
+<!-- ===== 6. FULL-WIDTH: ANNOTATED CUBE BLOCK (interactive hotspots) ===== -->
+<section class="full-image fade-in" style="padding: 40px clamp(32px, 7vw, 80px);">
+  <p style="font-size: 14px; opacity: 0.45; margin-bottom: 24px; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 500;">Tap the pins to explore the layers</p>
+  <div style="position: relative; width: 100%; overflow: hidden;">
+    <img id="block-img" src="images/actinic-keratosis/17-claude-reference.jpg" style="width: 100%; display: block;" alt="Cube-block cutaway render of actinic keratosis skin with normal left and AK right" loading="lazy">
+
+    <div class="ak-pin" data-key="vessels" style="left: 22%; top: 62%;"></div>
+    <div class="ak-pin" data-key="basal" style="left: 58%; top: 76%;"></div>
+    <div class="ak-pin" data-key="hair" style="left: 64%; top: 5%;"></div>
+  </div>
+
+  <div id="ak-caption" style="margin-top: 20px; min-height: 60px; padding: 16px 20px; background: #141414; border-radius: 0 0 16px 16px;">
+    <p style="font-size: 14px; color: #757575; margin: 0;">Tap a pin to see what it is.</p>
+  </div>
+
+  <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px;">
+    <button class="ak-hotspot-btn" data-key="vessels">Papillary vessels</button>
+    <button class="ak-hotspot-btn" data-key="basal">Basal layer</button>
+    <button class="ak-hotspot-btn" data-key="hair">Hair</button>
+  </div>
+</section>
+
+<!-- ===== 7. OUTCOME SECTION ===== -->
+<section class="outcome">
+  <h2 class="fade-in">Outcome</h2>
+  <p class="fade-in">Actinic keratosis occupies a clinical grey zone between benign sun damage and squamous cell carcinoma in situ. The majority of lesions do not progress, but the field effect is real: skin that has produced one AK has sustained the cumulative UV injury that makes further lesions likely. Treatment is local destruction (cryotherapy, topical 5-fluorouracil, photodynamic therapy), but the deeper message is surveillance. The illustrations in this series were built to make that message visible: the corneocyte that will not shed, the keratinocyte that lost its polarity, the basal cell where the TP53 mutation took hold. Understanding the mechanism is what makes the follow-up legible.</p>
+</section>
+
+<!-- ===== 8. STACKED GRIDS ===== -->
+<section class="stacked-images">
+  <div class="img-wrap fade-in">
+    <img src="images/actinic-keratosis/07-mechanism-progression-grid.png" alt="Mechanism progression: 3x3 grid tracing actinic keratosis from UV exposure through dysplasia to clinical lesion" loading="lazy">
+  </div>
+  <div class="img-wrap fade-in">
+    <img src="images/actinic-keratosis/08-summit-sequence-grid.png" alt="Summit sequence: Immersa 2x2 grid, full descent through the epidermal layers from surface to basal layer" loading="lazy">
+  </div>
+</section>
+
+<!-- ===== 9. OTHER WORK ===== -->
+<section class="other-work">
+  <h2 class="fade-in">Other work</h2>
+  <div class="other-work-grid">
+    <a href="case-study-pulmonary-embolism.html" class="ow-card fade-in">
+      <div class="ow-card-img-wrap">
+        <img class="ow-card-img" src="images/cross-section-anatomy.jpg" alt="Pulmonary Embolism" loading="lazy">
+      </div>
+      <div class="ow-card-info">
+        <h3 class="ow-card-title">Pulmonary Embolism</h3>
+        <p class="ow-card-cat">Clinical Illustration</p>
+      </div>
+    </a>
+    <a href="case-study-pater-brown.html" class="ow-card fade-in">
+      <div class="ow-card-img-wrap">
+        <img class="ow-card-img" src="images/pater-brown/fetus-save-me.png" alt="OB-GYN Illustrations" loading="lazy">
+      </div>
+      <div class="ow-card-info">
+        <h3 class="ow-card-title">OB-GYN Illustrations</h3>
+        <p class="ow-card-cat">Partograph</p>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- ===== 10. CLOSING CTA ===== -->
+<section class="contact fade-in">
+  <h2>Want to learn about the human body<br>from the inside?</h2>
+  <a href="mailto:steven.oppong@gmail.com" class="contact-icon" aria-label="Send email">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+    steven.oppong@gmail.com
+  </a>
+</section>
+
+<!-- ===== 11. FOOTER ===== -->
+<footer>
+  <div class="footer-links">
+    <a href="https://www.linkedin.com/in/kwabena-oppong-904a3440/" target="_blank" rel="noopener">LinkedIn</a>
+  </div>
+  <div class="footer-copy">Steven Oppong, MD &copy; 2026</div>
+</footer>
+
+<script>
+(function() {
+  var els = document.querySelectorAll('.fade-in');
+  function check() {
+    els.forEach(function(el) {
+      var top = el.getBoundingClientRect().top;
+      if (top < window.innerHeight * 0.85) el.classList.add('visible');
+    });
+  }
+  window.addEventListener('scroll', check, { passive: true });
+  check();
+
+  var toggle = document.getElementById('mobileToggle');
+  var nav = document.getElementById('navLinks');
+  if (toggle) toggle.addEventListener('click', function() { nav.classList.toggle('mobile-open'); });
+  nav.querySelectorAll('a').forEach(function(a) {
+    a.addEventListener('click', function() { nav.classList.remove('mobile-open'); });
+  });
+
+  /* --- Interactive hotspot annotations (AK section only) --- */
+  var hotspotData = {
+    vessels: {
+      title: "Capillary loops, papillary dermis",
+      body: "Blood supply stops here — the epidermis above has no vessels of its own. These loops are the only source of oxygen and nutrients for every layer above, reaching it purely by diffusion."
+    },
+    basal: {
+      title: "Basal layer, right side",
+      body: "This is where actinic keratosis actually starts. On the healthy left side these cells stay flat and orderly. Here, several have lost that polarity and are pushing upward into the layer above — the mechanical root of everything visible at the surface."
+    },
+    hair: {
+      title: "Hair",
+      body: "Included for scale and realism at the edge of the lesion — grounding the render as real tissue rather than an isolated diagram."
+    }
+  };
+
+  function showHotspot(key) {
+    var d = hotspotData[key];
+    var cap = document.getElementById('ak-caption');
+    if (!d || !cap) return;
+    cap.innerHTML =
+      '<p style="font-size:14px;font-weight:500;margin:0 0 4px;">' + d.title + '</p>' +
+      '<p style="font-size:14px;color:#757575;margin:0;line-height:1.6;">' + d.body + '</p>';
+    document.querySelectorAll('.ak-pin').forEach(function(p) {
+      p.style.borderColor = p.dataset.key === key ? '#fff' : 'rgba(255,255,255,0.5)';
+      p.style.background = p.dataset.key === key ? 'rgba(230,0,33,0.9)' : 'rgba(230,0,33,0.7)';
+    });
+  }
+
+  // Click-to-show — buttons and pins
+  document.querySelectorAll('.ak-pin, .ak-hotspot-btn').forEach(function(el) {
+    el.addEventListener('click', function(e) {
+      if (el._wasDragged) { el._wasDragged = false; return; }
+      showHotspot(el.dataset.key);
+    });
+  });
+
+  // Drag-to-position — each pin tracks itself
+  var dragState = {};
+  document.querySelectorAll('.ak-pin').forEach(function(pin) {
+    var key = pin.dataset.key;
+    pin.addEventListener('mousedown', function(e) { dragState[key] = pin; pin._wasDragged = false; pin.style.cursor = 'grabbing'; e.preventDefault(); });
+    pin.addEventListener('touchstart', function(e) { dragState[key] = pin; pin._wasDragged = false; pin.style.cursor = 'grabbing'; e.preventDefault(); });
+  });
+
+  function moveActivePins(e) {
+    Object.keys(dragState).forEach(function(key) {
+      var pin = dragState[key]; if (!pin) return;
+      pin._wasDragged = true;
+      var ct = pin.parentElement.getBoundingClientRect();
+      var cx = (e.touches ? e.touches[0].clientX : e.clientX);
+      var cy = (e.touches ? e.touches[0].clientY : e.clientY);
+      pin.style.left = Math.max(0, Math.min(100, ((cx - ct.left) / ct.width) * 100)) + '%';
+      pin.style.top  = Math.max(0, Math.min(100, ((cy - ct.top) / ct.height) * 100)) + '%';
+    });
+  }
+
+  function releaseAllPins() {
+    Object.keys(dragState).forEach(function(key) {
+      var pin = dragState[key]; if (!pin) return;
+      pin.style.cursor = '';
+    });
+    dragState = {};
+    logPins();
+  }
+
+  document.addEventListener('mousemove', moveActivePins);
+  document.addEventListener('mouseup', releaseAllPins);
+  document.addEventListener('touchmove', moveActivePins);
+  document.addEventListener('touchend', releaseAllPins);
+
+  function logPins() {
+    var lines = ['--- PIN POSITIONS ---'];
+    document.querySelectorAll('.ak-pin').forEach(function(p) {
+      lines.push('data-key="' + p.dataset.key + '"  left:' + p.style.left + ' top:' + p.style.top);
+    });
+    console.log(lines.join('\n'));
+  }
+})();
+</script>
+</body>
+</html>

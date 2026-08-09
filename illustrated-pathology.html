@@ -30,7 +30,7 @@
   text-transform: uppercase; opacity: 0.35;
 }
 .hero-title {
-  font-size: 40px; font-weight: 700; letter-spacing: -0.03em; line-height: 1.1;
+  font-size: clamp(28px, 6vw, 52px); font-weight: 700; letter-spacing: -0.03em; line-height: 1.1;
 }
 .hero-title span {
   display: block;
@@ -47,13 +47,15 @@
   font-weight: 600; opacity: 0.8;
 }
 
-/* 3D Book */
+/* 3D Book — fully relative, responds to viewport */
 .book-stage {
   perspective: 1200px;
   display: flex; align-items: center; justify-content: center;
 }
 .book-3d {
-  width: 320px; height: 438px;
+  --bw: clamp(140px, 30vw, 340px);
+  width: var(--bw);
+  aspect-ratio: 320/438;
   position: relative;
   transform-style: preserve-3d;
   transform: rotateY(-22deg) rotateX(4deg);
@@ -63,19 +65,21 @@
 .book-3d:hover { transform: rotateY(-12deg) rotateX(2deg); }
 .book-3d::after {
   content: ''; position: absolute;
-  bottom: -28px; left: -24px; right: 90px; height: 36px;
-  background: rgba(0,0,0,0.5); filter: blur(28px);
-  transform: translateZ(-34px); z-index: -1;
+  bottom: calc(var(--bw) * -0.088); left: calc(var(--bw) * -0.075);
+  right: calc(var(--bw) * 0.28); height: calc(var(--bw) * 0.112);
+  background: rgba(0,0,0,0.5); filter: blur(calc(var(--bw) * 0.088));
+  transform: translateZ(calc(var(--bw) * -0.106)); z-index: -1;
 }
 
 .book-front {
   position: absolute; inset: 0;
-  transform: translateZ(12px);
+  transform: translateZ(calc(var(--bw) * 0.038));
   overflow: hidden;
   box-shadow: 2px 2px 12px rgba(0,0,0,0.4);
 }
 .book-front img {
   width: 100%; height: 100%; object-fit: cover; display: block;
+  border-radius: 0;
 }
 .book-front::after {
   content: ''; position: absolute; inset: 0;
@@ -84,24 +88,26 @@
 
 .book-spine {
   position: absolute; top: 0; left: 0; bottom: 0;
-  width: 26px;
+  width: calc(var(--bw) * 0.08);
   background: #1a1a18;
   transform-origin: left center;
-  transform: rotateY(-90deg) translateX(-13px);
+  transform: rotateY(-90deg) translateX(calc(var(--bw) * -0.04));
   display: flex; flex-direction: column;
   justify-content: space-between;
-  padding: 28px 7px;
+  padding: clamp(16px, calc(var(--bw) * 0.088), 28px) clamp(4px, calc(var(--bw) * 0.022), 7px);
   box-shadow: inset -2px 0 6px rgba(0,0,0,0.5);
   border-right: 1px solid rgba(255,255,255,0.04);
 }
 .book-spine-title {
-  font-size: 14px; font-weight: 600; letter-spacing: 0.06em;
+  font-size: clamp(10px, calc(var(--bw) * 0.044), 14px);
+  font-weight: 600; letter-spacing: 0.06em;
   writing-mode: vertical-rl; text-orientation: mixed;
   color: rgba(255,255,255,0.65);
   transform: rotate(180deg); text-align: right;
 }
 .book-spine-author {
-  font-size: 9px; font-weight: 500; letter-spacing: 0.10em;
+  font-size: clamp(6px, calc(var(--bw) * 0.028), 9px);
+  font-weight: 500; letter-spacing: 0.10em;
   writing-mode: vertical-rl; text-orientation: mixed;
   color: rgba(255,255,255,0.3); text-transform: uppercase;
   transform: rotate(180deg); text-align: right;
@@ -109,8 +115,8 @@
 
 .book-pages {
   position: absolute; top: 0; right: 0; bottom: 0;
-  width: 16px;
-  transform: rotateY(90deg) translateX(8px);
+  width: calc(var(--bw) * 0.05);
+  transform: rotateY(90deg) translateX(calc(var(--bw) * 0.025));
   transform-origin: right center;
 }
 .book-page-stack {
@@ -119,14 +125,16 @@
 }
 .book-top {
   position: absolute; top: 0; left: 0; right: 0;
-  height: 16px; background: #ddd8cf;
-  transform: rotateX(90deg) translateY(-8px);
+  height: calc(var(--bw) * 0.05);
+  background: #ddd8cf;
+  transform: rotateX(90deg) translateY(calc(var(--bw) * -0.025));
   transform-origin: top center;
 }
 .book-bottom {
   position: absolute; bottom: 0; left: 0; right: 0;
-  height: 16px; background: #b8b3aa;
-  transform: rotateX(-90deg) translateY(8px);
+  height: calc(var(--bw) * 0.05);
+  background: #b8b3aa;
+  transform: rotateX(-90deg) translateY(calc(var(--bw) * 0.025));
   transform-origin: bottom center;
 }
 
@@ -158,7 +166,7 @@
   font-size: 32px; font-weight: 600; letter-spacing: -0.03em; line-height: 1.1;
 }
 .interior-header p {
-  font-size: 17px; opacity: 0.5; margin-top: 12px; max-width: 560px; line-height: 1.6;
+  font-size: 17px; opacity: 0.5; margin-top: 12px; max-width: clamp(280px, 55ch, 560px); line-height: 1.6;
 }
 .chapter-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; }
 .chapter-card {
@@ -193,31 +201,12 @@
 }
 @media (max-width: 809px) {
   .hero { padding: 120px 24px 80px; }
-  .hero-title { font-size: 32px; }
   .hero-title span:last-child { margin-left: 32px; }
-  .book-3d { width: 260px; height: 356px; }
-  .book-spine { width: 20px; transform: rotateY(-90deg) translateX(-10px); }
-  .book-spine .book-spine-title { font-size: 13px; }
-  .book-spine .book-spine-author { font-size: 7px; }
-  .book-pages { width: 12px; transform: rotateY(90deg) translateX(6px); }
-  .book-top, .book-bottom { height: 12px; }
-  .book-top { transform: rotateX(90deg) translateY(-6px); }
-  .book-bottom { transform: rotateX(-90deg) translateY(6px); }
-  .book-front { transform: translateZ(9px); }
   .chapter-grid { grid-template-columns: 1fr; }
   .book-specs { gap: 32px; }
 }
 @media (max-width: 374px) {
   .hero { padding: 100px 20px 60px; }
-  .hero-title { font-size: 28px; }
-  .book-3d { width: 220px; height: 300px; }
-  .book-spine { width: 16px; transform: rotateY(-90deg) translateX(-8px); }
-  .book-spine .book-spine-title { font-size: 11px; }
-  .book-pages { width: 10px; transform: rotateY(90deg) translateX(5px); }
-  .book-top, .book-bottom { height: 10px; }
-  .book-top { transform: rotateX(90deg) translateY(-5px); }
-  .book-bottom { transform: rotateX(-90deg) translateY(5px); }
-  .book-front { transform: translateZ(7px); }
   .book-interior, .book-specs { padding-left: 20px; padding-right: 20px; }
 }
 </style>

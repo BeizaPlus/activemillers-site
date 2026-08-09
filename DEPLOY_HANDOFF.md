@@ -11,6 +11,15 @@ npx vercel --prod --yes
 
 Aliased to: `https://www.activemillers.com`
 
+## Key assets (quick lookup — same paths as AGENTS.md)
+
+| Asset | Path | Use |
+|---|---|---|
+| **Signature SVG** | `assets/signature/signature-master.svg` | Steve artist mark. Gold/tan #c7b191. Overlay on finished illustrations. |
+| **Signature PNG** | `assets/signature/signature-master.png` | Raster fallback. |
+| **Illustration ref area** | `images/_ref_illustrations/` | Raw .ai ref files. |
+| **Image rule** | `.cursor/rules/immersa-medical-visuals.mdc` | Auto-applied per generation. |
+
 ## Current page map
 
 | Page | URL | Status |

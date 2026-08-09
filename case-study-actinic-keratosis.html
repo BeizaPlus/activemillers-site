@@ -60,7 +60,7 @@
   align-items: start;
 }
 .process h2 {
-  font-size: 48px; font-weight: 600; letter-spacing: -0.03em; line-height: 1.1;
+  font-size: clamp(28px, 5vw, 48px); font-weight: 600; letter-spacing: -0.03em; line-height: 1.1;
   position: sticky; top: 120px;
 }
 .process-steps { display: flex; flex-direction: column; gap: 48px; }
@@ -91,7 +91,7 @@
   align-items: start;
 }
 .outcome h2 {
-  font-size: 48px; font-weight: 600; letter-spacing: -0.03em; line-height: 1.1;
+  font-size: clamp(28px, 5vw, 48px); font-weight: 600; letter-spacing: -0.03em; line-height: 1.1;
 }
 .outcome p {
   font-size: 18px; line-height: 1.7; opacity: 0.7;
@@ -115,19 +115,49 @@
 }
 @media (max-width: 809px) {
   .case-header { grid-template-columns: 1fr; gap: 40px; }
-  .case-header h1 { font-size: clamp(30px, 8vw, 48px); }
   .process { grid-template-columns: 1fr; gap: 32px; padding: 80px 32px; }
-  .process h2 { position: static; font-size: 36px; }
+  .process h2 { position: static; }
   .outcome { grid-template-columns: 1fr; gap: 24px; padding: 80px 32px; }
-  .outcome h2 { font-size: 36px; }
   .other-work { padding: 80px 32px; }
   .other-work-grid { grid-template-columns: 1fr; gap: 24px; }
   .image-row { grid-template-columns: 1fr; }
 }
 @media (max-width: 374px) {
-  .case-header h1 { font-size: 28px; }
-  .process h2, .outcome h2 { font-size: 28px; }
   .case-header, .process, .outcome, .other-work { padding-left: 20px; padding-right: 20px; }
+}
+
+/* ===== ANNOTATED HOTSPOT PINS ===== */
+.ak-pin {
+  position: absolute; width: 18px; height: 18px;
+  border-radius: 50%;
+  background: rgba(230,0,33,0.7);
+  border: 2px solid rgba(255,255,255,0.5);
+  cursor: pointer; z-index: 2;
+  transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+  animation: ak-pulse 2s ease-in-out infinite;
+}
+.ak-pin:hover {
+  transform: scale(1.4);
+  background: rgba(230,0,33,0.9);
+  border-color: #fff;
+}
+@keyframes ak-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(230,0,33,0.4); }
+  50% { box-shadow: 0 0 0 10px rgba(230,0,33,0); }
+}
+.ak-hotspot-btn {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  color: rgba(255,255,255,0.6);
+  padding: 8px 16px; border-radius: 20px;
+  font-size: 13px; font-weight: 500; cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+.ak-hotspot-btn:hover {
+  background: rgba(230,0,33,0.15);
+  color: #fff;
+  border-color: rgba(230,0,33,0.4);
 }
 </style>
 </head>
@@ -170,26 +200,19 @@
   </div>
 </header>
 
-<!-- ===== 2. FULL-WIDTH: VERTICAL CROSS-SECTION — MASTER EXPLANATORY PLATE ===== -->
-<section class="full-image fade-in">
-  <div class="img-wrap">
-    <img src="images/actinic-keratosis/10-vertical-cross-section.png" alt="Actinic keratosis vertical cross-section: architectural core sample through all skin layers from rough AK surface down through parakeratotic stratum corneum, thinned granulosum, crowded spinosum, to the buried dysplastic basal cluster at the root, with parallel healthy skin column for comparison" loading="lazy">
-  </div>
-</section>
-
-<!-- ===== 3. TWO-IMAGE ROW: ESTABLISHING + DERMAL-EPIDERMAL ===== -->
+<!-- ===== 2. TWO-IMAGE ROW: ESTABLISHING + DERMAL-EPIDERMAL ===== -->
 <section class="image-row fade-in">
   <div class="img-wrap">
-    <img src="images/actinic-keratosis/01-establishing-skin-landscape.png" alt="Actinic keratosis: establishing wide shot of the skin surface landscape, roughened and thickened stratum corneum" loading="lazy">
+    <img src="images/actinic-keratosis/01-establishing-skin-landscape.jpg" alt="Actinic keratosis: establishing wide shot of the skin surface landscape, roughened and thickened stratum corneum" loading="lazy">
   </div>
   <div class="img-wrap">
     <img src="images/actinic-keratosis/02-dermal-epidermal-junction.png" alt="Dermal-epidermal junction: cross-section showing the interface between epidermis above and inflamed dermis below" loading="lazy">
   </div>
 </section>
 
-<!-- ===== 4. PROCESS SECTION ===== -->
+<!-- ===== 3. PROCESS SECTION ===== -->
 <section class="process">
-  <h2 class="fade-in">Descent</h2>
+  <h2 class="fade-in">Progression</h2>
   <div class="process-steps">
     <div class="process-step fade-in">
       <h3>The Corneocyte Shield</h3>
@@ -210,7 +233,7 @@
   </div>
 </section>
 
-<!-- ===== 5. TWO-IMAGE ROW: KERATINOCYTE + BASAL LAYER ===== -->
+<!-- ===== 4. TWO-IMAGE ROW: KERATINOCYTE + BASAL LAYER ===== -->
 <section class="image-row fade-in">
   <div class="img-wrap">
     <img src="images/actinic-keratosis/04-keratinocyte-dysplasia.png" alt="Keratinocyte dysplasia: crowded, atypical keratinocytes with hyperchromatic nuclei in the stratum spinosum" loading="lazy">
@@ -220,13 +243,35 @@
   </div>
 </section>
 
-<!-- ===== 6. TWO-IMAGE ROW: CORNEOCYTE + BLOOD INTERIOR ===== -->
+<!-- ===== 5. TWO-IMAGE ROW: CORNEOCYTE + BLOOD INTERIOR ===== -->
 <section class="image-row fade-in">
   <div class="img-wrap">
     <img src="images/actinic-keratosis/05-corneocyte-texture.png" alt="Corneocyte texture: extreme close-up of the stratum corneum, disorganized keratin scales with retained nuclei" loading="lazy">
   </div>
   <div class="img-wrap">
     <img src="images/actinic-keratosis/03-blood-interior-inflammation.png" alt="Blood interior: dilated dermal capillaries surrounded by chronic inflammatory infiltrate, solar elastosis" loading="lazy">
+  </div>
+</section>
+
+<!-- ===== 6. FULL-WIDTH: ANNOTATED CUBE BLOCK (interactive hotspots) ===== -->
+<section class="full-image fade-in" style="padding: 40px clamp(32px, 7vw, 80px);">
+  <p style="font-size: 14px; opacity: 0.45; margin-bottom: 24px; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 500;">Tap the pins to explore the layers</p>
+  <div style="position: relative; width: 100%; overflow: hidden;">
+    <img id="block-img" src="images/actinic-keratosis/17-claude-reference.jpg" style="width: 100%; display: block;" alt="Cube-block cutaway render of actinic keratosis skin with normal left and AK right" loading="lazy">
+
+    <div class="ak-pin" data-key="vessels" style="left: 22%; top: 62%;"></div>
+    <div class="ak-pin" data-key="basal" style="left: 58%; top: 76%;"></div>
+    <div class="ak-pin" data-key="hair" style="left: 64%; top: 5%;"></div>
+  </div>
+
+  <div id="ak-caption" style="margin-top: 20px; min-height: 60px; padding: 16px 20px; background: #141414; border-radius: 0 0 16px 16px;">
+    <p style="font-size: 14px; color: #757575; margin: 0;">Tap a pin to see what it is.</p>
+  </div>
+
+  <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px;">
+    <button class="ak-hotspot-btn" data-key="vessels">Papillary vessels</button>
+    <button class="ak-hotspot-btn" data-key="basal">Basal layer</button>
+    <button class="ak-hotspot-btn" data-key="hair">Hair</button>
   </div>
 </section>
 
@@ -306,6 +351,85 @@
   nav.querySelectorAll('a').forEach(function(a) {
     a.addEventListener('click', function() { nav.classList.remove('mobile-open'); });
   });
+
+  /* --- Interactive hotspot annotations (AK section only) --- */
+  var hotspotData = {
+    vessels: {
+      title: "Capillary loops, papillary dermis",
+      body: "Blood supply stops here — the epidermis above has no vessels of its own. These loops are the only source of oxygen and nutrients for every layer above, reaching it purely by diffusion."
+    },
+    basal: {
+      title: "Basal layer, right side",
+      body: "This is where actinic keratosis actually starts. On the healthy left side these cells stay flat and orderly. Here, several have lost that polarity and are pushing upward into the layer above — the mechanical root of everything visible at the surface."
+    },
+    hair: {
+      title: "Hair",
+      body: "Included for scale and realism at the edge of the lesion — grounding the render as real tissue rather than an isolated diagram."
+    }
+  };
+
+  function showHotspot(key) {
+    var d = hotspotData[key];
+    var cap = document.getElementById('ak-caption');
+    if (!d || !cap) return;
+    cap.innerHTML =
+      '<p style="font-size:14px;font-weight:500;margin:0 0 4px;">' + d.title + '</p>' +
+      '<p style="font-size:14px;color:#757575;margin:0;line-height:1.6;">' + d.body + '</p>';
+    document.querySelectorAll('.ak-pin').forEach(function(p) {
+      p.style.borderColor = p.dataset.key === key ? '#fff' : 'rgba(255,255,255,0.5)';
+      p.style.background = p.dataset.key === key ? 'rgba(230,0,33,0.9)' : 'rgba(230,0,33,0.7)';
+    });
+  }
+
+  // Click-to-show — buttons and pins
+  document.querySelectorAll('.ak-pin, .ak-hotspot-btn').forEach(function(el) {
+    el.addEventListener('click', function(e) {
+      if (el._wasDragged) { el._wasDragged = false; return; }
+      showHotspot(el.dataset.key);
+    });
+  });
+
+  // Drag-to-position — each pin tracks itself
+  var dragState = {};
+  document.querySelectorAll('.ak-pin').forEach(function(pin) {
+    var key = pin.dataset.key;
+    pin.addEventListener('mousedown', function(e) { dragState[key] = pin; pin._wasDragged = false; pin.style.cursor = 'grabbing'; e.preventDefault(); });
+    pin.addEventListener('touchstart', function(e) { dragState[key] = pin; pin._wasDragged = false; pin.style.cursor = 'grabbing'; e.preventDefault(); });
+  });
+
+  function moveActivePins(e) {
+    Object.keys(dragState).forEach(function(key) {
+      var pin = dragState[key]; if (!pin) return;
+      pin._wasDragged = true;
+      var ct = pin.parentElement.getBoundingClientRect();
+      var cx = (e.touches ? e.touches[0].clientX : e.clientX);
+      var cy = (e.touches ? e.touches[0].clientY : e.clientY);
+      pin.style.left = Math.max(0, Math.min(100, ((cx - ct.left) / ct.width) * 100)) + '%';
+      pin.style.top  = Math.max(0, Math.min(100, ((cy - ct.top) / ct.height) * 100)) + '%';
+    });
+  }
+
+  function releaseAllPins() {
+    Object.keys(dragState).forEach(function(key) {
+      var pin = dragState[key]; if (!pin) return;
+      pin.style.cursor = '';
+    });
+    dragState = {};
+    logPins();
+  }
+
+  document.addEventListener('mousemove', moveActivePins);
+  document.addEventListener('mouseup', releaseAllPins);
+  document.addEventListener('touchmove', moveActivePins);
+  document.addEventListener('touchend', releaseAllPins);
+
+  function logPins() {
+    var lines = ['--- PIN POSITIONS ---'];
+    document.querySelectorAll('.ak-pin').forEach(function(p) {
+      lines.push('data-key="' + p.dataset.key + '"  left:' + p.style.left + ' top:' + p.style.top);
+    });
+    console.log(lines.join('\n'));
+  }
 })();
 </script>
 </body>

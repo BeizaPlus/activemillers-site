@@ -22,7 +22,7 @@ nav {
 nav::before {
   content: '';
   position: absolute; top: 0; left: 0; bottom: 0;
-  width: 420px;
+  width: clamp(280px, 30vw, 420px);
   background: linear-gradient(to right, rgba(10, 10, 9, 0.5) 0%, rgba(10, 10, 9, 0.25) 40%, rgba(10, 10, 9, 0) 100%);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
@@ -74,12 +74,13 @@ img {
 
 /* ===== GLOBAL CARD ===== */
 .ow-card {
-  display: block; background: #141414; border-radius: 16px; overflow: hidden;
+  display: block; background: #141414; overflow: hidden;
+  border-radius: 0 0 16px 16px;
   transition: transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
 }
 .ow-card:hover { transform: translateY(-4px); }
 .ow-card-img-wrap { aspect-ratio: 5/3; overflow: hidden; }
-.ow-card-img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.ow-card-img { width: 100%; height: 100%; object-fit: cover; display: block; border-radius: 16px 16px 0 0; }
 .ow-card-info { padding: 20px 24px 24px; }
 .ow-card-title { font-size: 20px; font-weight: 600; letter-spacing: -0.02em; }
 .ow-card-cat { font-size: 16px; color: #757575; margin-top: 4px; }

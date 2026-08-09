@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arthus Reaction — Steven Oppong, MD, Medical Illustrator</title>
+<meta name="description" content="Case study: Arthus Reaction clinical illustration by Steven Oppong, MD. Pathophysiology of Type III hypersensitivity, immune complex deposition, complement activation, fibrinoid necrosis, and the localized vasculitic cascade.">
+<link rel="icon" type="image/png" href="images/HFtZcNIneFBJJZ7SfUHQJ1vsANc.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;1,14..32,400;1,14..32,500;1,14..32,600;1,14..32,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="global.css">
+<link rel="stylesheet" href="lightbox.css">
+<style>
+/* ===== PAGE HEADER SPACING ===== */
+.page-top { padding-top: 140px; }
+
+/* ===== TITLE + INTRO (two-column) ===== */
+.case-header {
+  padding: 0 clamp(32px, 7vw, 80px) 80px;
+  max-width: 1280px; margin: 0 auto;
+  display: grid; grid-template-columns: 45% 1fr; gap: 80px;
+  align-items: start;
+}
+.case-header h1 {
+  font-size: clamp(36px, 5vw, 72px); font-weight: 600; line-height: 1.05;
+  letter-spacing: -0.03em;
+}
+.case-intro p {
+  font-size: 18px; line-height: 1.65; opacity: 0.75; margin-bottom: 20px;
+}
+.case-intro p:last-of-type { margin-bottom: 36px; }
+
+/* Meta table */
+.case-meta { border-top: 1px solid rgba(255,255,255,0.12); }
+.case-meta-row {
+  display: flex; justify-content: space-between; align-items: baseline;
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  font-size: 15px;
+}
+.case-meta-label { opacity: 0.45; font-weight: 500; }
+.case-meta-value { font-weight: 500; }
+
+/* ===== TWO-IMAGE ROW ===== */
+.image-row {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 4px;
+  padding: 0; width: 100%;
+}
+.image-row img {
+  width: 100%; height: auto; display: block;
+  background: #141414;
+}
+
+/* ===== PROCESS SECTION (two-column) ===== */
+.process {
+  padding: 128px clamp(32px, 7vw, 80px);
+  max-width: 1280px; margin: 0 auto;
+  display: grid; grid-template-columns: 35% 1fr; gap: 80px;
+  align-items: start;
+}
+.process h2 {
+  font-size: clamp(28px, 5vw, 48px); font-weight: 600; letter-spacing: -0.03em; line-height: 1.1;
+  position: sticky; top: 120px;
+}
+.process-steps { display: flex; flex-direction: column; gap: 48px; }
+.process-step h3 {
+  font-size: 20px; font-weight: 600; margin-bottom: 12px; letter-spacing: -0.02em;
+}
+.process-step p {
+  font-size: 17px; line-height: 1.7; opacity: 0.7;
+}
+
+/* ===== STACKED IMAGES ===== */
+.stacked-images { padding: 0; width: 100%; }
+.stacked-images img {
+  width: 100%; height: auto; display: block;
+  background: #141414;
+}
+.stacked-images img + img { margin-top: 4px; }
+
+/* ===== OUTCOME SECTION (two-column) ===== */
+.outcome {
+  padding: 128px clamp(32px, 7vw, 80px);
+  max-width: 1280px; margin: 0 auto;
+  display: grid; grid-template-columns: 35% 1fr; gap: 80px;
+  align-items: start;
+}
+.outcome h2 {
+  font-size: clamp(28px, 5vw, 48px); font-weight: 600; letter-spacing: -0.03em; line-height: 1.1;
+}
+.outcome p {
+  font-size: 18px; line-height: 1.7; opacity: 0.7;
+}
+
+/* ===== OTHER WORK ===== */
+.other-work {
+  padding: 128px clamp(32px, 7vw, 80px);
+  max-width: 1280px; margin: 0 auto;
+}
+.other-work h2 {
+  font-size: 32px; font-weight: 600; letter-spacing: -0.03em; margin-bottom: 48px;
+}
+.other-work-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 32px;
+}
+
+/* ===== RESPONSIVE: TABLET ===== */
+@media (max-width: 1199px) {
+  .case-header, .process, .outcome, .other-work { padding-left: 64px; padding-right: 64px; }
+}
+/* ===== RESPONSIVE: MOBILE ===== */
+@media (max-width: 809px) {
+  .case-header { grid-template-columns: 1fr; gap: 40px; }
+  .process { grid-template-columns: 1fr; gap: 32px; padding: 80px 32px; }
+  .process h2 { position: static; }
+  .outcome { grid-template-columns: 1fr; gap: 24px; padding: 80px 32px; }
+  .other-work { padding: 80px 32px; }
+  .other-work-grid { grid-template-columns: 1fr; gap: 24px; }
+  .image-row { grid-template-columns: 1fr; }
+}
+@media (max-width: 374px) {
+  .case-header, .process, .outcome, .other-work { padding-left: 20px; padding-right: 20px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ===== NAVIGATION ===== -->
+<nav>
+  <a href="index.html" class="nav-logo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 251.12 84.94" style="height:36px;width:auto;"><defs><style>.cls-1{fill:#e60021}.cls-2{fill:#fff}</style></defs><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><path class="cls-1" d="M47.84 0S20.1 7.4 19.11 7.79c-.63.26-2 1-2.15 1.63-.1.37.13.71.95 1s1 2.42.8 5.12c-.06 1.13-.18 2.34-.33 3.57s-.27 2.16-.4 3.2c-.27 1.9-.54 3.63-.67 4.81a8.66 8.66 0 0 0-.09 1.4c.19 1.64 1 1.64 7.32 0 2.94-.73 7.53-1.87 11.6-2.86 2-.48 3.89-1 5.4-1.3L45 23.56s1.7-5.43 3-10.81c.62-2.46 1.16-4.92 1.43-6.84C50.24-.19 47.84 0 47.84 0M37.59 20.19l-5 .9c-3.31.61-6.53 1.23-7.8 1.57-3 .8-.18-4.47-1.14-7.33-.49-1.44 4.53-4 9.74-6.26a.87.87 0 0 0 .25-.1c2.24-.94 4.49-1.82 6.31-2.49 2.32-.87 4-1.42 4.12-1.42.59 0-2.43 14.42-2.43 14.42l-4 .71"/><path class="cls-1" d="M38.3 11.74c-1.39-1.23-4.38.8-2.21 3.45 1 1.18 1.8 1.28 2.45 1A3 3 0 0 0 39.86 15a6.24 6.24 0 0 0-.63-2 4 4 0 0 0-.93-1.25"/><path class="cls-1" d="M37.09 28 37 28a14 14 0 0 1-2.12 1.12 12.17 12.17 0 0 1-2.17.65 10.32 10.32 0 0 1-2.21.24A5.07 5.07 0 0 0 30 30a.34.34 0 0 0-.17 0 1.67 1.67 0 0 0-.39.05 5.22 5.22 0 0 0-.81.28 4.43 4.43 0 0 0-.5.24l-.15.09-.13.1a1.33 1.33 0 0 0-.27 1.89 3.19 3.19 0 0 0 1.4 1 3.9 3.9 0 0 0 1.61.27 10.54 10.54 0 0 0 3.24-.55 9 9 0 0 0 1.48-.68 9.32 9.32 0 0 0 1.35-.9 7.67 7.67 0 0 0 2-2.48 1 1 0 0 0 0-1.06A1.1 1.1 0 0 0 37.09 28"/><path class="cls-1" d="M27.33 15.54a2.49 2.49 0 0 0 .25 2c.88 1.72 1.83 1.5 2.49 1a3.5 3.5 0 0 0 .86-1c-.7-3.61-3.07-3.56-3.6-2.06"/><polygon class="cls-1" points="12.64 26.86 10.11 11.15 9.52 7.46 4.19 8.18 0 16.79 2.99 15.87 7.75 25.84 11.8 34.34 14.88 40.79 13.77 33.91 12.64 26.86"/><path class="cls-2" d="M249.72 27.38l1.4 8.4H248.3l-.52-3.61-.16-1.4-.27 1.3-1 3.71h-2.51l-1-3.81-.25-1.2-.05 1.07L242 35.78h-2.57l1.37-8.4H244l1 3.69.24 1.23.19-1.18 1.05-3.74ZM198.56 73.46c-.33 6.09 50.45-3.17 45.55-4.54-6.07-1.69-45.28-1.51-45.55 4.54m36-37.68h2.72v-6.1h1.93v-2.3h-6.64v2.3h2Zm-8.93 7.76c-3-1.61-18.2-.35-18.49 2.73-.36 3.59 22.91-.32 18.49-2.73M208 59.85c2.52 3 22-2.3 16.27-5-3.33-1.57-18.43 2.4-16.27 5m-10.8-13.58c-6.32-1.29-.39 20.55-10.42 24-16.9 5.82-8.64-21.93-16.68-20.41-6.62 1.27 4.27 21.69 7.72 23.39 16.26 8.09 31.36-24.49 19.38-27m-52.88 1.54c-13.19 2.59 3.42-31.94-5.8-32.38-7.74-.41-3.39 20.51-3.45 23.82-.16 11.9-11.87 9.24-11.43 14.24 9.82 2.09 10.66-1.65 10.72 10.67 0 2.11-3.31 18.26 1.89 17.47 15.58-2.37-9.06-33.79 15.36-29 5.86 7.66 3.07 14.23 1.78 22.21-.77 4.87 5.94 7.41 5.72 2.19-.63-11.51 5-33-14.79-29.2m5.24-12.71c2.49.51 4.65-3.56 2.71-5.45-2.82-2.73-6.54 4.69-2.71 5.45M98.78 54c-7.66.36-5.2 14.16-.39 18 5.9 4.63 33.56 1.46 29.29-7.51C122.16 52.84 95.36 83.88 98.78 54M81.19 63c1.58 3.15 3.17 29.1-5.41 20-5.72-6.12-1.48-16.67-4.52-24.53-7.48 2-14.85 4.19-22.11 6.84a16.91 16.91 0 0 1-4.53 8.62c-5.65-2.5 18.44-62 25.72-61.21S76.68 42 77.55 49c11.16-2.66 20.92-8.81 31.61-12.66 4.63 9.78-12.49 10-20.31 13.58-7.24 3.31-11.7 5.18-7.66 13.16M69 43.3C68.89 42.12 69.46 29 64.48 29c-3.94 9.35-9 18.13-11.27 28.11C66.1 57.49 69.6 54.92 69 43.3"/></g></g></svg></a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="index.html#pathology-anchor">Pathology</a></li>
+    <li><a href="index.html#experiments-anchor">Experiments</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+  <button class="mobile-nav-toggle" id="mobileToggle" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+
+<!-- ===== PAGE TOP SPACER ===== -->
+<div class="page-top"></div>
+
+<!-- ===== 1. TITLE + INTRO ===== -->
+<header class="case-header fade-in">
+  <h1>Arthus Reaction</h1>
+  <div class="case-intro">
+    <p>A vaccine booster. An insulin injection. A monoclonal antibody infusion. Each time a needle introduces an antigen into tissue that already has circulating IgG antibodies, the conditions are set for a local immune catastrophe. Within 4 to 12 hours, the injection site becomes swollen, erythematous, and exquisitely painful. The skin may ulcerate. The underlying vessels are being destroyed by immune complexes, complement, and neutrophils — the three effectors of Type III hypersensitivity, localized to a single site. This is the Arthus reaction.</p>
+    <p>Unlike anaphylaxis, which is immediate and IgE-mediated, or serum sickness, which is systemic, the Arthus reaction is localized and IgG-driven. It is the prototype of immune complex vasculitis: antigen and antibody meet in the vessel wall, form insoluble lattices, fix complement, and summon neutrophils that degranulate directly into the endothelial surface. The vessel wall undergoes fibrinoid necrosis. The lumen thromboses. The tissue infarcts. What looks like a simple injection-site reaction is, at the microscopic level, a contained war between immune complexes and the vessel that houses them.</p>
+    <div class="case-meta">
+      <div class="case-meta-row">
+        <span class="case-meta-label">Case Type</span>
+        <span class="case-meta-value">Clinical Illustration</span>
+      </div>
+      <div class="case-meta-row">
+        <span class="case-meta-label">Focus</span>
+        <span class="case-meta-value">Pathophysiology</span>
+      </div>
+      <div class="case-meta-row">
+        <span class="case-meta-label">Year</span>
+        <span class="case-meta-value">2026</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ===== 2. TWO-IMAGE ROW ===== -->
+<section class="image-row fade-in">
+  <div class="img-wrap">
+    <img src="images/case-studies/arthus-01-vessel-neutrophils.jpg" alt="Dermal capillary in Arthus reaction: immune complex deposits in vessel wall, dense neutrophil infiltrate, fibrinoid necrosis replacing normal wall architecture, fibrin-platelet thrombus occluding lumen" loading="lazy">
+  </div>
+  <div class="img-wrap">
+    <img src="images/case-studies/arthus-02-2panel-prequel.jpg" alt="Two-panel prequel: left panel shows antigen-antibody lattice forming and depositing in vessel wall, right panel shows first neutrophils arriving and adhering to endothelium" loading="lazy">
+  </div>
+</section>
+
+<!-- ===== 3. PROCESS SECTION ===== -->
+<section class="process">
+  <h2 class="fade-in">Process</h2>
+  <div class="process-steps">
+    <div class="process-step fade-in">
+      <h3>Immune Complex Formation: The Lattice That Starts It All</h3>
+      <p>The Arthus reaction requires sensitization: the patient must already have circulating IgG antibodies against the antigen being injected. When the antigen enters the tissue at the injection site, it diffuses through the interstitial space and encounters these pre-existing IgG molecules. They bind. But the reaction does not stop at simple antigen-antibody pairing. Multiple IgG molecules bind multiple antigen molecules, forming a cross-linked lattice — an immune complex — that grows until it becomes insoluble and precipitates out of solution. The complexes deposit in the walls of small dermal capillaries and post-capillary venules, embedding themselves in the basement membrane and subendothelial matrix. At this point, the vessel wall is studded with immune complexes but still intact. The damage has not yet begun.</p>
+    </div>
+    <div class="process-step fade-in">
+      <h3>Complement and Neutrophils: The Effector Cascade Arrives</h3>
+      <p>The Fc regions of the IgG molecules in the deposited complexes are now exposed and immobilized, a configuration that activates the classical complement pathway with high efficiency. C1q binds. The cascade propagates through C4 and C2 to C3 convertase, which cleaves C3 into C3a and C3b. C3a diffuses outward as an anaphylatoxin, increasing vascular permeability and acting as a chemoattractant. C5a, generated downstream, is the most potent neutrophil chemoattractant in the body. Within minutes, neutrophils begin marginating along the endothelium, adhering via selectins and integrins, and diapedesing through the vessel wall directly into the site of complex deposition. They arrive primed, and what they find — immune complexes fixed to a surface — triggers frustrated phagocytosis: the neutrophils degranulate directly onto the vessel wall, releasing proteases, collagenases, and reactive oxygen species not into a phagolysosome, but into the extracellular matrix of the vessel itself.</p>
+    </div>
+    <div class="process-step fade-in">
+      <h3>Fibrinoid Necrosis and Thrombosis: The Vessel Wall Dissolves</h3>
+      <p>The enzymes released by degranulating neutrophils digest the vessel wall. Endothelial cells detach. The basement membrane fragments. Smooth muscle cells in the media die. The digested wall takes on a characteristic appearance on histology: a bright, glassy, structureless eosinophilic material called fibrinoid necrosis, so named because it stains like fibrin and looks like necrosis. Fibrin and plasma proteins leak into the damaged wall, filling the space where viable tissue used to be. The exposed subendothelial collagen triggers the coagulation cascade. Platelets adhere. A fibrin-platelet thrombus forms in the lumen, further compromising flow. The vessel is now both leaking and occluded. The tissue downstream becomes ischemic. At the gross level, the skin over the injection site swells, reddens, and may progress to a central zone of hemorrhagic necrosis — the visible endpoint of a microscopic immune complex vasculitis.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 4. PROGRESSION PANELS ===== -->
+<section class="stacked-images">
+  <div class="img-wrap fade-in">
+    <img src="images/case-studies/arthus-03-2x2-full.jpg" alt="Full Arthus reaction 2x2 sequence: immune complex formation, neutrophil infiltration, complement activation with MAC formation, and gross skin outcome showing hemorrhagic necrosis at injection site" loading="lazy">
+  </div>
+</section>
+
+<!-- ===== 5. OUTCOME SECTION ===== -->
+<section class="outcome">
+  <h2 class="fade-in">Outcome</h2>
+  <p class="fade-in">The Arthus reaction is self-limited. The injected antigen is cleared by the very immune complexes and phagocytes that formed in response to it. The neutrophils apoptose. The complement cascade winds down. The damaged vessel heals by fibrosis over days to weeks, leaving a small scar. But the lesson of the Arthus reaction is not about its resolution — it is about what it reveals. The same mechanism, scaled systemically, produces serum sickness. The same mechanism, if the antigen is persistent (as in chronic hepatitis B or C, or lupus), produces chronic immune complex vasculitis with multi-organ involvement. The Arthus reaction is the prototype: a contained, visible, local experiment in what happens when IgG meets antigen in the wrong place at the wrong time. The illustrations in this series follow the cascade from lattice formation through neutrophil degranulation to fibrinoid necrosis, because understanding the vessel wall as both the site and the target of the injury is what makes Type III hypersensitivity legible.</p>
+</section>
+
+<!-- ===== 6. OTHER WORK ===== -->
+<section class="other-work">
+  <h2 class="fade-in">Other work</h2>
+  <div class="other-work-grid">
+    <a href="case-study-coagulative-necrosis.html" class="ow-card fade-in">
+      <div class="ow-card-img-wrap">
+        <img class="ow-card-img" src="images/case-studies/coag-necrosis-01-gross-infarct.png" alt="Coagulative Necrosis" loading="lazy">
+      </div>
+      <div class="ow-card-info">
+        <h3 class="ow-card-title">Coagulative Necrosis</h3>
+        <p class="ow-card-cat">Medical Illustration</p>
+      </div>
+    </a>
+    <a href="case-study-osteomalacia.html" class="ow-card fade-in">
+      <div class="ow-card-img-wrap">
+        <img class="ow-card-img" src="images/case-studies/osteomalacia-cutaway.jpg" alt="Osteomalacia" loading="lazy">
+      </div>
+      <div class="ow-card-info">
+        <h3 class="ow-card-title">Osteomalacia</h3>
+        <p class="ow-card-cat">Medical Illustration</p>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- ===== 7. CLOSING CTA ===== -->
+<section class="contact fade-in">
+  <h2>Want to learn about the human body<br>from the inside?</h2>
+  <a href="mailto:steven.oppong@gmail.com" class="contact-icon" aria-label="Send email">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+    steven.oppong@gmail.com
+  </a>
+</section>
+
+<!-- ===== 8. FOOTER ===== -->
+<footer>
+  <div class="footer-links">
+    <a href="https://www.linkedin.com/in/kwabena-oppong-904a3440/" target="_blank" rel="noopener">LinkedIn</a>
+  </div>
+  <div class="footer-copy">Steven Oppong, MD &copy; 2026</div>
+</footer>
+
+<script>
+(function() {
+  var els = document.querySelectorAll('.fade-in');
+
+  function check() {
+    els.forEach(function(el) {
+      var top = el.getBoundingClientRect().top;
+      if (top < window.innerHeight * 0.85) el.classList.add('visible');
+    });
+  }
+
+  window.addEventListener('scroll', check, { passive: true });
+  check();
+
+  var toggle = document.getElementById('mobileToggle');
+  var nav = document.getElementById('navLinks');
+  if (toggle) toggle.addEventListener('click', function() { nav.classList.toggle('mobile-open'); });
+  nav.querySelectorAll('a').forEach(function(a) {
+    a.addEventListener('click', function() { nav.classList.remove('mobile-open'); });
+  });
+})();
+</script>
+<script src="lightbox.js"></script>
+<script>if (/[\?&]edit\b/.test(location.search)) { var s=document.createElement('script'); s.src='admin.js'; document.body.appendChild(s); }</script>
+</body>
+</html>

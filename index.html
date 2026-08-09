@@ -64,7 +64,8 @@ section { overflow: hidden; }
 .work-col:last-child { padding-top: 60px; }
 
 .work-card {
-  display: block; background: #141414; border-radius: 16px; overflow: hidden;
+  display: block; background: #141414; overflow: hidden;
+  border-radius: 0 0 16px 16px;
   transition: transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1),
               opacity 0.6s cubic-bezier(0.25, 0.1, 0.25, 1);
   width: 100%;
@@ -76,7 +77,7 @@ section { overflow: hidden; }
 .work-card.square .work-card-img-wrap { aspect-ratio: 1; }
 .work-card.rect  .work-card-img-wrap { aspect-ratio: 5/3; }
 .work-card.tall  .work-card-img-wrap { aspect-ratio: 3/4; }
-.work-card-img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; }
+.work-card-img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; border-radius: 16px 16px 0 0; }
 .work-card-info { padding: 16px 20px 20px; }
 .work-card-title { font-size: 18px; font-weight: 600; line-height: 1.3; letter-spacing: -0.02em; color: #fff; }
 .work-card-cat { font-size: 14px; font-weight: 500; line-height: 1.3; color: #757575; margin-top: 2px; }
@@ -88,8 +89,8 @@ section { overflow: hidden; }
   display: grid; grid-template-columns: 35% 1fr; gap: 60px;
   align-items: start;
 }
-.about h2 { font-size: 56px; font-weight: 600; line-height: 1.1; letter-spacing: -0.03em; }
-.experience h2 { font-size: 56px; font-weight: 600; line-height: 1.1; letter-spacing: -0.03em; margin-bottom: 48px; }
+.about h2 { font-size: clamp(36px, 5vw, 56px); font-weight: 600; line-height: 1.1; letter-spacing: -0.03em; }
+.experience h2 { font-size: clamp(36px, 5vw, 56px); font-weight: 600; line-height: 1.1; letter-spacing: -0.03em; margin-bottom: 48px; }
 .about-text p { font-size: 20px; line-height: 1.6; opacity: 0.75; margin-bottom: 24px; }
 .about-text p:last-child { margin-bottom: 0; }
 
@@ -239,7 +240,6 @@ section { overflow: hidden; }
   .hero h1 { font-size: clamp(28px, 5vw, 52px); max-width: clamp(260px, 60vw, 700px); }
   .hero-reveal { object-position: center 25%; }
   .full-image { height: 60vh; }
-  .about h2, .experience h2 { font-size: 42px; }
   .vtl-rail { min-height: 60px; }
   .vtl-label { font-size: 14px; }
   .vtl-year { font-size: 11px; }
@@ -264,7 +264,6 @@ section { overflow: hidden; }
   .exp-row .exp-date { padding-top: 0; margin-left: 0; }
   .exp-row .exp-role { white-space: normal; }
   .exp-detail { padding-left: 0; margin-top: 12px; }
-  .about h2, .experience h2 { font-size: 36px; }
   .about-inner { grid-template-columns: 1fr; gap: 32px; }
   .about-timeline { max-width: 100%; }
   .vtl-rail { min-height: 56px; }
@@ -349,12 +348,48 @@ section { overflow: hidden; }
             <p class="work-card-cat">Renal Pathophysiology</p>
           </div>
         </div>
+        <a href="case-study-portal-hypertension.html" class="work-card rect fade-in" style="transition-delay: 0.45s;">
+          <div class="work-card-img-wrap">
+            <img class="work-card-img" src="images/case-studies/portal-hypertension-hero.jpg" alt="Portal Hypertension — distended portal venous system, coagulative necrosis teaching plate" loading="lazy">
+          </div>
+          <div class="work-card-info">
+            <h3 class="work-card-title">Why is the fat backing up?</h3>
+            <p class="work-card-cat">Portal Hypertension, Pathophysiology</p>
+          </div>
+        </a>
+        <a href="case-study-tb-scrofula.html" class="work-card rect fade-in" style="transition-delay: 0.60s;">
+          <div class="work-card-img-wrap">
+            <img class="work-card-img" src="images/case-studies/tb-scrofula-01-neck-swelling.jpg" alt="TB Scrofula — cervical tuberculous lymphadenitis, cold abscess, granulomatous caseous necrosis" loading="lazy">
+          </div>
+          <div class="work-card-info">
+            <h3 class="work-card-title">TB Scrofula</h3>
+            <p class="work-card-cat">Infectious Disease</p>
+          </div>
+        </a>
+        <a href="case-study-nutmeg-liver.html" class="work-card rect fade-in" style="transition-delay: 0.75s;">
+          <div class="work-card-img-wrap">
+            <img class="work-card-img" src="images/case-studies/nutmeg-liver-01-lobule-master.jpg" alt="Nutmeg Liver — chronic passive congestion, centrilobular necrosis, congestive hepatopathy" loading="lazy">
+          </div>
+          <div class="work-card-info">
+            <h3 class="work-card-title">Nutmeg Liver</h3>
+            <p class="work-card-cat">Hepatic Pathology</p>
+          </div>
+        </a>
+        <a href="case-study-coagulative-necrosis.html" class="work-card rect fade-in" style="transition-delay: 0.90s;">
+          <div class="work-card-img-wrap">
+            <img class="work-card-img" src="images/case-studies/coag-necrosis-01-gross-infarct.png" alt="Coagulative Necrosis — pale myocardial infarct, tombstone myocytes, ischemic cell death" loading="lazy">
+          </div>
+          <div class="work-card-info">
+            <h3 class="work-card-title">Coagulative Necrosis</h3>
+            <p class="work-card-cat">Cardiac Pathology</p>
+          </div>
+        </a>
       </div>
       <!-- Right Column (offset stagger) -->
       <div class="work-col">
         <a href="case-study-actinic-keratosis.html" class="work-card tall fade-in" style="transition-delay: 0.08s;">
           <div class="work-card-img-wrap">
-            <img class="work-card-img" src="images/actinic-keratosis/09-clinical-thumbnail.png" alt="Actinic Keratosis — rough scaly UV-damaged patches on skin surface, medically accurate dark-skin clinical presentation" loading="lazy">
+            <img class="work-card-img" src="images/actinic-keratosis/09-clinical-thumbnail.jpg" alt="Actinic Keratosis — rough scaly UV-damaged patches on skin surface, medically accurate dark-skin clinical presentation" loading="lazy">
           </div>
           <div class="work-card-info">
             <h3 class="work-card-title">Actinic Keratosis</h3>
@@ -379,6 +414,33 @@ section { overflow: hidden; }
             <p class="work-card-cat">Gastrointestinal Pathology</p>
           </div>
         </div>
+        <a href="case-study-osteomalacia.html" class="work-card square fade-in" style="transition-delay: 0.50s;">
+          <div class="work-card-img-wrap">
+            <img class="work-card-img" src="images/case-studies/osteomalacia-cutaway.jpg" alt="Osteomalacia — thick unmineralized osteoid seam, stalled mineralization front, soft bone pathophysiology" loading="lazy">
+          </div>
+          <div class="work-card-info">
+            <h3 class="work-card-title">Osteomalacia</h3>
+            <p class="work-card-cat">Bone Pathology</p>
+          </div>
+        </a>
+        <a href="case-study-osteopetrosis.html" class="work-card rect fade-in" style="transition-delay: 0.64s;">
+          <div class="work-card-img-wrap">
+            <img class="work-card-img" src="images/case-studies/bone-01-endochondral.jpg" alt="Osteopetrosis — marble bone disease, osteoclast failure, failed bone resorption and remodeling" loading="lazy">
+          </div>
+          <div class="work-card-info">
+            <h3 class="work-card-title">Osteopetrosis</h3>
+            <p class="work-card-cat">Bone Pathology</p>
+          </div>
+        </a>
+        <a href="case-study-arthus-reaction.html" class="work-card square fade-in" style="transition-delay: 0.78s;">
+          <div class="work-card-img-wrap">
+            <img class="work-card-img" src="images/case-studies/arthus-01-vessel-neutrophils.jpg" alt="Arthus Reaction — Type III hypersensitivity, immune complex vasculitis, fibrinoid necrosis" loading="lazy">
+          </div>
+          <div class="work-card-info">
+            <h3 class="work-card-title">Arthus Reaction</h3>
+            <p class="work-card-cat">Immunopathology</p>
+          </div>
+        </a>
       </div>
     </div>
   </div>

@@ -77,6 +77,16 @@ Beiza/activemillers-site/
 
 **Removed cards (2026-08-07):** Histiocyte Extravasation, Platelet Cascade, Ischemic Colitis, Omega-3 Pathway, Illustrated Pathology, duplicate Crohn's 3x3 grid.
 
+## Key assets (quick lookup — outside activemillers-site)
+
+| Asset | Absolute Path | Use |
+|---|---|---|
+| **Signature SVG** | `C:\Users\steve\Personal Assistant\assets\signature\signature-master.svg` | Steve's artist mark. Gold/tan #c7b191, calligraphic. Overlay on every finished medical illustration. |
+| **Signature PNG** | `C:\Users\steve\Personal Assistant\assets\signature\signature-master.png` | Raster fallback. |
+| **Signature style lock** | `C:\Users\steve\Personal Assistant\Beiza\activemillers-site\images\actinic-keratosis\18-final-block-silhouette-vessels.jpg` | Magnific style reference for all medical renders. |
+| **Illustration ref area** | `C:\Users\steve\Personal Assistant\Beiza\activemillers-site\images\_ref_illustrations\` | Raw .ai / reference illustration files. |
+| **Image rule** | `C:\Users\steve\Personal Assistant\.cursor\rules\immersa-medical-visuals.mdc` | Auto-applied on every image generation. Has signature + style sections. |
+
 ## Site sections (top to bottom)
 
 1. **Nav** — fixed, mix-blend-mode: difference. Logo SVG inline. Links: "Pathology" (#pathology-anchor), "Experiments" (#experiments-anchor), "Contact"

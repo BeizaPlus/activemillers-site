@@ -1,0 +1,56 @@
+/* Lightbox — fullscreen image viewer, global for all case study pages */
+.lb-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.92);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+  cursor: zoom-out;
+}
+.lb-overlay.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+.lb-overlay img {
+  max-width: 92vw;
+  max-height: 92vh;
+  object-fit: contain;
+  border-radius: 4px;
+  box-shadow: 0 0 80px rgba(0,0,0,0.5);
+  cursor: default;
+  user-select: none;
+  -webkit-user-select: none;
+}
+.lb-close {
+  position: fixed;
+  top: 20px;
+  right: 24px;
+  width: 44px;
+  height: 44px;
+  z-index: 10001;
+  background: rgba(255,255,255,0.08);
+  border: none;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 22px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease, background 0.15s ease;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+.lb-close.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+.lb-close:hover { background: rgba(255,255,255,0.18); }
+.lb-close svg { width: 20px; height: 20px; stroke: #fff; stroke-width: 2; }

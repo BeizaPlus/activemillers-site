@@ -94,7 +94,7 @@
   align-items: start;
 }
 .context h2 {
-  font-size: 48px; font-weight: 600; letter-spacing: -0.03em; line-height: 1.1;
+  font-size: clamp(28px, 5vw, 48px); font-weight: 600; letter-spacing: -0.03em; line-height: 1.1;
   position: sticky; top: 120px;
 }
 .context-text p {
@@ -119,18 +119,14 @@
 }
 @media (max-width: 809px) {
   .case-header { grid-template-columns: 1fr; gap: 40px; }
-  .case-header h1 { font-size: clamp(30px, 8vw, 48px); }
   .plate-section { padding: 48px 32px; }
-  .plate-section h2 { font-size: 24px; }
   .comparison-row { grid-template-columns: 1fr; }
   .context { grid-template-columns: 1fr; gap: 32px; padding: 80px 32px; }
-  .context h2 { position: static; font-size: 36px; }
+  .context h2 { position: static; }
   .other-work { padding: 80px 32px; }
   .other-work-grid { grid-template-columns: 1fr; gap: 24px; }
 }
 @media (max-width: 374px) {
-  .case-header h1 { font-size: 28px; }
-  .plate-section h2 { font-size: 20px; }
   .case-header, .plate-section, .context, .other-work { padding-left: 20px; padding-right: 20px; }
 }
 </style>

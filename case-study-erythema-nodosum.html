@@ -64,7 +64,7 @@
   align-items: start;
 }
 .process h2 {
-  font-size: 48px; font-weight: 600; letter-spacing: -0.03em; line-height: 1.1;
+  font-size: clamp(28px, 5vw, 48px); font-weight: 600; letter-spacing: -0.03em; line-height: 1.1;
   position: sticky; top: 120px;
 }
 .process-steps { display: flex; flex-direction: column; gap: 48px; }
@@ -83,7 +83,7 @@
   align-items: start;
 }
 .outcome h2 {
-  font-size: 48px; font-weight: 600; letter-spacing: -0.03em; line-height: 1.1;
+  font-size: clamp(28px, 5vw, 48px); font-weight: 600; letter-spacing: -0.03em; line-height: 1.1;
 }
 .outcome p {
   font-size: 18px; line-height: 1.7; opacity: 0.7;
@@ -107,18 +107,14 @@
 }
 @media (max-width: 809px) {
   .case-header { grid-template-columns: 1fr; gap: 40px; }
-  .case-header h1 { font-size: clamp(30px, 8vw, 48px); }
   .process { grid-template-columns: 1fr; gap: 32px; padding: 80px 32px; }
-  .process h2 { position: static; font-size: 36px; }
+  .process h2 { position: static; }
   .outcome { grid-template-columns: 1fr; gap: 24px; padding: 80px 32px; }
-  .outcome h2 { font-size: 36px; }
   .other-work { padding: 80px 32px; }
   .other-work-grid { grid-template-columns: 1fr; gap: 24px; }
   .image-row { grid-template-columns: 1fr; }
 }
 @media (max-width: 374px) {
-  .case-header h1 { font-size: 28px; }
-  .process h2, .outcome h2 { font-size: 28px; }
   .case-header, .process, .outcome, .other-work { padding-left: 20px; padding-right: 20px; }
 }
 </style>
@@ -193,11 +189,11 @@
     </div>
     <div class="process-step fade-in">
       <h3>The Neutrophilic Wave: Acute Septal Panniculitis</h3>
-      <p>Within hours to days, neutrophils infiltrate the interlobular septa. The septal walls thicken visibly. Small vessels within them dilate and leak. On histology, the fat lobules themselves remain pristine and untouched, their adipocytes clean and translucent. This is the defining feature of septal panniculitis, and it distinguishes erythema nodosum from lobular panniculitis, where the fat cells themselves are inflamed. The contrast between the clean fat lobules and the heavily inflamed septa surrounding them is the central diagnostic finding.</p>
+      <p>Within hours to days, neutrophils predominate in the interlobular septa, though early lesions already show a mixed infiltrate of lymphocytes and histiocytes alongside them. The septal walls thicken visibly. Small vessels within them dilate and leak. On histology, the fat lobules themselves remain pristine and untouched, their adipocytes clean and translucent. This is the defining feature of septal panniculitis, and it distinguishes erythema nodosum from lobular panniculitis, where the fat cells themselves are inflamed. The contrast between the clean fat lobules and the heavily inflamed septa surrounding them is the central diagnostic finding.</p>
     </div>
     <div class="process-step fade-in">
       <h3>The Lymphocytic Wave: Subacute Transition</h3>
-      <p>Approximately two weeks later, the cellular composition of the infiltrate shifts. T-cells and histiocytes replace the early neutrophils. The septa now show a mixed chronic inflammatory infiltrate dominated by lymphocytes. Granulomatous inflammation can develop within the septa. Miescher's radial granulomas, small nodular aggregates of histiocytes arranged around a central cleft, are characteristic of erythema nodosum on biopsy. The neutrophils did the visible damage in the first wave. The lymphocytes arrived later and stayed, sustaining a low-grade inflammatory environment that can persist for weeks.</p>
+      <p>Over the following days to weeks, the cellular composition of the infiltrate shifts. T-cells and histiocytes come to dominate, while the early neutrophils recede. The septa now show a mixed chronic inflammatory infiltrate with lymphocytes as the majority population. Granulomatous inflammation can develop within the septa. Miescher's radial granulomas, small nodular aggregates of histiocytes arranged around a central cleft, are characteristic of erythema nodosum on biopsy. The neutrophils did the visible damage in the first wave. The lymphocytes arrived later and stayed, sustaining a low-grade inflammatory environment that can persist for weeks.</p>
     </div>
   </div>
 </section>

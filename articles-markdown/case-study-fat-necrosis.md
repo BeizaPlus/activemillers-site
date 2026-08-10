@@ -47,5 +47,4 @@ Two roads, same lesion. In the omentum, lipase digests fat into a chalky-white s
 7. `fat-necrosis-traumatic-03.png` — Extreme macro at the moment of membrane rupture, glistening triglyceride lipid droplets spilling out of burst adipocytes into the surrounding interstitial space
 8. `fat-necrosis-traumatic-07.png` — Foamy lipid-laden macrophages and multinucleated giant cells surrounding pools of cholesterol debris, real cellular cleanup activity
 9. `fat-necrosis-traumatic-08.png` — Dense fibrous connective tissue physically encapsulating the lesion from the outside in, collagen fibers wrapping and walling off the calcified fatty core
-10. `fat-necrosis-traumatic-09.png` — The final stable lesion years later: a firm, chalky-white, irregularly calcified nodule in cutaway cross-section, encapsulated in fibrous tissue
-11. `fat-necrosis-immersive-08.png` — Depth-split frame: a chalky-white omental plaque in extreme macro foreground, a fibrosed calcified breast lesion in cross-section soft-focus background
+10. `fat-necrosis-immersive-08.png` — Depth-split frame: a chalky-white omental plaque in extreme macro foreground, a fibrosed calcified breast lesion in cross-section soft-focus background

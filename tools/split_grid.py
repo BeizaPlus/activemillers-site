@@ -30,7 +30,7 @@ def split_grid(input_path, rows, cols, output_dir=None, prefix=None):
             out_path = os.path.join(output_dir, fname)
             cell.save(out_path, quality=95)
             saved.append(out_path)
-            print(f"  → {fname}  ({cell.size[0]}x{cell.size[1]})")
+            print(f"  -> {fname}  ({cell.size[0]}x{cell.size[1]})")
 
     print(f"Split {os.path.basename(input_path)} ({w}x{h}) into {rows}x{cols} = {len(saved)} cells")
     return saved

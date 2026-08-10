@@ -1,3 +1,14 @@
+/* ===== SPACING SCALE — single source of truth for section/element gaps ===== */
+:root {
+  --space-xs: 12px;
+  --space-sm: 20px;
+  --space-md: 32px;
+  --space-lg: 48px;
+  --space-xl: 64px;
+  --space-2xl: 80px;
+  --space-3xl: 128px;
+}
+
 /* ===== GLOBAL RESET & DEFAULTS ===== */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
@@ -71,6 +82,14 @@ nav::before {
 img {
   border-radius: 16px;
 }
+
+/* ===== GLOBAL CAPTIONED FIGURE — image + separate caption block, used across process-format pages ===== */
+.step-images { display: flex; flex-direction: column; gap: var(--space-md); }
+.step-figure { width: 100%; }
+.step-figure img { width: 100%; height: auto; display: block; background: #141414; border-radius: 16px; }
+.step-caption { padding: var(--space-sm) 4px 0; }
+.step-caption .fig-num { font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-bottom: 3px; }
+.step-caption .fig-title { font-size: 14px; font-weight: 500; letter-spacing: -0.01em; color: rgba(255,255,255,0.6); line-height: 1.4; }
 
 /* ===== GLOBAL CARD ===== */
 .ow-card {

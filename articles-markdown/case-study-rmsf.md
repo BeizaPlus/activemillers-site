@@ -1,0 +1,32 @@
+# Rocky Mountain Spotted Fever
+
+**Meta:**
+- Case Type: Clinical Illustration
+- Focus: Infectious Disease
+- Year: 2026
+
+## Intro
+
+Rocky Mountain Spotted Fever is not a spotted fever in the dermatologic sense. The rash is petechial — small, non-blanching, purplish-red dots that represent extravasated blood from damaged capillaries. And the damage is not caused by a toxin circulating in the blood. It is caused by the organism itself: Rickettsia rickettsii, a small gram-negative coccobacillus that lives inside endothelial cells. This is an obligate intracellular pathogen, and its target is the cell that lines every blood vessel in the body. The tick bite that delivers R. rickettsii into the dermis is the beginning of a systemic vasculitis that, untreated, has a case fatality rate of 20 to 30 percent. The disease kills by turning blood vessels into sieves.
+
+R. rickettsii enters endothelial cells by induced phagocytosis. Once inside, it escapes the phagosome and replicates freely in the cytoplasm, using host actin to propel itself from cell to cell. This direct cell-to-cell spread allows the infection to advance along the endothelial lining without ever being exposed to antibodies or complement in the bloodstream. The infected endothelial cell becomes swollen, necrotic, and eventually detaches from the basement membrane, leaving a gap in the vessel wall. Plasma leaks through the gap. Platelets adhere to the exposed subendothelial collagen. Microthrombi form. The result is a combination of increased vascular permeability (edema, hypotension, pulmonary edema, cerebral edema) and microvascular occlusion (digital ischemia, focal necrosis, petechiae). Every organ system is affected because every organ system has blood vessels. The brain is particularly vulnerable: cerebral edema and microinfarcts produce the headache, confusion, and meningismus that dominate the clinical presentation. The rash appears 2 to 5 days after the fever starts, beginning on the wrists and ankles and spreading centripetally to the trunk. The classic triad is fever, headache, and rash — but the rash is absent in 10 to 15 percent of cases at presentation, and waiting for it to appear before starting treatment is a fatal mistake.
+
+## Process
+
+### The VE-Cadherin Connection: How R. rickettsii Disrupts the Endothelial Barrier
+
+Endothelial cells are bound to one another by adherens junctions, protein complexes anchored to VE-cadherin (vascular endothelial cadherin). VE-cadherin molecules from adjacent cells interlock like a zipper, sealing the intercellular cleft and preventing fluid and cells from leaking out of the vessel. This zipper is the structural basis of the endothelial barrier. R. rickettsii infection disrupts VE-cadherin through multiple mechanisms: direct proteolytic cleavage, phosphorylation that triggers internalization of the cadherin from the cell surface, and cytoskeletal reorganization that pulls the junctions apart. The result is a physical gap between endothelial cells. Plasma water, albumin, and eventually red blood cells escape through these gaps into the interstitium. At the gross level, this manifests as edema, petechiae, and hypovolemic shock. At the molecular level, it is a failure of VE-cadherin to keep the endothelial zipper closed.
+
+### Doxycycline: The One Drug You Cannot Wait For
+
+Doxycycline is the treatment of choice for RMSF in all patients — including children under 8 years old and pregnant women. The old contraindication of tetracyclines in young children (due to dental staining) does not apply when the alternative is a 20 to 30 percent mortality rate. The CDC is explicit: doxycycline is the drug, and it should be started the moment RMSF is suspected, not after confirmatory serology returns. Serology takes days to weeks; the disease can kill in 5 to 8 days. A single day's delay in starting doxycycline is associated with a significantly higher risk of death. The decision to treat is clinical: fever plus headache plus any suggestion of a rash in a patient with tick exposure in an endemic area (southeastern and south-central United States) is enough. The drug is given for 7 to 10 days, or for at least 3 days after the fever resolves. Chloramphenicol is the only alternative, and it is inferior to doxycycline by every measure. There is no vaccine. Prevention is tick avoidance, prompt tick removal, and a low threshold for empiric treatment in febrile patients with the right exposure history.
+
+## Outcome
+
+Rocky Mountain Spotted Fever is a disease of endothelial cells. Every clinical manifestation — the fever, the rash, the edema, the shock, the seizures — follows directly from the fact that R. rickettsii infects, replicates within, and destroys the cells that line blood vessels. The petechial rash is a map of microvascular rupture. The cerebral edema is a failure of the blood-brain barrier at the level of VE-cadherin. The shock is a combination of hypovolemia (from capillary leak) and distributive physiology (from the systemic inflammatory response). Treatment is doxycycline, started early and empirically. The drug works by binding to the 30S ribosomal subunit and blocking bacterial protein synthesis; it does not repair the endothelial damage that has already occurred. That is why early treatment matters: every hour of unchecked rickettsial replication destroys more endothelium, opens more gaps, leaks more plasma, and brings the patient closer to the point where even killing the bacteria cannot reverse the vascular collapse. This illustration series maps the disease from tick bite to molecular disruption of the endothelial zipper, showing the mechanism that makes RMSF a vasculopathy, not a rash.
+
+## Figures (alt text reference)
+
+1. `rmsf-01-3x3-endothelial.jpg` — Nine-panel sequence of endothelial invasion: tick bite, rickettsial entry, phagosome escape, cytoplasmic replication, actin-based motility, cell-to-cell spread, endothelial swelling, vessel wall disruption, petechial hemorrhage
+2. `rmsf-02-cerebral-edema.jpg` — Brain cross-section showing cerebral edema with flattened gyri, narrowed sulci, and petechial hemorrhages throughout the cortex — the neuropathology of fulminant RMSF
+3. `rmsf-03-ve-cadherin-zipper.jpg` — Molecular-scale view of VE-cadherin zipper between two endothelial cells: intact junction on the left, disrupted junction on the right with rickettsial organisms at the gap, plasma leaking through the breach

@@ -50,15 +50,22 @@
 
   function getCaption(el) {
     var figure = el.closest('.step-figure');
-    if (!figure) return null;
-    var capEl = figure.querySelector('.step-caption');
-    if (!capEl) return null;
-    var num = capEl.querySelector('.fig-num');
-    var title = capEl.querySelector('.fig-title');
-    return {
-      num: num ? num.textContent : '',
-      title: title ? title.textContent : ''
-    };
+    if (figure) {
+      var capEl = figure.querySelector('.step-caption');
+      if (capEl) {
+        var num = capEl.querySelector('.fig-num');
+        var title = capEl.querySelector('.fig-title');
+        return {
+          num: num ? num.textContent : '',
+          title: title ? title.textContent : ''
+        };
+      }
+    }
+    // Fallback: use the image's alt text so every image in the gallery gets a caption
+    if (el.alt && el.alt.trim()) {
+      return { num: '', title: el.alt.trim() };
+    }
+    return null;
   }
 
   function updateCounter() {
@@ -82,6 +89,7 @@
     if (cap && (cap.num || cap.title)) {
       infoBtn.classList.add('visible');
       captionNum.textContent = cap.num;
+      captionNum.style.display = cap.num ? '' : 'none';
       captionTitle.textContent = cap.title;
       captionBar.classList.toggle('open', captionOpen);
     } else {

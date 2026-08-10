@@ -132,7 +132,8 @@ footer { display: flex; justify-content: space-between; align-items: center; pad
 .fade-in.visible { opacity: 1; transform: translateY(0); }
 
 /* ===== GLOBAL IMAGE WRAPPER ===== */
-.img-wrap { position: relative; background: #141414; }
+/* Matches body background (#0a0a09) exactly so rounded corners never show a halo behind the curve */
+.img-wrap { position: relative; background: #0a0a09; }
 
 /* ===== GLOBAL RESPONSIVE ===== */
 @media (max-width: 1199px) {

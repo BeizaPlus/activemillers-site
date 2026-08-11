@@ -1,8 +1,9 @@
-"""Lead capture server for activemillers.com case study PDF downloads.
+"""Lead capture server for activemillers.com "notify me" case study alerts.
 
-Receives {email, source, pdf} from the lead-magnet form on any case study page,
+Receives {email, source, list} from the lead-magnet form on any case study page,
 appends to a local CSV, and returns 200. This is the newsletter-growth test:
-free PDF bibliography download in exchange for an email address.
+subscribe to get notified when new case studies go live, real-time medicine,
+in exchange for an email address.
 
 Run: python lead-capture-server.py
 Binds to 127.0.0.1:8761 only, not accessible from the network.
@@ -61,7 +62,7 @@ class Handler(BaseHTTPRequestHandler):
 
         email = (data.get("email") or "").strip().lower()
         source = (data.get("source") or "unknown").strip()
-        pdf = (data.get("pdf") or "").strip()
+        subscribed_list = (data.get("list") or "").strip()
 
         if not EMAIL_RE.match(email):
             self.send_response(400)
@@ -75,8 +76,8 @@ class Handler(BaseHTTPRequestHandler):
         with open(LEADS_CSV, "a", newline="", encoding="utf-8") as f:
             writer = csv.writer(f)
             if is_new:
-                writer.writerow(["timestamp_utc", "email", "source", "pdf"])
-            writer.writerow([datetime.now(timezone.utc).isoformat(), email, source, pdf])
+                writer.writerow(["timestamp_utc", "email", "source", "list"])
+            writer.writerow([datetime.now(timezone.utc).isoformat(), email, source, subscribed_list])
 
         self.send_response(200)
         self._cors()

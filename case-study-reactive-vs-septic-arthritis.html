@@ -11,6 +11,7 @@
 <link rel="stylesheet" href="global.css">
 <link rel="stylesheet" href="lightbox.css">
 <link rel="stylesheet" href="compare-slider.css">
+<link rel="stylesheet" href="video-player.css">
 <style>
 .page-top { padding-top: 140px; }
 .case-header { padding: 0 clamp(32px, 7vw, 80px) 80px; max-width: 1280px; margin: 0 auto; display: grid; grid-template-columns: 45% 1fr; gap: 80px; align-items: start; }
@@ -50,12 +51,7 @@
 .process-step > * + * { margin-top: var(--space-lg); }
 .full-image { padding: 0 clamp(32px, 7vw, 80px); max-width: 1280px; margin: 0 auto var(--space-3xl); width: 100%; }
 section.full-image .step-figure img { height: 92vh; width: 100%; object-fit: contain; background: #0a0a09; }
-section.full-image .step-figure video { height: 92vh; width: 100%; object-fit: contain; background: #0a0a09; border-radius: 16px; display: block; }
-.video-figure { position: relative; }
-.video-play-btn { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 72px; height: 72px; border-radius: 50%; background: rgba(0,0,0,0.55); border: 1px solid rgba(255,255,255,0.25); display: flex; align-items: center; justify-content: center; cursor: pointer; padding: 0; transition: background 0.2s, opacity 0.2s, transform 0.2s; }
-.video-play-btn:hover { background: rgba(0,0,0,0.75); transform: translate(-50%, -50%) scale(1.05); }
-.video-play-btn svg { width: 28px; height: 28px; color: #fff; margin-left: 4px; }
-.video-play-btn.hidden { opacity: 0; pointer-events: none; }
+section.full-image .step-figure.video-figure video { height: 92vh; width: 100%; object-fit: contain; }
 .step-lookalikes { padding-top: var(--space-md); border-top: 1px solid rgba(255,255,255,0.08); }
 .step-lookalikes-label { font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; opacity: 0.4; margin-bottom: 10px; }
 .step-lookalikes ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
@@ -274,10 +270,10 @@ section.full-image .step-figure video { height: 92vh; width: 100%; object-fit: c
 
 <section class="full-image fade-in">
   <div class="step-figure video-figure">
-    <video id="raEndingVideo" playsinline preload="none" muted poster="images/case-studies/reactive-septic-knee-01.png">
+    <video playsinline preload="none" muted poster="images/case-studies/reactive-septic-knee-01.png">
       <source src="videos/reactive-septic-knee-ending.mp4" type="video/mp4">
     </video>
-    <button class="video-play-btn" id="raEndingPlayBtn" aria-label="Play video">
+    <button class="video-play-btn" aria-label="Play video">
       <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 4v16a1 1 0 0 0 1.524 .852l13 -8a1 1 0 0 0 0 -1.704l-13 -8a1 1 0 0 0 -1.524 .852z" /></svg>
     </button>
   </div>
@@ -330,19 +326,7 @@ section.full-image .step-figure video { height: 92vh; width: 100%; object-fit: c
 </script>
 <script src="lightbox.js"></script>
 <script src="compare-slider.js"></script>
-<script>
-(function() {
-  var video = document.getElementById('raEndingVideo');
-  var btn = document.getElementById('raEndingPlayBtn');
-  if (!video || !btn) return;
-  function toggle() { if (video.paused) { video.play(); } else { video.pause(); } }
-  btn.addEventListener('click', function(e) { e.stopPropagation(); toggle(); });
-  video.addEventListener('click', toggle);
-  video.addEventListener('play', function() { btn.classList.add('hidden'); });
-  video.addEventListener('pause', function() { btn.classList.remove('hidden'); });
-  video.addEventListener('ended', function() { btn.classList.remove('hidden'); });
-})();
-</script>
+<script src="video-player.js"></script>
 <script>if (/[\?&]edit\b/.test(location.search)) { var s=document.createElement('script'); s.src='admin.js'; document.body.appendChild(s); }</script>
 </body>
 </html>

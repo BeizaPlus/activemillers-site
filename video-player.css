@@ -1,0 +1,45 @@
+/* Click-to-play video — global widget for all case study pages.
+   Drop a .video-figure containing a <video poster="..."> and a .video-play-btn
+   anywhere on the page. video-player.js auto-activates it. No native <video controls>:
+   no browser gradient bar, no playback-speed/PiP/volume chrome. */
+.video-figure {
+  position: relative;
+}
+.video-figure video {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 16px;
+  background: #0a0a09;
+}
+.video-play-btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: rgba(0,0,0,0.55);
+  border: 1px solid rgba(255,255,255,0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.2s, opacity 0.2s, transform 0.2s;
+}
+.video-play-btn:hover {
+  background: rgba(0,0,0,0.75);
+  transform: translate(-50%, -50%) scale(1.05);
+}
+.video-play-btn svg {
+  width: 28px;
+  height: 28px;
+  color: #fff;
+  margin-left: 4px; /* optical centering for the play triangle */
+}
+.video-play-btn.hidden {
+  opacity: 0;
+  pointer-events: none;
+}

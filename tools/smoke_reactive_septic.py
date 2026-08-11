@@ -55,7 +55,7 @@ with sync_playwright() as p:
     # Every process-step has imagery
     steps = page.query_selector_all(".process-step")
     for i, step in enumerate(steps):
-        imgs_in_step = step.query_selector_all("img")
+        imgs_in_step = step.query_selector_all("img, video")
         results.append((f"Progression step {i+1} has imagery", len(imgs_in_step) > 0, f"{len(imgs_in_step)} images"))
 
     # No em dashes

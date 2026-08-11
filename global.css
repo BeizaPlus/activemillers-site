@@ -129,7 +129,7 @@ footer { display: flex; justify-content: space-between; align-items: center; pad
   opacity: 0; transform: translateY(30px);
   transition: opacity 0.7s ease, transform 0.7s ease;
 }
-.fade-in.visible { opacity: 1; transform: translateY(0); }
+.fade-in.visible { opacity: 1; transform: none; }
 
 /* ===== GLOBAL IMAGE WRAPPER ===== */
 /* Matches body background (#0a0a09) exactly so rounded corners never show a halo behind the curve */

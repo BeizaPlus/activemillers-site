@@ -81,13 +81,51 @@ section.full-image .step-figure img { height: 92vh; width: 100%; object-fit: con
 @media (max-width: 374px) { .case-header, .process, .outcome, .other-work { padding-left: 20px; padding-right: 20px; } }
 
 /* Physician-partner CTA row (test on this article only, per Steve — not yet a global widget) */
-.contact-cta-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; margin-top: 40px; }
-.contact-cta-row .contact-icon { margin-top: 0; }
-.contact-icon.partner-cta { background: rgba(230,0,33,0.12); border: 1px solid rgba(230,0,33,0.4); }
-.contact-icon.partner-cta:hover { background: rgba(230,0,33,0.2); }
-.contact-icon.partner-cta.secondary { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); }
+.contact-cta-stack { display: flex; flex-direction: column; align-items: center; gap: 28px; margin-top: 40px; width: 100%; }
+.contact-cta-block { display: flex; flex-direction: column; align-items: center; }
+.contact-cta-block .contact-icon { margin-top: 0; width: 280px; border: none; cursor: pointer; font-family: inherit; }
+.contact-icon.partner-cta.secondary { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15) !important; }
 .contact-icon.partner-cta.secondary:hover { background: rgba(255,255,255,0.15); }
-.contact-partner-note { font-size: 13px; opacity: 0.4; margin-top: 20px; }
+
+/* Physician banner card, referenced from a Pinterest CTA-card pattern (colored block,
+   headline + subhead + white pill button, decorative bleed) */
+.physician-banner {
+  display: block; position: relative; overflow: hidden;
+  width: 100%; max-width: 640px; border-radius: 24px;
+  background: linear-gradient(135deg, #7a0016, #e60021);
+  padding: 40px clamp(28px, 5vw, 48px);
+  text-decoration: none;
+  transition: transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+.physician-banner:hover { transform: translateY(-4px); }
+.physician-banner-text { position: relative; z-index: 1; text-align: left; max-width: 420px; }
+.physician-banner-title { font-size: clamp(22px, 3vw, 28px); font-weight: 600; letter-spacing: -0.02em; line-height: 1.2; color: #fff; }
+.physician-banner-title em { font-style: italic; font-weight: 500; }
+.physician-banner-desc { font-size: 15px; line-height: 1.5; color: rgba(255,255,255,0.8); margin: 12px 0 24px; }
+.physician-banner-btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: #fff; color: #e60021; font-weight: 600; font-size: 15px;
+  padding: 12px 20px; border-radius: 40px;
+}
+.physician-banner-btn svg { width: 20px; height: 20px; flex-shrink: 0; }
+.physician-banner-btn svg:last-child { width: 16px; height: 16px; margin-left: 2px; }
+.contact-email-form { display: none; gap: 10px; max-width: 340px; flex-wrap: wrap; margin-top: 14px; }
+.contact-email-form.visible { display: flex; }
+.contact-email-form input[type="email"] {
+  flex: 1 1 200px; min-width: 180px;
+  background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.15); border-radius: 10px;
+  padding: 12px 14px; color: #fff; font-size: 15px; font-family: inherit;
+}
+.contact-email-form input[type="email"]::placeholder { color: rgba(255,255,255,0.35); }
+.contact-email-form input[type="email"]:focus { outline: none; border-color: #e60021; }
+.contact-email-form button {
+  background: #e60021; color: #fff; border: none; border-radius: 10px;
+  padding: 12px 20px; font-size: 15px; font-weight: 600; font-family: inherit; cursor: pointer;
+  transition: background 0.15s ease;
+}
+.contact-email-form button:hover { background: #ff1a3d; }
+.contact-email-success { display: none; font-size: 14px; color: #4ade80; margin-top: 12px; text-align: center; max-width: 300px; }
+.contact-email-success.visible { display: block; }
 </style>
 </head>
 <body>
@@ -326,12 +364,23 @@ section.full-image .step-figure img { height: 92vh; width: 100%; object-fit: con
 
 <section class="contact fade-in">
   <h2>Want to learn about the human body<br>from the inside?</h2>
-  <div class="contact-cta-row">
-    <a href="mailto:steven.oppong@gmail.com" class="contact-icon" aria-label="Send email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>steven.oppong@gmail.com</a>
-    <a href="#" class="contact-icon partner-cta" aria-label="Speak to a physician now"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>Speak to a physician now</a>
-    <a href="#" class="contact-icon partner-cta secondary" aria-label="Learn more about our telemedicine partner"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>Learn more</a>
+  <div class="contact-cta-stack">
+    <div class="contact-cta-block">
+      <button type="button" class="contact-icon partner-cta secondary" id="learnMoreYesBtn">Yes, I want to know more</button>
+      <form class="contact-email-form" id="learnMoreForm">
+        <input type="email" id="learnMoreEmail" placeholder="you@email.com" required>
+        <button type="submit">Send it to me</button>
+      </form>
+      <p class="contact-email-success" id="learnMoreSuccess">You're set. We'll send the full write-up to your inbox shortly.</p>
+    </div>
+    <a href="#" class="physician-banner" aria-label="Speak to a physician now">
+      <div class="physician-banner-text">
+        <div class="physician-banner-title">Have something specific to <em>your</em> case?</div>
+        <p class="physician-banner-desc">Get informed about your condition directly from a physician. No insurance required.</p>
+        <span class="physician-banner-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4h-1a2 2 0 0 0 -2 2v3.5a5.5 5.5 0 0 0 11 0v-3.5a2 2 0 0 0 -2 -2h-1" /><path d="M8 15a6 6 0 1 0 12 0v-3" /><path d="M11 3v2" /><path d="M6 3v2" /><path d="M18 10a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /></svg>Speak to a physician now<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l14 0" /><path d="M13 18l6 -6" /><path d="M13 6l6 6" /></svg></span>
+      </div>
+    </a>
   </div>
-  <p class="contact-partner-note">Have something specific to this case? Get connected with a physician through our telemedicine partner.</p>
 </section>
 
 <footer>
@@ -363,6 +412,38 @@ section.full-image .step-figure img { height: 92vh; width: 100%; object-fit: con
       });
     }, { rootMargin: '-120px 0px -60% 0px', threshold: 0 });
     targets.forEach(function(t) { observer.observe(t.el); });
+  }
+
+  // "Yes, I want to know more": reveal email capture, then post to local capture endpoint
+  var yesBtn = document.getElementById('learnMoreYesBtn');
+  var learnMoreForm = document.getElementById('learnMoreForm');
+  if (yesBtn && learnMoreForm) {
+    yesBtn.addEventListener('click', function() {
+      yesBtn.hidden = true;
+      learnMoreForm.classList.add('visible');
+      document.getElementById('learnMoreEmail').focus();
+    });
+    learnMoreForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      var email = document.getElementById('learnMoreEmail').value.trim();
+      var success = document.getElementById('learnMoreSuccess');
+      if (!email) return;
+      fetch('http://localhost:8761/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: email, source: 'reactive-vs-septic-arthritis', list: 'article-pdf-request' })
+      }).then(function(r) {
+        if (r.ok) {
+          learnMoreForm.style.display = 'none';
+          success.classList.add('visible');
+        } else {
+          throw new Error('capture server error');
+        }
+      }).catch(function() {
+        success.textContent = 'Signup server offline right now. Email steven.oppong@gmail.com and we\'ll send it directly.';
+        success.classList.add('visible');
+      });
+    });
   }
 })();
 </script>

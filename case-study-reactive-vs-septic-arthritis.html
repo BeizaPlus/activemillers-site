@@ -79,6 +79,15 @@ section.full-image .step-figure img { height: 92vh; width: 100%; object-fit: con
 @media (max-width: 1199px) { .case-header, .process, .outcome, .other-work, .full-image { padding-left: 64px; padding-right: 64px; } }
 @media (max-width: 809px) { .case-header { grid-template-columns: 1fr; gap: 40px; } .ctl-rail { min-height: 56px; } .process { grid-template-columns: 1fr; gap: 32px; padding: 80px 32px; } .process-outline { position: static; } .outcome { grid-template-columns: 1fr; gap: 24px; padding: 80px 32px 0; } .other-work { padding: 80px 32px; } .other-work-grid { grid-template-columns: 1fr; gap: 24px; } .image-row { grid-template-columns: 1fr; } }
 @media (max-width: 374px) { .case-header, .process, .outcome, .other-work { padding-left: 20px; padding-right: 20px; } }
+
+/* Physician-partner CTA row (test on this article only, per Steve — not yet a global widget) */
+.contact-cta-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; margin-top: 40px; }
+.contact-cta-row .contact-icon { margin-top: 0; }
+.contact-icon.partner-cta { background: rgba(230,0,33,0.12); border: 1px solid rgba(230,0,33,0.4); }
+.contact-icon.partner-cta:hover { background: rgba(230,0,33,0.2); }
+.contact-icon.partner-cta.secondary { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); }
+.contact-icon.partner-cta.secondary:hover { background: rgba(255,255,255,0.15); }
+.contact-partner-note { font-size: 13px; opacity: 0.4; margin-top: 20px; }
 </style>
 </head>
 <body>
@@ -317,7 +326,12 @@ section.full-image .step-figure img { height: 92vh; width: 100%; object-fit: con
 
 <section class="contact fade-in">
   <h2>Want to learn about the human body<br>from the inside?</h2>
-  <a href="mailto:steven.oppong@gmail.com" class="contact-icon" aria-label="Send email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>steven.oppong@gmail.com</a>
+  <div class="contact-cta-row">
+    <a href="mailto:steven.oppong@gmail.com" class="contact-icon" aria-label="Send email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>steven.oppong@gmail.com</a>
+    <a href="#" class="contact-icon partner-cta" aria-label="Speak to a physician now"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>Speak to a physician now</a>
+    <a href="#" class="contact-icon partner-cta secondary" aria-label="Learn more about our telemedicine partner"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>Learn more</a>
+  </div>
+  <p class="contact-partner-note">Have something specific to this case? Get connected with a physician through our telemedicine partner.</p>
 </section>
 
 <footer>

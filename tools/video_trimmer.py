@@ -16,10 +16,13 @@ FFPLAY = FFMPEG.replace("ffmpeg.exe", "ffplay.exe")
 
 DEFAULT_INPUT_DIR = r"C:\Users\steve\AppData\Local\Comfy-Desktop\ComfyUI-Shared\output\video\LTX_2.3_i2v"
 DEFAULT_OUTPUT_DIR = r"C:\Users\steve\Personal Assistant\Beiza\activemillers-site\videos"
-# Figure 7 ("The joint in real time: sterile-looking fluid overrun by responding
-# neutrophils") was trimmed from this raw render. Pre-load it so re-trimming
-# doesn't require browsing for it every time.
-FIGURE_7_SOURCE = os.path.join(DEFAULT_INPUT_DIR, "septic-knee-onepass-4stage_00001_.mp4")
+# Recently-used raw renders, for one-click loading instead of browsing every time.
+# Add new entries here as new sources come up.
+QUICK_SOURCES = {
+    "Figure 7 source (onepass-4stage)": "septic-knee-onepass-4stage_00001_.mp4",
+    "Batch A - The Slow Build (0-14s)": "septic-knee-30s-batchA-0to14s_00001_.mp4",
+    "Batch B - The Rapid Clouding (14-30s)": "septic-knee-30s-batchB-14to30s_00001_.mp4",
+}
 THUMB_W, THUMB_H = 280, 158
 
 
@@ -86,9 +89,11 @@ class Trimmer(tk.Tk):
 
         self._build(body)
 
-        if os.path.exists(FIGURE_7_SOURCE):
-            self.video_path = FIGURE_7_SOURCE
-            self.path_label.config(text=f"Figure 7 source: {FIGURE_7_SOURCE}")
+        first_label, first_file = next(iter(QUICK_SOURCES.items()))
+        first_path = os.path.join(DEFAULT_INPUT_DIR, first_file)
+        if os.path.exists(first_path):
+            self.video_path = first_path
+            self.path_label.config(text=f"{first_label}: {first_path}")
             threading.Thread(target=self._load_duration, daemon=True).start()
 
     def _label(self, parent, text, **kw):
@@ -101,8 +106,15 @@ class Trimmer(tk.Tk):
         top.pack(fill="x", padx=12)
         tk.Button(top, text="Browse video...", command=self.browse, bg=entry_bg, fg=fg,
                   activebackground=accent, relief="flat", padx=10, pady=4).pack(side="left")
-        tk.Button(top, text="Load Figure 7 source", command=self.load_figure_7, bg=entry_bg, fg=fg,
-                  activebackground=accent, relief="flat", padx=10, pady=4).pack(side="left", padx=6)
+
+        quick_row = tk.Frame(root, bg=bg)
+        quick_row.pack(fill="x", padx=12, pady=(0, 6))
+        self._label(quick_row, "Quick load:").pack(side="left")
+        for label, filename in QUICK_SOURCES.items():
+            tk.Button(quick_row, text=label, command=lambda f=filename, l=label: self.load_quick(f, l),
+                      bg=entry_bg, fg=fg, activebackground=accent, relief="flat", padx=8, pady=3,
+                      font=("Segoe UI", 9)).pack(side="left", padx=4)
+
         self.path_label = self._label(root, "No file selected", wraplength=640, justify="left")
         self.path_label.pack(anchor="w", padx=12)
 
@@ -222,12 +234,13 @@ class Trimmer(tk.Tk):
         self._thumb_job = self.after(250, lambda: self.update_thumb(which))
 
     # --- loading ---
-    def load_figure_7(self):
-        if not os.path.exists(FIGURE_7_SOURCE):
-            messagebox.showwarning("Not found", f"Couldn't find:\n{FIGURE_7_SOURCE}")
+    def load_quick(self, filename, label):
+        path = os.path.join(DEFAULT_INPUT_DIR, filename)
+        if not os.path.exists(path):
+            messagebox.showwarning("Not found", f"Couldn't find:\n{path}")
             return
-        self.video_path = FIGURE_7_SOURCE
-        self.path_label.config(text=f"Figure 7 source: {FIGURE_7_SOURCE}")
+        self.video_path = path
+        self.path_label.config(text=f"{label}: {path}")
         self.status_label.config(text="Reading duration...")
         threading.Thread(target=self._load_duration, daemon=True).start()
 

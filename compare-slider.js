@@ -83,6 +83,7 @@
       if (e.key === 'ArrowRight' || e.key === 'Right') { e.preventDefault(); setPosition(current + 5); }
     });
 
-    setPosition(50);
+    var start = parseInt(container.dataset.start, 10);
+    setPosition(isNaN(start) ? 50 : start);
   });
 })();

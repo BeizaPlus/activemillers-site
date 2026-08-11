@@ -74,8 +74,8 @@ with sync_playwright() as p:
             broken.append(im.get_attribute("src"))
     results.append(("All images load (nonzero width)", len(broken) == 0, f"broken: {broken}" if broken else f"{len(all_imgs)} images ok"))
 
-    # Lightbox on header image row
-    img = page.query_selector(".image-row img")
+    # Lightbox on a process-step figure image
+    img = page.query_selector(".process-step .step-figure img")
     if img:
         img.click()
         page.wait_for_timeout(400)
@@ -85,11 +85,22 @@ with sync_playwright() as p:
         page.keyboard.press("Escape")
         page.wait_for_timeout(300)
     else:
-        results.append(("Image row has clickable img", False, "not found"))
+        results.append(("Step figure has clickable img", False, "not found"))
 
-    # Full-width closing image present
-    full_img = page.query_selector("section.full-image img")
-    results.append(("Full-width closing image present", full_img is not None, ""))
+    # Full-width closing video present, poster set
+    full_video = page.query_selector("section.full-image video")
+    poster_ok = False
+    if full_video:
+        poster = full_video.get_attribute("poster")
+        poster_ok = bool(poster) and "reactive-septic-knee-01" in poster
+    results.append(("Full-width closing video present with poster", full_video is not None and poster_ok, ""))
+
+    # Compare slider (Figure 10) present and wired
+    compare = page.query_selector(".compare-container")
+    results.append(("Compare slider present", compare is not None, ""))
+    if compare:
+        handle = compare.query_selector(".compare-handle")
+        results.append(("Compare slider has drag handle", handle is not None, ""))
 
     # Other work links to real pages
     ow_links = page.query_selector_all(".other-work-grid a")

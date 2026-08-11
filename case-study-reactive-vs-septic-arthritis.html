@@ -10,6 +10,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;1,14..32,400;1,14..32,500;1,14..32,600;1,14..32,700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="global.css">
 <link rel="stylesheet" href="lightbox.css">
+<link rel="stylesheet" href="compare-slider.css">
 <style>
 .page-top { padding-top: 140px; }
 .case-header { padding: 0 clamp(32px, 7vw, 80px) 80px; max-width: 1280px; margin: 0 auto; display: grid; grid-template-columns: 45% 1fr; gap: 80px; align-items: start; }
@@ -49,6 +50,7 @@
 .process-step > * + * { margin-top: var(--space-lg); }
 .full-image { padding: 0 clamp(32px, 7vw, 80px); max-width: 1280px; margin: 0 auto var(--space-3xl); width: 100%; }
 section.full-image .step-figure img { height: 92vh; width: 100%; object-fit: contain; background: #0a0a09; }
+section.full-image .step-figure video { height: 92vh; width: 100%; object-fit: contain; background: #0a0a09; border-radius: 16px; display: block; }
 .step-lookalikes { padding-top: var(--space-md); border-top: 1px solid rgba(255,255,255,0.08); }
 .step-lookalikes-label { font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; opacity: 0.4; margin-bottom: 10px; }
 .step-lookalikes ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
@@ -87,9 +89,10 @@ section.full-image .step-figure img { height: 92vh; width: 100%; object-fit: con
   </div>
 </header>
 
-<section class="image-row fade-in">
-  <div class="img-wrap"><img src="images/case-studies/reactive-septic-mech-08.png" alt="Cloudy, purulent synovial fluid dense with live bacteria and neutrophils, the hallmark of septic gonococcal arthritis" loading="lazy"></div>
-  <div class="img-wrap"><img src="images/case-studies/reactive-septic-mech-07.png" alt="Clear, sterile synovial fluid containing only immune cells, no organism present, the hallmark of reactive arthritis" loading="lazy"></div>
+<section class="full-image fade-in">
+  <div class="step-figure">
+    <img src="images/case-studies/reactive-septic-knee-baseplate.png" alt="Clean baseline knee joint capsule, clear synovial fluid, the pre-condition establishing shot before the two mechanisms diverge" loading="lazy">
+  </div>
 </section>
 
 <section class="process">
@@ -220,25 +223,36 @@ section.full-image .step-figure img { height: 92vh; width: 100%; object-fit: con
     <div class="process-step fade-in" id="ra-fluid">
       <h3>The Tap: What the Fluid Actually Shows</h3>
       <p>Bedside, these two conditions can look nearly the same: migratory polyarthralgia, tenosynovitis, systemic symptoms. The joint aspiration is what actually separates them, because the fluid itself is telling two completely different stories.</p>
-      <div class="step-images">
-        <div class="step-figure">
-          <img src="images/case-studies/reactive-septic-mech-09.png" alt="Split-frame knee comparison: septic joint with hemorrhagic breach on one side, sterile joint with scattered immune complexes on the other" loading="lazy">
-          <div class="step-caption"><div class="fig-num">Figure 10</div><div class="fig-title">Two joints, side by side: septic breach vs sterile complexes</div></div>
+      <div class="step-figure">
+        <div class="compare-container" data-label-before="Sterile" data-label-after="Septic" data-start="4" role="group" aria-label="Sterile versus septic knee joint comparison slider">
+          <span class="compare-label compare-label-before" aria-hidden="true">Sterile</span>
+          <span class="compare-label compare-label-after"  aria-hidden="true">Septic</span>
+          <div class="compare-layer">
+            <img src="images/case-studies/reactive-septic-knee-03.png" alt="Reactive arthritis knee: clear fluid with fine immune complexes suspended in it, no organism present" draggable="false">
+          </div>
+          <div class="compare-layer compare-top">
+            <div class="compare-layer">
+              <img src="images/case-studies/reactive-septic-knee-01.png" alt="Septic knee joint filled with thick, cloudy purulent fluid" draggable="false">
+            </div>
+          </div>
+          <div class="compare-divider"></div>
+          <div class="compare-handle" role="slider" aria-label="Drag to compare sterile with septic knee joint" aria-valuemin="0" aria-valuemax="100" aria-valuenow="4" tabindex="0">
+            <span class="compare-handle-circle">
+              <svg class="compare-handle-arrows" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M10 8l-4 4 4 4V8zm4 8l4-4-4-4v8z"/></svg>
+            </span>
+          </div>
         </div>
-        <div class="step-figure">
-          <img src="images/case-studies/reactive-septic-knee-03.png" alt="Reactive arthritis knee: clear fluid with fine immune complexes suspended in it, no organism present" loading="lazy">
-          <div class="step-caption"><div class="fig-num">Figure 11</div><div class="fig-title">Reactive knee: clear fluid, fine immune complexes only</div></div>
-        </div>
+        <div class="step-caption"><div class="fig-num">Figure 10</div><div class="fig-title">Sterile vs septic: drag to compare the two joints</div></div>
       </div>
       <p>Under magnification, the difference is unmistakable: live diplococci multiplying with neutrophils actively engaging them on one side, cross-reactive immune complexes and T-cells attacking self-tissue with zero organism present on the other.</p>
       <div class="step-images">
         <div class="step-figure">
           <img src="images/case-studies/reactive-septic-knee-02.png" alt="Molecular macro of live diplococci multiplying in synovial fluid, neutrophils engaging a real infection" loading="lazy">
-          <div class="step-caption"><div class="fig-num">Figure 12</div><div class="fig-title">Live diplococci multiplying, neutrophils in active combat</div></div>
+          <div class="step-caption"><div class="fig-num">Figure 11</div><div class="fig-title">Live diplococci multiplying, neutrophils in active combat</div></div>
         </div>
         <div class="step-figure">
           <img src="images/case-studies/reactive-septic-knee-04.png" alt="Molecular macro of immune complexes and cross-reactive T-cells attacking self-tissue, no organism anywhere in the field" loading="lazy">
-          <div class="step-caption"><div class="fig-num">Figure 13</div><div class="fig-title">Immune complexes attacking self-tissue, no organism in sight</div></div>
+          <div class="step-caption"><div class="fig-num">Figure 12</div><div class="fig-title">Immune complexes attacking self-tissue, no organism in sight</div></div>
         </div>
       </div>
       <p>Septic arthritis must be actively ruled out before reactive arthritis is diagnosed. That means a tap happens first, every time, even when the story sounds textbook for reactive arthritis. Gonococcal arthritis is the most common cause of septic arthritis in otherwise healthy young adults in the United States, and it's exactly the population that also gets reactive arthritis.</p>
@@ -253,7 +267,9 @@ section.full-image .step-figure img { height: 92vh; width: 100%; object-fit: con
 
 <section class="full-image fade-in">
   <div class="step-figure">
-    <img src="images/case-studies/reactive-septic-knee-01.png" alt="Septic knee joint filled with thick, cloudy purulent fluid, the closing image of the piece" loading="lazy">
+    <video controls playsinline preload="none" poster="images/case-studies/reactive-septic-knee-01.png">
+      <source src="videos/reactive-septic-knee-ending.mp4" type="video/mp4">
+    </video>
   </div>
 </section>
 
@@ -303,6 +319,7 @@ section.full-image .step-figure img { height: 92vh; width: 100%; object-fit: con
 })();
 </script>
 <script src="lightbox.js"></script>
+<script src="compare-slider.js"></script>
 <script>if (/[\?&]edit\b/.test(location.search)) { var s=document.createElement('script'); s.src='admin.js'; document.body.appendChild(s); }</script>
 </body>
 </html>

@@ -13,21 +13,35 @@
   margin: 0;
 }
 .compare-label {
-  position: absolute;
-  top: 16px;
-  z-index: 25;
   font-size: 13px;
   font-weight: 600;
   letter-spacing: 0.03em;
   text-transform: uppercase;
-  padding: 4px 12px;
-  border-radius: 6px;
-  background: rgba(0,0,0,0.55);
   color: rgba(255,255,255,0.7);
   pointer-events: none;
 }
-.compare-label-before { left: 16px; }
-.compare-label-after  { right: 16px; }
+.compare-container > .compare-label {
+  position: absolute;
+  top: 16px;
+  z-index: 25;
+  padding: 4px 12px;
+  border-radius: 6px;
+  background: rgba(0,0,0,0.55);
+}
+.compare-container > .compare-label-before { left: 16px; }
+.compare-container > .compare-label-after  { right: 16px; }
+
+/* Labels placed above the frame instead of overlaid on the image */
+.compare-labels-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+.compare-labels-row .compare-label {
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: rgba(255,255,255,0.5);
+}
 .compare-layer {
   position: absolute;
   inset: 0;

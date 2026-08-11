@@ -12,6 +12,7 @@
 <link rel="stylesheet" href="lightbox.css">
 <link rel="stylesheet" href="compare-slider.css">
 <link rel="stylesheet" href="video-player.css">
+<link rel="stylesheet" href="contact-cta.css">
 <style>
 /* Apple 8pt-grid spacing tokens, sourced from cmurphy1140/apple-design-system
    (tokens/global/spacing.json + styles/tokens.css) for a side-by-side comparison
@@ -80,52 +81,6 @@ section.full-image .step-figure img { height: 92vh; width: 100%; object-fit: con
 @media (max-width: 809px) { .case-header { grid-template-columns: 1fr; gap: 40px; } .ctl-rail { min-height: 56px; } .process { grid-template-columns: 1fr; gap: 32px; padding: 80px 32px; } .process-outline { position: static; } .outcome { grid-template-columns: 1fr; gap: 24px; padding: 80px 32px 0; } .other-work { padding: 80px 32px; } .other-work-grid { grid-template-columns: 1fr; gap: 24px; } .image-row { grid-template-columns: 1fr; } }
 @media (max-width: 374px) { .case-header, .process, .outcome, .other-work { padding-left: 20px; padding-right: 20px; } }
 
-/* Physician-partner CTA row (test on this article only, per Steve — not yet a global widget) */
-.contact-cta-stack { display: flex; flex-direction: column; align-items: center; gap: 28px; margin-top: 40px; width: 100%; }
-.contact-cta-block { display: flex; flex-direction: column; align-items: center; }
-.contact-cta-block .contact-icon { margin-top: 0; width: 280px; border: none; cursor: pointer; font-family: inherit; }
-.contact-icon.partner-cta.secondary { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15) !important; }
-.contact-icon.partner-cta.secondary:hover { background: rgba(255,255,255,0.15); }
-
-/* Physician banner card, referenced from a Pinterest CTA-card pattern (colored block,
-   headline + subhead + white pill button, decorative bleed) */
-.physician-banner {
-  display: block; position: relative; overflow: hidden;
-  width: 100%; max-width: 640px; border-radius: 24px;
-  background: linear-gradient(135deg, #7a0016, #e60021);
-  padding: 40px clamp(28px, 5vw, 48px);
-  text-decoration: none;
-  transition: transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
-}
-.physician-banner:hover { transform: translateY(-4px); }
-.physician-banner-text { position: relative; z-index: 1; text-align: left; max-width: 420px; }
-.physician-banner-title { font-size: clamp(22px, 3vw, 28px); font-weight: 600; letter-spacing: -0.02em; line-height: 1.2; color: #fff; }
-.physician-banner-title em { font-style: italic; font-weight: 500; }
-.physician-banner-desc { font-size: 15px; line-height: 1.5; color: rgba(255,255,255,0.8); margin: 12px 0 24px; }
-.physician-banner-btn {
-  display: inline-flex; align-items: center; gap: 10px;
-  background: #fff; color: #e60021; font-weight: 600; font-size: 15px;
-  padding: 12px 20px; border-radius: 40px;
-}
-.physician-banner-btn svg { width: 20px; height: 20px; flex-shrink: 0; }
-.physician-banner-btn svg:last-child { width: 16px; height: 16px; margin-left: 2px; }
-.contact-email-form { display: none; flex-direction: column; align-items: center; gap: 10px; max-width: 340px; margin: 14px auto 0; }
-.contact-email-form.visible { display: flex; }
-.contact-email-form input[type="email"] {
-  width: 100%; text-align: center;
-  background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.15); border-radius: 10px;
-  padding: 12px 14px; color: #fff; font-size: 15px; font-family: inherit;
-}
-.contact-email-form input[type="email"]::placeholder { color: rgba(255,255,255,0.35); }
-.contact-email-form input[type="email"]:focus { outline: none; border-color: #e60021; }
-.contact-email-form button {
-  background: #e60021; color: #fff; border: none; border-radius: 10px;
-  padding: 12px 20px; font-size: 15px; font-weight: 600; font-family: inherit; cursor: pointer;
-  transition: background 0.15s ease;
-}
-.contact-email-form button:hover { background: #ff1a3d; }
-.contact-email-success { display: none; font-size: 14px; color: #4ade80; margin-top: 12px; text-align: center; max-width: 300px; }
-.contact-email-success.visible { display: block; }
 </style>
 </head>
 <body>
@@ -367,7 +322,7 @@ section.full-image .step-figure img { height: 92vh; width: 100%; object-fit: con
   <div class="contact-cta-stack">
     <div class="contact-cta-block">
       <button type="button" class="contact-icon partner-cta secondary" id="learnMoreYesBtn">Yes, I want to know more</button>
-      <form class="contact-email-form" id="learnMoreForm">
+      <form class="contact-email-form" id="learnMoreForm" data-source="reactive-vs-septic-arthritis">
         <input type="email" id="learnMoreEmail" placeholder="you@email.com" required>
         <button type="submit">Send it to me</button>
       </form>
@@ -413,43 +368,12 @@ section.full-image .step-figure img { height: 92vh; width: 100%; object-fit: con
     }, { rootMargin: '-120px 0px -60% 0px', threshold: 0 });
     targets.forEach(function(t) { observer.observe(t.el); });
   }
-
-  // "Yes, I want to know more": reveal email capture, then post to local capture endpoint
-  var yesBtn = document.getElementById('learnMoreYesBtn');
-  var learnMoreForm = document.getElementById('learnMoreForm');
-  if (yesBtn && learnMoreForm) {
-    yesBtn.addEventListener('click', function() {
-      yesBtn.hidden = true;
-      learnMoreForm.classList.add('visible');
-      document.getElementById('learnMoreEmail').focus();
-    });
-    learnMoreForm.addEventListener('submit', function(e) {
-      e.preventDefault();
-      var email = document.getElementById('learnMoreEmail').value.trim();
-      var success = document.getElementById('learnMoreSuccess');
-      if (!email) return;
-      fetch('http://localhost:8761/subscribe', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: email, source: 'reactive-vs-septic-arthritis', list: 'article-pdf-request' })
-      }).then(function(r) {
-        if (r.ok) {
-          learnMoreForm.style.display = 'none';
-          success.classList.add('visible');
-        } else {
-          throw new Error('capture server error');
-        }
-      }).catch(function() {
-        success.textContent = 'Signup server offline right now. Email steven.oppong@gmail.com and we\'ll send it directly.';
-        success.classList.add('visible');
-      });
-    });
-  }
 })();
 </script>
 <script src="lightbox.js"></script>
 <script src="compare-slider.js"></script>
 <script src="video-player.js"></script>
+<script src="contact-cta.js"></script>
 <script>if (/[\?&]edit\b/.test(location.search)) { var s=document.createElement('script'); s.src='admin.js'; document.body.appendChild(s); }</script>
 </body>
 </html>

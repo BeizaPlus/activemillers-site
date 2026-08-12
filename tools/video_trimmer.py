@@ -204,6 +204,7 @@ class Trimmer(tk.Tk):
         tk.Entry(row5, textvariable=self.output_dir_var, width=45, bg=entry_bg, fg=fg,
                  insertbackground=fg).pack(side="left", padx=6, fill="x", expand=True)
         tk.Button(row5, text="...", command=self.browse_output_dir, bg=entry_bg, fg=fg, relief="flat").pack(side="left")
+        tk.Button(row5, text="Open folder", command=self.open_output_dir, bg=entry_bg, fg=fg, relief="flat").pack(side="left", padx=(6, 0))
 
         self.strip_audio_var = tk.BooleanVar(value=True)
         tk.Checkbutton(controls, text="Strip audio (site videos are always muted)", variable=self.strip_audio_var,
@@ -326,6 +327,13 @@ class Trimmer(tk.Tk):
         d = filedialog.askdirectory(initialdir=self.output_dir_var.get())
         if d:
             self.output_dir_var.set(d)
+
+    def open_output_dir(self):
+        d = self.output_dir_var.get().strip()
+        if not d:
+            return
+        os.makedirs(d, exist_ok=True)
+        subprocess.Popen(["explorer.exe", os.path.normpath(d)])
 
     def trim_and_save(self):
         if not self.video_path:

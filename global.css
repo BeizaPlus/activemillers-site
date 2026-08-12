@@ -107,6 +107,12 @@ nav::before {
 img {
   border-radius: 16px;
 }
+/* Edge-to-edge full-bleed images (zero side padding, touch the viewport edges)
+   look wrong with a rounded corner cut into them against the black background.
+   .image-row and .stacked-images are always full-bleed everywhere they're used. */
+.image-row img, .stacked-images img {
+  border-radius: 0;
+}
 
 /* ===== GLOBAL CAPTIONED FIGURE — image + separate caption block, used across process-format pages ===== */
 .step-images { display: flex; flex-direction: column; gap: var(--space-md); }

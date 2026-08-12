@@ -44,23 +44,13 @@
 .case-meta-label { opacity: 0.45; font-weight: 500; }
 .case-meta-value { font-weight: 500; }
 
-/* ===== TWO-IMAGE ROW ===== */
-.image-row {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 4px;
-  padding: 0; width: 100%;
-}
-.image-row img {
-  width: 100%; height: auto; display: block;
-  background: #141414;
-}
-
 /* ===== FULL-WIDTH SINGLE IMAGE ===== */
 .full-image { padding: 0; width: 100%; }
 .full-image img { width: 100%; height: auto; display: block; background: #141414; }
 
 /* ===== PROCESS SECTION (two-column) ===== */
 .process {
-  padding: 128px clamp(32px, 7vw, 80px);
+  padding: 128px clamp(32px, 7vw, 80px) 0;
   max-width: 1280px; margin: 0 auto;
   display: grid; grid-template-columns: 35% 1fr; gap: 80px;
   align-items: start;
@@ -79,7 +69,7 @@
 
 /* ===== OUTCOME SECTION (two-column) ===== */
 .outcome {
-  padding: 128px clamp(32px, 7vw, 80px);
+  padding: 128px clamp(32px, 7vw, 80px) 0;
   max-width: 1280px; margin: 0 auto;
   display: grid; grid-template-columns: 35% 1fr; gap: 80px;
   align-items: start;
@@ -109,12 +99,11 @@
 }
 @media (max-width: 809px) {
   .case-header { grid-template-columns: 1fr; gap: 40px; }
-  .process { grid-template-columns: 1fr; gap: 32px; padding: 80px 32px; }
+  .process { grid-template-columns: 1fr; gap: 32px; padding: 80px 32px 0; }
   .process h2 { position: static; }
-  .outcome { grid-template-columns: 1fr; gap: 24px; padding: 80px 32px; }
+  .outcome { grid-template-columns: 1fr; gap: 24px; padding: 80px 32px 0; }
   .other-work { padding: 80px 32px; }
   .other-work-grid { grid-template-columns: 1fr; gap: 24px; }
-  .image-row { grid-template-columns: 1fr; }
 }
 @media (max-width: 374px) {
   .case-header, .process, .outcome, .other-work { padding-left: 20px; padding-right: 20px; }
@@ -167,16 +156,6 @@
   </div>
 </section>
 
-<!-- ===== 3. TWO-IMAGE ROW: ESTABLISHING + INFILTRATE DETAIL ===== -->
-<section class="image-row fade-in">
-  <div class="img-wrap">
-    <img src="images/erythema-nodosum-septal-panniculitis.png" alt="Erythema Nodosum: wide establishing shot of subcutaneous fat lobules divided by thickened inflamed septa, clean adipocytes untouched within each lobule" loading="lazy">
-  </div>
-  <div class="img-wrap">
-    <img src="images/erythema-nodosum-septal-infiltrate.png" alt="Erythema Nodosum: tight detail of neutrophilic infiltrate densely packed within the thickened septal wall, clustered around small feeding vessels" loading="lazy">
-  </div>
-</section>
-
 <!-- ===== 4. PROCESS SECTION ===== -->
 <section class="process">
   <h2 class="fade-in">Mechanism</h2>
@@ -203,18 +182,17 @@
     <div class="process-step fade-in">
       <h3>The Neutrophilic Wave: Acute Septal Panniculitis</h3>
       <p>Within hours to days, neutrophils predominate in the interlobular septa, though early lesions already show a mixed infiltrate of lymphocytes and histiocytes alongside them. The septal walls thicken visibly. Small vessels within them dilate and leak. On histology, the fat lobules themselves remain pristine and untouched, their adipocytes clean and translucent. This is the defining feature of septal panniculitis, and it distinguishes erythema nodosum from lobular panniculitis, where the fat cells themselves are inflamed. The contrast between the clean fat lobules and the heavily inflamed septa surrounding them is the central diagnostic finding.</p>
+      <div class="step-images">
+        <div class="step-figure">
+          <img src="images/erythema-nodosum-septal-infiltrate.png" alt="Erythema Nodosum: tight detail of neutrophilic infiltrate densely packed within the thickened septal wall, clustered around small feeding vessels" loading="lazy">
+          <div class="step-caption"><div class="fig-title">Neutrophilic infiltrate packed into the thickened septal wall, clean fat lobules on either side</div></div>
+        </div>
+      </div>
     </div>
     <div class="process-step fade-in">
       <h3>The Lymphocytic Wave: Subacute Transition</h3>
       <p>Over the following days to weeks, the cellular composition of the infiltrate shifts. T-cells and histiocytes come to dominate, while the early neutrophils recede. The septa now show a mixed chronic inflammatory infiltrate with lymphocytes as the majority population. Granulomatous inflammation can develop within the septa. Miescher's radial granulomas, small nodular aggregates of histiocytes arranged around a central cleft, are characteristic of erythema nodosum on biopsy. The neutrophils did the visible damage in the first wave. The lymphocytes arrived later and stayed, sustaining a low-grade inflammatory environment that can persist for weeks.</p>
     </div>
-  </div>
-</section>
-
-<!-- ===== 5. SINGLE IMAGE: INFLAMED SEPTUM FULL ===== -->
-<section class="full-image fade-in">
-  <div class="img-wrap">
-    <img src="images/erythema-nodosum-septal-panniculitis.png" alt="Erythema Nodosum establishing shot: contrast between clean adipocyte lobules and inflamed septa, the defining histological feature of septal panniculitis" loading="lazy">
   </div>
 </section>
 

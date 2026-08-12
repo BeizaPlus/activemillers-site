@@ -61,11 +61,12 @@
 }
 .process-steps { display: flex; flex-direction: column; gap: 48px; }
 .process-step h3 {
-  font-size: 20px; font-weight: 600; margin-bottom: 12px; letter-spacing: -0.02em;
+  font-size: 20px; font-weight: 600; letter-spacing: -0.02em;
 }
 .process-step p {
   font-size: 17px; line-height: 1.7; opacity: 0.7;
 }
+.process-step > * + * { margin-top: var(--space-lg); }
 
 /* ===== OUTCOME SECTION (two-column) ===== */
 .outcome {

@@ -11,6 +11,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;1,14..32,400;1,14..32,500;1,14..32,600;1,14..32,700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.31.0/tabler-icons.min.css">
 <link rel="stylesheet" href="global.css">
+<link rel="stylesheet" href="video-player.css">
 <link rel="stylesheet" href="contact-cta.css">
 <style>
 /* ===== PAGE HEADER SPACING ===== */
@@ -183,6 +184,17 @@
     <div class="process-step fade-in">
       <h3>The Shared Pulmonary Trigger</h3>
       <p>In tuberculosis, alveolar macrophages engulf Mycobacterium tuberculosis. In sarcoidosis, an unknown antigen triggers the same cascade. Either way, the macrophage processes the antigen and presents it to naive T-cells in the lung-draining lymph nodes. Those T-cells activate, proliferate, and organize into granulomas. TB granulomas develop central caseous necrosis. Sarcoidosis granulomas remain non-caseating. Both achieve the same immunological outcome: a pool of primed T-cells now circulating through the body, looking for their target.</p>
+      <div class="step-images">
+        <div class="step-figure video-figure">
+          <video playsinline preload="none" muted poster="images/erythema-macrophage-drainage-poster.png">
+            <source src="videos/erythema-macrophage-drainage.mp4" type="video/mp4">
+          </video>
+          <button class="video-play-btn" aria-label="Play video">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 4v16a1 1 0 0 0 1.524 .852l13 -8a1 1 0 0 0 0 -1.704l-13 -8a1 1 0 0 0 -1.524 .852z" /></svg>
+          </button>
+          <div class="step-caption"><div class="fig-title">A resident macrophage exits the vessel wall to sample antigen and drain toward the lymph nodes</div></div>
+        </div>
+      </div>
     </div>
     <div class="process-step fade-in">
       <h3>Molecular Mimicry and the Septal Target</h3>
@@ -280,6 +292,7 @@
   });
 })();
 </script>
+<script src="video-player.js"></script>
 <script src="contact-cta.js"></script>
 </body>
 </html>

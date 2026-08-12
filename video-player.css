@@ -12,6 +12,11 @@
   border-radius: 16px;
   background: #0a0a09;
 }
+/* Edge-to-edge placement (inside .stacked-images / .image-row, or any section
+   using the .bleed utility) — same reasoning as global.css's image bleed rule. */
+.video-figure.bleed video {
+  border-radius: 0;
+}
 .video-play-btn {
   position: absolute;
   top: 50%;

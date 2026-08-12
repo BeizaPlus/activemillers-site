@@ -86,28 +86,6 @@ section { overflow: hidden; }
 .work-no-results { display: none; padding: 40px 0; text-align: center; font-size: 16px; opacity: 0.5; }
 .work-no-results.visible { display: block; }
 
-/* ===== NAV: hamburger-driven menu at every width, persistent search ===== */
-.nav-right { display: flex; align-items: center; gap: 16px; }
-.nav-links { display: none; }
-.mobile-nav-toggle { display: flex; }
-.mobile-nav-toggle i { font-size: 22px; color: #fff; }
-
-/* ===== SEARCH AUTOCOMPLETE DROPDOWN ===== */
-.nav-search-suggestions {
-  display: none; position: absolute; top: calc(100% + 8px); left: 0; right: 0;
-  background: rgba(20,20,20,0.98); border: 1px solid rgba(255,255,255,0.12);
-  border-radius: 12px; overflow: hidden; z-index: 10;
-  box-shadow: 0 12px 32px rgba(0,0,0,0.5);
-}
-.nav-search-suggestions.visible { display: block; }
-.nav-suggestion {
-  display: block; padding: 10px 16px; cursor: pointer;
-  transition: background 0.15s ease;
-}
-.nav-suggestion:hover, .nav-suggestion.active { background: rgba(255,255,255,0.08); }
-.nav-suggestion-title { font-size: 14px; font-weight: 500; color: #fff; }
-.nav-suggestion-cat { font-size: 12px; color: #757575; margin-top: 1px; }
-
 /* ===== ABOUT (Section / About) ===== */
 .about { padding: 128px 80px; }
 .about-inner {
@@ -758,6 +736,7 @@ section { overflow: hidden; }
   </video>
 </div>
 
+<script src="nav-search.js"></script>
 <script>
 (function() {
   var els = document.querySelectorAll('.fade-in');
@@ -771,116 +750,6 @@ section { overflow: hidden; }
 
   window.addEventListener('scroll', check, { passive: true });
   check();
-
-  var toggle = document.getElementById('mobileToggle');
-  var nav = document.getElementById('navLinks');
-  if (toggle) toggle.addEventListener('click', function() { nav.classList.toggle('mobile-open'); });
-  nav.querySelectorAll('a').forEach(function(a) {
-    a.addEventListener('click', function() { nav.classList.remove('mobile-open'); });
-  });
-})();
-
-/* ===== CASE SEARCH: live filter + autocomplete on title + category + image alt text ===== */
-(function() {
-  var input = document.getElementById('caseSearch');
-  var noResults = document.getElementById('workNoResults');
-  var suggestBox = document.getElementById('searchSuggestions');
-  if (!input) return;
-  var cards = document.querySelectorAll('.work-card');
-  var hasScrolledToResults = false;
-  var activeIndex = -1;
-
-  function searchText(card) {
-    if (card.dataset.searchText) return card.dataset.searchText;
-    var title = card.querySelector('.work-card-title');
-    var cat = card.querySelector('.work-card-cat');
-    var img = card.querySelector('.work-card-img');
-    var href = card.tagName === 'A' ? card.getAttribute('href') : '';
-    var bodyIndex = (window.CASE_SEARCH_INDEX && href && window.CASE_SEARCH_INDEX[href]) || '';
-    var text = [
-      title ? title.textContent : '',
-      cat ? cat.textContent : '',
-      img ? img.getAttribute('alt') || '' : '',
-      bodyIndex
-    ].join(' ').toLowerCase();
-    card.dataset.searchText = text;
-    return text;
-  }
-
-  function filterCards(query) {
-    var visibleCount = 0;
-    cards.forEach(function(card) {
-      var match = !query || searchText(card).indexOf(query) !== -1;
-      card.classList.toggle('search-hidden', !match);
-      if (match) visibleCount++;
-    });
-    noResults.classList.toggle('visible', query.length > 0 && visibleCount === 0);
-  }
-
-  function closeSuggestions() {
-    suggestBox.classList.remove('visible');
-    suggestBox.innerHTML = '';
-    activeIndex = -1;
-  }
-
-  function renderSuggestions(query) {
-    if (!query) { closeSuggestions(); return; }
-    var matches = [];
-    cards.forEach(function(card) {
-      var link = card.tagName === 'A' ? card : null;
-      if (!link) return; // only real case pages are suggestible
-      if (searchText(card).indexOf(query) === -1) return;
-      matches.push(card);
-    });
-    matches = matches.slice(0, 6);
-    if (!matches.length) { closeSuggestions(); return; }
-    suggestBox.innerHTML = matches.map(function(card, i) {
-      var title = card.querySelector('.work-card-title');
-      var cat = card.querySelector('.work-card-cat');
-      return '<a class="nav-suggestion" href="' + card.getAttribute('href') + '" data-index="' + i + '">' +
-        '<div class="nav-suggestion-title">' + (title ? title.textContent : '') + '</div>' +
-        '<div class="nav-suggestion-cat">' + (cat ? cat.textContent : '') + '</div>' +
-        '</a>';
-    }).join('');
-    activeIndex = -1;
-    suggestBox.classList.add('visible');
-  }
-
-  function setActive(index) {
-    var items = suggestBox.querySelectorAll('.nav-suggestion');
-    items.forEach(function(item) { item.classList.remove('active'); });
-    if (index >= 0 && index < items.length) {
-      items[index].classList.add('active');
-      activeIndex = index;
-    }
-  }
-
-  input.addEventListener('input', function() {
-    var query = input.value.trim().toLowerCase();
-    filterCards(query);
-    renderSuggestions(query);
-    if (!hasScrolledToResults && query.length > 0) {
-      hasScrolledToResults = true;
-      document.getElementById('experiments-anchor').scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-  });
-
-  input.addEventListener('keydown', function(e) {
-    var items = suggestBox.querySelectorAll('.nav-suggestion');
-    if (!items.length) return;
-    if (e.key === 'ArrowDown') { e.preventDefault(); setActive((activeIndex + 1) % items.length); }
-    else if (e.key === 'ArrowUp') { e.preventDefault(); setActive((activeIndex - 1 + items.length) % items.length); }
-    else if (e.key === 'Enter' && activeIndex >= 0) { e.preventDefault(); items[activeIndex].click(); }
-    else if (e.key === 'Escape') { closeSuggestions(); }
-  });
-
-  input.addEventListener('focus', function() {
-    if (input.value.trim()) renderSuggestions(input.value.trim().toLowerCase());
-  });
-
-  document.addEventListener('click', function(e) {
-    if (!e.target.closest('.nav-search')) closeSuggestions();
-  });
 })();
 
 function openVideo(e) {

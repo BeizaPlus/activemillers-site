@@ -44,7 +44,10 @@ nav::before {
 }
 .nav-logo { display: flex; align-items: center; position: relative; z-index: 1; }
 .nav-logo svg { height: 36px; width: auto; }
-.nav-links { display: flex; gap: 40px; list-style: none; margin: 0; padding: 0; }
+
+/* Header bar = logo + search + hamburger, identical markup/CSS on every page, no page overrides */
+.nav-right { display: flex; align-items: center; gap: 16px; position: relative; z-index: 1; }
+.nav-links { display: none; list-style: none; margin: 0; padding: 0; }
 .nav-links li { list-style: none; }
 .nav-links a { font-size: 16px; font-weight: 500; position: relative; padding-bottom: 4px; }
 .nav-links a::after {
@@ -52,33 +55,6 @@ nav::before {
   background: #fff; transition: width 0.3s ease;
 }
 .nav-links a:hover::after { width: 100%; }
-
-/* ===== NAV SEARCH (homepage case-study filter) ===== */
-.nav-search { display: flex; align-items: center; position: relative; }
-.nav-search-icon {
-  position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
-  font-size: 15px; line-height: 1; opacity: 0.5; pointer-events: none;
-}
-.nav-search-input {
-  width: 180px; font-family: inherit; font-size: 14px; color: #fff;
-  background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.45);
-  border-radius: 20px; padding: 8px 14px 8px 38px;
-  transition: width 0.3s ease, background 0.3s ease, border-color 0.3s ease;
-}
-.nav-search-input::placeholder { color: rgba(255,255,255,0.4); }
-.nav-search-input:focus { outline: none; width: 230px; background: rgba(255,255,255,0.11); border-color: #fff; }
-
-/* ===== MOBILE NAV TOGGLE ===== */
-.mobile-nav-toggle {
-  display: none;
-  flex-direction: column; gap: 5px;
-  background: none; border: none; cursor: pointer;
-  padding: 8px; z-index: 101;
-}
-.mobile-nav-toggle span {
-  display: block; width: 24px; height: 2px; background: #fff;
-  transition: transform 0.3s ease, opacity 0.3s ease;
-}
 .nav-links.mobile-open {
   display: flex !important;
   flex-direction: column;
@@ -92,6 +68,40 @@ nav::before {
   z-index: 100;
 }
 .nav-links.mobile-open a { font-size: 28px; }
+
+/* ===== NAV SEARCH (site-wide case search, live-filters on index.html, redirects elsewhere) ===== */
+.nav-search { display: flex; align-items: center; position: relative; }
+.nav-search-icon {
+  position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
+  font-size: 15px; line-height: 1; opacity: 0.5; pointer-events: none;
+}
+.nav-search-input {
+  width: 180px; font-family: inherit; font-size: 14px; color: #fff;
+  background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.45);
+  border-radius: 20px; padding: 8px 14px 8px 38px;
+  transition: width 0.3s ease, background 0.3s ease, border-color 0.3s ease;
+}
+.nav-search-input::placeholder { color: rgba(255,255,255,0.4); }
+.nav-search-input:focus { outline: none; width: 230px; background: rgba(255,255,255,0.11); border-color: #fff; }
+.nav-search-suggestions {
+  display: none; position: absolute; top: calc(100% + 8px); left: 0; right: 0;
+  background: rgba(20,20,20,0.98); border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 12px; overflow: hidden; z-index: 10;
+  box-shadow: 0 12px 32px rgba(0,0,0,0.5);
+}
+.nav-search-suggestions.visible { display: block; }
+.nav-suggestion { display: block; padding: 10px 16px; cursor: pointer; transition: background 0.15s ease; }
+.nav-suggestion:hover, .nav-suggestion.active { background: rgba(255,255,255,0.08); }
+.nav-suggestion-title { font-size: 14px; font-weight: 500; color: #fff; }
+.nav-suggestion-cat { font-size: 12px; color: #757575; margin-top: 1px; }
+
+/* ===== MOBILE NAV TOGGLE (hamburger — always visible, every page, tabler icon) ===== */
+.mobile-nav-toggle {
+  display: flex; align-items: center; justify-content: center;
+  background: none; border: none; cursor: pointer;
+  padding: 8px; z-index: 101;
+}
+.mobile-nav-toggle i { font-size: 22px; color: #fff; }
 
 /* ===== GLOBAL BORDER RADIUS — single source of truth ===== */
 img {
@@ -158,14 +168,11 @@ footer { display: flex; justify-content: space-between; align-items: center; pad
 }
 @media (max-width: 809px) {
   nav { padding-left: 24px; padding-right: 24px; }
-  .nav-links { display: none; }
-  .mobile-nav-toggle { display: flex; }
   .contact { padding: 100px 24px; }
   footer { flex-direction: column; gap: 20px; align-items: center; text-align: center; padding: 32px 24px 40px; }
 }
 @media (max-width: 374px) {
   nav { padding-left: 20px; padding-right: 20px; }
-  .mobile-nav-toggle { display: flex; }
   .contact { padding: 80px 20px; }
   footer { padding: 32px 20px 40px; }
 }

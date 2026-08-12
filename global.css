@@ -73,11 +73,11 @@ nav::before {
 .nav-search { display: flex; align-items: center; position: relative; }
 .nav-search-icon {
   position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
-  font-size: 15px; line-height: 1; opacity: 0.5; pointer-events: none;
+  font-size: 15px; line-height: 1; color: #fff; pointer-events: none;
 }
 .nav-search-input {
   width: 180px; font-family: inherit; font-size: 14px; color: #fff;
-  background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.45);
+  background: rgba(255,255,255,0.07); border: 1px solid #fff;
   border-radius: 20px; padding: 8px 14px 8px 38px;
   transition: width 0.3s ease, background 0.3s ease, border-color 0.3s ease;
 }
@@ -109,8 +109,11 @@ img {
 }
 /* Edge-to-edge full-bleed images (zero side padding, touch the viewport edges)
    look wrong with a rounded corner cut into them against the black background.
-   .image-row and .stacked-images are always full-bleed everywhere they're used. */
-.image-row img, .stacked-images img {
+   .image-row and .stacked-images are always full-bleed everywhere they're used.
+   For sections like .full-image whose padding varies by page (sometimes framed,
+   sometimes edge-to-edge), add the .bleed modifier class instead of a page-local
+   override — one shared rule, referenced wherever a section is actually edge-to-edge. */
+.image-row img, .stacked-images img, .bleed img {
   border-radius: 0;
 }
 

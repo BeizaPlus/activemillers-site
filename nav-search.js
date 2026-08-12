@@ -8,9 +8,44 @@
   var toggle = document.getElementById('mobileToggle');
   var nav = document.getElementById('navLinks');
   if (!toggle || !nav) return;
-  toggle.addEventListener('click', function() { nav.classList.toggle('mobile-open'); });
+  var icon = toggle.querySelector('i');
+
+  toggle.setAttribute('aria-expanded', 'false');
+  toggle.setAttribute('aria-controls', 'navLinks');
+
+  function openMenu() {
+    nav.classList.add('mobile-open');
+    toggle.setAttribute('aria-expanded', 'true');
+    toggle.setAttribute('aria-label', 'Close menu');
+    if (icon) { icon.classList.remove('ti-menu-2'); icon.classList.add('ti-x'); }
+  }
+
+  function closeMenu() {
+    nav.classList.remove('mobile-open');
+    toggle.setAttribute('aria-expanded', 'false');
+    toggle.setAttribute('aria-label', 'Menu');
+    if (icon) { icon.classList.remove('ti-x'); icon.classList.add('ti-menu-2'); }
+  }
+
+  toggle.addEventListener('click', function() {
+    if (nav.classList.contains('mobile-open')) closeMenu(); else openMenu();
+  });
+
   nav.querySelectorAll('a').forEach(function(a) {
-    a.addEventListener('click', function() { nav.classList.remove('mobile-open'); });
+    a.addEventListener('click', closeMenu);
+  });
+
+  // Click the overlay backdrop itself (not a link) to close, same as clicking outside a modal
+  nav.addEventListener('click', function(e) {
+    if (e.target === nav) closeMenu();
+  });
+
+  // Escape always closes it, focus returns to the toggle button that opened it
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && nav.classList.contains('mobile-open')) {
+      closeMenu();
+      toggle.focus();
+    }
   });
 })();
 

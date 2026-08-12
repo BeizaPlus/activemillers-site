@@ -1,9 +1,12 @@
 """Super simple video trimmer GUI. Pick a video, drag sliders to set start/end,
 preview thumbnails and playback, then export the trimmed clip with ffmpeg.
 
-Run: python tools/video_trimmer.py
+Run: python tools/video_trimmer.py [path-to-video]
+Optional argument pre-loads that specific file instead of the default quick source
+(also reachable via the /fastcut slash command).
 """
 import os
+import sys
 import subprocess
 import threading
 import tkinter as tk
@@ -22,7 +25,10 @@ QUICK_SOURCES = {
     "Figure 7 source (onepass-4stage)": "septic-knee-onepass-4stage_00001_.mp4",
     "Batch A - The Slow Build (0-14s)": "septic-knee-30s-batchA-0to14s_00001_.mp4",
     "Batch B - The Rapid Clouding (14-30s)": "septic-knee-30s-batchB-14to30s_00001_.mp4",
+    "Erythema Batch A (0-15s)": "erythema-30s-batchA-0to15s_00001_.mp4",
 }
+
+CLI_PRELOAD_PATH = sys.argv[1] if len(sys.argv) > 1 else None
 THUMB_W, THUMB_H = 280, 158
 
 
@@ -89,12 +95,17 @@ class Trimmer(tk.Tk):
 
         self._build(body)
 
-        first_label, first_file = next(iter(QUICK_SOURCES.items()))
-        first_path = os.path.join(DEFAULT_INPUT_DIR, first_file)
-        if os.path.exists(first_path):
-            self.video_path = first_path
-            self.path_label.config(text=f"{first_label}: {first_path}")
+        if CLI_PRELOAD_PATH and os.path.exists(CLI_PRELOAD_PATH):
+            self.video_path = CLI_PRELOAD_PATH
+            self.path_label.config(text=f"Loaded: {CLI_PRELOAD_PATH}")
             threading.Thread(target=self._load_duration, daemon=True).start()
+        else:
+            first_label, first_file = next(iter(QUICK_SOURCES.items()))
+            first_path = os.path.join(DEFAULT_INPUT_DIR, first_file)
+            if os.path.exists(first_path):
+                self.video_path = first_path
+                self.path_label.config(text=f"{first_label}: {first_path}")
+                threading.Thread(target=self._load_duration, daemon=True).start()
 
     def _label(self, parent, text, **kw):
         return tk.Label(parent, text=text, fg=self.fg, bg=self.bg, font=("Segoe UI", 10), **kw)

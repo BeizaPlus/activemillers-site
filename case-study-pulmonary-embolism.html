@@ -55,9 +55,9 @@
 
 /* ===== PROCESS SECTION (two-column) ===== */
 .process {
-  padding: 128px clamp(32px, 7vw, 80px);
+  padding: var(--space-3xl) clamp(var(--space-md), 7vw, var(--space-2xl));
   max-width: 1280px; margin: 0 auto;
-  display: grid; grid-template-columns: 35% 1fr; gap: 80px;
+  display: grid; grid-template-columns: 35% 1fr; gap: var(--space-2xl);
   align-items: start;
 }
 .process h2 {
@@ -84,9 +84,9 @@
 
 /* ===== OUTCOME SECTION (two-column) ===== */
 .outcome {
-  padding: 128px clamp(32px, 7vw, 80px);
+  padding: var(--space-3xl) clamp(var(--space-md), 7vw, var(--space-2xl)) 0;
   max-width: 1280px; margin: 0 auto;
-  display: grid; grid-template-columns: 35% 1fr; gap: 80px;
+  display: grid; grid-template-columns: 35% 1fr; gap: var(--space-2xl);
   align-items: start;
 }
 .outcome h2 {
@@ -98,7 +98,7 @@
 
 /* ===== OTHER WORK ===== */
 .other-work {
-  padding: 128px clamp(32px, 7vw, 80px);
+  padding: var(--space-3xl) clamp(var(--space-md), 7vw, var(--space-2xl));
   max-width: 1280px; margin: 0 auto;
 }
 .other-work h2 {
@@ -127,7 +127,7 @@
   .case-header { grid-template-columns: 1fr; gap: 40px; }
   .process { grid-template-columns: 1fr; gap: 32px; padding: 80px 32px; }
   .process h2 { position: static; }
-  .outcome { grid-template-columns: 1fr; gap: 24px; padding: 80px 32px; }
+  .outcome { grid-template-columns: 1fr; gap: 24px; padding: 80px 32px 0; }
   .other-work { padding: 80px 32px; }
   .other-work-grid { grid-template-columns: 1fr; gap: 24px; }
   .image-row { grid-template-columns: 1fr; }
@@ -253,7 +253,7 @@
   <div class="other-work-grid">
     <a href="case-study-erythema-nodosum.html" class="ow-card fade-in">
       <div class="ow-card-img-wrap">
-        <img class="ow-card-img" src="images/erythema-nodosum-clinical.png" alt="Erythema Nodosum clinical presentation: tender dusky reddish-purple nodules scattered bilaterally along the shins" loading="lazy">
+        <img class="ow-card-img" src="images/case-studies/erythema-nodosum-clinical.png" alt="Erythema Nodosum clinical presentation: tender dusky reddish-purple nodules scattered bilaterally along the shins" loading="lazy">
       </div>
       <div class="ow-card-info">
         <h3 class="ow-card-title">Erythema Nodosum</h3>

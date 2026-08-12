@@ -14,18 +14,10 @@
 <link rel="stylesheet" href="video-player.css">
 <link rel="stylesheet" href="contact-cta.css">
 <style>
-/* Apple 8pt-grid spacing tokens, sourced from cmurphy1140/apple-design-system
-   (tokens/global/spacing.json + styles/tokens.css) for a side-by-side comparison
-   against this page's original ad hoc values. Also enforces Apple's actual
-   convention: the gap between two adjacent sections is owned by ONE side only
-   (the following section's top padding), never summed from both sides. */
-:root {
-  --apple-space-32: 2rem;   /* 32px */
-  --apple-space-48: 3rem;   /* 48px */
-  --apple-space-64: 4rem;   /* 64px */
-  --apple-space-80: 5rem;   /* 80px */
-  --apple-space-128: 8rem;  /* 128px */
-}
+/* Section rhythm uses the global --space-* scale (global.css :root), confirmed to
+   match Apple's 8pt-grid values exactly (cmurphy1140/apple-design-system). Also
+   enforces Apple's actual convention: the gap between two adjacent sections is
+   owned by ONE side only (the following section's top padding), never summed. */
 .page-top { padding-top: 140px; }
 .case-header { padding: 0 clamp(32px, 7vw, 80px) 80px; max-width: 1280px; margin: 0 auto; display: grid; grid-template-columns: 45% 1fr; gap: 80px; align-items: start; }
 .case-header h1 { font-size: clamp(36px, 5vw, 72px); font-weight: 600; line-height: 1.05; letter-spacing: -0.03em; }
@@ -37,7 +29,7 @@
 .image-row { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; padding: 0; width: 100%; }
 .image-row img { width: 100%; aspect-ratio: 16/9; object-fit: cover; display: block; background: #0a0a09; }
 
-.process { padding: var(--apple-space-128) clamp(var(--apple-space-32), 7vw, var(--apple-space-80)); max-width: 1280px; margin: 0 auto; display: grid; grid-template-columns: 35% 1fr; gap: var(--apple-space-80); align-items: start; }
+.process { padding: var(--space-3xl) clamp(var(--space-md), 7vw, var(--space-2xl)); max-width: 1280px; margin: 0 auto; display: grid; grid-template-columns: 35% 1fr; gap: var(--space-2xl); align-items: start; }
 .process-outline { position: sticky; top: 120px; }
 .process-outline h2 { font-size: clamp(28px, 5vw, 48px); font-weight: 600; letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 32px; }
 .case-timeline { display: flex; flex-direction: column; }
@@ -62,7 +54,7 @@
 .process-step h3 { font-size: 22px; font-weight: 600; letter-spacing: -0.02em; }
 .process-step p { font-size: 17px; line-height: 1.7; opacity: 0.7; }
 .process-step > * + * { margin-top: var(--space-lg); }
-.full-image { padding: 0 clamp(var(--apple-space-32), 7vw, var(--apple-space-80)); max-width: 1280px; margin: 0 auto var(--apple-space-128); width: 100%; }
+.full-image { padding: 0 clamp(var(--space-md), 7vw, var(--space-2xl)); max-width: 1280px; margin: 0 auto var(--space-3xl); width: 100%; }
 .full-image-tight { margin-bottom: 0; }
 section.full-image .step-figure img { height: 92vh; width: 100%; object-fit: contain; background: #0a0a09; }
 .step-lookalikes { padding-top: var(--space-md); border-top: 1px solid rgba(255,255,255,0.08); }
@@ -71,10 +63,10 @@ section.full-image .step-figure img { height: 92vh; width: 100%; object-fit: con
 .step-lookalikes li { font-size: 15px; line-height: 1.5; opacity: 0.65; }
 .step-lookalikes strong { opacity: 1; font-weight: 600; }
 
-.outcome { padding: var(--apple-space-128) clamp(var(--apple-space-32), 7vw, var(--apple-space-80)) 0; max-width: 1280px; margin: 0 auto; display: grid; grid-template-columns: 35% 1fr; gap: var(--apple-space-80); align-items: start; scroll-margin-top: 120px; }
+.outcome { padding: var(--space-3xl) clamp(var(--space-md), 7vw, var(--space-2xl)) 0; max-width: 1280px; margin: 0 auto; display: grid; grid-template-columns: 35% 1fr; gap: var(--space-2xl); align-items: start; scroll-margin-top: 120px; }
 .outcome h2 { font-size: clamp(28px, 5vw, 48px); font-weight: 600; letter-spacing: -0.03em; line-height: 1.1; }
 .outcome p { font-size: 18px; line-height: 1.7; opacity: 0.7; }
-.other-work { padding: var(--apple-space-128) clamp(var(--apple-space-32), 7vw, var(--apple-space-80)); max-width: 1280px; margin: 0 auto; }
+.other-work { padding: var(--space-3xl) clamp(var(--space-md), 7vw, var(--space-2xl)); max-width: 1280px; margin: 0 auto; }
 .other-work h2 { font-size: 32px; font-weight: 600; letter-spacing: -0.03em; margin-bottom: 48px; }
 .other-work-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
 @media (max-width: 1199px) { .case-header, .process, .outcome, .other-work, .full-image { padding-left: 64px; padding-right: 64px; } }

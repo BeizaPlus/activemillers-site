@@ -19,7 +19,7 @@
 
 /* ===== TITLE + INTRO (two-column) ===== */
 .case-header {
-  padding: 0 clamp(32px, 7vw, 80px) 80px;
+  padding: 0 clamp(var(--space-md), 7vw, var(--space-2xl)) var(--space-2xl);
   max-width: 1280px; margin: 0 auto;
   display: grid; grid-template-columns: 45% 1fr; gap: 80px;
   align-items: start;
@@ -50,7 +50,7 @@
 
 /* ===== PROCESS SECTION (two-column) ===== */
 .process {
-  padding: 128px clamp(32px, 7vw, 80px) 0;
+  padding: var(--space-3xl) clamp(var(--space-md), 7vw, var(--space-2xl)) 0;
   max-width: 1280px; margin: 0 auto;
   display: grid; grid-template-columns: 35% 1fr; gap: 80px;
   align-items: start;
@@ -69,7 +69,7 @@
 
 /* ===== OUTCOME SECTION (two-column) ===== */
 .outcome {
-  padding: 128px clamp(32px, 7vw, 80px) 0;
+  padding: var(--space-3xl) clamp(var(--space-md), 7vw, var(--space-2xl)) 0;
   max-width: 1280px; margin: 0 auto;
   display: grid; grid-template-columns: 35% 1fr; gap: 80px;
   align-items: start;
@@ -83,7 +83,7 @@
 
 /* ===== OTHER WORK ===== */
 .other-work {
-  padding: 128px clamp(32px, 7vw, 80px);
+  padding: var(--space-3xl) clamp(var(--space-md), 7vw, var(--space-2xl));
   max-width: 1280px; margin: 0 auto;
 }
 .other-work h2 {
@@ -152,7 +152,7 @@
 <!-- ===== 2. CLINICAL PRESENTATION: FULL-WIDTH ===== -->
 <section class="full-image fade-in">
   <div class="img-wrap">
-    <img src="images/erythema-nodosum-clinical.png" alt="Erythema Nodosum clinical presentation: Dutch-tilt view down both shins of a Black patient, multiple tender dusky reddish-purple nodules scattered bilaterally along the anterior lower legs, medically accurate dark-skin tone" loading="lazy">
+    <img src="images/case-studies/erythema-nodosum-clinical.png" alt="Erythema Nodosum clinical presentation: Dutch-tilt view down both shins of a Black patient, multiple tender dusky reddish-purple nodules scattered bilaterally along the anterior lower legs, medically accurate dark-skin tone" loading="lazy">
   </div>
 </section>
 
@@ -165,13 +165,13 @@
       <p>In tuberculosis, alveolar macrophages engulf Mycobacterium tuberculosis. In sarcoidosis, an unknown antigen triggers the same cascade. Either way, the macrophage processes the antigen and presents it to naive T-cells in the lung-draining lymph nodes. Those T-cells activate, proliferate, and organize into granulomas. TB granulomas develop central caseous necrosis. Sarcoidosis granulomas remain non-caseating. Both achieve the same immunological outcome: a pool of primed T-cells now circulating through the body, looking for their target.</p>
       <div class="step-images">
         <div class="step-figure video-figure">
-          <video playsinline preload="none" muted poster="images/erythema-macrophage-drainage-poster.png">
+          <video playsinline preload="none" muted poster="images/case-studies/erythema-macrophage-drainage-poster.png">
             <source src="videos/erythema-macrophage-drainage.mp4" type="video/mp4">
           </video>
           <button class="video-play-btn" aria-label="Play video">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 4v16a1 1 0 0 0 1.524 .852l13 -8a1 1 0 0 0 0 -1.704l-13 -8a1 1 0 0 0 -1.524 .852z" /></svg>
           </button>
-          <div class="step-caption"><div class="fig-title">A resident macrophage exits the vessel wall to sample antigen and drain toward the lymph nodes</div></div>
+          <div class="step-caption"><div class="fig-num">Figure 1</div><div class="fig-title">A resident macrophage exits the vessel wall to sample antigen and drain toward the lymph nodes</div></div>
         </div>
       </div>
     </div>
@@ -184,8 +184,12 @@
       <p>Within hours to days, neutrophils predominate in the interlobular septa, though early lesions already show a mixed infiltrate of lymphocytes and histiocytes alongside them. The septal walls thicken visibly. Small vessels within them dilate and leak. On histology, the fat lobules themselves remain pristine and untouched, their adipocytes clean and translucent. This is the defining feature of septal panniculitis, and it distinguishes erythema nodosum from lobular panniculitis, where the fat cells themselves are inflamed. The contrast between the clean fat lobules and the heavily inflamed septa surrounding them is the central diagnostic finding.</p>
       <div class="step-images">
         <div class="step-figure">
-          <img src="images/erythema-nodosum-septal-infiltrate.png" alt="Erythema Nodosum: tight detail of neutrophilic infiltrate densely packed within the thickened septal wall, clustered around small feeding vessels" loading="lazy">
-          <div class="step-caption"><div class="fig-title">Neutrophilic infiltrate packed into the thickened septal wall, clean fat lobules on either side</div></div>
+          <img src="images/case-studies/erythema-nodosum-septal-infiltrate.png" alt="Erythema Nodosum: tight detail of neutrophilic infiltrate densely packed within the thickened septal wall, clustered around small feeding vessels" loading="lazy">
+          <div class="step-caption"><div class="fig-num">Figure 2</div><div class="fig-title">Neutrophilic infiltrate packed into the thickened septal wall, clean fat lobules on either side</div></div>
+        </div>
+        <div class="step-figure">
+          <img src="images/case-studies/erythema-nodosum-neutrophil-closeup.jpg" alt="Erythema Nodosum: a single neutrophil with its characteristic multi-lobed nucleus, correctly scaled far smaller than the surrounding adipocytes it sits between" loading="lazy">
+          <div class="step-caption"><div class="fig-num">Figure 3</div><div class="fig-title">A single neutrophil, correctly scaled against the much larger adipocytes around it</div></div>
         </div>
       </div>
     </div>
@@ -199,7 +203,7 @@
 <!-- ===== 5. CLOSING FULL-WIDTH IMAGE ===== -->
 <section class="full-image fade-in">
   <div class="img-wrap">
-    <img src="images/erythema-nodosum-septal-infiltrate.png" alt="Erythema Nodosum: neutrophilic infiltrate packed into the thickened septal wall, clean fat lobules untouched on either side" loading="lazy">
+    <img src="images/case-studies/erythema-macrophage-drainage-poster.png" alt="Erythema Nodosum: a macrophage extravasating through the vessel wall into the fat lobule, migrating toward the site of injury to begin clearing debris" loading="lazy">
   </div>
 </section>
 

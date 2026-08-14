@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>No One Left to Call the Play — Steven Oppong, MD, Medical Illustrator</title>
+<meta name="description" content="Case study: CD4 T-cell coordination and disseminated Mycobacterium avium complex, illustrated by Steven Oppong, MD, through the football regista metaphor.">
+<link rel="icon" type="image/png" href="images/HFtZcNIneFBJJZ7SfUHQJ1vsANc.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;1,14..32,400;1,14..32,500;1,14..32,600;1,14..32,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.31.0/dist/tabler-icons.min.css">
+<link rel="stylesheet" href="global.css">
+<link rel="stylesheet" href="contact-cta.css">
+<link rel="stylesheet" href="lightbox.css">
+<style>
+/* ===== PAGE HEADER SPACING ===== */
+.page-top { padding-top: 140px; }
+
+/* ===== TITLE + INTRO (two-column) ===== */
+.case-header {
+  padding: 0 clamp(var(--space-md), 7vw, var(--space-2xl)) var(--space-2xl);
+  max-width: 1280px; margin: 0 auto;
+  display: grid; grid-template-columns: 45% 1fr; gap: 80px;
+  align-items: start;
+}
+.case-header h1 {
+  font-size: clamp(36px, 5vw, 72px); font-weight: 600; line-height: 1.05;
+  letter-spacing: -0.03em;
+}
+.case-intro p {
+  font-size: 18px; line-height: 1.65; opacity: 0.75; margin-bottom: 20px;
+}
+.case-intro p:last-of-type { margin-bottom: 36px; }
+
+/* Meta table */
+.case-meta { border-top: 1px solid rgba(255,255,255,0.12); }
+.case-meta-row {
+  display: flex; justify-content: space-between; align-items: baseline;
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  font-size: 15px;
+}
+.case-meta-label { opacity: 0.45; font-weight: 500; }
+.case-meta-value { font-weight: 500; }
+
+/* ===== TWO-IMAGE ROW ===== */
+.image-row {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 4px;
+  padding: 0; width: 100%;
+}
+.image-row img {
+  width: 100%; height: auto; display: block;
+  background: #141414;
+}
+
+/* ===== PROCESS SECTION (two-column, sticky outline nav) ===== */
+.process {
+  padding: var(--space-3xl) clamp(var(--space-md), 7vw, var(--space-2xl)) 0;
+  max-width: 1280px; margin: 0 auto;
+  display: grid; grid-template-columns: 35% 1fr; gap: var(--space-2xl);
+  align-items: start;
+}
+.process-outline { position: sticky; top: 120px; }
+.process-outline h2 {
+  font-size: clamp(28px, 5vw, 48px); font-weight: 600; letter-spacing: -0.03em; line-height: 1.1;
+  margin-bottom: 32px;
+}
+.case-timeline { display: flex; flex-direction: column; }
+.ctl-row { display: block; position: relative; }
+.ctl-link { display: flex; text-decoration: none; color: inherit; cursor: pointer; }
+.ctl-rail { position: relative; width: 24px; flex-shrink: 0; min-height: 68px; }
+.ctl-line { position: absolute; left: 50%; top: 0; bottom: 0; width: 1px; background: #e60021; opacity: 0.3; transform: translateX(-50%); transition: opacity 0.2s ease; }
+.ctl-row:first-child .ctl-line { top: 50%; }
+.ctl-row:last-child .ctl-line { bottom: 50%; }
+.ctl-dot { position: absolute; left: 50%; top: 50%; width: 9px; height: 9px; border-radius: 50%; background: #e60021; opacity: 0.4; z-index: 1; transform: translate(-50%, -50%); box-shadow: 0 0 0 4px rgba(230,0,33,0.12); transition: opacity 0.2s ease, box-shadow 0.2s ease, width 0.2s ease, height 0.2s ease; }
+.ctl-link:hover .ctl-dot { box-shadow: 0 0 0 6px rgba(230,0,33,0.2); }
+.ctl-content { display: flex; flex-direction: column; justify-content: center; padding-left: 16px; padding-bottom: 4px; }
+.ctl-label { font-size: 16px; font-weight: 600; letter-spacing: -0.02em; line-height: 1.3; opacity: 0.5; transition: opacity 0.2s ease; }
+.ctl-desc { font-size: 13px; opacity: 0.35; margin-top: 2px; line-height: 1.4; transition: opacity 0.2s ease; }
+.ctl-link:hover .ctl-label { text-decoration: underline; text-underline-offset: 3px; }
+.ctl-row.active .ctl-line { opacity: 1; }
+.ctl-row.active .ctl-dot { opacity: 1; width: 13px; height: 13px; box-shadow: 0 0 0 6px rgba(230,0,33,0.18); }
+.ctl-row.active .ctl-label { opacity: 1; }
+.ctl-row.active .ctl-desc { opacity: 0.55; }
+.process-steps { display: flex; flex-direction: column; gap: var(--space-3xl); }
+.process-step { scroll-margin-top: 120px; }
+.process-step h3 { font-size: 22px; font-weight: 600; letter-spacing: -0.02em; }
+.process-step p { font-size: 17px; line-height: 1.7; opacity: 0.7; }
+.process-step > * + * { margin-top: var(--space-lg); }
+
+/* ===== FULL-WIDTH SINGLE IMAGE ===== */
+.full-image { padding: 0 clamp(var(--space-md), 7vw, var(--space-2xl)); max-width: 1280px; margin: 0 auto var(--space-3xl); width: 100%; }
+.full-image-tight { margin-bottom: 0; }
+section.full-image .step-figure img { height: 92vh; width: 100%; object-fit: contain; background: #0a0a09; }
+
+/* ===== OUTCOME SECTION (two-column) ===== */
+.outcome {
+  padding: var(--space-3xl) clamp(var(--space-md), 7vw, var(--space-2xl)) 0;
+  max-width: 1280px; margin: 0 auto;
+  display: grid; grid-template-columns: 35% 1fr; gap: var(--space-2xl);
+  align-items: start;
+}
+.outcome h2 { font-size: clamp(28px, 5vw, 48px); font-weight: 600; letter-spacing: -0.03em; line-height: 1.1; }
+.outcome p { font-size: 18px; line-height: 1.7; opacity: 0.7; }
+.outcome-pullquote { font-size: 20px; line-height: 1.6; font-style: italic; opacity: 0.85; margin-top: var(--space-md); padding-left: 20px; border-left: 2px solid #e60021; }
+
+/* ===== OTHER WORK ===== */
+.other-work { padding: var(--space-3xl) clamp(var(--space-md), 7vw, var(--space-2xl)); max-width: 1280px; margin: 0 auto; }
+.other-work h2 { font-size: 32px; font-weight: 600; letter-spacing: -0.03em; margin-bottom: 48px; }
+.other-work-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1199px) {
+  .case-header, .process, .outcome, .other-work, .full-image { padding-left: 64px; padding-right: 64px; }
+}
+@media (max-width: 809px) {
+  .case-header { grid-template-columns: 1fr; gap: 40px; }
+  .ctl-rail { min-height: 56px; }
+  .process { grid-template-columns: 1fr; gap: 32px; padding: 80px 32px 0; }
+  .process-outline { position: static; }
+  .outcome { grid-template-columns: 1fr; gap: 24px; padding: 80px 32px 0; }
+  .other-work { padding: 80px 32px; }
+  .other-work-grid { grid-template-columns: 1fr; gap: 24px; }
+  .image-row { grid-template-columns: 1fr; }
+}
+@media (max-width: 374px) {
+  .case-header, .process, .outcome, .other-work { padding-left: 20px; padding-right: 20px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ===== NAVIGATION ===== -->
+<nav>
+  <a href="index.html" class="nav-logo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 251.12 84.94" style="height:36px;width:auto;"><defs><style>.cls-1{fill:#e60021}.cls-2{fill:#fff}</style></defs><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><path class="cls-1" d="M47.84 0S20.1 7.4 19.11 7.79c-.63.26-2 1-2.15 1.63-.1.37.13.71.95 1s1 2.42.8 5.12c-.06 1.13-.18 2.34-.33 3.57s-.27 2.16-.4 3.2c-.27 1.9-.54 3.63-.67 4.81a8.66 8.66 0 0 0-.09 1.4c.19 1.64 1 1.64 7.32 0 2.94-.73 7.53-1.87 11.6-2.86 2-.48 3.89-1 5.4-1.3L45 23.56s1.7-5.43 3-10.81c.62-2.46 1.16-4.92 1.43-6.84C50.24-.19 47.84 0 47.84 0M37.59 20.19l-5 .9c-3.31.61-6.53 1.23-7.8 1.57-3 .8-.18-4.47-1.14-7.33-.49-1.44 4.53-4 9.74-6.26a.87.87 0 0 0 .25-.1c2.24-.94 4.49-1.82 6.31-2.49 2.32-.87 4-1.42 4.12-1.42.59 0-2.43 14.42-2.43 14.42l-4 .71"/><path class="cls-1" d="M38.3 11.74c-1.39-1.23-4.38.8-2.21 3.45 1 1.18 1.8 1.28 2.45 1A3 3 0 0 0 39.86 15a6.24 6.24 0 0 0-.63-2 4 4 0 0 0-.93-1.25"/><path class="cls-1" d="M37.09 28 37 28a14 14 0 0 1-2.12 1.12 12.17 12.17 0 0 1-2.17.65 10.32 10.32 0 0 1-2.21.24A5.07 5.07 0 0 0 30 30a.34.34 0 0 0-.17 0 1.67 1.67 0 0 0-.39.05 5.22 5.22 0 0 0-.81.28 4.43 4.43 0 0 0-.5.24l-.15.09-.13.1a1.33 1.33 0 0 0-.27 1.89 3.19 3.19 0 0 0 1.4 1 3.9 3.9 0 0 0 1.61.27 10.54 10.54 0 0 0 3.24-.55 9 9 0 0 0 1.48-.68 9.32 9.32 0 0 0 1.35-.9 7.67 7.67 0 0 0 2-2.48 1 1 0 0 0 0-1.06A1.1 1.1 0 0 0 37.09 28"/><path class="cls-1" d="M27.33 15.54a2.49 2.49 0 0 0 .25 2c.88 1.72 1.83 1.5 2.49 1a3.5 3.5 0 0 0 .86-1c-.7-3.61-3.07-3.56-3.6-2.06"/><polygon class="cls-1" points="12.64 26.86 10.11 11.15 9.52 7.46 4.19 8.18 0 16.79 2.99 15.87 7.75 25.84 11.8 34.34 14.88 40.79 13.77 33.91 12.64 26.86"/><path class="cls-2" d="M249.72 27.38l1.4 8.4H248.3l-.52-3.61-.16-1.4-.27 1.3-1 3.71h-2.51l-1-3.81-.25-1.2-.05 1.07L242 35.78h-2.57l1.37-8.4H244l1 3.69.24 1.23.19-1.18 1.05-3.74ZM198.56 73.46c-.33 6.09 50.45-3.17 45.55-4.54-6.07-1.69-45.28-1.51-45.55 4.54m36-37.68h2.72v-6.1h1.93v-2.3h-6.64v2.3h2Zm-8.93 7.76c-3-1.61-18.2-.35-18.49 2.73-.36 3.59 22.91-.32 18.49-2.73M208 59.85c2.52 3 22-2.3 16.27-5-3.33-1.57-18.43 2.4-16.27 5m-10.8-13.58c-6.32-1.29-.39 20.55-10.42 24-16.9 5.82-8.64-21.93-16.68-20.41-6.62 1.27 4.27 21.69 7.72 23.39 16.26 8.09 31.36-24.49 19.38-27m-52.88 1.54c-13.19 2.59 3.42-31.94-5.8-32.38-7.74-.41-3.39 20.51-3.45 23.82-.16 11.9-11.87 9.24-11.43 14.24 9.82 2.09 10.66-1.65 10.72 10.67 0 2.11-3.31 18.26 1.89 17.47 15.58-2.37-9.06-33.79 15.36-29 5.86 7.66 3.07 14.23 1.78 22.21-.77 4.87 5.94 7.41 5.72 2.19-.63-11.51 5-33-14.79-29.2m5.24-12.71c2.49.51 4.65-3.56 2.71-5.45-2.82-2.73-6.54 4.69-2.71 5.45M98.78 54c-7.66.36-5.2 14.16-.39 18 5.9 4.63 33.56 1.46 29.29-7.51C122.16 52.84 95.36 83.88 98.78 54M81.19 63c1.58 3.15 3.17 29.1-5.41 20-5.72-6.12-1.48-16.67-4.52-24.53-7.48 2-14.85 4.19-22.11 6.84a16.91 16.91 0 0 1-4.53 8.62c-5.65-2.5 18.44-62 25.72-61.21S76.68 42 77.55 49c11.16-2.66 20.92-8.81 31.61-12.66 4.63 9.78-12.49 10-20.31 13.58-7.24 3.31-11.7 5.18-7.66 13.16M69 43.3C68.89 42.12 69.46 29 64.48 29c-3.94 9.35-9 18.13-11.27 28.11C66.1 57.49 69.6 54.92 69 43.3"/></g></g></svg></a>
+  <div class="nav-right">
+    <div class="nav-search">
+      <i class="ti ti-search nav-search-icon"></i>
+      <input type="text" id="caseSearch" class="nav-search-input" placeholder="Search cases..." autocomplete="off" aria-label="Search case studies">
+      <div class="nav-search-suggestions" id="searchSuggestions"></div>
+    </div>
+    <button class="mobile-nav-toggle" id="mobileToggle" aria-label="Menu"><i class="ti ti-menu-2"></i></button>
+  </div>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="index.html#experiments-anchor">Cases</a></li>
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="index.html#pathology-anchor">Experience</a></li>
+  </ul>
+</nav>
+
+<!-- ===== PAGE TOP SPACER ===== -->
+<div class="page-top"></div>
+
+<!-- ===== 1. TITLE + INTRO ===== -->
+<header class="case-header fade-in">
+  <h1>No One Left to Call the Play</h1>
+  <div class="case-intro">
+    <p>A CD4 T-cell does the same job on the immune system's field that a regista does on a football pitch. The regista is the deep-lying playmaker who sits centrally, reads the whole game before anyone else, and directs tempo through precise distribution: a short sharp pass to a teammate nearby, a long arcing ball to a teammate far across the field. A CD4 T-cell reads the threat the same way, then dispatches interferon-gamma, precisely and not indiscriminately, to activate macrophages at close range and at a distance, turning them from passive cells into active, pathogen-destroying ones.</p>
+    <p>A patient with a CD4 count of 45 presents with fever, weight loss, and hepatosplenomegaly. Below a CD4 count of roughly 50, the pass stops happening: there are not enough registas left on the pitch to direct play. Without interferon-gamma, macrophages cannot be activated to contain Mycobacterium avium complex, an organism that is otherwise harmless with an intact immune system. MAC disseminates hematogenously into the liver, spleen, and bone marrow instead, producing exactly this picture.</p>
+    <div class="case-meta">
+      <div class="case-meta-row">
+        <span class="case-meta-label">Case Type</span>
+        <span class="case-meta-value">Clinical Illustration</span>
+      </div>
+      <div class="case-meta-row">
+        <span class="case-meta-label">Focus</span>
+        <span class="case-meta-value">Immunology / Infectious Disease</span>
+      </div>
+      <div class="case-meta-row">
+        <span class="case-meta-label">Year</span>
+        <span class="case-meta-value">2026</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ===== 2. TWO-IMAGE ROW: THE PAIRING ===== -->
+<section class="image-row fade-in">
+  <div class="img-wrap">
+    <img src="images/case-studies/cd4-regista-cellular.png" alt="CD4 T-cell delivering two distinct signals at once, a short precise pass to a nearby macrophage and a long arcing pass to a distant one, both activating in response" loading="lazy">
+  </div>
+  <div class="img-wrap">
+    <img src="images/case-studies/cd4-regista-football.png" alt="A football regista mid-pass, delivering a short sharp pass and a long arcing ball at once, directing the tempo of the whole pitch from one touch" loading="lazy">
+  </div>
+</section>
+
+<!-- ===== 3. PROCESS SECTION (sticky outline nav) ===== -->
+<section class="process">
+  <div class="process-outline">
+    <h2 class="fade-in">Process</h2>
+    <div class="case-timeline" role="navigation" aria-label="Jump to section">
+      <div class="ctl-row" data-target="cd4-rest">
+        <a class="ctl-link" href="#cd4-rest">
+          <div class="ctl-rail"><div class="ctl-line"></div><div class="ctl-dot"></div></div>
+          <div class="ctl-content"><div class="ctl-label">The Regista at Rest</div><div class="ctl-desc">Reading the field before the first move</div></div>
+        </a>
+      </div>
+      <div class="ctl-row" data-target="cd4-two-passes">
+        <a class="ctl-link" href="#cd4-two-passes">
+          <div class="ctl-rail"><div class="ctl-line"></div><div class="ctl-dot"></div></div>
+          <div class="ctl-content"><div class="ctl-label">Two Passes, One Touch</div><div class="ctl-desc">Interferon-gamma release and binding</div></div>
+        </a>
+      </div>
+      <div class="ctl-row" data-target="cd4-before-after">
+        <a class="ctl-link" href="#cd4-before-after">
+          <div class="ctl-rail"><div class="ctl-line"></div><div class="ctl-dot"></div></div>
+          <div class="ctl-content"><div class="ctl-label">Before and After</div><div class="ctl-desc">The macrophage's transformation</div></div>
+        </a>
+      </div>
+      <div class="ctl-row" data-target="cd4-regista-leaves">
+        <a class="ctl-link" href="#cd4-regista-leaves">
+          <div class="ctl-rail"><div class="ctl-line"></div><div class="ctl-dot"></div></div>
+          <div class="ctl-content"><div class="ctl-label">When the Regista Leaves</div><div class="ctl-desc">Below CD4 50, MAC runs the game</div></div>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="process-steps">
+    <div class="process-step fade-in" id="cd4-rest">
+      <h3>The Regista at Rest</h3>
+      <p>A regista does not distribute the ball the instant it arrives. He sits deep, composed, and reads the whole pitch first: where his teammates are, where the space is, which pass actually changes the tempo of the game. A CD4 T-cell does the same thing inside a tissue field. It positions itself centrally, surrounded at varying distances by macrophages that are, for the moment, doing nothing in particular. The stillness is not passivity. It is the read before the release, the same deliberate pause that separates a playmaker from a player who just kicks the ball forward.</p>
+    </div>
+    <div class="process-step fade-in" id="cd4-two-passes">
+      <h3>Two Passes, One Touch</h3>
+      <p>When the CD4 T-cell acts, it does not flood the field with a generic signal. It releases interferon-gamma with real precision: a short, tight delivery to a macrophage close by, and a long, purposeful delivery to one much farther away, both aimed rather than broadcast. The interferon-gamma travels the extracellular space and docks into receptor sites on each macrophage's membrane. This is the molecular version of a regista splitting the defense with a short pass and finding a runner in behind with a long ball, in the same motion, from the same central source.</p>
+      <div class="step-images">
+        <div class="step-figure">
+          <img src="images/case-studies/cd4-ifn-gamma-handshake.png" alt="CD4 T-cell releasing interferon-gamma, the cytokine binding to receptor sites on a macrophage membrane, and that macrophage activating to engulf a Mycobacterium avium organism" loading="lazy">
+          <div class="step-caption"><div class="fig-num">Figure 1</div><div class="fig-title">Interferon-gamma release, receptor binding, and macrophage activation, in sequence</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="process-step fade-in" id="cd4-before-after">
+      <h3>Before and After</h3>
+      <p>Before the signal arrives, a macrophage is a smooth, rounded, unremarkable cell drifting on its own. The moment interferon-gamma touches its surface, that changes. Its membrane begins to ruffle, its cytoplasm densifies, its whole form tightens into something purposeful. What was a docile cell becomes an aggressive one, dense and jagged, actively engulfing whatever pathogen crosses its path. This is not a new cell. It is the same macrophage, given direction it did not have a moment earlier, the same way a striker's run only means something once the ball is actually played into it.</p>
+      <div class="step-images">
+        <div class="step-figure">
+          <img src="images/case-studies/cd4-macrophage-transform.png" alt="Macrophage before and after interferon-gamma signaling, from smooth and docile to ruffled and activated to actively engulfing a pathogen" loading="lazy">
+          <div class="step-caption"><div class="fig-num">Figure 2</div><div class="fig-title">A macrophage's full transformation, from docile to containment</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="process-step fade-in" id="cd4-regista-leaves">
+      <h3>When the Regista Leaves the Pitch</h3>
+      <p>Mycobacterium avium complex is not a dangerous organism on its own. Any intact immune system contains it without incident, the same way a defense contains an attack when someone is actually marking the space. Below a CD4 count of roughly 50, the registas are gone. There is no interferon-gamma, no macrophage activation, no containment. MAC breaches vessel walls unopposed and disseminates hematogenously into the liver, spleen, and bone marrow, tissues rich in the reticuloendothelial cells it can now colonize freely. The organism has not changed. The opposition has simply left the field.</p>
+      <div class="step-images">
+        <div class="step-figure">
+          <img src="images/case-studies/cd4-mac-liver-invasion.png" alt="A dense stream of Mycobacterium avium organisms bursting through a ruptured blood vessel wall and flooding into surrounding liver tissue" loading="lazy">
+          <div class="step-caption"><div class="fig-num">Figure 3</div><div class="fig-title">MAC breaching a vessel wall and disseminating into the liver, unopposed</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 4. CLOSING FULL-WIDTH IMAGE ===== -->
+<section class="full-image full-image-tight fade-in">
+  <div class="step-figure">
+    <img src="images/case-studies/cd4-regista-football.png" alt="A regista directing the tempo of the whole pitch from one central touch, the same coordination a CD4 T-cell provides at the center of the immune response" loading="lazy">
+  </div>
+</section>
+
+<!-- ===== 5. OUTCOME SECTION ===== -->
+<section class="outcome">
+  <h2 class="fade-in">Outcome</h2>
+  <p class="fade-in">The clinical picture reads directly off the mechanism: fever, weight loss, and hepatosplenomegaly, with an elevated alkaline phosphatase from hepatic infiltration. This runs on the same threshold logic as PCP and toxoplasmosis prophylaxis, TMP-SMX starting at a CD4 count of 100 to 200. It is just a different number and a different drug. MAC prophylaxis is azithromycin, starting below a CD4 count of 50. This patient crossed that threshold without ever starting it.</p>
+  <p class="outcome-pullquote fade-in">A CD4 count is not just a lab value. It is a headcount of how many registas are still on the pitch. Below 50 of them, nobody is left to call the play, and organisms that were never dangerous on their own get to run the game unopposed.</p>
+</section>
+
+<!-- ===== 6. OTHER WORK ===== -->
+<section class="other-work">
+  <h2 class="fade-in">Other work</h2>
+  <div class="other-work-grid">
+    <a href="case-study-reactive-vs-septic-arthritis.html" class="ow-card fade-in">
+      <div class="ow-card-img-wrap">
+        <img class="ow-card-img" src="images/case-studies/reactive-septic-knee-01.png" alt="Reactive vs Septic Arthritis — sterile immune complex arthritis versus disseminated gonococcal infection, purulent knee joint fluid" loading="lazy">
+      </div>
+      <div class="ow-card-info">
+        <h3 class="ow-card-title">Reactive vs Septic Arthritis</h3>
+        <p class="ow-card-cat">Rheumatology / Infectious Disease</p>
+      </div>
+    </a>
+    <a href="case-study-agranulocytosis.html" class="ow-card fade-in">
+      <div class="ow-card-img-wrap">
+        <img class="ow-card-img" src="images/case-studies/agranulocytosis-01-2x2-marrow.jpg" alt="Agranulocytosis — bone marrow granulocyte depletion sequence, empty marrow, G-CSF recovery" loading="lazy">
+      </div>
+      <div class="ow-card-info">
+        <h3 class="ow-card-title">Agranulocytosis</h3>
+        <p class="ow-card-cat">Hematology / Pharmacology</p>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- ===== 7. CLOSING CTA ===== -->
+<section class="contact fade-in">
+  <h2>Want to learn about the human body<br>from the inside?</h2>
+  <div class="contact-cta-stack">
+    <div class="contact-cta-block">
+      <button type="button" class="contact-icon partner-cta secondary" id="learnMoreYesBtn">Yes, I want to know more</button>
+      <form class="contact-email-form" id="learnMoreForm" data-source="cd4-regista">
+        <input type="email" id="learnMoreEmail" placeholder="you@email.com" required>
+        <button type="submit">Send it to me</button>
+      </form>
+      <p class="contact-email-success" id="learnMoreSuccess">You're set. We'll send the full write-up to your inbox shortly.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 8. FOOTER ===== -->
+<footer>
+  <div class="footer-links">
+    <a href="https://www.linkedin.com/in/kwabena-oppong-904a3440/" target="_blank" rel="noopener">LinkedIn</a>
+  </div>
+  <div class="footer-copy">Steven Oppong, MD &copy; 2026</div>
+</footer>
+
+<script src="nav-search.js"></script>
+<script>
+(function() {
+  var els = document.querySelectorAll('.fade-in');
+  function check() {
+    els.forEach(function(el) {
+      var top = el.getBoundingClientRect().top;
+      if (top < window.innerHeight * 0.85) el.classList.add('visible');
+    });
+  }
+  window.addEventListener('scroll', check, { passive: true });
+  check();
+
+  // Outline scroll-spy: highlight the ctl-row whose target section is active
+  var outlineRows = document.querySelectorAll('.case-timeline .ctl-row');
+  if (outlineRows.length) {
+    var targets = [];
+    outlineRows.forEach(function(row) {
+      var id = row.getAttribute('data-target');
+      var el = document.getElementById(id);
+      if (el) targets.push({ row: row, el: el });
+    });
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        var match = targets.find(function(t) { return t.el === entry.target; });
+        if (match) match.row.classList.toggle('active', entry.isIntersecting);
+      });
+    }, { rootMargin: '-120px 0px -60% 0px', threshold: 0 });
+    targets.forEach(function(t) { observer.observe(t.el); });
+  }
+})();
+</script>
+<script src="lightbox.js"></script>
+<script src="contact-cta.js"></script>
+<script>if (/[\?&]edit\b/.test(location.search)) { var s=document.createElement('script'); s.src='admin.js'; document.body.appendChild(s); }</script>
+</body>
+</html>

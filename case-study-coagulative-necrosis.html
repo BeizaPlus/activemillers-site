@@ -11,8 +11,10 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;1,14..32,400;1,14..32,500;1,14..32,600;1,14..32,700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.31.0/dist/tabler-icons.min.css">
 <link rel="stylesheet" href="global.css">
+<link rel="stylesheet" href="video-player.css">
 <link rel="stylesheet" href="contact-cta.css">
 <link rel="stylesheet" href="lightbox.css">
+<link rel="stylesheet" href="compare-slider.css">
 <style>
 /* ===== PAGE HEADER SPACING ===== */
 .page-top { padding-top: 140px; }
@@ -50,8 +52,8 @@
   padding: 0; width: 100%;
 }
 .image-row img {
-  width: 100%; height: auto; display: block;
-  background: #141414;
+  width: 100%; aspect-ratio: 16/9; object-fit: cover; display: block;
+  background: #0a0a09;
 }
 
 /* ===== PROCESS SECTION (two-column) ===== */
@@ -61,17 +63,37 @@
   display: grid; grid-template-columns: 35% 1fr; gap: 80px;
   align-items: start;
 }
-.process h2 {
+.process-outline { position: sticky; top: 120px; }
+.process-outline h2 {
   font-size: clamp(28px, 5vw, 48px); font-weight: 600; letter-spacing: -0.03em; line-height: 1.1;
-  position: sticky; top: 120px;
+  margin-bottom: 32px;
 }
-.process-steps { display: flex; flex-direction: column; gap: 48px; }
+.case-timeline { display: flex; flex-direction: column; }
+.ctl-row { display: block; position: relative; }
+.ctl-link { display: flex; text-decoration: none; color: inherit; cursor: pointer; }
+.ctl-rail { position: relative; width: 24px; flex-shrink: 0; min-height: 68px; }
+.ctl-line { position: absolute; left: 50%; top: 0; bottom: 0; width: 1px; background: #e60021; opacity: 0.3; transform: translateX(-50%); transition: opacity 0.2s ease; }
+.ctl-row:first-child .ctl-line { top: 50%; }
+.ctl-row:last-child .ctl-line { bottom: 50%; }
+.ctl-dot { position: absolute; left: 50%; top: 50%; width: 9px; height: 9px; border-radius: 50%; background: #e60021; opacity: 0.4; z-index: 1; transform: translate(-50%, -50%); box-shadow: 0 0 0 4px rgba(230,0,33,0.12); transition: opacity 0.2s ease, box-shadow 0.2s ease, width 0.2s ease, height 0.2s ease; }
+.ctl-link:hover .ctl-dot { box-shadow: 0 0 0 6px rgba(230,0,33,0.2); }
+.ctl-content { display: flex; flex-direction: column; justify-content: center; padding-left: 16px; padding-bottom: 4px; }
+.ctl-label { font-size: 16px; font-weight: 600; letter-spacing: -0.02em; line-height: 1.3; opacity: 0.5; transition: opacity 0.2s ease; }
+.ctl-desc { font-size: 13px; opacity: 0.35; margin-top: 2px; line-height: 1.4; transition: opacity 0.2s ease; }
+.ctl-link:hover .ctl-label { text-decoration: underline; text-underline-offset: 3px; }
+.ctl-row.active .ctl-line { opacity: 1; }
+.ctl-row.active .ctl-dot { opacity: 1; width: 13px; height: 13px; box-shadow: 0 0 0 6px rgba(230,0,33,0.18); }
+.ctl-row.active .ctl-label { opacity: 1; }
+.ctl-row.active .ctl-desc { opacity: 0.55; }
+.process-steps { display: flex; flex-direction: column; gap: var(--space-3xl); }
+.process-step { scroll-margin-top: 120px; }
 .process-step h3 {
-  font-size: 20px; font-weight: 600; margin-bottom: 12px; letter-spacing: -0.02em;
+  font-size: 22px; font-weight: 600; letter-spacing: -0.02em;
 }
 .process-step p {
   font-size: 17px; line-height: 1.7; opacity: 0.7;
 }
+.process-step > * + * { margin-top: var(--space-lg); }
 
 /* ===== STACKED IMAGES ===== */
 .stacked-images { padding: 0; width: 100%; }
@@ -95,9 +117,15 @@
   font-size: 18px; line-height: 1.7; opacity: 0.7;
 }
 
+/* ===== OUTCOME COMPARE (acute vs. healed) ===== */
+.outcome-compare {
+  padding: 0 clamp(32px, 7vw, 80px);
+  max-width: 900px; margin: 0 auto;
+}
+
 /* ===== OTHER WORK ===== */
 .other-work {
-  padding: 128px clamp(32px, 7vw, 80px);
+  padding: 0 clamp(32px, 7vw, 80px) 128px;
   max-width: 1280px; margin: 0 auto;
 }
 .other-work h2 {
@@ -115,7 +143,7 @@
 @media (max-width: 809px) {
   .case-header { grid-template-columns: 1fr; gap: 40px; }
   .process { grid-template-columns: 1fr; gap: 32px; padding: 80px 32px; }
-  .process h2 { position: static; }
+  .process-outline { position: static; }
   .outcome { grid-template-columns: 1fr; gap: 24px; padding: 80px 32px; }
   .other-work { padding: 80px 32px; }
   .other-work-grid { grid-template-columns: 1fr; gap: 24px; }
@@ -153,8 +181,8 @@
 <header class="case-header fade-in">
   <h1>Coagulative Necrosis</h1>
   <div class="case-intro">
-    <p>When a coronary artery occludes, the myocardium downstream does not die immediately. There is a window — roughly 20 to 40 minutes — during which the myocytes are ischemic but salvageable. After that, the damage becomes irreversible. The cell swells. The mitochondria rupture. Calcium floods the cytoplasm. Denatured proteins coagulate into a firm, eosinophilic mass that preserves the ghost architecture of the tissue. This is coagulative necrosis: the dominant pattern of cell death in all solid organs except the brain.</p>
-    <p>What distinguishes coagulative necrosis from the other patterns — liquefactive, caseous, fat, fibrinoid — is that the tissue architecture is preserved, at least temporarily. The cell outlines remain visible. The extracellular matrix stays intact. The dead tissue is firm, not liquid. It holds its shape until proteolytic enzymes from infiltrating neutrophils and macrophages arrive days later to digest it. This case study follows the arc from gross infarction to the cellular signature of irreversible myocyte death: the tombstone myocyte.</p>
+    <p>When a coronary artery occludes, the myocardium downstream doesn't die right away. There's a window, roughly 20 to 40 minutes, where the myocytes are ischemic but still salvageable. Past that point, the damage can't be undone. The cell swells. The mitochondria rupture. Calcium floods in. Denatured proteins coagulate into a firm, eosinophilic mass that holds the ghost shape of the tissue it used to be.</p>
+    <p>That's coagulative necrosis, the dominant pattern of cell death in every solid organ except the brain. What sets it apart from liquefactive, caseous, fat, and fibrinoid necrosis is that the architecture survives, at least for a while. Cell outlines stay visible. The extracellular matrix holds. The dead tissue stays firm, not liquid, until neutrophils and macrophages show up days later to digest it. This case follows that arc, from the pale infarct you can see with your own eyes down to the tombstone myocyte that only shows up under a microscope.</p>
     <div class="case-meta">
       <div class="case-meta-row">
         <span class="case-meta-label">Case Type</span>
@@ -175,7 +203,7 @@
 <!-- ===== 2. TWO-IMAGE ROW ===== -->
 <section class="image-row fade-in">
   <div class="img-wrap">
-    <img src="images/case-studies/coag-necrosis-01-gross-infarct.png" alt="Gross cardiac specimen: cross-sectioned left ventricle showing pale, firm, sharply demarcated zone of coagulative necrosis days after infarction" loading="lazy">
+    <img src="images/case-studies/coag-necrosis-01-gross-infarct_v2.png" alt="Gross cardiac specimen: short-axis slice through the left ventricle showing a pale, firm, sharply demarcated zone of coagulative necrosis confined to the wall, bordered by viable dark red-brown myocardium, with the chamber lumen and right ventricle clearly unaffected" loading="lazy">
   </div>
   <div class="img-wrap">
     <img src="images/case-studies/coag-necrosis-02-tombstone-myocytes.png" alt="Cellular histology of coagulative necrosis: transition from healthy myocytes with intact nuclei and cross-striations to necrotic tombstone myocytes with dissolved internal detail but preserved cell outlines" loading="lazy">
@@ -184,19 +212,97 @@
 
 <!-- ===== 3. PROCESS SECTION ===== -->
 <section class="process">
-  <h2 class="fade-in">Process</h2>
+  <div class="process-outline">
+    <h2 class="fade-in">Process</h2>
+    <div class="case-timeline" role="navigation" aria-label="Jump to section">
+      <div class="ctl-row" data-target="cn-atheroma">
+        <a class="ctl-link" href="#cn-atheroma">
+          <div class="ctl-rail"><div class="ctl-line"></div><div class="ctl-dot"></div></div>
+          <div class="ctl-content"><div class="ctl-label">Where It Starts: The Atheroma</div><div class="ctl-desc">LDL, foam cells, and the cap that eventually fails</div></div>
+        </a>
+      </div>
+      <div class="ctl-row" data-target="cn-pale-infarct">
+        <a class="ctl-link" href="#cn-pale-infarct">
+          <div class="ctl-rail"><div class="ctl-line"></div><div class="ctl-dot"></div></div>
+          <div class="ctl-content"><div class="ctl-label">The Pale Infarct</div><div class="ctl-desc">Visible, firm, sharply demarcated tissue death</div></div>
+        </a>
+      </div>
+      <div class="ctl-row" data-target="cn-tombstone">
+        <a class="ctl-link" href="#cn-tombstone">
+          <div class="ctl-rail"><div class="ctl-line"></div><div class="ctl-dot"></div></div>
+          <div class="ctl-content"><div class="ctl-label">The Tombstone Myocyte</div><div class="ctl-desc">Nuclei gone, outline intact, under the microscope</div></div>
+        </a>
+      </div>
+      <div class="ctl-row" data-target="cn-lysosomal">
+        <a class="ctl-link" href="#cn-lysosomal">
+          <div class="ctl-rail"><div class="ctl-line"></div><div class="ctl-dot"></div></div>
+          <div class="ctl-content"><div class="ctl-label">Why Coagulative, Not Liquefactive</div><div class="ctl-desc">Lysosome-poor organs hold their shape when they die</div></div>
+        </a>
+      </div>
+    </div>
+  </div>
   <div class="process-steps">
-    <div class="process-step fade-in">
+    <div class="process-step fade-in" id="cn-atheroma">
+      <h3>Where It Starts: The Atheroma</h3>
+      <p>This story doesn't start with the infarct. It starts decades earlier, when LDL first slips into the arterial intima and oxidizes. That triggers an inflammatory response that pulls monocytes in. They turn into macrophages, gorge on the oxidized LDL, and become foam cells, the defining cell of the fatty streak, the earliest lesion you can actually see.</p>
+      <p>Over years, smooth muscle cells migrate in and build a fibrous cap over a growing lipid core. That's the mature plaque. And that cap is exactly what fails: it ruptures, exposes thrombogenic material to the blood, and triggers the clot that finally starves the muscle downstream. Everything that follows starts the moment that cap, decades in the making, gives way.</p>
+      <div class="step-images">
+        <div class="step-figure">
+          <div class="video-figure">
+            <video playsinline preload="none" muted poster="images/case-studies/atheroma-formation-poster.jpg">
+              <source src="videos/atheroma-formation.mp4" type="video/mp4">
+            </video>
+            <button class="video-play-btn" aria-label="Play video">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 4v16a1 1 0 0 0 1.524 .852l13 -8a1 1 0 0 0 0 -1.704l-13 -8a1 1 0 0 0 -1.524 .852z" /></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="process-step fade-in" id="cn-pale-infarct">
       <h3>The Pale Infarct: Gross Architecture of Ischemic Death</h3>
-      <p>Twenty-four hours after a coronary occlusion, the infarcted myocardium is visible to the naked eye. The affected region is pale, tan-yellow, and slightly swollen, standing out against the surrounding dark red-brown viable muscle. The border is sharply demarcated, often bordered by a narrow hyperemic rim where vasodilation and inflammation are already underway. The tissue is firm to the touch — not soft, not liquefied, not friable. This firmness is the hallmark of coagulative necrosis: the denatured structural proteins and cytoskeletal elements have coagulated into a solid mass that holds its shape. On histology, the landscape is dominated by hypereosinophilic myocytes that have lost their nuclei but retained their outlines, a phenomenon so characteristic that pathologists call them tombstone cells.</p>
+      <p>Twenty-four hours after the occlusion, you can see the damage with your own eyes. The infarcted zone turns pale, tan-yellow, slightly swollen, standing out hard against the dark red-brown of the muscle still alive around it. The border is sharp, often rimmed by a narrow band of hyperemia where vasodilation and inflammation are already underway.</p>
+      <p>Touch it and it's firm, not soft, not liquefied, not friable. That firmness is the whole signature of coagulative necrosis: denatured structural proteins holding their shape as a solid mass. Under the microscope, the same story repeats at the cellular level. Hypereosinophilic myocytes have lost their nuclei but kept their outlines, a look so distinct pathologists just call them tombstone cells.</p>
     </div>
-    <div class="process-step fade-in">
+    <div class="process-step fade-in" id="cn-tombstone">
       <h3>The Tombstone Myocyte: Cellular Signature of Irreversibility</h3>
-      <p>Under the microscope, the transition from viable to necrotic myocardium is abrupt and unmistakable. Healthy myocytes display intact, elongated nuclei with dispersed chromatin and clearly visible cross-striations in the cytoplasm — the sarcomeric banding pattern that drives contraction. Across a narrow boundary, the necrotic myocytes tell a different story. The nuclei are gone. Pyknosis, karyorrhexis, and karyolysis have erased them. The cross-striations have faded into a uniform, glassy, deeply eosinophilic cytoplasm. The cell outlines — the sarcolemma — remain visible, holding the shape of the cells in place like a cast of what was there. This is the tombstone: a ghost of the living myocyte, its architecture preserved but its internal machinery dissolved. The extracellular matrix, composed largely of collagen and elastin, is equally preserved, providing the scaffold onto which granulation tissue and eventual fibrosis will be laid down during healing.</p>
+      <p>Under the microscope, the line between alive and dead is abrupt. Healthy myocytes show intact, elongated nuclei, dispersed chromatin, and clear cross-striations, the sarcomeric banding that actually drives contraction. Cross one narrow boundary and the story flips completely.</p>
+      <p>The nuclei are gone: pyknosis, karyorrhexis, karyolysis have erased them one by one. The cross-striations fade into a flat, glassy, deeply eosinophilic cytoplasm. But the sarcolemma, the cell outline, is still there, holding the shape of a cell that's already gone, like a cast of what used to live inside it. That's the tombstone: architecture intact, machinery dissolved. Even the extracellular matrix survives, collagen and elastin still in place, waiting to become the scaffold granulation tissue builds on later.</p>
+      <div class="step-images">
+        <div class="step-figure">
+          <img src="images/case-studies/coag-necrosis-02-tombstone-myocytes.png" alt="Transition from healthy myocytes with intact nuclei and cross-striations to necrotic tombstone myocytes with dissolved internal detail but preserved cell outlines" loading="lazy">
+          <div class="step-caption"><div class="fig-num">Figure</div><div class="fig-title">Healthy myocyte to tombstone: the outline survives, the machinery doesn't</div></div>
+        </div>
+      </div>
     </div>
-    <div class="process-step fade-in">
+    <div class="process-step fade-in" id="cn-lysosomal">
       <h3>Why Coagulative, Not Liquefactive: The Role of Lysosomal Poverty</h3>
-      <p>The pattern of necrosis a tissue follows depends largely on how many lysosomes it contains. Solid organs — heart, kidney, liver, spleen — are relatively poor in lysosomal enzymes. When their cells die, the low enzyme content means the dead tissue is not rapidly digested. The denatured proteins hold their shape. The architecture stands. The dead zone is firm. Contrast this with the brain, which is rich in lysosomes and whose necrosis is liquefactive: the tissue dissolves into a fluid-filled cavity within days. Or with tuberculous granulomas, where the necrosis is caseous: a dry, cheese-like, friable mixture of fragmented cells and lipid debris that resembles no living tissue at all. Coagulative necrosis is the default pattern for solid organs because their cells are built for function, not for self-digestion.</p>
+      <p>Which pattern a dead tissue follows comes down to one thing: how many lysosomes it had to begin with. Solid organs, heart, kidney, liver, spleen, are relatively poor in lysosomal enzymes. When their cells die, there's not enough enzyme around to digest the tissue quickly. The denatured proteins just hold their shape. The architecture stands. The dead zone stays firm.</p>
+      <p>Compare that to the brain, rich in lysosomes, where necrosis goes liquefactive: the tissue actually dissolves into a fluid-filled cavity within days. Or to a tuberculous granuloma, where necrosis goes caseous, a dry, cheese-like, friable mix of fragmented cells and lipid debris that doesn't resemble living tissue at all. Coagulative necrosis is the default for solid organs for a simple reason: their cells are built to work, not to digest themselves.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 4b. OUTCOME COMPARE: ACUTE VS. HEALED ===== -->
+<section class="outcome-compare fade-in">
+  <div class="compare-labels-row" aria-hidden="true">
+    <span class="compare-label compare-label-before">Acute Infarct</span>
+    <span class="compare-label compare-label-after">Healed Scar</span>
+  </div>
+  <div class="compare-container" data-start="50" role="group" aria-label="Acute infarct versus healed fibrous scar comparison slider">
+    <div class="compare-layer">
+      <img src="images/case-studies/coag-necrosis-01-gross-infarct_v2.png" alt="Acute coagulative necrosis: pale tan-yellow infarct confined to the ventricular wall" draggable="false">
+    </div>
+    <div class="compare-layer compare-top">
+      <div class="compare-layer">
+        <img src="images/case-studies/coag-necrosis-03-healed-fibrosis.png" alt="The same wall segment months later: a thin, firm, white fibrous scar has replaced the necrotic muscle" draggable="false">
+      </div>
+    </div>
+    <div class="compare-divider"></div>
+    <div class="compare-handle" role="slider" aria-label="Drag to compare acute infarct with healed scar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" tabindex="0">
+      <span class="compare-handle-circle">
+        <svg class="compare-handle-arrows" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M10 8l-4 4 4 4V8zm4 8l4-4-4-4v8z"/></svg>
+      </span>
     </div>
   </div>
 </section>
@@ -204,7 +310,7 @@
 <!-- ===== 5. OUTCOME SECTION ===== -->
 <section class="outcome">
   <h2 class="fade-in">Outcome</h2>
-  <p class="fade-in">The infarct heals from the periphery inward. Neutrophils arrive within hours, releasing proteolytic enzymes that begin the slow work of digesting the dead myocytes. Macrophages follow, clearing debris and secreting cytokines that recruit fibroblasts. Granulation tissue fills the defect. Over weeks to months, collagen is laid down and the infarct becomes a fibrous scar — a permanent, non-contractile patch in the ventricular wall. The tombstone myocytes are gone, replaced by dense collagen. The architecture of the heart is permanently altered. The illustrations in this series capture the two scales at which coagulative necrosis declares itself: the gross, where the pale infarct stands out against viable muscle, and the cellular, where the tombstone myocyte preserves the outline of what was lost while its internal life dissolves around it.</p>
+  <p class="fade-in">The infarct heals from the outside in. Neutrophils show up within hours, releasing enzymes that start the slow work of digesting the dead myocytes. Macrophages follow, clearing debris and calling in fibroblasts. Granulation tissue fills the gap, and over weeks to months collagen gets laid down until the infarct becomes a fibrous scar: permanent, non-contractile, a patch where working muscle used to be. The tombstone myocytes are gone by then, replaced by dense collagen, and the heart's architecture is changed for good. That's the whole arc this case traces: the gross scale, where a pale infarct stands out against muscle that's still alive, and the cellular scale, where a tombstone myocyte holds the outline of what it used to be while everything inside it dissolves.</p>
 </section>
 
 <!-- ===== 6. OTHER WORK ===== -->
@@ -269,9 +375,28 @@
 
   window.addEventListener('scroll', check, { passive: true });
   check();
+
+  var outlineRows = document.querySelectorAll('.case-timeline .ctl-row');
+  if (outlineRows.length) {
+    var targets = [];
+    outlineRows.forEach(function(row) {
+      var id = row.getAttribute('data-target');
+      var el = document.getElementById(id);
+      if (el) targets.push({ row: row, el: el });
+    });
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        var match = targets.find(function(t) { return t.el === entry.target; });
+        if (match) match.row.classList.toggle('active', entry.isIntersecting);
+      });
+    }, { rootMargin: '-120px 0px -60% 0px', threshold: 0 });
+    targets.forEach(function(t) { observer.observe(t.el); });
+  }
 })();
 </script>
 <script src="lightbox.js"></script>
+<script src="compare-slider.js"></script>
+<script src="video-player.js"></script>
 <script src="contact-cta.js"></script>
 <script>if (/[\?&]edit\b/.test(location.search)) { var s=document.createElement('script'); s.src='admin.js'; document.body.appendChild(s); }</script>
 </body>

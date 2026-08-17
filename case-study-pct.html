@@ -13,6 +13,7 @@
 <link rel="stylesheet" href="global.css">
 <link rel="stylesheet" href="contact-cta.css">
 <link rel="stylesheet" href="lightbox.css">
+<link rel="stylesheet" href="compare-slider.css">
 <style>
 .page-top { padding-top: 140px; }
 .case-header {
@@ -250,6 +251,32 @@ section.full-image .step-figure img { height: 92vh; width: 100%; object-fit: con
   <p class="fade-in">The iron comes down. The enzyme comes back online. The bloodstream stops carrying unfinished porphyrin to skin that was never built to handle it, and the skin that already blistered finally gets the chance to close. Sun protection holds the line while all of that catches up, because the deposits already in the skin don't clear on day one. The same forearm that came in blistered goes back out intact, not because the sun changed, but because the pathway that made the sun dangerous finally started working again.</p>
 </section>
 
+<!-- ===== COMPARE SLIDER ===== -->
+<section class="stacked-images">
+  <div class="img-wrap fade-in">
+    <div class="compare-labels-row" aria-hidden="true">
+      <span class="compare-label compare-label-before">Fair skin</span>
+      <span class="compare-label compare-label-after">Deep skin</span>
+    </div>
+    <div class="compare-container" role="group" aria-label="Same presentation across skin tones comparison slider" data-start="88">
+      <div class="compare-layer">
+        <img src="images/case-studies/pct-establishing-white.png" alt="Blistered forearm, fair skin presentation" draggable="false">
+      </div>
+      <div class="compare-layer compare-top">
+        <div class="compare-layer">
+          <img src="images/case-studies/pct-establishing.png" alt="Blistered forearm, deep skin presentation" draggable="false">
+        </div>
+      </div>
+      <div class="compare-divider"></div>
+      <div class="compare-handle" role="slider" aria-label="Drag to compare skin tones" aria-valuemin="0" aria-valuemax="100" aria-valuenow="88" tabindex="0">
+        <span class="compare-handle-circle">
+          <svg class="compare-handle-arrows" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M10 8l-4 4 4 4V8zm4 8l4-4-4-4v8z"/></svg>
+        </span>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="other-work">
   <h2 class="fade-in">Other work</h2>
   <div class="other-work-grid">
@@ -327,6 +354,7 @@ section.full-image .step-figure img { height: 92vh; width: 100%; object-fit: con
 })();
 </script>
 <script src="lightbox.js"></script>
+<script src="compare-slider.js"></script>
 <script src="contact-cta.js"></script>
 <script>if (/[\?&]edit\b/.test(location.search)) { var s=document.createElement('script'); s.src='admin.js'; document.body.appendChild(s); }</script>
 </body>

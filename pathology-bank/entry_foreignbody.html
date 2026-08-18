@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Foreign Body Giant Cell Reaction</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="compare-slider.css">
+<style>
+  * { box-sizing: border-box; }
+  body {
+    background: #121212;
+    color: #eee;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    margin: 0;
+  }
+  .back-btn {
+    position: fixed;
+    top: 24px;
+    right: 32px;
+    color: #fff;
+    font-size: 28px;
+    text-decoration: none;
+    line-height: 1;
+    z-index: 50;
+    opacity: 0.8;
+  }
+  .back-btn:hover { opacity: 1; }
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    position: relative;
+  }
+  .hero-content {
+    display: flex;
+    gap: 32px;
+    max-width: 1200px;
+    max-height: 90vh;
+    align-items: center;
+  }
+  .hero-content img {
+    max-height: 85vh;
+    max-width: 60vw;
+    border-radius: 8px;
+    display: block;
+  }
+  .hero-text { max-width: 380px; }
+  .hero-text h1 { font-size: 22px; margin: 0 0 12px; color: #fff; }
+  .hero-text p { font-size: 15px; line-height: 1.6; color: #ccc; }
+  .hero-text .fig-ref {
+    display: inline-block;
+    margin-top: 16px;
+    font-size: 12px;
+    color: #888;
+    border: 1px solid #444;
+    padding: 4px 10px;
+    border-radius: 4px;
+  }
+  .scroll-hint {
+    position: absolute;
+    bottom: 28px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 12px;
+    color: #666;
+    letter-spacing: 0.04em;
+  }
+  .compare-section {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 60px 24px 100px;
+    border-top: 1px solid #262626;
+  }
+  .compare-item {
+    min-height: 85vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .compare-item h2 { font-size: 17px; font-weight: 700; color: #fff; margin: 0 0 4px; text-align: center; }
+  .compare-item .fig { font-size: 12px; color: #888; margin-bottom: 20px; text-align: center; }
+  .compare-item .note { margin-top: 16px; font-size: 13px; color: #999; line-height: 1.6; text-align: center; }
+  .compare-item .compare-container {
+    height: 70vh;
+    width: auto;
+    max-width: 100%;
+    max-height: 70vh;
+    margin: 0 auto;
+  }
+  @media (max-width: 700px) {
+    .hero-content { flex-direction: column; }
+    .hero-content img { max-width: 90vw; }
+    .compare-item { min-height: auto; }
+    .compare-item .compare-container { height: auto; width: 100%; max-height: none; }
+  }
+</style>
+</head>
+<body>
+
+<a class="back-btn" href="index.html" title="Back to gallery">&times;</a>
+
+<div class="hero">
+  <div class="hero-content">
+    <img src="gran_2_foreignbody_plant.jpg" alt="3D volumetric render of foreign body giant cell reaction">
+    <div class="hero-text">
+      <h1>Foreign Body Giant Cell Reaction</h1>
+      <p>Engulfed plant fragment. Multinucleated foreign body giant cells and epithelioid macrophages surround incompletely digested vegetable material embedded in the bowel wall — the book's own diverticulitis example.</p>
+      <span class="fig-ref">Fig. 3.10</span>
+    </div>
+  </div>
+  <div class="scroll-hint">SCROLL TO COMPARE ↓</div>
+</div>
+
+<div class="compare-section">
+  <div class="compare-item">
+    <h2>Real Plate vs. 3D Render</h2>
+    <div class="fig">Fig. 3.10(b) — Giant cell with inclusion (HP — High Power)</div>
+    <div class="compare-container" data-start="50">
+      <span class="compare-label compare-label-before">Real Plate</span>
+      <span class="compare-label compare-label-after">3D Render</span>
+      <div class="compare-layer"><img src="real_foreignbody_fig3.10b.png" alt="Real foreign body giant cell micrograph" draggable="false"></div>
+      <div class="compare-layer compare-top"><div class="compare-layer"><img src="gran_2_foreignbody_plant.jpg" alt="3D volumetric render of foreign body giant cell reaction" draggable="false"></div></div>
+      <div class="compare-divider"></div>
+      <div class="compare-handle" role="slider" tabindex="0" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+        <span class="compare-handle-circle"><svg class="compare-handle-arrows" viewBox="0 0 24 24"><path fill="currentColor" d="M10 8l-4 4 4 4V8zm4 8l4-4-4-4v8z"/></svg></span>
+      </div>
+    </div>
+    <div class="note">Engulfed plant fragment (P), derived from faeces, embedded in bowel wall in diverticulitis.</div>
+  </div>
+</div>
+
+<script src="compare-slider.js"></script>
+</body>
+</html>

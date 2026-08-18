@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Pathology Bank — activemillers</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  body {
+    background: #121212;
+    color: #eee;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    margin: 0;
+    padding: 40px 24px 80px;
+  }
+  h1 {
+    font-size: 22px;
+    font-weight: 700;
+    text-align: center;
+    margin: 0 0 4px;
+    color: #fff;
+  }
+  .subtitle {
+    text-align: center;
+    color: #999;
+    font-size: 13px;
+    margin-bottom: 40px;
+  }
+  .board {
+    column-count: 3;
+    column-gap: 20px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  @media (max-width: 900px) {
+    .board { column-count: 2; }
+  }
+  @media (max-width: 560px) {
+    .board { column-count: 1; }
+  }
+  .pin {
+    position: relative;
+    break-inside: avoid;
+    margin-bottom: 20px;
+    border-radius: 18px;
+    overflow: hidden;
+    background: #1c1c1c;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .pin:hover {
+    transform: translateY(-6px) scale(1.015);
+    box-shadow: 0 16px 32px rgba(0,0,0,0.55);
+  }
+  .pin img {
+    width: 100%;
+    display: block;
+  }
+  .pin .label {
+    padding: 14px 16px 16px;
+  }
+  .pin .label .title {
+    font-size: 14px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 4px;
+  }
+  .pin .label .snippet {
+    font-size: 12px;
+    color: #999;
+    line-height: 1.4;
+  }
+  .pin .num {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: rgba(0,0,0,0.55);
+    backdrop-filter: blur(4px);
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .pin .fig-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(0,0,0,0.55);
+    backdrop-filter: blur(4px);
+    color: #ddd;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 4px 9px;
+    border-radius: 20px;
+  }
+  .controls {
+    max-width: 1100px;
+    margin: 0 auto 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+  .search-input {
+    width: 100%;
+    max-width: 420px;
+    background: #1c1c1c;
+    border: 1px solid #333;
+    color: #eee;
+    font-family: inherit;
+    font-size: 14px;
+    padding: 11px 16px;
+    border-radius: 10px;
+    outline: none;
+  }
+  .search-input:focus { border-color: #666; }
+  .search-input::placeholder { color: #777; }
+  .filters {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+  }
+  .filter-pill {
+    background: #1c1c1c;
+    border: 1px solid #333;
+    color: #aaa;
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 7px 14px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+  }
+  .filter-pill:hover { border-color: #555; color: #fff; }
+  .filter-pill.active {
+    background: #fff;
+    color: #121212;
+    border-color: #fff;
+  }
+  .no-results {
+    text-align: center;
+    color: #666;
+    font-size: 13px;
+    padding: 40px 0;
+    display: none;
+  }
+  .pin.hidden { display: none; }
+</style>
+</head>
+<body>
+
+<a href="../index.html" style="display:block;text-align:center;color:#999;font-size:13px;text-decoration:none;padding-top:8px;">&larr; activemillers</a>
+<h1>Pathology Bank</h1>
+<div class="subtitle">Wheater's Basic Pathology, 3D volumetric renders vs. real plates — click any pin to open</div>
+
+<div class="controls">
+  <input class="search-input" id="search" type="text" placeholder="Search the bank (organism, disease, figure)…">
+  <div class="filters" id="filters"></div>
+</div>
+
+<div class="board" id="gallery"></div>
+<div class="no-results" id="no-results">No matches — try a different search or filter.</div>
+
+<script>
+const panels = [
+  {
+    img: "gran_1_sarcoidosis.jpg",
+    title: "Sarcoidosis",
+    cat: ["Granulomatous"],
+    caption: "Non-caseating granuloma, no necrosis. Discrete, tightly packed epithelioid histiocytes with only a sparse lymphocytic cuff at the edge — a \"naked granuloma.\" Chronic granulomatous disease of unknown aetiology.",
+    fig: "Fig. 3.9",
+    href: "entry_sarcoidosis.html"
+  },
+  {
+    img: "gran_2_foreignbody_plant.jpg",
+    title: "Foreign Body Giant Cell Reaction",
+    cat: ["Granulomatous"],
+    caption: "Engulfed plant fragment. Multinucleated foreign body giant cells and epithelioid macrophages surround incompletely digested vegetable material embedded in the bowel wall — the book's own diverticulitis example.",
+    fig: "Fig. 3.10",
+    href: "entry_foreignbody.html"
+  },
+  {
+    img: "gran_3_tb.jpg",
+    title: "Tuberculosis",
+    cat: ["Bacteria", "Granulomatous"],
+    caption: "Caseating granuloma (tubercle), Langhans giant cell. Central amorphous caseous necrosis rimmed by epithelioid histiocytes and a Langhans giant cell with peripheral horseshoe-arranged nuclei — the odd one out with true necrosis.",
+    fig: "Fig. 4.3–4.7",
+    href: "entry_tb.html"
+  },
+  {
+    img: "gran_4_leprosy.jpg",
+    title: "Leprosy (tuberculoid form)",
+    cat: ["Bacteria", "Granulomatous"],
+    caption: "Granuloma infiltrating dermal nerve. Non-caseating granuloma with heavy lymphocytic cuffing wraps and destroys a small dermal nerve fascicle — the pathognomonic feature distinguishing leprosy from other granulomas.",
+    fig: "Fig. 4.9",
+    href: "entry_leprosy.html"
+  },
+  {
+    img: "gran_5_crohns.jpg",
+    title: "Crohn's Disease",
+    cat: ["Granulomatous"],
+    caption: "Non-caseating granuloma, bowel wall. A discrete granuloma resembling sarcoidosis sits in the submucosa near a fissured ulcer, amid transmural chronic inflammation — the \"cobblestone\" mucosa pattern.",
+    fig: "Fig. 13.17",
+    href: "entry_crohns.html"
+  },
+  {
+    img: "gran_6_tb_lymphnode.jpg",
+    title: "Lymph Node Rupture → Bronchopneumonia",
+    cat: ["Bacteria"],
+    caption: "A hilar lymph node overwhelmed by caseous necrosis ruptures and erodes into a nearby bronchus wall, seeding a new tubercle in the lung — the two-panel mechanism behind tuberculous bronchopneumonia.",
+    fig: "Fig. 4.5 – 4.6",
+    href: "entry_tb_lymphnode_breach.html"
+  },
+  {
+    img: "syphilis_gumma_thumb.jpg",
+    title: "Syphilis — Gumma of the Liver",
+    cat: ["Bacteria"],
+    caption: "The focal lesion of tertiary syphilis. Central coagulative necrosis rimmed by epithelioid macrophages, lymphocytes, plasma cells and fibroblasts, healing into hepar lobatum.",
+    fig: "Fig. 4.11(a)",
+    href: "entry_syphilis_gumma.html"
+  },
+  {
+    img: "syphilis_aortitis_thumb.jpg",
+    title: "Syphilis — Syphilitic Aortitis",
+    cat: ["Bacteria"],
+    caption: "The most common diffuse tertiary syphilitic lesion. Vasa vasorum vasculitis (endarteritis obliterans) and lymphocytic cuffing degrade the aortic media, setting up ascending aortic aneurysm.",
+    fig: "Fig. 4.11(b)",
+    href: "entry_syphilis_aortitis.html"
+  },
+  {
+    img: "candidiasis_thumb.jpg",
+    title: "Candidiasis — Oral & Oesophageal",
+    cat: ["Fungus"],
+    caption: "Antibiotics wipe out competing flora, letting commensal Candida albicans overgrow. Progression from oral thrush down the oropharynx into the neutrophil-rich acute pattern, with hyphae and yeast forms invading the epithelium.",
+    fig: "Fig. 4.15",
+    href: "entry_candidiasis.html"
+  },
+  {
+    img: "actinomyces_panel1.jpg",
+    title: "Actinomyces vs. Aspergillus",
+    cat: ["Bacteria", "Fungus"],
+    caption: "Two filamentous organisms that look deceptively similar at low power — one bacterial, one a true fungus. Sulfur granules and fistulation vs. neutrophils attacking a hyphal colony, each told as its own four-panel story.",
+    fig: "Fig. 4.2 / 4.16",
+    href: "entry_actinomyces_vs_aspergillus.html"
+  },
+  {
+    img: "cmv_panel3.jpg",
+    title: "Cytomegalovirus",
+    cat: ["Virus"],
+    caption: "Latent in leukocytes for years, reactivating under immunosuppression into the classic 'owl's eye' inclusion cell, then disseminating to multiple organs.",
+    fig: "Fig. 4.13",
+    href: "entry_cmv.html"
+  },
+  {
+    img: "hsv_skin_panel4.jpg",
+    title: "Herpes Simplex Virus — Skin",
+    cat: ["Virus"],
+    caption: "Latent in nerve cells between outbreaks. Reactivation destroys epidermal cells via hydropic degeneration, producing the classic vesicle on an erythematous base.",
+    fig: "Fig. 4.12(a)",
+    href: "entry_hsv_skin.html"
+  },
+  {
+    img: "hsv_oesophagus_panel2.jpg",
+    title: "Herpes Simplex Virus — Oesophagus",
+    cat: ["Virus"],
+    caption: "In an immunosuppressed chemo patient: eosinophilic intranuclear inclusion bodies pushing chromatin to the periphery, and epithelial cells fusing into multinucleate syncytia.",
+    fig: "Fig. 4.12(b)",
+    href: "entry_hsv_oesophagus.html"
+  },
+  {
+    img: "candidiasis_disseminated_panel4.jpg",
+    title: "Disseminated Candidiasis",
+    cat: ["Fungus"],
+    caption: "Candida breaches from the oesophagus into the bloodstream and seeds the myocardium, where yeast forms end up engulfed inside giant cells forming a small granuloma.",
+    fig: "Fig. 4.15(c)",
+    href: "entry_candidiasis_disseminated.html"
+  },
+  {
+    img: "cryptococcus_thumb.jpg",
+    title: "Cryptococcus",
+    cat: ["Fungus"],
+    caption: "One organism, two outcomes: 'soap bubble' cysts with minimal reaction in an immunosuppressed host, versus a real granulomatous fight in an immunocompetent one.",
+    fig: "Fig. 4.18",
+    href: "entry_cryptococcus.html"
+  },
+  {
+    img: "amyloid_al_panel3.jpg",
+    title: "AL Amyloidosis",
+    cat: ["Amyloidosis"],
+    caption: "Abnormal plasma cell clone produces excess light chains, which occlude the glomerular capillary lumen — blood backs up, filtering fails, and the kidney shrinks into a small, scarred organ.",
+    fig: "Fig. 5.2 / 5.3",
+    href: "entry_amyloid_al.html"
+  },
+  {
+    img: "amyloid_ah_panel3.jpg",
+    title: "AH Amyloidosis",
+    cat: ["Amyloidosis"],
+    caption: "The rarer sibling of AL amyloid — same plasma cell clone mechanism, but the heavy chain segment deposits instead of the light chain.",
+    fig: "Fig. 5.2",
+    href: "entry_amyloid_ah.html"
+  },
+  {
+    img: "amyloid_aa_thumb.jpg",
+    title: "AA Amyloidosis",
+    cat: ["Amyloidosis"],
+    caption: "Chronic inflammation drives the liver to produce serum amyloid A, which deposits back into the liver's own space of Disse, enlarging the organ into hepatomegaly.",
+    fig: "Fig. 5.2 / 5.4",
+    href: "entry_amyloid_aa.html"
+  },
+  {
+    img: "amyloid_dialysis_panel2_v2.jpg",
+    title: "Dialysis-Related Amyloidosis",
+    cat: ["Amyloidosis"],
+    caption: "Beta-2 microglobulin accumulates over years of dialysis and deposits in periarticular tissue — the classic mechanism behind dialysis-related carpal tunnel syndrome.",
+    fig: "Fig. 5.2",
+    href: "entry_amyloid_dialysis.html"
+  },
+  {
+    img: "amyloid_attr_thumb.jpg",
+    title: "ATTR Amyloidosis",
+    cat: ["Amyloidosis"],
+    caption: "Transthyretin (formerly prealbumin) misfolds and deposits in the myocardium, both within vessel walls and as masses between muscle fibers.",
+    fig: "Fig. 5.2 / 5.6",
+    href: "entry_amyloid_attr.html"
+  },
+  {
+    img: "atrophy_testis_panel3.jpg",
+    title: "Testicular Atrophy",
+    cat: ["Growth Disorders"],
+    caption: "In an elderly man, seminiferous tubules lose their spermatogenic cells and hyalinise, leaving only Sertoli cells — the organ itself physically shrinks as functional cell mass is lost.",
+    fig: "Fig. 6.4",
+    href: "entry_atrophy_testis.html"
+  },
+  {
+    img: "atheroma_panelD_v3.jpg",
+    title: "Stages in Atheroma Formation",
+    cat: ["Cardiovascular"],
+    caption: "Endothelial dysfunction lets monocytes migrate in, foam cells accumulate, and smooth muscle forms a fibrous cap over the lipid core — the same artery's lumen ends up substantially narrowed.",
+    fig: "Fig. 8.2",
+    href: "entry_atheroma_formation.html"
+  },
+  {
+    img: "atheroma_complic_panel3_v2.jpg",
+    title: "Complications of Atheroma",
+    cat: ["Cardiovascular"],
+    caption: "Plaque fissuring lets blood track into the plaque, narrowing the lumen further; the exposed surface then builds a thrombus that can obliterate the vessel or embolise downstream — the sequence behind a real fatal MI case in the book.",
+    fig: "Fig. 8.7 / 8.8",
+    href: "entry_atheroma_complications.html"
+  },
+  {
+    img: "thrombus_panel3_v2.jpg",
+    title: "Thrombus Formation, Propagation & Resolution",
+    cat: ["Cardiovascular"],
+    caption: "Platelets adhere to exposed collagen, fibrin traps red cells, and the thrombus grows by successive layers (lines of Zahn) — until thrombolytic drugs cut the fibrin scaffold and the vessel can reopen.",
+    fig: "Fig. 9.1 / 9.2",
+    href: "entry_thrombus_formation.html"
+  },
+  {
+    img: "desmoplasia_panel3_endstate.png",
+    title: "Desmoplasia — Stromal Reaction in Invasive Carcinoma",
+    cat: ["Neoplasia"],
+    caption: "Invading carcinoma cells release bFGF, activating fibroblasts to lay down dense collagen around the tumor nests — an active host reaction, not a passive scar, giving infiltrating duct carcinoma its hard, gritty, scirrhous texture.",
+    fig: "Fig. 18.9(c)",
+    href: "entry_desmoplasia.html"
+  }
+];
+
+const gallery = document.getElementById('gallery');
+const noResults = document.getElementById('no-results');
+const searchInput = document.getElementById('search');
+const filtersEl = document.getElementById('filters');
+
+const allCats = ['All', ...new Set(panels.flatMap(p => p.cat))];
+let activeCat = 'All';
+
+allCats.forEach(cat => {
+  const btn = document.createElement('button');
+  btn.className = 'filter-pill' + (cat === activeCat ? ' active' : '');
+  btn.textContent = cat;
+  btn.onclick = () => {
+    activeCat = cat;
+    [...filtersEl.children].forEach(b => b.classList.toggle('active', b.textContent === cat));
+    render();
+  };
+  filtersEl.appendChild(btn);
+});
+
+panels.forEach((p, i) => {
+  const div = document.createElement('div');
+  div.className = 'pin';
+  div.dataset.index = i;
+  div.onclick = () => window.location.href = p.href;
+  div.innerHTML = `
+    <span class="num">${i+1}</span>
+    <span class="fig-badge">${p.fig}</span>
+    <img src="${p.img}" alt="${p.title}">
+    <div class="label">
+      <div class="title">${p.title}</div>
+      <div class="snippet">${p.caption.split('.')[0]}.</div>
+    </div>
+  `;
+  gallery.appendChild(div);
+});
+
+function render() {
+  const q = searchInput.value.trim().toLowerCase();
+  let visibleCount = 0;
+  [...gallery.children].forEach(div => {
+    const p = panels[div.dataset.index];
+    const matchesCat = activeCat === 'All' || p.cat.includes(activeCat);
+    const haystack = (p.title + ' ' + p.caption + ' ' + p.fig + ' ' + p.cat.join(' ')).toLowerCase();
+    const matchesSearch = q === '' || haystack.includes(q);
+    const visible = matchesCat && matchesSearch;
+    div.classList.toggle('hidden', !visible);
+    if (visible) visibleCount++;
+  });
+  noResults.style.display = visibleCount === 0 ? 'block' : 'none';
+}
+
+searchInput.addEventListener('input', render);
+</script>
+
+</body>
+</html>

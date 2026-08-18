@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Tuberculous Lymph Node Rupture → Bronchopneumonia</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="compare-slider.css">
+<style>
+  * { box-sizing: border-box; }
+  body {
+    background: #121212;
+    color: #eee;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    margin: 0;
+  }
+  .back-btn {
+    position: fixed;
+    top: 24px;
+    right: 32px;
+    color: #fff;
+    font-size: 28px;
+    text-decoration: none;
+    line-height: 1;
+    z-index: 50;
+    opacity: 0.8;
+  }
+  .back-btn:hover { opacity: 1; }
+
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    position: relative;
+  }
+  .hero-content {
+    display: flex;
+    gap: 32px;
+    max-width: 1300px;
+    max-height: 90vh;
+    align-items: center;
+  }
+  .hero-images {
+    display: flex;
+    gap: 16px;
+  }
+  .hero-images figure {
+    margin: 0;
+    text-align: center;
+  }
+  .hero-images img {
+    max-height: 70vh;
+    max-width: 33vw;
+    border-radius: 8px;
+    display: block;
+  }
+  .hero-images figcaption {
+    font-size: 12px;
+    color: #888;
+    margin-top: 8px;
+  }
+  .arrow-between {
+    align-self: center;
+    font-size: 28px;
+    color: #666;
+    padding: 0 4px;
+  }
+  .hero-text { max-width: 340px; }
+  .hero-text h1 { font-size: 21px; margin: 0 0 12px; color: #fff; }
+  .hero-text p { font-size: 14px; line-height: 1.6; color: #ccc; }
+  .hero-text .fig-ref {
+    display: inline-block;
+    margin-top: 16px;
+    margin-right: 6px;
+    font-size: 12px;
+    color: #888;
+    border: 1px solid #444;
+    padding: 4px 10px;
+    border-radius: 4px;
+  }
+  .scroll-hint {
+    position: absolute;
+    bottom: 28px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 12px;
+    color: #666;
+    letter-spacing: 0.04em;
+  }
+
+  .compare-section {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 60px 24px 100px;
+    border-top: 1px solid #262626;
+  }
+  .compare-item {
+    min-height: 85vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  .compare-item h2 { font-size: 17px; font-weight: 700; color: #fff; margin: 0 0 4px; text-align: center; }
+  .compare-item .fig { font-size: 12px; color: #888; margin-bottom: 20px; text-align: center; }
+  .compare-item .note { margin-top: 16px; font-size: 13px; color: #999; line-height: 1.6; text-align: center; }
+  .compare-item .compare-container {
+    height: 70vh;
+    width: auto;
+    max-width: 100%;
+    max-height: 70vh;
+    margin: 0 auto;
+  }
+  @media (max-width: 900px) {
+    .hero-content { flex-direction: column; }
+    .hero-images { flex-direction: column; }
+    .hero-images img { max-width: 80vw; max-height: 40vh; }
+    .compare-item { min-height: auto; }
+    .compare-item .compare-container { height: auto; width: 100%; max-height: none; }
+  }
+</style>
+</head>
+<body>
+
+<a class="back-btn" href="index.html" title="Back to gallery">&times;</a>
+
+<div class="hero">
+  <div class="hero-content">
+    <div class="hero-images">
+      <figure>
+        <img src="gran_6_tb_lymphnode.jpg" alt="3D volumetric render of tuberculous lymph node about to rupture">
+        <figcaption>1 &middot; Rupture imminent</figcaption>
+      </figure>
+      <span class="arrow-between">&rarr;</span>
+      <figure>
+        <img src="gran_7_tb_bronchopneumonia.jpg" alt="3D volumetric render of bronchiole wall breach seeding a new tubercle">
+        <figcaption>2 &middot; The breach</figcaption>
+      </figure>
+    </div>
+    <div class="hero-text">
+      <h1>Tuberculous Lymph Node Rupture &rarr; Bronchopneumonia</h1>
+      <p>A hilar lymph node overwhelmed by caseous necrosis ruptures through its capsule and erodes into a nearby bronchus wall. Bacilli spill through the breach into the lung parenchyma, seeding a new caseating tubercle right at the site — the mechanism behind tuberculous bronchopneumonia.</p>
+      <span class="fig-ref">Fig. 4.5</span>
+      <span class="fig-ref">Fig. 4.6</span>
+    </div>
+  </div>
+  <div class="scroll-hint">SCROLL TO COMPARE ↓</div>
+</div>
+
+<div class="compare-section">
+  <div class="compare-item">
+    <h2>1 &middot; Tuberculous Lymph Node — Real Plate vs. 3D Render</h2>
+    <div class="fig">Fig. 4.5 — Tuberculous lymph node (LP — Low Power)</div>
+    <div class="compare-container" data-start="50">
+      <span class="compare-label compare-label-before">Real Plate</span>
+      <span class="compare-label compare-label-after">3D Render</span>
+      <div class="compare-layer"><img src="real_fig4.5_lymphnode.png" alt="Real tuberculous lymph node micrograph" draggable="false"></div>
+      <div class="compare-layer compare-top"><div class="compare-layer"><img src="gran_6_tb_lymphnode.jpg" alt="3D volumetric render of tuberculous lymph node" draggable="false"></div></div>
+      <div class="compare-divider"></div>
+      <div class="compare-handle" role="slider" tabindex="0" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+        <span class="compare-handle-circle"><svg class="compare-handle-arrows" viewBox="0 0 24 24"><path fill="currentColor" d="M10 8l-4 4 4 4V8zm4 8l4-4-4-4v8z"/></svg></span>
+      </div>
+    </div>
+    <div class="note">Caseous necrosis (C) has almost destroyed the node; the surviving cellular rim is very thin and rupture is imminent.</div>
+  </div>
+
+  <div class="compare-item">
+    <h2>2 &middot; Tuberculous Bronchopneumonia — Real Plate vs. 3D Render</h2>
+    <div class="fig">Fig. 4.6 — Tuberculous bronchopneumonia (MP — Medium Power)</div>
+    <div class="compare-container" data-start="50">
+      <span class="compare-label compare-label-before">Real Plate</span>
+      <span class="compare-label compare-label-after">3D Render</span>
+      <div class="compare-layer"><img src="real_fig4.6_bronchopneumonia.png" alt="Real tuberculous bronchopneumonia micrograph" draggable="false"></div>
+      <div class="compare-layer compare-top"><div class="compare-layer"><img src="gran_7_tb_bronchopneumonia.jpg" alt="3D volumetric render of bronchopneumonia breach" draggable="false"></div></div>
+      <div class="compare-divider"></div>
+      <div class="compare-handle" role="slider" tabindex="0" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+        <span class="compare-handle-circle"><svg class="compare-handle-arrows" viewBox="0 0 24 24"><path fill="currentColor" d="M10 8l-4 4 4 4V8zm4 8l4-4-4-4v8z"/></svg></span>
+      </div>
+    </div>
+    <div class="note">Bronchiole wall (B) destroyed at one segment (D), permitting bacilli to seed a new caseating tubercle (T) in the adjacent lung. The render captures the breach but is missing the distinct new tubercle (T) the real plate shows — known gap, flagged for a retouch pass.</div>
+  </div>
+</div>
+
+<script src="compare-slider.js"></script>
+</body>
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Actinomyces vs. Aspergillus</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="compare-slider.css">
+<style>
+  * { box-sizing: border-box; }
+  body {
+    background: #121212;
+    color: #eee;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    margin: 0;
+  }
+  .back-btn {
+    position: fixed;
+    top: 24px;
+    right: 32px;
+    color: #fff;
+    font-size: 28px;
+    text-decoration: none;
+    line-height: 1;
+    z-index: 50;
+    opacity: 0.8;
+  }
+  .back-btn:hover { opacity: 1; }
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 40px;
+    position: relative;
+  }
+  .hero h1 { font-size: 24px; margin: 0 0 6px; color: #fff; text-align: center; }
+  .hero .subtitle { color: #999; font-size: 13px; margin-bottom: 40px; text-align: center; max-width: 600px; }
+  .hero-pair {
+    display: flex;
+    gap: 24px;
+    max-width: 1300px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .hero-pair figure { margin: 0; text-align: center; max-width: 620px; }
+  .hero-pair img { width: 100%; border-radius: 8px; display: block; }
+  .hero-pair figcaption { font-size: 13px; color: #aaa; margin-top: 10px; font-weight: 600; }
+  .hero-pair .desc { font-size: 12px; color: #888; margin-top: 4px; font-weight: 400; line-height: 1.5; }
+  .scroll-hint {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 12px;
+    color: #666;
+    letter-spacing: 0.04em;
+  }
+  .compare-section {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 60px 24px 100px;
+    border-top: 1px solid #262626;
+  }
+  .compare-item {
+    min-height: 85vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  .compare-item h2 { font-size: 17px; font-weight: 700; color: #fff; margin: 0 0 4px; text-align: center; }
+  .compare-item .fig { font-size: 12px; color: #888; margin-bottom: 20px; text-align: center; }
+  .compare-item .note { margin-top: 16px; font-size: 13px; color: #999; line-height: 1.6; text-align: center; max-width: 640px; margin-left: auto; margin-right: auto; }
+  .compare-item .compare-container {
+    height: 65vh;
+    width: auto;
+    max-width: 100%;
+    max-height: 65vh;
+    margin: 0 auto;
+  }
+  @media (max-width: 900px) {
+    .compare-item { min-height: auto; }
+    .compare-item .compare-container { height: auto; width: 100%; max-height: none; }
+  }
+</style>
+</head>
+<body>
+
+<a class="back-btn" href="index.html" title="Back to gallery">&times;</a>
+
+<div class="hero">
+  <h1>Actinomyces vs. Aspergillus</h1>
+  <div class="subtitle">Two filamentous organisms that look deceptively similar at low power — one bacterial, one a true fungus. Each told as its own four-panel story.</div>
+  <div class="hero-pair">
+    <figure>
+      <img src="actinomyces_clinical_story_2x2.jpg" alt="3D volumetric render sequence of cervicofacial actinomycosis">
+      <figcaption>Actinomyces — Fig. 4.2</figcaption>
+      <div class="desc">Bacterium. Sulfur granules in an abscess → the organism extending its own filaments → massive surrounding pus → fistulation draining to the skin.</div>
+    </figure>
+    <figure>
+      <img src="aspergillus_neutrophil_story_2x2.jpg" alt="3D volumetric render sequence of invasive Aspergillus with neutrophil response">
+      <figcaption>Aspergillus — Fig. 4.16</figcaption>
+      <div class="desc">True fungus. Colony established → neutrophils rushing in → neutrophils surrounding it → dense direct attack on the hyphal mass.</div>
+    </figure>
+  </div>
+  <div class="scroll-hint">SCROLL TO COMPARE ↓</div>
+</div>
+
+<div class="compare-section">
+  <div class="compare-item">
+    <h2>Actinomyces — Real Plate vs. 3D Render</h2>
+    <div class="fig">Fig. 4.2 — Actinomyces organisms</div>
+    <div class="compare-container" data-start="50">
+      <span class="compare-label compare-label-before">Real Plate</span>
+      <span class="compare-label compare-label-after">3D Render</span>
+      <div class="compare-layer"><img src="real_fig4.2_actinomyces.png" alt="Real Actinomyces micrograph" draggable="false"></div>
+      <div class="compare-layer compare-top"><div class="compare-layer"><img src="actinomyces_panel1.jpg" alt="3D volumetric render of Actinomyces sulfur granules" draggable="false"></div></div>
+      <div class="compare-divider"></div>
+      <div class="compare-handle" role="slider" tabindex="0" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+        <span class="compare-handle-circle"><svg class="compare-handle-arrows" viewBox="0 0 24 24"><path fill="currentColor" d="M10 8l-4 4 4 4V8zm4 8l4-4-4-4v8z"/></svg></span>
+      </div>
+    </div>
+    <div class="note">Filamentous bacteria (A) lying within a pool of pus (P), encrusted by eosinophilic proteinaceous material — the Splendore-Hoeppli phenomenon. Filamentous bacterial shape (FB) visible at the colony edges.</div>
+  </div>
+
+  <div class="compare-item">
+    <h2>Aspergillus — Real Plate vs. 3D Render</h2>
+    <div class="fig">Fig. 4.16(a) — Aspergillus, invasive infection (MP — Medium Power)</div>
+    <div class="compare-container" data-start="50">
+      <span class="compare-label compare-label-before">Real Plate</span>
+      <span class="compare-label compare-label-after">3D Render</span>
+      <div class="compare-layer"><img src="real_fig4.16a_aspergillus.png" alt="Real Aspergillus micrograph" draggable="false"></div>
+      <div class="compare-layer compare-top"><div class="compare-layer"><img src="aspergillus_panel4.jpg" alt="3D volumetric render of neutrophils attacking Aspergillus hyphal mass" draggable="false"></div></div>
+      <div class="compare-divider"></div>
+      <div class="compare-handle" role="slider" tabindex="0" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+        <span class="compare-handle-circle"><svg class="compare-handle-arrows" viewBox="0 0 24 24"><path fill="currentColor" d="M10 8l-4 4 4 4V8zm4 8l4-4-4-4v8z"/></svg></span>
+      </div>
+    </div>
+    <div class="note">A mass of Aspergillus hyphae (A) surrounded by an inflammatory infiltrate (I) consisting mainly of neutrophils, with adjacent necrotic tissue (N). The diagnostic feature — acute-angle branching, septate hyphae — is best seen on silver stain (Fig. 4.16d), not fully resolved in this render.</div>
+  </div>
+</div>
+
+<script src="compare-slider.js"></script>
+</body>
+</html>

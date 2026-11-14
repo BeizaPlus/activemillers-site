@@ -1,0 +1,1136 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#121214">
+<title>Pathology Teaching Review | ActiveMillers</title>
+</head>
+<body style="margin:0;background:#121214">
+<div id="pathology-annotation-studio">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap');
+    #pathology-annotation-studio { --foreground:#f4f4f5; --muted-foreground:#9b9da3; --pas-bg:#121214; --pas-panel:#1b1c1f; --pas-panel-2:#232428; --pas-line:#313237; --pas-accent:#4fa3ff; box-sizing:border-box; min-height:100vh; padding:12px; background:var(--pas-bg); font-family:Inter,sans-serif; color:var(--foreground); }
+    #pathology-annotation-studio *, #pathology-annotation-studio *:before, #pathology-annotation-studio *:after { box-sizing:border-box; }
+    #pathology-annotation-studio [hidden] { display:none !important; }
+    #pathology-annotation-studio .appbar { display:flex; gap:12px; justify-content:space-between; align-items:center; margin-bottom:7px; }
+    #pathology-annotation-studio .appbar h2 { margin:0; font-size:20px; }
+    #pathology-annotation-studio .appbar p { margin:3px 0 0; color:var(--muted-foreground); font-size:12px; }
+    #pathology-annotation-studio .title-line { display:flex; flex-wrap:wrap; gap:9px; align-items:center; }
+    #pathology-annotation-studio .current-plate { max-width:min(62vw,720px); padding:4px 9px; border-radius:999px; background:#252a31; color:#d8e9ff; font:500 11px/1.3 Inter,sans-serif; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    #pathology-annotation-studio .toolbar { display:flex; gap:6px; align-items:center; margin-bottom:7px; overflow-x:auto; scrollbar-width:thin; }
+    #pathology-annotation-studio .control-cluster { min-height:38px; display:flex; flex:none; flex-wrap:nowrap; gap:3px; align-items:center; padding:3px; border:1px solid var(--pas-line); border-radius:11px; background:rgba(28,29,32,.92); }
+    #pathology-annotation-studio .tool-group, #pathology-annotation-studio .project-actions { display:flex; flex-wrap:wrap; gap:5px; align-items:center; }
+    #pathology-annotation-studio .compact-control { display:grid; grid-template-columns:auto minmax(72px,1fr); gap:6px; align-items:center; padding:0 7px; color:var(--muted-foreground); font-size:11px; white-space:nowrap; }
+    #pathology-annotation-studio .compact-control input[type=range] { width:92px; }
+    #pathology-annotation-studio .btn { min-height:30px; display:inline-flex; align-items:center; gap:5px; padding:5px 8px; border:1px solid #3b3c41; border-radius:8px; background:#25262a; color:#f4f4f5; font:500 11px Inter,sans-serif; cursor:pointer; }
+    #pathology-annotation-studio .btn:hover { background:#34353a; }
+    #pathology-annotation-studio .btn:disabled { opacity:.45; cursor:not-allowed; }
+    #pathology-annotation-studio .btn-primary { background:var(--pas-accent); border-color:var(--pas-accent); color:#08111c; }
+    #pathology-annotation-studio input[type=range] { accent-color:var(--pas-accent); }
+    #pathology-annotation-studio input[type=color] { width:38px; height:30px; padding:2px; border:1px solid #45464b; border-radius:7px; background:#292a2d; }
+    #pathology-annotation-studio .icon-btn { width:34px; padding:6px; justify-content:center; }
+    #pathology-annotation-studio .canvas-shell { height:calc(100dvh - 146px); min-height:480px; overflow:auto; display:flex; align-items:flex-start; justify-content:flex-start; background:#0b0b0d; padding:10px; border:1px solid var(--pas-line); border-radius:12px; touch-action:none; }
+    #pathology-annotation-studio .canvas-shell canvas { display:block; }
+    #pathology-annotation-studio .canvas-container { position:relative !important; flex:0 0 auto !important; max-width:none !important; max-height:none !important; overflow:hidden; }
+    #pathology-annotation-studio .canvas-container canvas { max-width:none !important; max-height:none !important; }
+    #pathology-annotation-studio .zoom-range { width:112px; }
+    #pathology-annotation-studio .zoom-value { min-width:46px; color:var(--muted-foreground); font-variant-numeric:tabular-nums; text-align:center; }
+    #pathology-annotation-studio .canvas-shell.pan-ready, #pathology-annotation-studio .canvas-shell.pan-ready * { cursor:grab !important; }
+    #pathology-annotation-studio .canvas-shell.is-panning, #pathology-annotation-studio .canvas-shell.is-panning * { cursor:grabbing !important; user-select:none; }
+    #pathology-annotation-studio .pas-canvas-compare { position:absolute; inset:0; z-index:20; overflow:hidden; cursor:ew-resize; touch-action:none; user-select:none; }
+    #pathology-annotation-studio .pas-compare-top { position:absolute; inset:0; overflow:hidden; clip-path:inset(0 50% 0 0); pointer-events:none; }
+    #pathology-annotation-studio .pas-compare-top img { position:absolute; top:0; left:50%; display:block; width:auto; max-width:none; height:100%; transform:translateX(-50%); pointer-events:none; }
+    #pathology-annotation-studio .pas-compare-divider { position:absolute; top:0; bottom:0; left:50%; z-index:21; width:2px; transform:translateX(-50%); background:rgba(255,255,255,.95); box-shadow:0 0 8px rgba(0,0,0,.4); pointer-events:none; }
+    #pathology-annotation-studio .pas-compare-handle { position:absolute; top:0; bottom:0; left:50%; z-index:22; width:48px; transform:translateX(-50%); cursor:ew-resize; }
+    #pathology-annotation-studio .pas-compare-handle-circle { position:absolute; left:50%; top:50%; width:44px; height:44px; display:grid; place-items:center; transform:translate(-50%,-50%); border:1px solid rgba(255,255,255,.85); border-radius:50%; background:rgba(255,255,255,.96); box-shadow:0 2px 10px rgba(0,0,0,.3); color:#555; }
+    #pathology-annotation-studio .pas-compare-handle-circle svg { width:20px; height:20px; }
+    #pathology-annotation-studio .pas-compare-label { position:absolute; top:14px; z-index:23; padding:4px 10px; border-radius:6px; background:rgba(0,0,0,.58); color:rgba(255,255,255,.86); font:600 11px Inter,sans-serif; letter-spacing:.05em; text-transform:uppercase; pointer-events:none; }
+    #pathology-annotation-studio .pas-compare-label-ai { left:14px; }
+    #pathology-annotation-studio .pas-compare-label-source { right:14px; }
+    #pathology-annotation-studio .status { display:none; }
+    #pathology-annotation-studio .workspace { display:grid; grid-template-columns:minmax(0,1fr) 310px; gap:12px; align-items:start; }
+    #pathology-annotation-studio .workspace.plates-hidden.details-hidden { grid-template-columns:minmax(0,1fr); }
+    #pathology-annotation-studio .workspace.plates-hidden .plate-rail { display:none; }
+    #pathology-annotation-studio .workspace.details-hidden .case-details-panel { display:none; }
+    #pathology-annotation-studio .right-rail { max-height:calc(100dvh - 146px); display:grid; gap:10px; align-content:start; overflow:auto; }
+    #pathology-annotation-studio .plate-rail, #pathology-annotation-studio .case-details-panel { display:grid; gap:9px; padding:12px; border:1px solid var(--pas-line); border-radius:10px; background:var(--pas-panel); }
+    #pathology-annotation-studio .plate-rail h3 { margin:0; font-size:13px; }
+    #pathology-annotation-studio .plate-card { margin:0; }
+    #pathology-annotation-studio #pas-session-plates { display:grid; gap:10px; }
+    #pathology-annotation-studio .plate-card { cursor:pointer; padding:5px; border:1px solid transparent; border-radius:9px; }
+    #pathology-annotation-studio .plate-card:hover, #pathology-annotation-studio .plate-card:focus { border-color:#66686f; outline:none; }
+    #pathology-annotation-studio .plate-card.active { border-color:#f4f4f5; background:#303136; }
+    #pathology-annotation-studio .plate-card img { display:block; width:100%; max-height:240px; object-fit:contain; border-radius:7px; background:#fff; }
+    #pathology-annotation-studio .plate-card figcaption { padding-top:5px; color:var(--muted-foreground); font-size:11px; line-height:1.35; }
+    #pathology-annotation-studio .plate-card strong { color:var(--foreground); }
+    #pathology-annotation-studio .plate-group { margin:0; border:1px solid #35383d; border-radius:10px; overflow:hidden; background:#24262a; }
+    #pathology-annotation-studio .plate-group > summary { display:grid; grid-template-columns:18px minmax(0,1fr); gap:2px; align-items:start; padding:4px; cursor:pointer; list-style:none; }
+    #pathology-annotation-studio .plate-group > summary::-webkit-details-marker { display:none; }
+    #pathology-annotation-studio .plate-group > summary::before { content:'▸'; color:var(--muted-foreground); padding:8px 0 0 4px; font-size:13px; }
+    #pathology-annotation-studio .plate-group[open] > summary::before { content:'▾'; }
+    #pathology-annotation-studio .plate-group > summary .plate-card { min-width:0; }
+    #pathology-annotation-studio .plate-children { display:grid; gap:7px; padding:8px; border-top:1px solid #383b40; background:#1d1f22; }
+    #pathology-annotation-studio .plate-child { display:grid; grid-template-columns:86px minmax(0,1fr); gap:8px; align-items:center; }
+    #pathology-annotation-studio .plate-child img { height:68px; max-height:68px; }
+    #pathology-annotation-studio .plate-child figcaption { padding:0; }
+    #pathology-annotation-studio .boundary-panel { position:sticky; top:0; z-index:30; display:grid; gap:6px; padding:8px; margin:-2px -2px 8px; border-radius:12px; background:rgba(35,36,40,.88); border:1px solid rgba(255,255,255,.10); box-shadow:0 8px 24px rgba(0,0,0,.24); backdrop-filter:blur(20px) saturate(160%); -webkit-backdrop-filter:blur(20px) saturate(160%); }
+    #pathology-annotation-studio .boundary-panel[hidden] { display:none; }
+    #pathology-annotation-studio .boundary-head { display:flex; align-items:baseline; justify-content:space-between; gap:8px; }
+    #pathology-annotation-studio .boundary-head strong { font-size:11px; font-weight:500; }
+    #pathology-annotation-studio .boundary-current { min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; color:var(--muted-foreground); font-size:10px; }
+    #pathology-annotation-studio .boundary-row { display:grid; grid-template-columns:48px 1fr 38px; gap:6px; align-items:center; font-size:10px; color:var(--muted-foreground); }
+    #pathology-annotation-studio .boundary-row input { width:100%; }
+    #pathology-annotation-studio .boundary-panel .btn { min-height:30px; justify-content:center; border:0; border-radius:8px; background:#0a84ff; color:white; font-size:11px; }
+    #pathology-annotation-studio .boundary-actions { display:grid; grid-template-columns:64px 1fr; gap:6px; }
+    #pathology-annotation-studio .boundary-actions #pas-reset-boundary { background:rgba(255,255,255,.09); color:var(--foreground); border:1px solid rgba(255,255,255,.08); }
+    #pathology-annotation-studio .teaching-actions { display:grid; grid-template-columns:1fr 32px; gap:6px; }
+    #pathology-annotation-studio .teaching-actions .btn { background:#f5f5f7; color:#111; }
+    #pathology-annotation-studio .teaching-dialog { width:min(920px,92vw); padding:0; border:1px solid rgba(255,255,255,.15); border-radius:18px; overflow:hidden; background:#17181b; color:var(--foreground); box-shadow:0 28px 80px rgba(0,0,0,.55); }
+    #pathology-annotation-studio .teaching-dialog::backdrop { background:rgba(0,0,0,.62); backdrop-filter:blur(8px); }
+    #pathology-annotation-studio .teaching-head { display:flex; align-items:center; justify-content:space-between; gap:10px; padding:10px 12px; border-bottom:1px solid var(--pas-line); }
+    #pathology-annotation-studio .teaching-head strong { font-size:12px; }
+    #pathology-annotation-studio .teaching-video-wrap { position:relative; background:#000; }
+    #pathology-annotation-studio .teaching-video { display:block; width:100%; max-height:72vh; }
+    #pathology-annotation-studio .teaching-caption { position:absolute; left:8%; right:8%; bottom:18px; padding:7px 10px; border-radius:8px; background:rgba(0,0,0,.72); color:#fff; font:500 15px/1.35 Inter,sans-serif; text-align:center; text-shadow:0 1px 2px #000; }
+    #pathology-annotation-studio .project-actions { flex-wrap:nowrap; }
+    #pathology-annotation-studio .project-actions .btn { font-size:0; width:32px; padding:5px; justify-content:center; }
+    #pathology-annotation-studio .project-actions .btn svg { width:16px; height:16px; }
+    #pathology-annotation-studio .project-actions #pas-export { width:auto; font-size:11px; padding-inline:9px; }
+    #pathology-annotation-studio .tool-group .btn { width:32px; padding:5px; justify-content:center; font-size:0; }
+    #pathology-annotation-studio .exposure-inputs { display:grid; grid-template-columns:minmax(110px,1fr) 64px; gap:6px; align-items:center; }
+    #pathology-annotation-studio .exposure-number { width:64px; padding:5px 6px; border-radius:6px; border:1px solid #4a4d53; background:#1c1e21; color:var(--foreground); font:inherit; }
+    #pathology-annotation-studio .compare-panel { margin-bottom:10px; padding:10px; border:1px solid var(--pas-line); border-radius:10px; background:var(--pas-panel); }
+    #pathology-annotation-studio .compare-head { display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:8px; }
+    #pathology-annotation-studio .compare-head strong { font-size:13px; }
+    #pathology-annotation-studio .compare-stage { --wipe:50%; position:relative; width:min(100%,900px); aspect-ratio:1/1; margin:auto; overflow:hidden; background:#fff; border-radius:8px; }
+    #pathology-annotation-studio .compare-stage img { position:absolute; inset:0; width:100%; height:100%; object-fit:contain; }
+    #pathology-annotation-studio .compare-stage .ai-layer { clip-path:inset(0 calc(100% - var(--wipe)) 0 0); }
+    #pathology-annotation-studio .compare-divider { position:absolute; z-index:2; top:0; bottom:0; left:var(--wipe); width:2px; background:#ff2d20; box-shadow:0 0 0 1px #fff; pointer-events:none; }
+    #pathology-annotation-studio .compare-slider { width:min(100%,900px); display:block; margin:8px auto 0; }
+    #pathology-annotation-studio .compare-labels { width:min(100%,900px); display:flex; justify-content:space-between; margin:5px auto 0; color:var(--muted-foreground); font-size:11px; }
+    #pathology-annotation-studio .case-details-panel h3, #pathology-annotation-studio .plate-rail h3 { margin:0; font-size:13px; }
+    #pathology-annotation-studio .case-fields { display:grid; grid-template-columns:1fr; gap:8px; }
+    #pathology-annotation-studio .case-fields label { display:grid; gap:4px; color:var(--muted-foreground); font-size:11px; }
+    #pathology-annotation-studio .case-fields input, #pathology-annotation-studio .case-fields textarea { width:100%; padding:8px 9px; border:0; border-radius:7px; background:#17181a; color:#f4f4f5; font:12px/1.45 Inter,sans-serif; }
+    #pathology-annotation-studio .case-fields textarea { min-height:88px; resize:vertical; }
+    @media(max-width:1100px){#pathology-annotation-studio .workspace{grid-template-columns:1fr}#pathology-annotation-studio .right-rail{max-height:none}#pathology-annotation-studio .plate-rail{grid-template-columns:1fr 1fr}#pathology-annotation-studio .plate-rail h3{grid-column:1/-1}#pathology-annotation-studio .canvas-shell{height:68vh;min-height:420px}}
+  </style>
+
+  <div class="appbar">
+    <div><div class="title-line"><h2>Pathology Annotation Studio</h2><span id="pas-current-plate" class="current-plate">No plate selected</span></div><p id="pas-project-location">Not saved. Save project will ask you where to keep the editable file.</p></div>
+    <div class="project-actions" aria-label="Project controls">
+      <label class="btn" for="pas-file"><i data-lucide="image-plus" aria-hidden="true"></i> Replace image</label>
+      <input id="pas-file" type="file" accept="image/png,image/jpeg,image/tiff,image/webp" hidden>
+      <button id="pas-save" class="btn" type="button"><i data-lucide="save" aria-hidden="true"></i> Save project…</button>
+      <button id="pas-watch-teaching" class="btn" type="button" disabled title="Select a case plate to play its teaching segment"><i data-lucide="play" aria-hidden="true"></i> Play teaching</button>
+      <a id="pas-open-video-tab" class="btn" href="#" target="_blank" rel="noopener" aria-disabled="true" title="Open the selected source segment in another tab"><i data-lucide="external-link" aria-hidden="true"></i></a>
+      <label class="btn" for="pas-open"><i data-lucide="folder-open" aria-hidden="true"></i> Open</label>
+      <input id="pas-open" type="file" accept="application/json,.json" hidden>
+      <button id="pas-compare-toggle" class="btn btn-ghost" type="button"><i data-lucide="columns-2" aria-hidden="true"></i> Compare AI</button>
+      <button id="pas-toggle-details" class="btn btn-ghost" type="button"><i data-lucide="panel-right-open" aria-hidden="true"></i> Show case details</button>
+      <button id="pas-toggle-plates" class="btn btn-ghost" type="button"><i data-lucide="panel-right-close" aria-hidden="true"></i> Hide case plates</button>
+      <button id="pas-toggle-annotations" class="btn btn-ghost" type="button" aria-pressed="true"><i data-lucide="eye" aria-hidden="true"></i> Annotations on</button>
+      <button id="pas-export" class="btn btn-primary" type="button"><i data-lucide="download" aria-hidden="true"></i> Export PNG</button>
+    </div>
+  </div>
+  <div class="toolbar" aria-label="Annotation controls">
+    <div class="control-cluster" role="group" aria-label="Drawing tools">
+      <button class="btn btn-primary" type="button" data-tool="select" aria-pressed="true" title="Select"><i data-lucide="mouse-pointer-2" aria-hidden="true"></i> Select</button>
+      <button class="btn" type="button" data-tool="arrow" aria-pressed="false" title="Arrow"><i data-lucide="arrow-up-right" aria-hidden="true"></i> Arrow</button>
+      <button class="btn" type="button" data-tool="circle" aria-pressed="false" title="Circle"><i data-lucide="circle" aria-hidden="true"></i> Circle</button>
+      <button class="btn" type="button" data-tool="rect" aria-pressed="false" title="Rectangle"><i data-lucide="square" aria-hidden="true"></i> Rectangle</button>
+      <button class="btn" type="button" data-tool="freehand" aria-pressed="false" title="Freehand"><i data-lucide="pencil" aria-hidden="true"></i> Freehand</button>
+      <button class="btn" type="button" data-tool="text" aria-pressed="false" title="Text"><i data-lucide="type" aria-hidden="true"></i> Text</button>
+      <button class="btn" type="button" data-tool="eraser" aria-pressed="false" title="Eraser — click an annotation to remove it"><i data-lucide="eraser" aria-hidden="true"></i> Eraser</button>
+    </div>
+    <div class="control-cluster" aria-label="Appearance controls">
+      <label class="compact-control">Color <input id="pas-color" class="form-control form-control-color" type="color" value="#ff2d20"></label>
+      <label class="compact-control">Stroke <input id="pas-width" class="form-range" type="range" min="1" max="16" value="5"></label>
+      <label class="compact-control">Text size <input id="pas-font" class="form-range" type="range" min="16" max="96" value="40"></label>
+      <label class="compact-control"><span>Exposure <span id="pas-exposure-value">0.0</span></span><span class="exposure-inputs"><input id="pas-exposure" class="form-range" type="range" min="-100" max="100" step="0.1" value="0"><input id="pas-exposure-number" class="exposure-number" type="number" min="-100" max="100" step="0.1" value="0.0" inputmode="decimal" aria-label="Exposure numeric value"></span></label>
+    </div>
+    <div class="control-cluster" role="group" aria-label="Zoom and pan controls">
+      <button id="pas-zoom-fit" class="btn btn-ghost" type="button" title="Fit the entire plate"><i data-lucide="scan" aria-hidden="true"></i> Fit</button>
+      <button id="pas-zoom-out" class="btn btn-ghost icon-btn" type="button" title="Zoom out"><i data-lucide="zoom-out" aria-hidden="true"></i></button>
+      <input id="pas-zoom" class="form-range zoom-range" type="range" min="25" max="400" step="5" value="100" aria-label="Plate zoom">
+      <button id="pas-zoom-in" class="btn btn-ghost icon-btn" type="button" title="Zoom in"><i data-lucide="zoom-in" aria-hidden="true"></i></button>
+      <span id="pas-zoom-value" class="zoom-value">100%</span>
+      <button id="pas-pan" class="btn btn-ghost" type="button" aria-pressed="false" title="Drag the enlarged plate to pan"><i data-lucide="hand" aria-hidden="true"></i> Pan</button>
+    </div>
+    <div class="control-cluster" role="group" aria-label="Edit controls">
+      <button id="pas-undo" class="btn btn-ghost icon-btn" type="button" title="Undo"><i data-lucide="undo-2" aria-hidden="true"></i></button>
+      <button id="pas-redo" class="btn btn-ghost icon-btn" type="button" title="Redo"><i data-lucide="redo-2" aria-hidden="true"></i></button>
+      <button id="pas-delete" class="btn btn-ghost icon-btn" type="button" title="Delete selected"><i data-lucide="trash-2" aria-hidden="true"></i></button>
+      <button id="pas-clear" class="btn btn-ghost" type="button">Clear</button>
+      <button id="pas-restore" class="btn btn-ghost" type="button">Restore autosave</button>
+    </div>
+  </div>
+  <div class="workspace details-hidden">
+    <div>
+      <div class="canvas-shell">
+        <canvas id="pas-canvas" width="1000" height="650" aria-label="Micrograph annotation canvas"></canvas>
+      </div>
+      <div id="pas-status" class="status text-small" aria-live="polite">Load an authentic micrograph to begin.</div>
+    </div>
+    <aside class="right-rail" aria-label="Case workspace">
+      <section class="case-details-panel" aria-label="Case details">
+        <h3>Case details</h3>
+        <div class="case-fields">
+          <label>Diagnosis<input id="pas-diagnosis" type="text" placeholder="Primary diagnosis"></label>
+          <label>Differential 1<input id="pas-differential-1" type="text" placeholder="First differential"></label>
+          <label>Differential 2<input id="pas-differential-2" type="text" placeholder="Second differential"></label>
+          <label>Area / site<input id="pas-area" type="text" placeholder="Anatomic area or site"></label>
+          <label>Stain type(s)<textarea id="pas-stains" rows="4" placeholder="Enter one stain per line, for example:&#10;H&amp;E&#10;SOX-10&#10;p63"></textarea></label>
+          <label>Age<input id="pas-age" type="text" placeholder="Age or age range"></label>
+          <label>Specimen / type<input id="pas-type" type="text" placeholder="Biopsy, resection, cytology…"></label>
+        </div>
+      </section>
+      <section class="plate-rail" aria-label="Case plates">
+        <h3 id="pas-session-heading">Review session · loading plates</h3>
+        <div id="pas-boundary-panel" class="boundary-panel" hidden>
+          <div class="boundary-head"><strong>Stitch boundary</strong><span id="pas-boundary-current" class="boundary-current"></span></div>
+          <label class="boundary-row"><span>Earlier</span><input id="pas-boundary-left" type="range" min="0" max="20" step="0.5" value="0"><output id="pas-boundary-left-value">0 s</output></label>
+          <label class="boundary-row"><span>Later</span><input id="pas-boundary-right" type="range" min="0" max="20" step="0.5" value="0"><output id="pas-boundary-right-value">0 s</output></label>
+          <div class="boundary-actions">
+            <button id="pas-reset-boundary" class="btn" type="button">Reset</button>
+            <button id="pas-rebuild-boundary" class="btn btn-secondary" type="button">Rebuild expanded stitch</button>
+          </div>
+        </div>
+        <div id="pas-session-plates"></div>
+      </section>
+    </aside>
+  </div>
+
+  <dialog id="pas-teaching-dialog" class="teaching-dialog">
+    <div class="teaching-head"><strong id="pas-teaching-title">Teaching segment</strong><button id="pas-close-teaching" class="btn icon-btn" type="button" title="Close"><i data-lucide="x" aria-hidden="true"></i></button></div>
+    <div class="teaching-video-wrap">
+      <video id="pas-teaching-video" class="teaching-video" controls preload="auto" playsinline src="/media/IMG_2179_browser.mp4"></video>
+      <div id="pas-teaching-caption" class="teaching-caption" hidden></div>
+    </div>
+  </dialog>
+
+  <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/5.3.1/fabric.min.js"></script>
+  <script>
+    (() => {
+      const root = document.getElementById('pathology-annotation-studio');
+      const canvas = new fabric.Canvas('pas-canvas', { preserveObjectStacking: true, selection: true });
+      const status = root.querySelector('#pas-status');
+      const color = root.querySelector('#pas-color');
+      const width = root.querySelector('#pas-width');
+      const font = root.querySelector('#pas-font');
+      const exposure = root.querySelector('#pas-exposure');
+      const exposureNumber = root.querySelector('#pas-exposure-number');
+      const exposureValue = root.querySelector('#pas-exposure-value');
+      const zoomControl = root.querySelector('#pas-zoom');
+      const zoomValue = root.querySelector('#pas-zoom-value');
+      const zoomFit = root.querySelector('#pas-zoom-fit');
+      const zoomOut = root.querySelector('#pas-zoom-out');
+      const zoomIn = root.querySelector('#pas-zoom-in');
+      const panButton = root.querySelector('#pas-pan');
+      const currentPlateLabel = root.querySelector('#pas-current-plate');
+      const projectLocation = root.querySelector('#pas-project-location');
+      const workspace = root.querySelector('.workspace');
+      const canvasShell = root.querySelector('.canvas-shell');
+      const togglePlates = root.querySelector('#pas-toggle-plates');
+      const toggleDetails = root.querySelector('#pas-toggle-details');
+      const compareToggle = root.querySelector('#pas-compare-toggle');
+      const annotationToggle = root.querySelector('#pas-toggle-annotations');
+      const sessionHeading = root.querySelector('#pas-session-heading');
+      const sessionPlates = root.querySelector('#pas-session-plates');
+      const boundaryPanel = root.querySelector('#pas-boundary-panel');
+      const boundaryLeft = root.querySelector('#pas-boundary-left');
+      const boundaryRight = root.querySelector('#pas-boundary-right');
+      const boundaryLeftValue = root.querySelector('#pas-boundary-left-value');
+      const boundaryRightValue = root.querySelector('#pas-boundary-right-value');
+      const boundaryCurrent = root.querySelector('#pas-boundary-current');
+      const resetBoundary = root.querySelector('#pas-reset-boundary');
+      const rebuildBoundary = root.querySelector('#pas-rebuild-boundary');
+      const watchTeaching = root.querySelector('#pas-watch-teaching');
+      const openVideoTab = root.querySelector('#pas-open-video-tab');
+      const teachingDialog = root.querySelector('#pas-teaching-dialog');
+      const teachingVideo = root.querySelector('#pas-teaching-video');
+      const teachingCaption = root.querySelector('#pas-teaching-caption');
+      const teachingTitle = root.querySelector('#pas-teaching-title');
+      const closeTeaching = root.querySelector('#pas-close-teaching');
+      const metaFields = {
+        diagnosis:root.querySelector('#pas-diagnosis'), differential1:root.querySelector('#pas-differential-1'),
+        differential2:root.querySelector('#pas-differential-2'), area:root.querySelector('#pas-area'),
+        stains:root.querySelector('#pas-stains'), age:root.querySelector('#pas-age'), type:root.querySelector('#pas-type')
+      };
+      const autosaveKey = 'pathologyAnnotationStudio.autosave.v1';
+      const boundaryStorageKey = 'pathologyAnnotationStudio.boundaries.v1';
+      const caseMetaStorageKey = 'pathologyAnnotationStudio.caseMetaByPlate.v1';
+      let boundarySettings = {};
+      try { boundarySettings = JSON.parse(localStorage.getItem(boundaryStorageKey) || '{}') || {}; } catch (_) { boundarySettings = {}; }
+      let caseMetaByPlate = {};
+      try { caseMetaByPlate = JSON.parse(localStorage.getItem(caseMetaStorageKey) || '{}') || {}; } catch (_) { caseMetaByPlate = {}; }
+      let tool = 'select', draft = null, start = null, restoring = false, background = null;
+      let currentProjectHandle = null, currentPlateMeta = null;
+      let transcriptSegments = [], teachingStop = null;
+      fetch('/api/transcript/IMG_2179').then(response => response.ok ? response.json() : null).then(data => { transcriptSegments = data?.segments || []; }).catch(() => {});
+      [canvas.contextContainer, canvas.contextTop].forEach(context => {
+        if (!context) return;
+        context.imageSmoothingEnabled = true;
+        context.imageSmoothingQuality = 'high';
+      });
+      let history = [], future = [], textAutosaveTimer = null;
+      let annotationsVisible = true;
+      let currentPlateSlug = 'IMG_2189_silicone_granuloma';
+      let aiComparisonAvailable = true;
+
+      const compareOverlay = document.createElement('div');
+      compareOverlay.className = 'pas-canvas-compare';
+      compareOverlay.hidden = true;
+      compareOverlay.innerHTML = `
+        <span class="pas-compare-label pas-compare-label-ai">AI-assisted</span>
+        <span class="pas-compare-label pas-compare-label-source">Authentic</span>
+        <div class="pas-compare-top"><img src="./IMG_2189_silicone_granuloma_AI_ASSISTED_magnific_pattern_completion_20261029_144425.png" alt="AI-assisted reconstruction" draggable="false"></div>
+        <div class="pas-compare-divider"></div>
+        <div class="pas-compare-handle" role="slider" tabindex="0" aria-label="Compare authentic and AI-assisted plates" aria-valuemin="2" aria-valuemax="98" aria-valuenow="50">
+          <span class="pas-compare-handle-circle"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M10 8l-4 4 4 4V8zm4 8l4-4-4-4v8z"/></svg></span>
+        </div>`;
+      canvas.wrapperEl.appendChild(compareOverlay);
+      const compareTop = compareOverlay.querySelector('.pas-compare-top');
+      const compareImage = compareTop.querySelector('img');
+      const compareDivider = compareOverlay.querySelector('.pas-compare-divider');
+      const compareHandle = compareOverlay.querySelector('.pas-compare-handle');
+      let comparePosition = 50;
+      let preCompareAnnotationsVisible = true;
+      const setComparePosition = percent => {
+        comparePosition = Math.max(2, Math.min(98, Number(percent)));
+        const left = `${comparePosition.toFixed(1)}%`;
+        compareTop.style.clipPath = `inset(0 ${(100-comparePosition).toFixed(1)}% 0 0)`;
+        compareDivider.style.left = left;
+        compareHandle.style.left = left;
+        compareHandle.setAttribute('aria-valuenow', String(Math.round(comparePosition)));
+      };
+      const positionCompareFromPointer = event => {
+        const rect = compareOverlay.getBoundingClientRect();
+        setComparePosition(((event.clientX - rect.left) / rect.width) * 100);
+      };
+      let compareDragging = false;
+      compareOverlay.addEventListener('pointerdown', event => {
+        compareDragging = true;
+        compareOverlay.setPointerCapture(event.pointerId);
+        positionCompareFromPointer(event);
+      });
+      compareOverlay.addEventListener('pointermove', event => { if (compareDragging) positionCompareFromPointer(event); });
+      compareOverlay.addEventListener('pointerup', event => { compareDragging = false; compareOverlay.releasePointerCapture(event.pointerId); });
+      compareOverlay.addEventListener('pointercancel', () => { compareDragging = false; });
+      compareHandle.addEventListener('keydown', event => {
+        if (event.key === 'ArrowLeft') { event.preventDefault(); setComparePosition(comparePosition - 5); }
+        if (event.key === 'ArrowRight') { event.preventDefault(); setComparePosition(comparePosition + 5); }
+      });
+      setComparePosition(50);
+
+      let userZoom = 1;
+      let panMode = false;
+      let spacePan = false;
+      let panDrag = null;
+      const fitCanvasToViewport = () => {
+        if (!canvas.getWidth() || !canvas.getHeight()) return;
+        const availableWidth = Math.max(320, canvasShell.clientWidth - 20);
+        const availableHeight = Math.max(320, canvasShell.clientHeight - 20);
+        const fitScale = Math.min(availableWidth / canvas.getWidth(), availableHeight / canvas.getHeight());
+        const displayScale = fitScale * userZoom;
+        const displayWidth = Math.max(1, Math.round(canvas.getWidth() * displayScale));
+        const displayHeight = Math.max(1, Math.round(canvas.getHeight() * displayScale));
+        canvas.wrapperEl.style.width = `${displayWidth}px`;
+        canvas.wrapperEl.style.height = `${displayHeight}px`;
+        canvas.wrapperEl.style.minWidth = `${displayWidth}px`;
+        canvas.wrapperEl.style.minHeight = `${displayHeight}px`;
+        canvas.wrapperEl.style.flex = `0 0 ${displayWidth}px`;
+        canvas.wrapperEl.style.margin = userZoom <= 1.001 ? 'auto' : '0';
+        canvas.lowerCanvasEl.style.width = `${displayWidth}px`;
+        canvas.lowerCanvasEl.style.height = `${displayHeight}px`;
+        canvas.upperCanvasEl.style.width = `${displayWidth}px`;
+        canvas.upperCanvasEl.style.height = `${displayHeight}px`;
+        compareOverlay.style.width = `${displayWidth}px`;
+        compareOverlay.style.height = `${displayHeight}px`;
+      };
+      new ResizeObserver(() => fitCanvasToViewport()).observe(canvasShell);
+
+      const setZoom = (percent, anchorX=null, anchorY=null) => {
+        const previousWidth = Math.max(1, canvas.wrapperEl.getBoundingClientRect().width);
+        const previousHeight = Math.max(1, canvas.wrapperEl.getBoundingClientRect().height);
+        const shellRect = canvasShell.getBoundingClientRect();
+        const localX = anchorX == null ? canvasShell.clientWidth / 2 : anchorX - shellRect.left;
+        const localY = anchorY == null ? canvasShell.clientHeight / 2 : anchorY - shellRect.top;
+        const ratioX = (canvasShell.scrollLeft + localX) / previousWidth;
+        const ratioY = (canvasShell.scrollTop + localY) / previousHeight;
+        const clamped = Math.max(25, Math.min(400, Math.round(Number(percent) / 5) * 5));
+        userZoom = clamped / 100;
+        zoomControl.value = String(clamped);
+        zoomValue.textContent = `${clamped}%`;
+        fitCanvasToViewport();
+        requestAnimationFrame(() => {
+          const nextWidth = canvas.wrapperEl.getBoundingClientRect().width;
+          const nextHeight = canvas.wrapperEl.getBoundingClientRect().height;
+          canvasShell.scrollLeft = Math.max(0, ratioX * nextWidth - localX);
+          canvasShell.scrollTop = Math.max(0, ratioY * nextHeight - localY);
+        });
+      };
+      zoomControl.addEventListener('input', () => setZoom(Number(zoomControl.value)));
+      zoomOut.addEventListener('click', () => setZoom(Number(zoomControl.value) - 25));
+      zoomIn.addEventListener('click', () => setZoom(Number(zoomControl.value) + 25));
+      zoomFit.addEventListener('click', () => { setZoom(100); canvasShell.scrollTo({left:0, top:0}); });
+      panButton.addEventListener('click', () => {
+        panMode = !panMode;
+        panButton.setAttribute('aria-pressed', String(panMode));
+        panButton.classList.toggle('btn-primary', panMode);
+        canvasShell.classList.toggle('pan-ready', panMode);
+        canvas.skipTargetFind = panMode;
+        canvas.selection = !panMode && tool === 'select';
+        status.textContent = panMode ? 'Pan active. Drag the enlarged plate to move around it.' : 'Pan off.';
+      });
+      canvasShell.addEventListener('wheel', event => {
+        if (!(event.ctrlKey || event.metaKey)) return;
+        event.preventDefault();
+        setZoom(Number(zoomControl.value) + (event.deltaY < 0 ? 10 : -10), event.clientX, event.clientY);
+      }, {passive:false});
+      window.addEventListener('keydown', event => {
+        if (event.code !== 'Space' || event.repeat || /INPUT|TEXTAREA/.test(document.activeElement?.tagName || '')) return;
+        spacePan = true;
+        canvasShell.classList.add('pan-ready');
+      });
+      window.addEventListener('keyup', event => {
+        if (event.code !== 'Space') return;
+        spacePan = false;
+        if (!panMode) canvasShell.classList.remove('pan-ready');
+      });
+      canvasShell.addEventListener('pointerdown', event => {
+        const temporaryPan = event.button === 1 || (event.button === 0 && spacePan);
+        if (!(panMode && event.button === 0) && !temporaryPan) return;
+        event.preventDefault();
+        event.stopPropagation();
+        panDrag = {x:event.clientX, y:event.clientY, left:canvasShell.scrollLeft, top:canvasShell.scrollTop};
+        canvasShell.classList.add('is-panning');
+        canvasShell.setPointerCapture(event.pointerId);
+      }, true);
+      canvasShell.addEventListener('pointermove', event => {
+        if (!panDrag) return;
+        canvasShell.scrollLeft = panDrag.left - (event.clientX - panDrag.x);
+        canvasShell.scrollTop = panDrag.top - (event.clientY - panDrag.y);
+      });
+      const stopPan = event => {
+        if (!panDrag) return;
+        panDrag = null;
+        canvasShell.classList.remove('is-panning');
+        if (canvasShell.hasPointerCapture(event.pointerId)) canvasShell.releasePointerCapture(event.pointerId);
+      };
+      canvasShell.addEventListener('pointerup', stopPan);
+      canvasShell.addEventListener('pointercancel', stopPan);
+
+      const applyExposure = () => {
+        if (!background) return;
+        const value = Number(exposure.value);
+        exposureValue.textContent = value.toFixed(1);
+        exposureNumber.value = value.toFixed(1);
+        if (!compareOverlay.hidden) {
+          background.filters = [];
+          background.applyFilters();
+          const factor = Math.max(0.1, 1 + value / 100);
+          const sharedFilter = value === 0 ? '' : `brightness(${factor})`;
+          canvas.lowerCanvasEl.style.filter = sharedFilter;
+          compareImage.style.filter = sharedFilter;
+        } else {
+          canvas.lowerCanvasEl.style.filter = '';
+          compareImage.style.filter = '';
+          background.filters = value === 0 ? [] : [new fabric.Image.filters.Brightness({ brightness:value / 100 })];
+          background.applyFilters();
+        }
+        canvas.requestRenderAll();
+      };
+
+      const annotations = () => canvas.getObjects().filter(object => object.annotationObject === true);
+      const setAnnotationsVisible = visible => {
+        annotationsVisible = Boolean(visible);
+        canvas.discardActiveObject();
+        annotations().forEach(object => object.set({
+          visible:annotationsVisible,
+          evented:annotationsVisible && ['select', 'eraser'].includes(tool),
+          selectable:annotationsVisible && tool === 'select'
+        }));
+        annotationToggle.setAttribute('aria-pressed', String(annotationsVisible));
+        annotationToggle.innerHTML = annotationsVisible
+          ? '<i data-lucide="eye" aria-hidden="true"></i> Annotations on'
+          : '<i data-lucide="eye-off" aria-hidden="true"></i> Annotations off';
+        if (window.lucide) lucide.createIcons({ nodes:[annotationToggle] });
+        canvas.requestRenderAll();
+      };
+      const readCaseMeta = () => Object.fromEntries(Object.entries(metaFields).map(([key,input]) => [key,input.value.trim()]));
+      const writeCaseMeta = values => Object.entries(metaFields).forEach(([key,input]) => { input.value = values?.[key] || ''; });
+      const saveCurrentPlateMeta = () => {
+        if (!currentPlateSlug) return;
+        caseMetaByPlate[currentPlateSlug] = readCaseMeta();
+        localStorage.setItem(caseMetaStorageKey, JSON.stringify(caseMetaByPlate));
+      };
+      const updateCurrentPlateLabel = plate => {
+        currentPlateLabel.textContent = plate?.number
+          ? `Plate ${String(plate.number).padStart(2,'0')} · ${plate.title}`
+          : (plate?.title || plate?.name || 'No plate selected');
+        currentPlateLabel.title = currentPlateLabel.textContent;
+      };
+      const snapshot = () => {
+        const hidden = !annotationsVisible;
+        if (hidden) annotations().forEach(object => object.set({ visible:true, evented:true, selectable:true }));
+        const serialized = JSON.stringify(canvas.toDatalessJSON(['annotationObject']));
+        if (hidden) annotations().forEach(object => object.set({ visible:false, evented:false, selectable:false }));
+        return serialized;
+      };
+      const remember = () => {
+        if (restoring) return;
+        const state = snapshot();
+        if (history[history.length - 1] !== state) history.push(state);
+        if (history.length > 60) history.shift();
+        future = [];
+        try {
+          localStorage.setItem(autosaveKey, JSON.stringify({ version:1, plateSlug:currentPlateSlug, aiComparisonAvailable, exposure:Number(exposure.value), caseMeta:readCaseMeta(), canvas:JSON.parse(state) }));
+          status.textContent = 'Autosaved locally.';
+        } catch (error) {
+          status.textContent = 'The project is too large for browser autosave. Use Save project.';
+        }
+      };
+      const restore = state => {
+        restoring = true;
+        compareOverlay.hidden = true;
+        compareToggle.classList.remove('btn-primary');
+        compareToggle.setAttribute('aria-pressed','false');
+        canvas.loadFromJSON(state, () => {
+          background = canvas.getObjects().find(o => !o.annotationObject) || null;
+          if (background) {
+            background.selectable = false;
+            background.evented = false;
+            canvas.sendToBack(background);
+          }
+          restoring = false;
+          setAnnotationsVisible(true);
+          fitCanvasToViewport();
+          applyExposure();
+        });
+      };
+
+      function setTool(next) {
+        if (panMode) {
+          panMode = false;
+          panButton.setAttribute('aria-pressed', 'false');
+          panButton.classList.remove('btn-primary');
+          if (!spacePan) canvasShell.classList.remove('pan-ready');
+          canvas.skipTargetFind = false;
+        }
+        tool = next;
+        canvas.isDrawingMode = next === 'freehand';
+        canvas.selection = next === 'select';
+        canvas.defaultCursor = next === 'select' ? 'default' : (next === 'eraser' ? 'not-allowed' : 'crosshair');
+        canvas.forEachObject(o => {
+          if (o.annotationObject) {
+            o.selectable = annotationsVisible && next === 'select';
+            o.evented = annotationsVisible && ['select', 'eraser'].includes(next);
+          }
+        });
+        canvas.freeDrawingBrush.color = color.value;
+        canvas.freeDrawingBrush.width = Number(width.value);
+        root.querySelectorAll('[data-tool]').forEach(btn => {
+          const active = btn.dataset.tool === next;
+          btn.setAttribute('aria-pressed', active ? 'true' : 'false');
+          btn.classList.toggle('btn-primary', active);
+        });
+        status.textContent = next === 'text'
+          ? 'Click the image to place an editable Inter label.'
+          : (next === 'eraser' ? 'Eraser active. Click any annotation to remove it; Undo will restore it.' : `${next[0].toUpperCase() + next.slice(1)} tool active.`);
+      }
+
+      root.querySelectorAll('[data-tool]').forEach(btn => btn.addEventListener('click', () => setTool(btn.dataset.tool)));
+      togglePlates.addEventListener('click', () => {
+        const hidden = workspace.classList.toggle('plates-hidden');
+        togglePlates.innerHTML = `<i data-lucide="${hidden ? 'panel-right-open' : 'panel-right-close'}" aria-hidden="true"></i> ${hidden ? 'Show case plates' : 'Hide case plates'}`;
+        localStorage.setItem('pathologyAnnotationStudio.platesHidden', hidden ? '1' : '0');
+        if (window.lucide) lucide.createIcons({ attrs:{ width:16, height:16 } });
+        fitCanvasToViewport();
+      });
+      toggleDetails.addEventListener('click', () => {
+        const hidden = workspace.classList.toggle('details-hidden');
+        toggleDetails.innerHTML = `<i data-lucide="${hidden ? 'panel-right-open' : 'panel-right-close'}" aria-hidden="true"></i> ${hidden ? 'Show case details' : 'Hide case details'}`;
+        localStorage.setItem('pathologyAnnotationStudio.detailsHidden', hidden ? '1' : '0');
+        if (window.lucide) lucide.createIcons({ attrs:{ width:16, height:16 } });
+        fitCanvasToViewport();
+      });
+      annotationToggle.addEventListener('click', () => {
+        setAnnotationsVisible(!annotationsVisible);
+        status.textContent = annotationsVisible
+          ? 'Annotations are visible. This preview setting is not stored in the project.'
+          : 'Annotations are hidden for preview. They remain intact and return when the project is reopened.';
+      });
+      compareToggle.setAttribute('aria-pressed','false');
+      compareToggle.addEventListener('click', () => {
+        if (!background) { status.textContent = 'Load the authentic micrograph before comparing.'; return; }
+        if (!aiComparisonAvailable) { status.textContent = 'This review plate does not have an approved AI-assisted pair yet.'; return; }
+        const active = compareOverlay.hidden;
+        if (active) {
+          preCompareAnnotationsVisible = annotationsVisible;
+          setAnnotationsVisible(false);
+          compareOverlay.hidden = false;
+        } else {
+          compareOverlay.hidden = true;
+          setAnnotationsVisible(preCompareAnnotationsVisible);
+        }
+        compareToggle.classList.toggle('btn-primary', active);
+        compareToggle.setAttribute('aria-pressed', String(active));
+        applyExposure();
+        status.textContent = active
+          ? 'AI comparison on. Drag the handle directly across the plate. Both images retain their aspect ratio.'
+          : 'AI comparison off. You are viewing the authentic plate.';
+      });
+      Object.values(metaFields).forEach(input => {
+        input.addEventListener('input', saveCurrentPlateMeta);
+        input.addEventListener('change', remember);
+      });
+      const recolorObject = object => {
+        if (object.type === 'activeSelection') return object.getObjects().forEach(recolorObject);
+        if (object.type === 'group') return object.getObjects().forEach(recolorObject);
+        if (['i-text','textbox','text'].includes(object.type)) object.set({ fill:color.value });
+        else {
+          object.set({ stroke:color.value });
+          if (object.type === 'triangle') object.set({ fill:color.value });
+        }
+      };
+      const resizeTextObject = object => {
+        if (object.type === 'activeSelection' || object.type === 'group') return object.getObjects().forEach(resizeTextObject);
+        if (['i-text','textbox','text'].includes(object.type)) object.set({ fontSize:Number(font.value) });
+      };
+      const restrokeObject = object => {
+        if (object.type === 'activeSelection' || object.type === 'group') return object.getObjects().forEach(restrokeObject);
+        if (!['i-text','textbox','text','triangle'].includes(object.type)) object.set({ strokeWidth:Number(width.value) });
+      };
+      color.addEventListener('input', () => {
+        canvas.freeDrawingBrush.color = color.value;
+        const active = canvas.getActiveObject();
+        if (active) { recolorObject(active); canvas.requestRenderAll(); }
+      });
+      color.addEventListener('change', () => { if (canvas.getActiveObject()) remember(); });
+      width.addEventListener('input', () => {
+        canvas.freeDrawingBrush.width = Number(width.value);
+        const active = canvas.getActiveObject();
+        if (active) { restrokeObject(active); canvas.requestRenderAll(); }
+      });
+      width.addEventListener('change', () => { if (canvas.getActiveObject()) remember(); });
+      font.addEventListener('input', () => {
+        const active = canvas.getActiveObject();
+        if (active) { resizeTextObject(active); active.setCoords(); canvas.requestRenderAll(); }
+      });
+      font.addEventListener('change', () => { if (canvas.getActiveObject()) remember(); });
+      const setExposureValue = (next, save=true) => {
+        const value = Math.max(-100, Math.min(100, Math.round(Number(next) * 10) / 10));
+        if (!Number.isFinite(value)) return;
+        exposure.value = String(value);
+        exposureNumber.value = value.toFixed(1);
+        applyExposure();
+        status.textContent = `Exposure ${Number(exposure.value) > 0 ? '+' : ''}${exposure.value}. Annotations remain unchanged.`;
+        if (save) remember();
+      };
+      exposure.addEventListener('input', () => setExposureValue(exposure.value));
+      exposureNumber.addEventListener('input', () => setExposureValue(exposureNumber.value));
+      [exposure, exposureNumber].forEach(control => control.addEventListener('wheel', event => {
+        event.preventDefault();
+        setExposureValue(Number(exposure.value) + (event.deltaY < 0 ? 0.1 : -0.1));
+      }, { passive:false }));
+
+      const loadPlateImage = (url, options={}) => new Promise((resolve, reject) => {
+        fabric.Image.fromURL(url, image => {
+          if (!image?.width || !image?.height) { reject(new Error('The micrograph could not be loaded.')); return; }
+          canvas.clear(); compareOverlay.hidden = true; compareToggle.classList.remove('btn-primary'); compareToggle.setAttribute('aria-pressed','false');
+          const maxSide = 1800;
+          const scale = Math.min(1, maxSide / Math.max(image.width, image.height));
+          canvas.setWidth(Math.round(image.width * scale));
+          canvas.setHeight(Math.round(image.height * scale));
+          image.scale(scale);
+          image.set({ left: 0, top: 0, selectable: false, evented: false, annotationObject: false });
+          background = image;
+          canvas.add(image);
+          canvas.sendToBack(image);
+          canvas.renderAll();
+          setAnnotationsVisible(true);
+          fitCanvasToViewport();
+          applyExposure();
+          history = [snapshot()]; future = [];
+          currentProjectHandle = null;
+          currentPlateSlug = options.slug || 'pathology_micrograph';
+          aiComparisonAvailable = Boolean(options.aiComparisonAvailable);
+          if (options.aiUrl) compareImage.src = options.aiUrl;
+          compareToggle.disabled = !aiComparisonAvailable;
+          sessionPlates.querySelectorAll('.plate-card').forEach(card => card.classList.toggle('active', card.dataset.plate === currentPlateSlug));
+          projectLocation.textContent = 'Unsaved changes. Save project will ask you where to keep the editable file.';
+          status.textContent = `${options.name || 'Micrograph'} loaded. Choose a tool and annotate.`;
+          resolve();
+        }, { crossOrigin:'anonymous' });
+      });
+
+      root.querySelector('#pas-file').addEventListener('change', event => {
+        const file = event.target.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = e => loadPlateImage(e.target.result, { name:file.name, slug:file.name.replace(/\.[^.]+$/,'').replace(/[^a-z0-9]+/gi,'_'), aiComparisonAvailable:false }).catch(error => { status.textContent = error.message; });
+        reader.readAsDataURL(file);
+      });
+
+      const viewerQuery = new URLSearchParams(location.search);
+      const requestedSessionDirectory = viewerQuery.get('sessionDir');
+      const sessionDirectory = requestedSessionDirectory && /^[a-zA-Z0-9_./-]+$/.test(requestedSessionDirectory)
+        ? requestedSessionDirectory.replace(/\/$/, '')
+        : './session';
+      const sessionAssetUrl = file => String(file).startsWith('/') ? String(file) : `${sessionDirectory}/${String(file).split('/').map(encodeURIComponent).join('/')}`;
+
+      fetch(`${sessionDirectory}/session_manifest.json`)
+        .then(response => { if (!response.ok) throw new Error('Review session manifest was not found.'); return response.json(); })
+        .then(session => {
+          sessionHeading.textContent = `${session.sessionTitle} · ${session.plates.length} plates`;
+          sessionPlates.replaceChildren();
+          const makePlateCard = (plate, options={}) => {
+            const slug = `plate_${String(plate.number).padStart(2,'0')}_${plate.source.toLowerCase()}`;
+            const figure = document.createElement('figure');
+            figure.className = `plate-card${options.child ? ' plate-child' : ''}`; figure.tabIndex = 0; figure.dataset.plate = slug;
+            const image = document.createElement('img');
+            image.src = sessionAssetUrl(plate.file);
+            image.alt = `${plate.number}. ${plate.title}`; image.loading = 'lazy';
+            const caption = document.createElement('figcaption');
+            const strong = document.createElement('strong');
+            strong.textContent = `${String(plate.number).padStart(2,'0')} · ${plate.title}`;
+            caption.append(strong, document.createElement('br'), document.createTextNode(`${plate.source} · ${plate.duration || 'source sweep'}${plate.aiFile ? ' · AI cleanup available' : ''}`));
+            figure.append(image, caption);
+            const openPlate = () => {
+              saveCurrentPlateMeta();
+              const boundaryKey = plate.boundaryKey || slug;
+              const sourceVideo = plate.sourceVideo || session.sourceVideo || null;
+              currentPlateMeta = {...plate, sourceVideo, _boundaryKey:boundaryKey};
+              updateCurrentPlateLabel(plate);
+              const hasSweepBounds = Number.isFinite(Number(plate.startRelativeSeconds)) && Number.isFinite(Number(plate.endRelativeSeconds));
+              const hasSeedTime = Number.isFinite(Number(plate.seedTimeSeconds));
+              const playable = Boolean(sourceVideo) && (hasSweepBounds || hasSeedTime);
+              const adjustable = hasSweepBounds;
+              boundaryPanel.hidden = !adjustable;
+              const savedBoundary = boundarySettings[boundaryKey] || {left:0, right:0};
+              boundaryLeft.value = String(savedBoundary.left || 0); boundaryRight.value = String(savedBoundary.right || 0);
+              boundaryLeftValue.textContent = `${boundaryLeft.value} s`; boundaryRightValue.textContent = `${boundaryRight.value} s`;
+              boundaryCurrent.textContent = plate.boundaryParentTitle || plate.title;
+              const bufferedStart = hasSweepBounds
+                ? Math.max(0, Number(plate.startRelativeSeconds) - 2)
+                : Math.max(0, Number(plate.seedTimeSeconds || 0) - 6);
+              const bufferedEnd = hasSweepBounds
+                ? Number(plate.endRelativeSeconds) + 2
+                : Number(plate.seedTimeSeconds || 0) + 6;
+              openVideoTab.href = sourceVideo || '#';
+              watchTeaching.disabled = !playable;
+              watchTeaching.title = playable ? 'Play this case’s teaching segment on Google Drive' : 'This plate has no linked teaching segment';
+              openVideoTab.setAttribute('aria-disabled', playable ? 'false' : 'true');
+              loadPlateImage(image.src, {
+                name:plate.title,
+                slug,
+                aiComparisonAvailable:Boolean(plate.aiFile),
+                aiUrl:plate.aiFile ? sessionAssetUrl(plate.aiFile) : null
+              }).then(() => writeCaseMeta(caseMetaByPlate[slug] || {})).catch(error => { status.textContent = error.message; });
+            };
+            figure.addEventListener('click', event => { event.stopPropagation(); openPlate(); });
+            figure.addEventListener('keydown', event => { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); openPlate(); } });
+            return figure;
+          };
+          session.plates.forEach(plate => {
+            const figure = makePlateCard(plate);
+            if (Array.isArray(plate.children) && plate.children.length) {
+              const group = document.createElement('details');
+              group.className = 'plate-group';
+              const summary = document.createElement('summary');
+              summary.appendChild(figure);
+              const children = document.createElement('div');
+              children.className = 'plate-children';
+              const parentBoundaryKey = plate.boundaryKey || `plate_${String(plate.number).padStart(2,'0')}_${plate.source.toLowerCase()}`;
+              plate.children.forEach((child, index) => children.appendChild(makePlateCard({
+                ...child,
+                number:`${plate.number}.${index + 1}`,
+                source:child.source || plate.source,
+                startRelativeSeconds:plate.startRelativeSeconds,
+                endRelativeSeconds:plate.endRelativeSeconds,
+                boundaryKey:parentBoundaryKey,
+                boundaryParentTitle:plate.title,
+              }, { child:true })));
+              group.append(summary, children);
+              sessionPlates.appendChild(group);
+            } else {
+              sessionPlates.appendChild(figure);
+            }
+          });
+          sessionPlates.querySelector('.plate-card')?.click();
+          const updateBoundaryLabel = () => {
+            boundaryLeftValue.textContent = `${boundaryLeft.value} s`;
+            boundaryRightValue.textContent = `${boundaryRight.value} s`;
+            if (currentPlateMeta?._boundaryKey) {
+              boundarySettings[currentPlateMeta._boundaryKey] = {left:Number(boundaryLeft.value), right:Number(boundaryRight.value)};
+              localStorage.setItem(boundaryStorageKey, JSON.stringify(boundarySettings));
+            }
+          };
+          boundaryLeft.addEventListener('input', updateBoundaryLabel);
+          boundaryRight.addEventListener('input', updateBoundaryLabel);
+          watchTeaching.addEventListener('click', () => {
+            if (!currentPlateMeta) return;
+            window.open(currentPlateMeta.sourceVideo, '_blank', 'noopener');
+            status.textContent = 'Opened the matching teaching segment in Google Drive.';
+          });
+          teachingVideo.addEventListener('timeupdate', () => {
+            if (teachingStop !== null && teachingVideo.currentTime >= teachingStop) teachingVideo.pause();
+            const segment = transcriptSegments.find(item => teachingVideo.currentTime >= Number(item.start) && teachingVideo.currentTime <= Number(item.end));
+            teachingCaption.hidden = !segment;
+            teachingCaption.textContent = segment?.text || '';
+          });
+          closeTeaching.addEventListener('click', () => { teachingVideo.pause(); teachingDialog.close(); });
+          teachingDialog.addEventListener('close', () => teachingVideo.pause());
+          resetBoundary.addEventListener('click', () => {
+            if (!currentPlateMeta?._boundaryKey) return;
+            boundaryLeft.value = '0';
+            boundaryRight.value = '0';
+            delete boundarySettings[currentPlateMeta._boundaryKey];
+            localStorage.setItem(boundaryStorageKey, JSON.stringify(boundarySettings));
+            boundaryLeftValue.textContent = '0 s';
+            boundaryRightValue.textContent = '0 s';
+            status.textContent = `${boundaryCurrent.textContent} restored to its original source boundary.`;
+          });
+          rebuildBoundary.addEventListener('click', async () => {
+            if (!currentPlateMeta) return;
+            rebuildBoundary.disabled = true;
+            status.textContent = 'Rebuilding the expanded boundary from the original iCloud video…';
+            try {
+              const response = await fetch('/api/restitch-boundary', {
+                method:'POST', headers:{'Content-Type':'application/json'},
+                body:JSON.stringify({
+                  start:Number(currentPlateMeta.startRelativeSeconds),
+                  end:Number(currentPlateMeta.endRelativeSeconds),
+                  extendLeft:Number(boundaryLeft.value),
+                  extendRight:Number(boundaryRight.value),
+                }),
+              });
+              const payload = await response.json();
+              if (!response.ok) throw new Error(payload.error || 'Expanded stitch failed');
+              const dynamicPlate = {
+                number:`E${Date.now()}`,
+                title:`Expanded stitch ${payload.result.start.toFixed(1)}–${payload.result.end.toFixed(1)} s`,
+                source:'IMG_2179 original iCloud MOV',
+                duration:`${payload.result.start.toFixed(1)}–${payload.result.end.toFixed(1)} seconds`,
+                file:payload.url,
+                provenanceUrl:payload.provenanceUrl,
+                provenance:payload.provenance,
+                startRelativeSeconds:payload.result.start,
+                endRelativeSeconds:payload.result.end,
+                children:payload.tiles.map((tile,index)=>({
+                  title:`Source frame ${String(index + 1).padStart(2,'0')}`,
+                  source:'IMG_2179 original iCloud MOV',
+                  duration:`${Number(tile.time).toFixed(1)} seconds`,
+                  file:tile.url,
+                })),
+              };
+              const group = document.createElement('details'); group.className='plate-group'; group.open=true;
+              const summary = document.createElement('summary'); summary.appendChild(makePlateCard(dynamicPlate));
+              const children = document.createElement('div'); children.className='plate-children';
+              const dynamicBoundaryKey=`expanded_${payload.result.start.toFixed(1)}_${payload.result.end.toFixed(1)}`;
+              dynamicPlate.boundaryKey=dynamicBoundaryKey;
+              dynamicPlate.children.forEach((child,index)=>children.appendChild(makePlateCard({...child,number:`E.${index + 1}`,startRelativeSeconds:dynamicPlate.startRelativeSeconds,endRelativeSeconds:dynamicPlate.endRelativeSeconds,boundaryKey:dynamicBoundaryKey,boundaryParentTitle:dynamicPlate.title},{child:true})));
+              group.append(summary, children); sessionPlates.prepend(group);
+              currentPlateMeta = dynamicPlate;
+              await loadPlateImage(payload.url, {name:dynamicPlate.title, slug:`expanded_${Date.now()}`, aiComparisonAvailable:false});
+              status.textContent = `Expanded stitch ready from ${payload.result.tissueFrameCount} authentic frames.`;
+            } catch (error) {
+              status.textContent = error.message;
+            } finally {
+              rebuildBoundary.disabled = false;
+            }
+          });
+        })
+        .catch(error => { sessionHeading.textContent = error.message; });
+
+      canvas.on('mouse:down', event => {
+        if (!background || ['select', 'freehand'].includes(tool)) return;
+        if (tool === 'eraser') {
+          const target = event.target;
+          if (target?.annotationObject) {
+            canvas.remove(target);
+            canvas.discardActiveObject();
+            canvas.requestRenderAll();
+            remember();
+            status.textContent = 'Annotation erased. Use Undo to restore it.';
+          }
+          return;
+        }
+        const p = canvas.getPointer(event.e);
+        if (tool === 'text') {
+          const label = new fabric.IText('Label', {
+            left: p.x, top: p.y, fill: color.value, fontFamily: 'Inter', fontSize: Number(font.value),
+            fontWeight: 500, annotationObject: true
+          });
+          canvas.add(label); canvas.setActiveObject(label); label.enterEditing(); label.selectAll(); remember(); return;
+        }
+        start = p;
+        const common = { left:p.x, top:p.y, fill:'transparent', stroke:color.value, strokeWidth:Number(width.value), annotationObject:true, selectable:false, evented:false };
+        if (tool === 'circle') draft = new fabric.Ellipse({ ...common, rx:1, ry:1, originX:'left', originY:'top' });
+        if (tool === 'rect') draft = new fabric.Rect({ ...common, width:1, height:1 });
+        if (tool === 'arrow') draft = new fabric.Line([p.x, p.y, p.x, p.y], { stroke:color.value, strokeWidth:Number(width.value), annotationObject:true, selectable:false, evented:false });
+        if (draft) canvas.add(draft);
+      });
+
+      canvas.on('mouse:move', event => {
+        if (!draft || !start) return;
+        const p = canvas.getPointer(event.e), x = Math.min(start.x,p.x), y = Math.min(start.y,p.y), w = Math.abs(p.x-start.x), h = Math.abs(p.y-start.y);
+        if (tool === 'circle') draft.set({ left:x, top:y, rx:w/2, ry:h/2 });
+        if (tool === 'rect') draft.set({ left:x, top:y, width:w, height:h });
+        if (tool === 'arrow') draft.set({ x2:p.x, y2:p.y });
+        draft.setCoords(); canvas.requestRenderAll();
+      });
+
+      canvas.on('mouse:up', event => {
+        if (!draft || !start) return;
+        if (tool === 'arrow') {
+          const p = canvas.getPointer(event.e), angle = Math.atan2(p.y-start.y,p.x-start.x) * 180/Math.PI + 90;
+          const head = new fabric.Triangle({ left:p.x, top:p.y, originX:'center', originY:'center', width:Number(width.value)*4, height:Number(width.value)*5, fill:color.value, angle, annotationObject:true });
+          const line = draft; canvas.remove(draft);
+          draft = new fabric.Group([line, head], { annotationObject:true }); canvas.add(draft);
+        }
+        draft.set({ selectable: tool === 'select', evented: tool === 'select' });
+        draft = null; start = null; remember();
+      });
+
+      canvas.on('path:created', event => { event.path.set({ annotationObject:true }); remember(); });
+      canvas.on('object:modified', remember);
+      canvas.on('text:changed', () => {
+        clearTimeout(textAutosaveTimer);
+        textAutosaveTimer = setTimeout(remember, 250);
+      });
+      const syncControlsFromSelection = () => {
+        const active = canvas.getActiveObject();
+        if (!active) return;
+        const target = active.type === 'activeSelection' ? active.getObjects()[0] : active;
+        const leaf = target.type === 'group' ? target.getObjects()[0] : target;
+        if (leaf?.stroke && leaf.stroke !== 'transparent') color.value = leaf.stroke;
+        else if (leaf?.fill && typeof leaf.fill === 'string' && leaf.fill.startsWith('#')) color.value = leaf.fill;
+        if (leaf?.strokeWidth) width.value = Math.round(leaf.strokeWidth);
+        if (leaf?.fontSize) font.value = Math.round(leaf.fontSize * (leaf.scaleY || 1));
+        status.textContent = 'Selected object is editable. Drag its handles to resize or rotate it.';
+      };
+      canvas.on('selection:created', syncControlsFromSelection);
+      canvas.on('selection:updated', syncControlsFromSelection);
+
+      root.querySelector('#pas-undo').addEventListener('click', () => {
+        if (history.length < 2) return;
+        future.push(history.pop()); restore(history[history.length - 1]);
+      });
+      root.querySelector('#pas-redo').addEventListener('click', () => {
+        if (!future.length) return;
+        const state = future.pop(); history.push(state); restore(state);
+      });
+      root.querySelector('#pas-delete').addEventListener('click', () => {
+        canvas.getActiveObjects().filter(o => o.annotationObject).forEach(o => canvas.remove(o)); canvas.discardActiveObject(); canvas.renderAll(); remember();
+      });
+      root.querySelector('#pas-clear').addEventListener('click', () => {
+        annotations().forEach(o => canvas.remove(o)); canvas.discardActiveObject(); canvas.renderAll(); remember();
+      });
+      const saveProject = async () => {
+        if (!background) { status.textContent = 'Load a micrograph before saving.'; return; }
+        canvas.discardActiveObject(); canvas.renderAll();
+        const payload = { version:2, savedAt:new Date().toISOString(), plateSlug:currentPlateSlug, aiComparisonAvailable, exposure:Number(exposure.value), caseMeta:readCaseMeta(), currentPlate:currentPlateMeta, boundarySettings, canvas:JSON.parse(snapshot()) };
+        const blob = new Blob([JSON.stringify(payload)], { type:'application/json' });
+        const suggestedName = `${currentPlateSlug}_annotations.project.json`;
+        try {
+          const response = await fetch('http://127.0.0.1:8766/api/save-project', {
+            method:'POST', headers:{ 'Content-Type':'application/json' },
+            body:JSON.stringify({ filename:suggestedName, project:payload })
+          });
+          if (response.ok) {
+            const saved = await response.json();
+            projectLocation.textContent = `Saved project: ${saved.path}`;
+            status.textContent = `Saved and verified: ${saved.path}`;
+            return;
+          }
+        } catch (error) {
+          // The local project server may be closed. Fall through to Save As.
+        }
+        if (window.showSaveFilePicker) {
+          try {
+            currentProjectHandle = await window.showSaveFilePicker({
+              suggestedName,
+              types:[{ description:'Pathology annotation project', accept:{ 'application/json':['.json'] } }]
+            });
+            const writable = await currentProjectHandle.createWritable();
+            await writable.write(blob); await writable.close();
+            projectLocation.textContent = `Saved project: ${currentProjectHandle.name}`;
+            status.textContent = 'Saved successfully in the folder you selected. Use Open to reload this JSON project.';
+            return;
+          } catch (error) {
+            if (error?.name === 'AbortError') { status.textContent = 'Save cancelled. No file was written.'; return; }
+          }
+        }
+        const link = document.createElement('a');
+        link.download = suggestedName;
+        link.href = URL.createObjectURL(blob); link.click(); URL.revokeObjectURL(link.href);
+        projectLocation.textContent = `Downloaded project: ${suggestedName}`;
+        status.textContent = `Saved to your Edge Downloads folder as ${suggestedName}.`;
+      };
+      const openProject = payload => {
+        if (!payload?.canvas) throw new Error('Invalid pathology annotation project.');
+        exposure.value = Number(payload.exposure || 0); exposureValue.textContent = exposure.value;
+        currentPlateSlug = payload.plateSlug || currentPlateSlug;
+        aiComparisonAvailable = payload.aiComparisonAvailable === undefined ? currentPlateSlug.includes('silicone_granuloma') : Boolean(payload.aiComparisonAvailable);
+        compareToggle.disabled = !aiComparisonAvailable;
+        writeCaseMeta(payload.caseMeta);
+        currentPlateMeta = payload.currentPlate || currentPlateMeta;
+        updateCurrentPlateLabel(currentPlateMeta || {name:payload.plateSlug});
+        if (payload.boundarySettings && typeof payload.boundarySettings === 'object') {
+          boundarySettings = payload.boundarySettings;
+          localStorage.setItem(boundaryStorageKey, JSON.stringify(boundarySettings));
+        }
+        restore(JSON.stringify(payload.canvas));
+        history = [JSON.stringify(payload.canvas)]; future = [];
+        projectLocation.textContent = 'Project restored. Save project… lets you choose its next file location.';
+        status.textContent = 'Editable project restored.';
+      };
+      root.querySelector('#pas-save').addEventListener('click', saveProject);
+      root.querySelector('#pas-open').addEventListener('change', event => {
+        const file = event.target.files[0]; if (!file) return;
+        const reader = new FileReader();
+        reader.onload = () => { try { openProject(JSON.parse(reader.result)); } catch (error) { status.textContent = error.message; } };
+        reader.readAsText(file); event.target.value = '';
+      });
+      root.querySelector('#pas-restore').addEventListener('click', () => {
+        try {
+          const saved = localStorage.getItem(autosaveKey);
+          if (!saved) { status.textContent = 'No autosave exists yet.'; return; }
+          openProject(JSON.parse(saved));
+        } catch (error) { status.textContent = 'Autosave could not be restored.'; }
+      });
+      root.querySelector('#pas-export').addEventListener('click', () => {
+        if (!background) { status.textContent = 'Load a micrograph before exporting.'; return; }
+        const compareActive = !compareOverlay.hidden;
+        if (compareActive) {
+          canvas.lowerCanvasEl.style.filter = '';
+          const value = Number(exposure.value);
+          background.filters = value === 0 ? [] : [new fabric.Image.filters.Brightness({ brightness:value / 100 })];
+          background.applyFilters();
+        }
+        canvas.discardActiveObject(); canvas.renderAll();
+        const exportBase = `${currentPlateSlug || 'annotated-pathology-plate'}_annotated`;
+        const link = document.createElement('a');
+        link.download = `${exportBase}.png`;
+        link.href = canvas.toDataURL({ format:'png', quality:1, multiplier:1 });
+        link.click();
+        const provenance = {
+          schema:'pathology-plate-provenance/v1',
+          exportedAt:new Date().toISOString(),
+          outputImage:`${exportBase}.png`,
+          plateSlug:currentPlateSlug,
+          caseMeta:readCaseMeta(),
+          exposure:Number(exposure.value),
+          annotationsVisible,
+          sourceComposition:currentPlateMeta || null,
+          boundarySettings:currentPlateMeta?._boundaryKey ? (boundarySettings[currentPlateMeta._boundaryKey] || {left:0,right:0}) : null,
+        };
+        const provenanceBlob = new Blob([JSON.stringify(provenance, null, 2)], {type:'application/json'});
+        const provenanceLink = document.createElement('a');
+        provenanceLink.download = `${exportBase}.provenance.json`;
+        provenanceLink.href = URL.createObjectURL(provenanceBlob);
+        setTimeout(() => { provenanceLink.click(); URL.revokeObjectURL(provenanceLink.href); }, 120);
+        if (compareActive) applyExposure();
+        status.textContent = 'Annotated PNG and matching provenance JSON exported.';
+      });
+      document.addEventListener('keydown', event => {
+        if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === 's') {
+          event.preventDefault(); void saveProject(); return;
+        }
+        if (event.key === 'Delete' || event.key === 'Backspace') {
+          if (canvas.getActiveObjects().length && !canvas.getActiveObjects().some(o => o.isEditing)) root.querySelector('#pas-delete').click();
+        }
+      });
+      const smokeMode = new URLSearchParams(location.search).get('smoketest') === '1';
+      const requestedProject = new URLSearchParams(location.search).get('project');
+      const runSmokeTest = async () => {
+        try {
+          status.textContent = 'Running end-to-end smoke test…';
+          annotations().forEach(object => canvas.remove(object));
+          const rect = new fabric.Rect({ left:80, top:90, width:180, height:120, fill:'transparent', stroke:'#ff2d20', strokeWidth:6, annotationObject:true });
+          const label = new fabric.IText('SMOKE TEST', { left:110, top:230, fill:'#1266f1', fontFamily:'Inter', fontSize:42, annotationObject:true });
+          canvas.add(rect, label); canvas.renderAll();
+          exposure.value = '18'; exposureValue.textContent = '18';
+          background.filters = [new fabric.Image.filters.Brightness({ brightness:0.18 })]; background.applyFilters(); canvas.renderAll();
+          const originalCount = annotations().length;
+          writeCaseMeta({diagnosis:'Smoke diagnosis',differential1:'Differential A',differential2:'Differential B',area:'Test site',stains:'H&E\nSOX-10',age:'50',type:'Biopsy'});
+          setAnnotationsVisible(false);
+          const previewHidden = annotations().every(object => object.visible === false);
+          const payload = { version:1, savedAt:new Date().toISOString(), exposure:18, caseMeta:readCaseMeta(), canvas:JSON.parse(snapshot()) };
+          const smokeStorageKey = 'pathologyAnnotationStudio.onlineSmokeProject';
+          localStorage.setItem(smokeStorageKey, JSON.stringify(payload));
+          const reloaded = JSON.parse(localStorage.getItem(smokeStorageKey) || 'null');
+          if (!reloaded?.canvas) throw new Error('Browser save/reload failed');
+          canvas.clear(); background = null; compareOverlay.hidden = true; compareToggle.classList.remove('btn-primary'); compareToggle.setAttribute('aria-pressed','false');
+          await new Promise(resolve => canvas.loadFromJSON(reloaded.canvas, () => {
+            background = canvas.getObjects().find(object => !object.annotationObject) || null;
+            if (background) { background.selectable=false; background.evented=false; canvas.sendToBack(background); }
+            canvas.renderAll(); resolve();
+          }));
+          const restoredAnnotations = annotations();
+          const restoredText = restoredAnnotations.find(object => ['i-text','textbox','text'].includes(object.type));
+          const restoredVisible = restoredAnnotations.every(object => object.visible !== false);
+          const pass = previewHidden && restoredVisible && restoredAnnotations.length === originalCount && restoredText?.text === 'SMOKE TEST' && restoredText?.fill === '#1266f1' && restoredText?.fontSize === 42 && reloaded.exposure === 18 && reloaded.caseMeta?.diagnosis === 'Smoke diagnosis' && reloaded.caseMeta?.differential2 === 'Differential B' && reloaded.caseMeta?.stains === 'H&E\nSOX-10';
+          const report = { passed:pass, testedAt:new Date().toISOString(), savedPath:'browser localStorage', checks:{ imageLoaded:Boolean(background), annotationPreviewHidden:previewHidden, annotationVisibilityNotPersisted:restoredVisible, annotationCount:restoredAnnotations.length, text:restoredText?.text, textColor:restoredText?.fill, textSize:restoredText?.fontSize, exposure:reloaded.exposure, caseMeta:reloaded.caseMeta, casePlateImages:Array.from(root.querySelectorAll('.plate-card img')).every(image => image.complete && image.naturalWidth > 0) } };
+          document.title = pass ? 'PASS · Pathology Annotation Studio' : 'FAIL · Pathology Annotation Studio';
+          projectLocation.textContent = pass ? 'Smoke test saved and reloaded in this browser.' : 'Smoke test failed. See status.';
+          status.textContent = pass ? 'PASS: annotate, visibility preview, save, reload, text styling, exposure, and images verified.' : `FAIL: ${JSON.stringify(report.checks)}`;
+        } catch (error) {
+          document.title = 'FAIL · Pathology Annotation Studio';
+          status.textContent = `Smoke test failed: ${error.message}`;
+        }
+      };
+      setTool('select');
+      const loadDefaultPlate = () => fabric.Image.fromURL('./IMG_2189_silicone_granuloma_AUTHENTIC_video_mosaic_white_canvas.png', image => {
+        canvas.clear(); compareOverlay.hidden = true; compareToggle.classList.remove('btn-primary'); compareToggle.setAttribute('aria-pressed','false');
+        const maxSide = 1800;
+        const scale = Math.min(1, maxSide / Math.max(image.width, image.height));
+        canvas.setWidth(Math.round(image.width * scale));
+        canvas.setHeight(Math.round(image.height * scale));
+        image.scale(scale);
+        image.set({ left:0, top:0, selectable:false, evented:false, annotationObject:false });
+        background = image;
+        canvas.add(image);
+        canvas.sendToBack(image);
+        canvas.renderAll();
+        fitCanvasToViewport();
+        applyExposure();
+        history = [snapshot()]; future = [];
+        status.textContent = 'Authentic IMG_2189 silicone granuloma mosaic loaded. Choose a tool and annotate.';
+      });
+      try {
+        if (localStorage.getItem('pathologyAnnotationStudio.platesHidden') === '1') {
+          workspace.classList.add('plates-hidden');
+          togglePlates.innerHTML = '<i data-lucide="panel-right-open" aria-hidden="true"></i> Show case plates';
+        }
+        if (localStorage.getItem('pathologyAnnotationStudio.detailsHidden') === '0') {
+          workspace.classList.remove('details-hidden');
+          toggleDetails.innerHTML = '<i data-lucide="panel-right-close" aria-hidden="true"></i> Hide case details';
+        }
+        if (requestedProject) {
+          fetch(`http://127.0.0.1:8766/api/project?name=${encodeURIComponent(requestedProject)}`)
+            .then(response => { if (!response.ok) throw new Error('Requested project was not found.'); return response.json(); })
+            .then(project => { openProject(project); projectLocation.textContent = `Loaded project: ${requestedProject}`; status.textContent = 'Saved project reloaded with editable annotations.'; })
+            .catch(error => { status.textContent = error.message; loadDefaultPlate(); });
+        } else {
+          const recovered = smokeMode ? null : localStorage.getItem(autosaveKey);
+          if (recovered) {
+          openProject(JSON.parse(recovered));
+          projectLocation.textContent = 'Recovered unsaved work from this browser. Save project… to create a permanent file.';
+          status.textContent = 'Autosave recovered. Review it, then use Save project… and choose the projects folder.';
+          } else loadDefaultPlate();
+        }
+      } catch (error) {
+        loadDefaultPlate();
+      }
+      if (smokeMode) setTimeout(runSmokeTest, 1200);
+      if (window.lucide) lucide.createIcons({ attrs: { width:16, height:16 } });
+    })();
+  </script>
+</div>
+</body>
+</html>

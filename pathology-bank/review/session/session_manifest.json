@@ -1,0 +1,17 @@
+{
+  "sessionTitle": "Ten Multi-Field Teaching Cases",
+  "plateCount": 10,
+  "assetPolicy": "Authentic source-video pixels only. No generative fill.",
+  "plates": [
+    {"number":1,"title":"DCIS: dirty necrosis and calcification","source":"IMG_2179","duration":"03:01","file":"01_IMG_2179_AUTHENTIC_stitched_mosaic.png","stitchStatus":"stitched","tileCount":16,"sourceVideo":"https://drive.google.com/file/d/1cTYrKW_4d0v8kGLehN_QCSM2Bs1tSBz9/view","seedTimeSeconds":0},
+    {"number":2,"title":"Invasive ductal carcinoma versus usual ductal hyperplasia","source":"IMG_2180","duration":"04:00","file":"02_IMG_2180_AUTHENTIC_stitched_mosaic.png","stitchStatus":"stitched","tileCount":9,"sourceVideo":"https://drive.google.com/file/d/15C3PwY3h93Zo0ye0tdXpdqgQme3Pp8Lk/view","seedTimeSeconds":0},
+    {"number":3,"title":"DCIS, fat necrosis, and calcifications","source":"IMG_2180","duration":"04:00","file":"03_IMG_2180_AUTHENTIC_stitched_mosaic.png","stitchStatus":"stitched","tileCount":11,"sourceVideo":"https://drive.google.com/file/d/1X2vErSn6gjSUnZC_1U77Fk-XQ5BRZeCF/view","seedTimeSeconds":0},
+    {"number":4,"title":"DCIS, microinvasion, and high-grade features","source":"IMG_2180","duration":"06:10","file":"04_IMG_2180_AUTHENTIC_stitched_mosaic.png","stitchStatus":"stitched","tileCount":8,"sourceVideo":"https://drive.google.com/file/d/1A1A_e-dtW5udGnCH9N8krt_bgTek4vF5/view","seedTimeSeconds":0},
+    {"number":5,"title":"Invasive ductal carcinoma: p63, SMM, and E-cadherin","source":"IMG_2186(1)","duration":"02:27","file":"10_IMG_2186(1)_AUTHENTIC_stitched_mosaic.png","stitchStatus":"stitched","tileCount":10,"sourceVideo":"https://drive.google.com/file/d/1qddr_psvy-X8EOMctfP_rHqrrQCVm9A9/view","seedTimeSeconds":0},
+    {"number":6,"title":"Measuring a 1.5 mm invasive carcinoma","source":"IMG_2187(1)","duration":"01:30","file":"11_IMG_2187(1)_AUTHENTIC_stitched_mosaic.png","stitchStatus":"stitched","tileCount":16,"sourceVideo":"https://drive.google.com/file/d/1nm14BYtk3Jlb0ZOng5QetQcG7jC4_hUL/view","seedTimeSeconds":0},
+    {"number":7,"title":"Duodenum, celiac architecture, and Candida esophagitis","source":"IMG_2188","duration":"04:00","file":"12_IMG_2188_AUTHENTIC_stitched_mosaic.png","stitchStatus":"stitched","tileCount":11,"sourceVideo":"https://drive.google.com/file/d/14NgaQgiPyg63ubgBn-M_ktMa9eajDwty/view","seedTimeSeconds":0},
+    {"number":8,"title":"Fibroadenoma, cancerization of lobules, DCIS, and microinvasion","source":"IMG_2189(1)","duration":"06:00","file":"16_IMG_2189(1)_AUTHENTIC_stitched_mosaic.png","stitchStatus":"stitched","tileCount":9,"sourceVideo":"https://drive.google.com/file/d/14cFRUVKbl2XJvux9j0nzgrgEm8jKHxhI/view","seedTimeSeconds":0},
+    {"number":9,"title":"Silicone granuloma, papilloma, and tiny invasive carcinoma","source":"IMG_2189(1)","duration":"04:00","file":"17_IMG_2189(1)_AUTHENTIC_stitched_mosaic.png","stitchStatus":"stitched","tileCount":4,"sourceVideo":"https://drive.google.com/file/d/1jtoauJkIs5YyjxZFEQfqdxw26Md6JWzP/view","seedTimeSeconds":0},
+    {"number":10,"title":"Spindle/metaplastic, micropapillary, and tubular differentials","source":"IMG_2189(1)","duration":"04:00","file":"18_IMG_2189(1)_AUTHENTIC_stitched_mosaic.png","stitchStatus":"stitched","tileCount":16,"sourceVideo":"https://drive.google.com/file/d/1G2h-BPrG55cD0kofmwT86CsKMjuT958i/view","seedTimeSeconds":0}
+  ]
+}

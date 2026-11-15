@@ -376,9 +376,10 @@
       zoomIn.addEventListener('click', () => setZoom(Number(zoomControl.value) + 25));
       zoomFit.addEventListener('click', () => { setZoom(100); canvasShell.scrollTo({left:0, top:0}); });
       canvasShell.addEventListener('wheel', event => {
-        if (!(event.ctrlKey || event.metaKey)) return;
         event.preventDefault();
-        setZoom(Number(zoomControl.value) + (event.deltaY < 0 ? 10 : -10), event.clientX, event.clientY);
+        const direction = event.deltaY < 0 ? 1 : -1;
+        const step = event.ctrlKey || event.metaKey ? 10 : 5;
+        setZoom(Number(zoomControl.value) + direction * step, event.clientX, event.clientY);
       }, {passive:false});
       window.addEventListener('keydown', event => {
         if (/INPUT|TEXTAREA/.test(document.activeElement?.tagName || '')) return;

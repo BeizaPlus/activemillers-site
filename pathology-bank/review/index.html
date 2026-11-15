@@ -137,6 +137,7 @@
   <div class="toolbar" aria-label="Annotation controls">
     <div class="control-cluster" role="group" aria-label="Drawing tools">
       <button class="btn btn-primary" type="button" data-tool="select" aria-pressed="true" title="Select"><i data-lucide="mouse-pointer-2" aria-hidden="true"></i> Select</button>
+      <button id="pas-pan" class="btn" type="button" data-tool="hand" aria-pressed="false" title="Hand — drag to move the plate (H, or hold Space)"><i data-lucide="hand" aria-hidden="true"></i> Hand</button>
       <button class="btn" type="button" data-tool="arrow" aria-pressed="false" title="Arrow"><i data-lucide="arrow-up-right" aria-hidden="true"></i> Arrow</button>
       <button class="btn" type="button" data-tool="circle" aria-pressed="false" title="Circle"><i data-lucide="circle" aria-hidden="true"></i> Circle</button>
       <button class="btn" type="button" data-tool="rect" aria-pressed="false" title="Rectangle"><i data-lucide="square" aria-hidden="true"></i> Rectangle</button>
@@ -156,7 +157,6 @@
       <input id="pas-zoom" class="form-range zoom-range" type="range" min="25" max="400" step="5" value="100" aria-label="Plate zoom">
       <button id="pas-zoom-in" class="btn btn-ghost icon-btn" type="button" title="Zoom in"><i data-lucide="zoom-in" aria-hidden="true"></i></button>
       <span id="pas-zoom-value" class="zoom-value">100%</span>
-      <button id="pas-pan" class="btn btn-ghost" type="button" aria-pressed="false" title="Drag the enlarged plate to pan"><i data-lucide="hand" aria-hidden="true"></i> Pan</button>
     </div>
     <div class="control-cluster" role="group" aria-label="Edit controls">
       <button id="pas-undo" class="btn btn-ghost icon-btn" type="button" title="Undo"><i data-lucide="undo-2" aria-hidden="true"></i></button>
@@ -228,7 +228,6 @@
       const zoomFit = root.querySelector('#pas-zoom-fit');
       const zoomOut = root.querySelector('#pas-zoom-out');
       const zoomIn = root.querySelector('#pas-zoom-in');
-      const panButton = root.querySelector('#pas-pan');
       const currentPlateLabel = root.querySelector('#pas-current-plate');
       const projectLocation = root.querySelector('#pas-project-location');
       const workspace = root.querySelector('.workspace');
@@ -376,22 +375,25 @@
       zoomOut.addEventListener('click', () => setZoom(Number(zoomControl.value) - 25));
       zoomIn.addEventListener('click', () => setZoom(Number(zoomControl.value) + 25));
       zoomFit.addEventListener('click', () => { setZoom(100); canvasShell.scrollTo({left:0, top:0}); });
-      panButton.addEventListener('click', () => {
-        panMode = !panMode;
-        panButton.setAttribute('aria-pressed', String(panMode));
-        panButton.classList.toggle('btn-primary', panMode);
-        canvasShell.classList.toggle('pan-ready', panMode);
-        canvas.skipTargetFind = panMode;
-        canvas.selection = !panMode && tool === 'select';
-        status.textContent = panMode ? 'Pan active. Drag the enlarged plate to move around it.' : 'Pan off.';
-      });
       canvasShell.addEventListener('wheel', event => {
         if (!(event.ctrlKey || event.metaKey)) return;
         event.preventDefault();
         setZoom(Number(zoomControl.value) + (event.deltaY < 0 ? 10 : -10), event.clientX, event.clientY);
       }, {passive:false});
       window.addEventListener('keydown', event => {
-        if (event.code !== 'Space' || event.repeat || /INPUT|TEXTAREA/.test(document.activeElement?.tagName || '')) return;
+        if (/INPUT|TEXTAREA/.test(document.activeElement?.tagName || '')) return;
+        if (event.code === 'KeyH' && !event.ctrlKey && !event.metaKey && !event.altKey) {
+          event.preventDefault();
+          setTool('hand');
+          return;
+        }
+        if (event.code === 'KeyV' && !event.ctrlKey && !event.metaKey && !event.altKey) {
+          event.preventDefault();
+          setTool('select');
+          return;
+        }
+        if (event.code !== 'Space' || event.repeat) return;
+        event.preventDefault();
         spacePan = true;
         canvasShell.classList.add('pan-ready');
       });
@@ -513,17 +515,13 @@
       };
 
       function setTool(next) {
-        if (panMode) {
-          panMode = false;
-          panButton.setAttribute('aria-pressed', 'false');
-          panButton.classList.remove('btn-primary');
-          if (!spacePan) canvasShell.classList.remove('pan-ready');
-          canvas.skipTargetFind = false;
-        }
         tool = next;
+        panMode = next === 'hand';
+        canvasShell.classList.toggle('pan-ready', panMode || spacePan);
+        canvas.skipTargetFind = panMode;
         canvas.isDrawingMode = next === 'freehand';
         canvas.selection = next === 'select';
-        canvas.defaultCursor = next === 'select' ? 'default' : (next === 'eraser' ? 'not-allowed' : 'crosshair');
+        canvas.defaultCursor = next === 'hand' ? 'grab' : (next === 'select' ? 'default' : (next === 'eraser' ? 'not-allowed' : 'crosshair'));
         canvas.forEachObject(o => {
           if (o.annotationObject) {
             o.selectable = annotationsVisible && next === 'select';
@@ -539,7 +537,8 @@
         });
         status.textContent = next === 'text'
           ? 'Click the image to place an editable Inter label.'
-          : (next === 'eraser' ? 'Eraser active. Click any annotation to remove it; Undo will restore it.' : `${next[0].toUpperCase() + next.slice(1)} tool active.`);
+          : (next === 'eraser' ? 'Eraser active. Click any annotation to remove it; Undo will restore it.'
+          : (next === 'hand' ? 'Hand active. Drag the plate to move around it; hold Space for temporary hand access.' : `${next[0].toUpperCase() + next.slice(1)} tool active.`));
       }
 
       root.querySelectorAll('[data-tool]').forEach(btn => btn.addEventListener('click', () => setTool(btn.dataset.tool)));
